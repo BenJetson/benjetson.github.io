@@ -8,12 +8,13 @@ description: >
 url: "http://localhost:4000"
         # URL for local server
 
-markdown: kramdown
-theme: jekyll-theme-architect
 
 # Build Configuration
+markdown: kramdown
+safe: true
 gems:
   - jekyll-mentions
+  - gemoji
 exclude:
   - Gemfile
   - Gemfile.lock
