@@ -9,14 +9,19 @@
     </head>
 
     <body>
-        
-        {% include navigation.html %}
+        {% if site.closed %}
+            {% include scripts.html %}
+            {% include site-closed.html %}
+        {% else %}
+            {% include navigation.html %}
 
-        {{content}}
+            {{content}}
 
-        {% include footer.html %}
+            {% include footer.html %}
 
-        {% include scripts.html %}
+            {% include scripts.html %}
+            {% include script-init.html %}
+        {% endif %}
 
     </body>
 
