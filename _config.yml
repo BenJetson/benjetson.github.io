@@ -20,3 +20,9 @@ exclude:
   - Gemfile.lock
   - vendor
   - vendor/*
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
