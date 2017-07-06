@@ -3,9 +3,9 @@ description: >
   Homepage to showcase all of my various
   code projects.
 
-#url: "http://www.bgcode.net"
+#url: "http://www.bgcode.net/"
         # URL for web hosting
-url: "http://localhost:4000"
+url: "http://localhost:4000/"
         # URL for local server
 
 
