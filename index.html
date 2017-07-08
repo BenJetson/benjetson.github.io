@@ -4,7 +4,10 @@
 <section id="jumbotron">
     <div class="parallax-container">
         <div class="parallax">
-            <img src="https://images.unsplash.com/photo-1489389944381-3471b5b30f04?fm=jpg&cs=tinysrgb&w=1920&fit=max" alt="hero image">
+            <img src="https://images.unsplash.com/photo-1477244075012-5cc28286e465?fm=jpg&cs=tinysrgb&w=1920&fit=max" alt="hero image">
+            <!--<img src="https://images.unsplash.com/photo-1450529130404-28cc74958a81?fm=jpg&cs=tinysrgb&w=1920&fit=max" alt="hero image">-->
+            <!--<img src="https://images.unsplash.com/photo-1485145189046-4d44a29117f3?fm=jpg&cs=tinysrgb&w=1920&fit=max" alt="hero image">-->
+            <!--<img src="https://images.unsplash.com/photo-1489389944381-3471b5b30f04?fm=jpg&cs=tinysrgb&w=1920&fit=max" alt="hero image">-->
             <!--<img src="https://source.unsplash.com/random/1920x1080" alt="hero image">-->
             <!--<img src="https://dummyimage.com/1920x1080/600/fff&text=&nbsp;" alt="hero image">-->
         </div>
@@ -35,121 +38,31 @@
     <div class="container">
         <h2>Featured Projects</h2>
         <div class="row">
-            <div class="col l4 m6 s12">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">Project</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mollis scelerisque accumsan.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">
-                            <i class="material-icons">exit_to_app</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">error_outline</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">book</i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- Filler -->
-            <div class="col l4 m6 s12">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">Project</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mollis scelerisque accumsan.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">
-                            <i class="material-icons">exit_to_app</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">error_outline</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">book</i>
-                        </a>
+            {% for project in site.data.featured %}
+                <div class="col l4 m6 s12">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title truncate">{{project.title}}</span>
+                            <p>{{project.desc}}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="https://github.com/{{project.username}}/{{project.repo}}">
+                                <i class="material-icons">exit_to_app</i>
+                            </a>
+                            {% if project.issues %}
+                            <a href="https://github.com/{{project.username}}/{{project.repo}}/issues">
+                                <i class="material-icons">error_outline</i>
+                            </a>
+                            {% endif %}
+                            {% if project.wiki %}
+                            <a href="https://github.com/{{project.username}}/{{project.repo}}/wiki">
+                                <i class="material-icons">book</i>
+                            </a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col l4 m6 s12">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">Project</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mollis scelerisque accumsan.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">
-                            <i class="material-icons">exit_to_app</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">error_outline</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">book</i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col l4 m6 s12">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">Project</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mollis scelerisque accumsan.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">
-                            <i class="material-icons">exit_to_app</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">error_outline</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">book</i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col l4 m6 s12">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">Project</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mollis scelerisque accumsan.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">
-                            <i class="material-icons">exit_to_app</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">error_outline</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">book</i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col l4 m6 s12">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">Project</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mollis scelerisque accumsan.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">
-                            <i class="material-icons">exit_to_app</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">error_outline</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">book</i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
