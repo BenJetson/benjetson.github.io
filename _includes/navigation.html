@@ -6,6 +6,25 @@
                     <span class="logo-init">></span>BGCODE<span class="logo-text-sm">.NET</span>
                 </span>
             </a>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-desktop" class="right hide-on-med-and-down">
+                {% for item in site.data.navigation %}
+                    <li>
+                        <a href="{{site.url}}/{{item.href}}">
+                            {{item.name}}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <ul id="nav-mobile" class="side-nav">
+                {% for item in site.data.navigation %}
+                    <li>
+                        <a href="{{site.url}}/{{item.href}}">
+                            {{item.name}}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </nav>
