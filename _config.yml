@@ -8,7 +8,7 @@ url: "http://www.bgcode.net"
 #url: "http://localhost:4000"
         # URL for local server
 
-closed: true
+closed: false
     # Removes all content and displays
     #   maintenance warning modal.
 
