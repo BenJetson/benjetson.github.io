@@ -1,0 +1,33 @@
+
+// Navbar Logo
+#nav-logo {
+  font-family: "Roboto Condensed";
+  color: #0ad;
+  /*text-shadow: 0 0 40px #0f0;*/
+  font-weight: bold;
+  font-style: italic;
+  letter-spacing: 5px;
+  font-size:40px;
+}
+
+#nav-logo .logo-text-sm {
+  font-size: 20px;
+}
+
+#nav-logo .logo-init {
+   color: #0b0;
+   font-style: normal;
+   letter-spacing: 7px;
+}
+
+#nav-logo-wrapper a {
+    transition: border-bottom 0.5s, text-shadow 0.5s, color 1s;
+    text-shadow: 0 0 3px #000;
+}
+
+#nav-logo-wrapper a:hover, 
+#nav-logo-wrapper a:active {
+    border-bottom: 1px solid #ccc;
+    text-shadow: 0 0 15px #000;
+    color: #db0;
+}
