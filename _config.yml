@@ -26,6 +26,10 @@ github_username:  BenJetson
 markdown: kramdown
 plugins:
   - jekyll-feed
+  - jekyll-admin
+  - github-pages
+sass:
+  style: compressed
 
 
 # Page defaults
