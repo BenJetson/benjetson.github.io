@@ -27,6 +27,10 @@ markdown: kramdown
 plugins:
   - jekyll-feed
 
+
+# Page defaults
+layout: default
+
 # Exclude from processing.
 exclude:
   - Gemfile
