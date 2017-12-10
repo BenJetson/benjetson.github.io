@@ -33,7 +33,12 @@ sass:
 
 
 # Page defaults
-layout: default
+defaults:
+  -
+    scope:
+      path: ""
+    values: 
+      layout: default
 
 # Exclude from processing.
 exclude:
