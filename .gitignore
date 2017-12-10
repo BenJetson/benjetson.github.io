@@ -3,6 +3,7 @@
 vendor
 vendor/*
 Gemfile.lock
-.sass-cache
 _site
-README.md
+.sass-cache
+.jekyll-metadata
+
