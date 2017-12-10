@@ -18,9 +18,27 @@ layout: boilerplate
         <a class="btn btn-info" href="{{ site.url }}/about">More about me &raquo;</a>
     </div>
 </section>
-<section class="py-3">
+<section class="bg-default py-3">
     <div class="container">
         <h4>My Latest Projects</h4>
     </div>
-</section>
+    <div class="container mt-3">
+        <div class="row">
+            {% for i in (1..6) %}
+            <div class="col-sm-12 col-md-4 mb-4">
+                <div class="card border-secondary bg-light">
+                    <div class="card-body">
+                        <h4 class="card-title">Project 1</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet something escupting elit!</p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn bg-white border-secondary" href="#">!!</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="btn btn-info" href="{{site.url}}/projects">More projects &raquo;</a>
+    </div>
+</section>  
 
