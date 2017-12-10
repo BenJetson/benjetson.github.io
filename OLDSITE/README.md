@@ -1,2 +1,0 @@
-# benjetson.github.io
-Webpage.
