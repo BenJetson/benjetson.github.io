@@ -27,6 +27,7 @@ markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-admin
+  - jekyll-octicons
   - github-pages
 sass:
   style: compressed
