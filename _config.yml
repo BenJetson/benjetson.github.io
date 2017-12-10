@@ -34,6 +34,7 @@ plugins:
   - github-pages
 sass:
   style: compressed
+permalink: /blog/:year/:month/:day-:title
 
 
 # Page defaults
