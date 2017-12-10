@@ -27,7 +27,7 @@ layout: boilerplate
         <div class="row">
             {% for project in site.data.featured %}
             {% assign projectURL = "https://github.com/" | append: project.username | append: "/" | append: project.repo %}
-            <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+            <div class="col-sm-12 col-md-6 mb-4">
                 <div class="card border-secondary bg-light">
                     <div class="card-body">
                         <h4 class="card-title">{{project.title}}</h4>
