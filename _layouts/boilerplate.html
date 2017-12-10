@@ -20,10 +20,6 @@
 
         {% include scripts.html %}
 
-        <!-- site.url = {{site.url}} -->
-        <!-- site.localURL = {{site.localURL}} -->
-        <!-- site.remoteURL = {{site.remoteURL}} -->
-
         {% if site.underConstruction and site.url == site.remoteURL %}
         <script>$("#constructionModal").modal('show');</script>
         {% endif %}
