@@ -1,0 +1,51 @@
+[
+    {
+        "title": "Gnome Dash Organizer",
+        "username": "benjetson",
+        "repo": "gnome-dash-fix",
+        "desc": "Organizes the apps view of the GNOME dash dynamically by category. Now with user customizable category folders!",
+        "issues": true,
+        "wiki": true
+    },
+    {
+        "title": "Sporclone",
+        "username": "benjetson",
+        "repo": "sporclone",
+        "desc": "Basic set of online question-based games, written in HTML, CSS, and JS. Uses AJAX to fetch answer database.",
+        "issues": true,
+        "wiki": false
+    }, 
+    {
+        "title": "Escape The School!",
+        "username": "benjetson",
+        "repo": "escape-the-school",
+        "desc": "Platformer written in Python using PyGame. The goal is to collect all of your belongings and sneak out without running into too many people!",
+        "issues": true,
+        "wiki": false
+    },
+    {
+        "title": "VRC 3796A Starstruck",
+        "username": "mannrobo",
+        "repo": "starstruck-A",
+        "desc": "RobotC code I wrote to control my VRC team's Starstruck robot. Throws stars and cubes over the center fence using a claw mechanism.",
+        "issues": false,
+        "wiki": false
+    },
+    {
+        "title": "VRC 3796A Nothing But Net",
+        "username": "mannrobo",
+        "repo": "nothing-but-net-A",
+        "desc": "Code written in RobotC to control my VRC team's Nothing But Net robot. Uses a flywheel to shoot balls on an X-drive base.",
+        "issues": false,
+        "wiki": false
+    },
+    {
+        "title": "POE Ball Sorter",
+        "username": "benjetson",
+        "repo": "poe-ball-sorter",
+        "desc": "Code I wrote to control my team's ball sorter. Detects the color of a ball by reflecting light onto a  photoresistor.",
+        "issues": true,
+        "wiki": false
+    }
+
+]

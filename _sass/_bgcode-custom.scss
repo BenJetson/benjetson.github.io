@@ -1,5 +1,11 @@
 
 img#home-profile-img {
-    max-width: 50vw;
-    max-height: 50vw;
+    max-width: 250px;
+    max-height: 250px;
 }
+
+.octicon {
+    display: inline-block;
+    vertical-align: text-top;
+    fill: currentColor;
+  }
