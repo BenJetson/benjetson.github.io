@@ -21,16 +21,19 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://www.bgcode.net" #interwebz
 twitter_username: BenJetson
 github_username:  BenJetson
+profileIMG: https://avatars1.githubusercontent.com/u/10427974?s=460&v=4
 
 # Build settings
 remoteURL: "http://www.bgcode.net"
 localURL: "http://localhost:4000"
 underConstruction: true
 markdown: kramdown
+highlighter: rouge
 plugins:
   - jekyll-feed
   - jekyll-admin
   - jekyll-octicons
+  - rouge
   - github-pages
 sass:
   style: compressed
@@ -43,7 +46,15 @@ defaults:
     scope:
       path: ""
     values: 
-      layout: default
+      layout: "default"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "blogpost"
+      image: "site.url/img/felipe-santana-309268.jpg"
+      image-credit: Felipe Santana on Unsplash
 
 # Exclude from processing.
 exclude:
