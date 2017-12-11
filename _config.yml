@@ -39,7 +39,6 @@ sass:
   style: compressed
 permalink: /blog/:year/:month/:day-:title
 
-
 # Page defaults
 defaults:
   -
