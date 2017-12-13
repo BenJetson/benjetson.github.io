@@ -46,6 +46,13 @@
         "desc": "Code I wrote to control my team's ball sorter. Detects the color of a ball by reflecting light onto a  photoresistor.",
         "issues": true,
         "wiki": false
+    },{
+        "title": "LightshowPi Shell",
+        "username": "benjetson",
+        "repo": "lightshowpi-shell",
+        "desc": "A basic shell to control lightshowpi playback and manipulate lightshowpi playlists.",
+        "issues": true,
+        "wiki": false
     }
 
 ]
