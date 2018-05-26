@@ -18,13 +18,13 @@ email: BenJetson@users.noreply.github.com
 description: >- # this means to ignore newlines until "baseurl:"
   The online launchpad for my various code projects.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://www.bgcode.net" #interwebz
+url: "https://www.bgcode.net" #interwebz
 twitter_username: BenJetson
 github_username:  BenJetson
 profileIMG: https://avatars1.githubusercontent.com/u/10427974?s=460&v=4
 
 # Build settings
-remoteURL: "http://www.bgcode.net"
+remoteURL: "https://www.bgcode.net"
 localURL: "http://localhost:4000"
 underConstruction: true
 markdown: kramdown
