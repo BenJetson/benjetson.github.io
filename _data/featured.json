@@ -1,5 +1,13 @@
 [
     {
+        "title": "Tiger Dining Alexa Skill",
+        "username": "benjetson",
+        "repo": "dining-alexa",
+        "desc": "Use Alexa to find out what's on the menu at the dining hall!",
+        "issues": true,
+        "wiki": true
+    },
+    {
         "title": "Gnome Dash Organizer",
         "username": "benjetson",
         "repo": "gnome-dash-fix",
@@ -36,6 +44,14 @@
         "username": "mannrobo",
         "repo": "nothing-but-net-A",
         "desc": "Code written in RobotC to control my VRC team's Nothing But Net robot. Uses a flywheel to shoot balls on an X-drive base.",
+        "issues": false,
+        "wiki": false
+    },
+    {
+        "title": "VRC 3796A In The Zone",
+        "username": "mannrobo",
+        "repo": "in-the-zone-A",
+        "desc": "Code written in RobotC to control my VRC team's In The Zone robot. Uses a bar lift to raise mobile goals and cones to score points.",
         "issues": false,
         "wiki": false
     },
