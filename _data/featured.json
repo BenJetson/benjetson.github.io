@@ -5,7 +5,7 @@
         "repo": "dining-alexa",
         "desc": "Use Alexa to find out what's on the menu at the dining hall!",
         "issues": true,
-        "wiki": true
+        "wiki": false
     },
     {
         "title": "Gnome Dash Organizer",
