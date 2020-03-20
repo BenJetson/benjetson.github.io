@@ -1,4 +1,5 @@
 source "https://rubygems.org"
 
-github-pages
-jekyll-octicons
+gem 'github-pages'
+gem 'jekyll-octicons'
+gem 'jekyll-admin'
