@@ -27,13 +27,13 @@ layout: boilerplate
     </div>
     <div class="container mt-3">
         <div class="row">
-            {% for project in site.data.featured %}
+            {% for project in site.projects %}
             {% assign projectURL = "https://github.com/" | append: project.username | append: "/" | append: project.repo %}
             <div class="col-sm-12 col-md-6 mb-4">
                 <div class="card border-secondary bg-light">
                     <div class="card-body">
                         <h4 class="card-title">{{project.title}}</h4>
-                        <p class="card-text">{{project.desc}}</p>
+                        <p class="card-text">{{project.description}}</p>
                     </div>
                     <div class="card-footer">
                         <a class="btn bg-white border-secondary" href="{{projectURL}}">
