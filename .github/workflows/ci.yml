@@ -29,7 +29,7 @@ jobs:
       uses: actions/setup-ruby@v1.0.0
       with:
         # Version range or exact version of a Ruby version to use.
-        version: 2.5.3 # optional, default is >= 2.4
+        version: '2.5' # optional, default is >= 2.4
 
     - uses: actions/cache@v1
       with:
