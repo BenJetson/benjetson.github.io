@@ -1,9 +1,12 @@
 
+################################################################################
+# _config.yml                                                                  #
+#                                                                              #
+# This config file is the global configuration file, which will be applied in  #
+# all production and development builds.                                       #
+################################################################################
+
 # Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
 title: Ben's Code Projects
 email: BenJetson@users.noreply.github.com
 description: >- 
@@ -60,6 +63,7 @@ defaults:
 
 # Exclude from processing.
 exclude:
+  - Makefile
   - Gemfile
   - Gemfile.lock
   - node_modules
@@ -67,3 +71,4 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - scripts/
