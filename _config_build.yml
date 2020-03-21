@@ -1,0 +1,12 @@
+
+################################################################################
+# _config_build.yml                                                            #
+#                                                                              #
+# This config file will be used when building the site for CI builds on the    #
+# GitHub actions platform.                                                     #
+#                                                                              #
+# See also: .github/workflows/ci.yml                                           #
+################################################################################
+
+# Cause the build to fail if there is a YAML syntax error in page front matter.
+strict_front_matter: true
