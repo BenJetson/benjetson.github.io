@@ -1,5 +1,14 @@
-
-$dark-blue-green: #01579B;
-$bright-blue: #29b6f6;
-
-$primary: $dark-blue-green;
+.card-columns {
+    @include media-breakpoint-down(sm) {
+      column-count: 1;
+    }
+    @include media-breakpoint-only(md) {
+      column-count: 2;
+    }
+    @include media-breakpoint-only(lg) {
+      column-count: 3;
+    }
+    @include media-breakpoint-only(xl) {
+      column-count: 4;
+    }
+}
