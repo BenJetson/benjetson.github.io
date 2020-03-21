@@ -17,3 +17,11 @@ serve-lan: _config.yml _config_dev.yml _config_lan.yml _config_local.yml
 .PHONY: init
 init:
 	bundle install
+
+.PHONY: clean
+clean:
+	bundle exec jekyll clean
+
+.PHONY: build
+build: 
+	bundle exec jekyll build
