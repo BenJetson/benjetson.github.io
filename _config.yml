@@ -36,9 +36,8 @@ permalink: /blog/:year/:month/:day-:title
 # See also: https://jekyllrb.com/docs/collections/
 collections:
   projects:
-    featured: false
-    layout: project
     output: true
+    sort_by: rank # Not supported in Jekyll 3.8.5 -- requires at least 3.8.6?
 
 # Page defaults
 defaults:
@@ -60,6 +59,11 @@ defaults:
       path: "_projects"
     values:
       layout: "project"
+      username: ""
+      repo: ""
+      issues: false
+      wiki: false
+      featured: false
 
 # Exclude from processing.
 exclude:
