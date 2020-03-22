@@ -1,4 +1,29 @@
 ---
 ---
 
-This is eventually where projects will live.
+<div class="container mb-3">
+    <h2>Projects</h2>
+    <p>An odd collection of things that I've worked on over time.</p>
+</div>
+
+<div class="container">
+    {% assign projects = site.projects | sort: "date" %}
+    
+    {% for project in projects %}
+        <div class="card mb-3 shadow-sm">
+            <div class="row no-gutters">
+            <div class="col-md-4 col-lg-2">
+                <img src="https://c4.wallpaperflare.com/wallpaper/992/989/119/ultra-wide-photography-wallpaper-thumb.jpg" class="card-img project-img" alt="placeholder image">
+            </div>
+            <div class="col-md-8 col-lg-10">
+                <div class="card-body">
+                <h5 class="card-title">{{ project.title }}</h5>
+                <p class="card-text">{{ project.description }}</p>
+                <p class="card-text"><small class="text-muted">{{ project.date | date: '%B %Y' }}</small></p>
+                <a href="{{ project.url }}" class="stretched-link">Read More &raquo;</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
