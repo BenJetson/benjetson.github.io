@@ -1,4 +1,52 @@
 ---
+layout: boilerplate
 ---
 
-This is eventually where projects will live.
+<div class="container py-3">
+    <h2>Projects</h2>
+    <p>A collection of some of my notable works, some involving more than code!</p>
+</div>
+
+<div class="container mb-5">
+{% assign projects = site.projects | group_by: "featured" | sort: "name" | reverse %}
+{% for group in projects %}
+    {% assign sorted_projects = group.items | sort : "date" | reverse %}
+    {% if group.name == "true" %}
+        {% assign sorted_projects = group.items | sort: "rank" %}
+        <!-- <section class="bg-default py-3"> -->
+            <!-- <div class="container"> -->
+                <div class="card mb-3">
+                    <div class="card-header text-white bg-info">
+                        {% octicon pin height: 16 %} Featured
+                    </div>
+                </div>
+    {% else %}
+        <!-- <section class="bg-light py-3"> -->
+            <!-- <div class="container"> -->
+                <div class="card mt-5 mb-3 bg-dark text-light">
+                    <div class="card-header">
+                        {% octicon archive height: 16 %} Other Projects
+                    </div>
+                </div>
+    {% endif %}
+        {% for project in sorted_projects %}
+            <div class="card mb-3 mx-3 bg-light shadow-sm">
+                <div class="row no-gutters">
+                    <div class="col-md-4 col-lg-2">
+                        <img src="{{project.photo}}" class="card-img project-img" alt="placeholder image">
+                    </div>
+                    <div class="col-md-8 col-lg-10">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">{{ project.description }}</p>
+                            <p class="card-text"><small class="text-muted">{{ project.date | date: '%B %Y' }}</small></p>
+                            <a href="{{ project.url }}" class="stretched-link">Read More &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <!-- </div> -->
+    <!-- </section> -->
+{% endfor %}
+</div>

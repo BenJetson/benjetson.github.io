@@ -1,4 +1,10 @@
 
+img.project-img {
+    height: 100%;
+    object-fit: cover;
+    max-height: 30vh;
+}
+
 img#home-profile-img {
     max-width: 250px;
     max-height: 250px;
