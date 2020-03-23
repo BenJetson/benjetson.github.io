@@ -25,3 +25,7 @@ clean:
 .PHONY: build
 build: 
 	bundle exec jekyll build
+
+.PHONY: test
+test:
+	./scripts/test.sh
