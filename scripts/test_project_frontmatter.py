@@ -5,12 +5,16 @@ import frontmatter
 import os
 import re
 import sys
+import time
 
 def print_pass(*objects, sep=' ', end='\n'):
-    print("\033[0;32;40m", *objects, "\033[0;37;40m", sep=sep, end=end)
+    print("\u001b[32m", *objects, "\u001b[0m", sep=sep, end=end)
+
+def print_warn(*objects, sep=' ', end='\n'):
+    print("\u001b[33m", *objects, "\u001b[0m", sep=sep, end=end)
 
 def print_fail(*objects, sep=' ', end='\n'):
-    print("\033[0;31;40m", *objects, "\033[0;37;40m", sep=sep, end=end)
+    print("\u001b[31m", *objects, "\u001b[0m", sep=sep, end=end)
 
 # The list list of project files that are missing the photo key.
 missing_photo = []
@@ -43,6 +47,7 @@ missing_description = []
 blank_description = []
 
 print("--- TEST STARTED ---\n")
+start_time = time.monotonic()
 
 url_validator = re.compile(
     "https:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?")
@@ -195,10 +200,11 @@ retval = (
     len(blank_description)
 )
 
-if retval:
-    print_fail("\n--- TEST FALED ---")
-    print_fail("{} errors!".format(retval))
-    sys.exit(retval)
+print("\n--- TEST COMPLETE ---")
+end_time = time.monotonic()
+print_warn("⏳ {} seconds elapsed.".format(end_time - start_time))
 
-print_pass("--- TEST PASSED ---")
-print_pass("All project files meet test requirements.")
+if retval:
+    print_fail("⛔️ FAIL - found {} errors total!".format(retval))
+    sys.exit(retval)
+print_pass("✅ PASS - All project files meet test requirements.")
