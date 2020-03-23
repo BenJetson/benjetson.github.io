@@ -180,7 +180,7 @@ retval = (
 if retval:
     print_fail("\n--- TEST FALED ---")
     print_fail("{} errors!".format(retval))
-    sys.exit()
+    sys.exit(retval)
 
 print_pass("--- TEST PASSED ---")
 print_pass("All project files meet test requirements.")
