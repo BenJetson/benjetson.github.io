@@ -3,6 +3,7 @@
 import datetime
 import frontmatter
 import os
+import re
 import sys
 
 def print_pass(*objects, sep=' ', end='\n'):
@@ -16,6 +17,9 @@ missing_photo = []
 
 # The list of project files that have blank photo fields.
 blank_photo = []
+
+# The list of project files that have invalid URLs for photos.
+bad_photo = []
 
 # The list of project files that are missing the date key.
 missing_date = []
@@ -40,6 +44,9 @@ blank_description = []
 
 print("--- TEST STARTED ---\n")
 
+url_validator = re.compile(
+    "https:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?")
+
 for directory, _, files in os.walk("./_projects"):
     for f in files:
         path = os.path.join(directory, f)
@@ -55,6 +62,9 @@ for directory, _, files in os.walk("./_projects"):
 
                 if len(photo_url) == 0:
                     blank_photo.append(f)
+
+                if url_validator.match(photo_url) is None:
+                    bad_photo.append(f)
 
             # Date checks.
             if "date" not in metadata:
@@ -105,6 +115,15 @@ elif not missing_photo:
     print_pass("✅ PASS - all projects have photo field")
 else:
     print_fail("⛔️ FAIL - photo field test is contingent upon its presence")
+
+if bad_photo:
+    print_fail("⛔️ FAIL - projects have bad photo URLs")
+    for project in bad_photo:
+        print_fail("   *", project)
+elif not missing_photo and not blank_photo:
+    print_pass("✅ PASS - all projects have valid photo URLs")
+else:
+    print_fail("⛔️ FAIL - photo URL validation is contingent upon its presence")
 
 if missing_date:
     print_fail("⛔️ FAIL - projects have missing date key:")
