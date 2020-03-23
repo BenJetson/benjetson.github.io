@@ -64,6 +64,7 @@ defaults:
       issues: false
       wiki: false
       featured: false
+      photo: https://dummyimage.com/400x400/ff0000/ffffff&text=MISSING
 
 # Exclude from processing.
 exclude:
