@@ -91,77 +91,77 @@ for directory, _, files in os.walk("./_projects"):
 
 
 if missing_photo:
-    print_fail("⚠️ FAIL - projects have missing photo key:")
+    print_fail("⛔️ FAIL - projects have missing photo key:")
     for project in missing_photo:
         print_fail("   *", project)
 else:
-    print_pass("✓ PASS - all projects have photo key in front matter")
+    print_pass("✅ PASS - all projects have photo key in front matter")
 
 if blank_photo:
-    print_fail("⚠️ FAIL - projects have blank photo fields")
+    print_fail("⛔️ FAIL - projects have blank photo fields")
     for project in blank_photo:
         print_fail("   *", project)
 elif not missing_photo:
-    print_pass("✓ PASS - all projects have photo field")
+    print_pass("✅ PASS - all projects have photo field")
 else:
-    print_fail("⚠️ FAIL - photo field test is contingent upon its presence")
+    print_fail("⛔️ FAIL - photo field test is contingent upon its presence")
 
 if missing_date:
-    print_fail("⚠️ FAIL - projects have missing date key:")
+    print_fail("⛔️ FAIL - projects have missing date key:")
     for project in missing_date:
         print_fail("   *", project)
 else:
-    print_pass("✓ PASS - all projects have date key in front matter")
+    print_pass("✅ PASS - all projects have date key in front matter")
 
 if blank_date:
-    print_fail("⚠️ FAIL - projects have blank date fields")
+    print_fail("⛔️ FAIL - projects have blank date fields")
     for project in blank_date:
         print_fail("   *", project)
 elif not missing_date:
-    print_pass("✓ PASS - all projects have date field")
+    print_pass("✅ PASS - all projects have date field")
 else:
-    print_fail("⚠️ FAIL - date field test is contingent upon its presence")
+    print_fail("⛔️ FAIL - date field test is contingent upon its presence")
 
 if bad_date:
-    print_fail("⚠️ FAIL - projects have date that does not conform to ISO 8601")
+    print_fail("⛔️ FAIL - projects have date that does not conform to ISO 8601")
     for project in bad_date:
         print_fail("   *", project)
 elif not missing_date and not blank_date:
-    print_pass("✓ PASS - all projects have date that conforms to ISO 8601")
+    print_pass("✅ PASS - all projects have date that conforms to ISO 8601")
 else:
-    print_fail("⚠️ FAIL - date field test is contingent upon its presence")
+    print_fail("⛔️ FAIL - date field test is contingent upon its presence")
 
 if missing_title:
-    print_fail("⚠️ FAIL - projects have missing title key:")
+    print_fail("⛔️ FAIL - projects have missing title key:")
     for project in missing_title:
         print_fail("   *", project)
 else:
-    print_pass("✓ PASS - all projects have title key in front matter")
+    print_pass("✅ PASS - all projects have title key in front matter")
 
 if blank_title:
-    print_fail("⚠️ FAIL - projects have blank title fields")
+    print_fail("⛔️ FAIL - projects have blank title fields")
     for project in blank_title:
         print_fail("   *", project)
 elif not missing_title:
-    print_pass("✓ PASS - all projects have title field")
+    print_pass("✅ PASS - all projects have title field")
 else:
-    print_fail("⚠️ FAIL - title field test is contingent upon its presence")
+    print_fail("⛔️ FAIL - title field test is contingent upon its presence")
 
 if missing_description:
-    print_fail("⚠️ FAIL - projects have missing description key:")
+    print_fail("⛔️ FAIL - projects have missing description key:")
     for project in missing_description:
         print_fail("   *", project)
 else:
-    print_pass("✓ PASS - all projects have description key in front matter")
+    print_pass("✅ PASS - all projects have description key in front matter")
 
 if blank_description:
-    print_fail("⚠️ FAIL - projects have blank description fields")
+    print_fail("⛔️ FAIL - projects have blank description fields")
     for project in blank_description:
         print_fail("   *", project)
 elif not missing_description:
-    print_pass("✓ PASS - all projects have description field")
+    print_pass("✅ PASS - all projects have description field")
 else:
-    print_fail("⚠️ FAIL - description field test is contingent upon its presence")
+    print_fail("⛔️ FAIL - description field test is contingent upon its presence")
 
 
 retval = (
