@@ -5,6 +5,12 @@ img.project-img {
     max-height: 30vh;
 }
 
+@media (orientation: landscape) {
+    img.project-img {
+        max-height: none;
+    }
+}
+
 img#home-profile-img {
     max-width: 250px;
     max-height: 250px;
