@@ -9,8 +9,7 @@ def print_pass(*objects, sep=' ', end='\n'):
     print("\033[0;32;40m", *objects, "\033[0;37;40m", sep=sep, end=end)
 
 def print_fail(*objects, sep=' ', end='\n'):
-    print("\033[0;31;40m", *objects, "\033[0;37;40m", 
-        sep=sep, end=end, file= sys.stderr)
+    print("\033[0;31;40m", *objects, "\033[0;37;40m", sep=sep, end=end)
 
 # The list list of project files that are missing the photo key.
 missing_photo = []
