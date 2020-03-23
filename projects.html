@@ -10,7 +10,7 @@ layout: boilerplate
 <div class="container mb-5">
 {% assign projects = site.projects | group_by: "featured" | sort: "name" | reverse %}
 {% for group in projects %}
-    {% assign sorted_projects = group.items | sort : "date" %}
+    {% assign sorted_projects = group.items | sort : "date" | reverse %}
     {% if group.name == "true" %}
         {% assign sorted_projects = group.items | sort: "rank" %}
         <!-- <section class="bg-default py-3"> -->
