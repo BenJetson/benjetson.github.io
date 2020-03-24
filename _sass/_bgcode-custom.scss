@@ -2,12 +2,13 @@
 img.project-img {
     height: 100%;
     object-fit: cover;
-    max-height: 30vh;
 }
 
-@media (orientation: landscape) {
-    img.project-img {
-        max-height: none;
+@include media-breakpoint-down(xs) {
+    @media (orientation: portrait) {
+        img.project-img {
+            max-height: 30vh;
+        }
     }
 }
 
