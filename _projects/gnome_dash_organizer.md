@@ -10,4 +10,5 @@ featured: true
 rank: 2
 date: 2017-04-30
 photo: https://live.staticflickr.com/65535/49692567392_7e9e9d0bb1_w.jpg
+photo-alt: Organized GNOME App Dashboard after using GNOME Dash Organizer
 ---

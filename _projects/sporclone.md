@@ -10,4 +10,5 @@ featured: true
 rank: 4
 date: 2016-04-25
 photo: https://live.staticflickr.com/65535/49691531813_db04e6c90c_w.jpg
+photo-alt: Screenshot of Sporclone Game
 ---
