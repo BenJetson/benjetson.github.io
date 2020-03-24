@@ -1,7 +1,11 @@
 <head>
 
     <!-- Meta -->
-    <title>{{site.title}}</title>
+    {% assign tab_title = site.title %}
+    {% if page.title != nil %}
+    {% assign tab_title = site.title | prepend: " | " | prepend: page.title %}
+    {% endif %}
+    <title>{{tab_title}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
