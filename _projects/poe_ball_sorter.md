@@ -10,4 +10,5 @@ featured: true
 rank: 3
 date: 2017-05-16
 photo: https://live.staticflickr.com/65535/49692221026_f874c8bd87_w.jpg
+photo-alt: Colored Ball Sorting Robot
 ---
