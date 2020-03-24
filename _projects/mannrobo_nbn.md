@@ -7,4 +7,5 @@ description: >-
 issues: false
 wiki: false
 date: 2016-03-12
+photo: https://live.staticflickr.com/65535/49692337832_fd5c7c883b_w.jpg
 ---
