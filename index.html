@@ -34,27 +34,16 @@ layout: boilerplate
                 {% continue %}
             {% endunless %}
 
-            {% assign projectURL = "https://github.com/" | append: project.username | append: "/" | append: project.repo %}
             <div class="col mb-4">
-                <div class="card border-secondary bg-light mb-3 h-100">
+                <div class="card mb-3 shadow-sm h-100">
+                    <img src="{{project.photo}}" class="card-img-top index-project-img" alt="{{project.photo-alt}}">
                     <div class="card-body">
-                        <h4 class="card-title">{{project.title}}</h4>
-                        <p class="card-text">{{project.description}}</p>
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text text-truncate">{{ project.description }}</p>
+                        <p class="card-text mb-0"><small class="text-muted">{{ project.date | date: '%B %Y' }}</small></p>
                     </div>
                     <div class="card-footer">
-                        <a class="btn bg-white border-secondary" href="{{projectURL}}">
-                            {% octicon link-external height: 16 %}
-                        </a>
-                        {% if project.issues %}
-                        <a class="btn bg-white border-secondary" href="{{projectURL}}/issues">
-                            {% octicon issue-opened height: 16 %}
-                        </a>
-                        {% endif %}
-                        {% if project.wiki %}
-                        <a class="btn bg-white border-secondary" href="{{projectURL}}/wiki">
-                            {% octicon book height: 16 %}
-                        </a>
-                        {% endif %}
+                        <a href="{{ project.url }}" class="stretched-link">Read More &raquo;</a>
                     </div>
                 </div>
             </div>
