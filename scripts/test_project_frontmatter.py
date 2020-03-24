@@ -54,6 +54,9 @@ url_validator = re.compile(
 
 for directory, _, files in os.walk("./_projects"):
     for f in files:
+        if f.startswith("."):
+            continue
+
         path = os.path.join(directory, f)
 
         with open(path, 'r') as project_file:
