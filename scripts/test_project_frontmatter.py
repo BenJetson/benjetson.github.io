@@ -25,6 +25,12 @@ blank_photo = []
 # The list of project files that have invalid URLs for photos.
 bad_photo = []
 
+# The list list of project files that are missing the photo alt text key.
+missing_photo_alt = []
+
+# The list of project files that have blank photo alt text fields.
+blank_photo_alt = []
+
 # The list of project files that are missing the date key.
 missing_date = []
 
@@ -73,6 +79,15 @@ for directory, _, files in os.walk("./_projects"):
 
                 if url_validator.match(photo_url) is None:
                     bad_photo.append(f)
+
+            # Photo alt text checks.
+            if "photo-alt" not in metadata:
+                missing_photo_alt.append(f)
+            else: 
+                photo_alt = metadata["photo-alt"]
+
+                if len(photo_alt) == 0:
+                    blank_photo_alt.append(f)
 
             # Date checks.
             if "date" not in metadata:
@@ -140,6 +155,22 @@ if missing_date:
 else:
     print_pass("✅ PASS - all projects have date key in front matter")
 
+if missing_photo_alt:
+    print_fail("⛔️ FAIL - projects have missing photo-alt key:")
+    for project in missing_photo_alt:
+        print_fail("   *", project)
+else:
+    print_pass("✅ PASS - all projects have photo-alt key in front matter")
+
+if blank_photo_alt:
+    print_fail("⛔️ FAIL - projects have blank photo-alt fields")
+    for project in blank_photo_alt:
+        print_fail("   *", project)
+elif not missing_photo_alt:
+    print_pass("✅ PASS - all projects have photo-alt field")
+else:
+    print_fail("⛔️ FAIL - photo-alt field test is contingent upon its presence")
+
 if blank_date:
     print_fail("⛔️ FAIL - projects have blank date fields")
     for project in blank_date:
@@ -192,10 +223,13 @@ else:
 
 
 retval = (
-    len(missing_photo) + 
+    len(missing_photo) +
     len(blank_photo) +
-    len(missing_date) + 
-    len(blank_date) + 
+    len(bad_photo) +
+    len(missing_photo_alt) +
+    len(blank_photo_alt) +
+    len(missing_date) +
+    len(blank_date) +
     len(bad_date) +
     len(missing_title) +
     len(blank_title) +
@@ -208,6 +242,6 @@ end_time = time.monotonic()
 print_warn("⏳ {} seconds elapsed.".format(end_time - start_time))
 
 if retval:
-    print_fail("⛔️ FAIL - found {} errors total!".format(retval))
+    print_fail("⛔️ FAIL - found {} error(s)!".format(retval))
     sys.exit(retval)
 print_pass("✅ PASS - All project files meet test requirements.")
