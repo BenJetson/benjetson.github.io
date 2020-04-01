@@ -1,7 +1,57 @@
 ---
-layout: default
+layout: boilerplate
 ---
 
-<h2>{{page.title}}</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 p-3">
+            <div class="card project-header">
+                <!-- <img src="{{page.photo}}" class="card-img-top" alt="{{page.photo-alt}}"> -->
+                <div class="card-body">
+                    <h2>{{page.title}}</h2>
+                    <p class="card-description">{{page.description}}</p>
+                    <!-- <a href="#more">
+                        <p class="card-description d-md-none text-muted">
+                            Read more {% octicon chevron-down height: 16 %}
+                        </p>
+                    </a> -->
+                    <p class="card-text"><small class="text-muted">{{ page.date | date: '%B %Y' }}</small></p>
+                </div>
+                <div class="card-footer text-center">
+                    {% if page.webpage %}
+                    <a class="btn btn-outline-secondary mb-1 d-block" href="{{page.webpage}}">
+                        {% octicon link-external height: 16 %} Webpage
+                    </a>
+                    {% endif %}
+                    {% if page.username != nil and page.repo != nil %}
+                    {% assign repoURL = "https://github.com/" | append: page.username | append: "/" | append: page.repo %}
+                    <a class="btn btn-outline-secondary mb-1 d-block" href="{{repoURL}}">
+                        {% octicon mark-github height: 16 %} Repository
+                    </a>
+                    {% endif %}
+                    {% if page.issues %}
+                    <a class="btn btn-outline-secondary mb-1 d-block" href="{{repoURL}}/issues">
+                        {% octicon issue-opened height: 16 %} Issues
+                    </a>
+                    {% endif %}
+                    {% if page.wiki %}
+                    <a class="btn btn-outline-secondary mb-1 d-block" href="{{repoURL}}/wiki">
+                        {% octicon book height: 16 %} Wiki
+                    </a>
+                    {% endif %}
+                    {% if page.releases %}
+                    <a class="btn btn-outline-secondary mb-1 d-block" href="{{repoURL}}/releases">
+                        {% octicon desktop-download height: 16 %} Releases
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 p-3 min-vh-75">
+            <div class="mb-3 d-none d-md-block"></div>
+            <h3 id="more">About This Project</h3>
+            {{page.content}}
+        </div>
+    </div>
+</div>
 
-<p>{{page.description}}</p>
