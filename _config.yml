@@ -54,6 +54,7 @@ defaults:
       layout: "blogpost"
       image: "site.url/img/felipe-santana-309268.jpg"
       image-credit: Felipe Santana on Unsplash
+      comments: true
   -
     scope:
       path: "_projects"
@@ -65,6 +66,7 @@ defaults:
       wiki: false
       featured: false
       photo: https://dummyimage.com/400x400/ff0000/ffffff&text=MISSING
+      comments: true
 
 # Exclude from processing.
 exclude:
