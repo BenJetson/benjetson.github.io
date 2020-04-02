@@ -1,4 +1,14 @@
 
+html {
+    scroll-behavior: smooth;
+}
+
+.project-header img {
+    max-height: 66vh;
+    object-fit: cover;
+    height: 100%;
+}
+
 img.project-img {
     height: 100%;
     object-fit: cover;
@@ -92,3 +102,6 @@ div.blogpost-date {
     opacity: 0.8;
     transform: scale(1.2);
 }
+
+.min-vh-50 { min-height: 50vh; }
+.min-vh-75 { min-height: 75vh; }
