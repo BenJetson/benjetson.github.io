@@ -4,7 +4,7 @@ layout: boilerplate
 
 <!-- index update -->
 
-<section class="bg-primary text-light py-3">
+<section class="bg-gradient-primary text-light py-3">
     <div class="container">
         <div class="d-flex w-100 justify-content-center pb-3">
             {% comment %} <img class="img-responsive rounded-circle justify-content-center" id="home-profile-img" src="https://images.unsplash.com/photo-1471357674240-e1a485acb3e1?auto=format&fit=crop&w=300&h=300&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"> {% endcomment %}
@@ -26,29 +26,24 @@ layout: boilerplate
         <h4>Featured Projects</h4>
     </div>
     <div class="container mt-3">
-        <div class="row">
-            {% for project in site.data.featured %}
-            {% assign projectURL = "https://github.com/" | append: project.username | append: "/" | append: project.repo %}
-            <div class="col-sm-12 col-md-6 mb-4">
-                <div class="card border-secondary bg-light">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+            {% assign projects = site.projects | where: "featured",true | sort: "rank" %}
+            {% for project in projects %}
+
+            {% unless project.featured == true %}
+                {% continue %}
+            {% endunless %}
+
+            <div class="col mb-4">
+                <div class="card mb-3 shadow-sm h-100">
+                    <img src="{{project.photo}}" class="card-img-top index-project-img" alt="{{project.photo-alt}}">
                     <div class="card-body">
-                        <h4 class="card-title">{{project.title}}</h4>
-                        <p class="card-text">{{project.desc}}</p>
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text text-truncate">{{ project.description }}</p>
+                        <p class="card-text mb-0"><small class="text-muted">{{ project.date | date: '%B %Y' }}</small></p>
                     </div>
                     <div class="card-footer">
-                        <a class="btn bg-white border-secondary" href="{{projectURL}}">
-                            {% octicon link-external height: 16 %}
-                        </a>
-                        {% if project.issues %}
-                        <a class="btn bg-white border-secondary" href="{{projectURL}}/issues">
-                            {% octicon issue-opened height: 16 %}
-                        </a>
-                        {% endif %}
-                        {% if project.wiki %}
-                        <a class="btn bg-white border-secondary" href="{{projectURL}}/wiki">
-                            {% octicon book height: 16 %}
-                        </a>
-                        {% endif %}
+                        <a href="{{ project.url }}" class="stretched-link">Read More &raquo;</a>
                     </div>
                 </div>
             </div>

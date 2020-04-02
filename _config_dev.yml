@@ -1,0 +1,16 @@
+
+################################################################################
+# _config_dev.yml                                                              #
+#                                                                              #
+# This config file will be used by the Makefile when hosting any instances of  #
+# the Jekyll server on local development machines.                             #
+################################################################################
+
+# Reload the page automatically in the browser when its content is edited.
+livereload: true
+
+# Process and render draft posts.
+show_drafts: true
+
+# Cause the build to fail if there is a YAML syntax error in page front matter.
+strict_front_matter: true

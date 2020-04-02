@@ -1,22 +1,15 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+################################################################################
+# _config.yml                                                                  #
+#                                                                              #
+# This config file is the global configuration file, which will be applied in  #
+# all production and development builds.                                       #
+################################################################################
 
 # Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
 title: Ben's Code Projects
 email: BenJetson@users.noreply.github.com
-description: >- # this means to ignore newlines until "baseurl:"
-  The online launchpad for my various code projects.
+description: >- 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.bengodfrey.net" #interwebz
 twitter_username: BenJetson
@@ -39,6 +32,13 @@ sass:
   style: compressed
 permalink: /blog/:year/:month/:day-:title
 
+# Collection Settings
+# See also: https://jekyllrb.com/docs/collections/
+collections:
+  projects:
+    output: true
+    sort_by: rank # Not supported in Jekyll 3.8.5 -- requires at least 3.8.6?
+
 # Page defaults
 defaults:
   -
@@ -54,9 +54,23 @@ defaults:
       layout: "blogpost"
       image: "site.url/img/felipe-santana-309268.jpg"
       image-credit: Felipe Santana on Unsplash
+      comments: true
+  -
+    scope:
+      path: "_projects"
+    values:
+      layout: "project"
+      username: ""
+      repo: ""
+      issues: false
+      wiki: false
+      featured: false
+      photo: https://dummyimage.com/400x400/ff0000/ffffff&text=MISSING
+      comments: true
 
 # Exclude from processing.
 exclude:
+  - Makefile
   - Gemfile
   - Gemfile.lock
   - node_modules
@@ -64,3 +78,4 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - scripts/
