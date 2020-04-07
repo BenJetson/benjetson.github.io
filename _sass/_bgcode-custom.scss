@@ -3,6 +3,17 @@ html {
     scroll-behavior: smooth;
 }
 
+.notfound-container {
+    min-height: calc(100vh - 56px);
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.notfound-container h1 {
+    font-size: 25vh;
+}
+
 .project-header img {
     max-height: 66vh;
     object-fit: cover;
