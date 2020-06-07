@@ -79,3 +79,4 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - scripts/
+  - README.md
