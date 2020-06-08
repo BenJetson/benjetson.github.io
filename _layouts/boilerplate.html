@@ -14,15 +14,7 @@
 
         {% include footer.html %}
 
-        {% if site.underConstruction %}
-            {% include construction.html %}
-        {% endif %}
-
         {% include scripts.html %}
-
-        {% if site.underConstruction and site.url == site.remoteURL %}
-        <script>$("#constructionModal").modal('show');</script>
-        {% endif %}
 
     </body>
 

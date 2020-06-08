@@ -9,7 +9,7 @@
 # Site settings
 title: Ben's Code Projects
 email: BenJetson@users.noreply.github.com
-description: >- 
+description: >-
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.bengodfrey.net" #interwebz
 twitter_username: BenJetson
@@ -19,7 +19,6 @@ profileIMG: https://avatars1.githubusercontent.com/u/10427974?s=460&v=4
 # Build settings
 remoteURL: "https://www.bengodfrey.net"
 localURL: "http://localhost:4000"
-underConstruction: false
 markdown: kramdown
 highlighter: rouge
 plugins:
@@ -44,7 +43,7 @@ defaults:
   -
     scope:
       path: ""
-    values: 
+    values:
       layout: "default"
   -
     scope:
