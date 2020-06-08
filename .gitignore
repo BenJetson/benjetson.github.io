@@ -4,3 +4,4 @@ _site
 .jekyll-metadata
 _config_local.yml
 /.vscode
+node_modules
