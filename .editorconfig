@@ -22,7 +22,7 @@ indent_size = 4
 [Makefile]
 indent_style = tab
 
-[{*.html,*.js,*.json}]
+[{*.html,*.js,*.json,*.yml}]
 indent_style = space
 indent_size = 2
 
