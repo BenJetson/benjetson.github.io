@@ -1,4 +1,3 @@
-
 ################################################################################
 # _config.yml                                                                  #
 #                                                                              #
@@ -13,7 +12,7 @@ description: >-
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.bengodfrey.net" #interwebz
 twitter_username: BenJetson
-github_username:  BenJetson
+github_username: BenJetson
 profileIMG: https://avatars1.githubusercontent.com/u/10427974?s=460&v=4
 
 # Build settings
@@ -40,13 +39,11 @@ collections:
 
 # Page defaults
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
     values:
       layout: "default"
-  -
-    scope:
+  - scope:
       path: ""
       type: "posts"
     values:
@@ -54,8 +51,7 @@ defaults:
       image: "site.url/img/felipe-santana-309268.jpg"
       image-credit: Felipe Santana on Unsplash
       comments: true
-  -
-    scope:
+  - scope:
       path: "_projects"
     values:
       layout: "project"
