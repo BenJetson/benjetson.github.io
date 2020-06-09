@@ -13,7 +13,7 @@ check_err() {
         printf "\n\033[0;32m✅ PASS: $*\033[0;0m\n"
         return
     fi
-    
+
     fail
     printf "\n\033[0;31m⛔️ FAIL: $*\033[0;0m\n"
 
@@ -36,7 +36,7 @@ results() {
         printf "\033[0;32m✅ ALL TESTS PASS\033[0;0m\n"
         exit 0
     fi
-    
+
     printf "\033[0;31m⛔️ $TEST_ERRS TEST FAILURE(S) DETECTED\033[0;0m\n"
     exit $TEST_ERRS
 }
