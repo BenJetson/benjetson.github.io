@@ -1,0 +1,57 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Lint
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Node Dependency Cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('package.json') }}
+      - name: Python Dependency Cache
+        uses: actions/cache@v2
+        with:
+          path: not-known.at.this.time
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+      - name: Tell me where python packages are stored
+        run: pip list -v
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Install Node dependencies
+        run: npm install
+      - name: Projects Front Matter Validation
+        run: ./scripts/test_project_frontmatter.py
+      - name: Verify Prettier Style
+        run: npx prettier --check
+      - name: Verify Black Style
+        run: black . --check
+      - name: Install ShellCheck
+        run: sudo apt install shellcheck
+      - name: Run ShellCheck
+        run: shellcheck scripts/*.sh
+      - name: Run MarkdownLint
+        run: npx markdownlint .
