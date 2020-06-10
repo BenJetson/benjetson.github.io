@@ -31,16 +31,16 @@ jobs:
         with:
           path: not-known.at.this.time
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-      - name: Tell me where python packages are stored
-        run: pip list -v
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
       - name: Install Python dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          python3 -m pip install --upgrade pip
+          pip3 install -r requirements.txt
+      - name: Tell me where python packages are stored
+        run: pip3 list -v && pip3 show markdownlint
       - name: Install Node dependencies
         run: npm install
       - name: Projects Front Matter Validation
