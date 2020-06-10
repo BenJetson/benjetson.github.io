@@ -11,16 +11,18 @@ which is built from the [`master` branch](https://github.com/BenJetson/benjetson
 
 ## How It's Made
 
-The site is built upon modern web technologies, built upon software from these awesome
-open source projects:
+The site is built upon modern web technologies, built upon software from these
+awesome open source projects:
 
 - [**Jekyll**](https://www.jekyllrb.com) – static site builder
 - [**Liquid**](https://shopify.github.io/liquid) – templating engine
 - [**Bootstrap 4**](https://getbootstrap.com/docs/4.5) – interface framework
-- [**PrefixFree**](https://leaverou.github.io/prefixfree) – client side CSS vendor prefixing
+- [**PrefixFree**](https://leaverou.github.io/prefixfree) – client side CSS
+  vendor prefixing
 
 The site is powered by these services:
 
 - [**GitHub Pages**](https://pages.github.com) – hosting provider
-- [**GitHub Actions**](https://github.com/features/actions) – continuous integration
+- [**GitHub Actions**](https://github.com/features/actions) – continuous
+  integration
 - [**Disqus**](https://www.disqus.com) – comment platform provider
