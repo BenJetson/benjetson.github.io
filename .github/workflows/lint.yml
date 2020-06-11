@@ -53,3 +53,5 @@ jobs:
         run: shellcheck scripts/*.sh
       - name: Run MarkdownLint
         run: npx markdownlint .
+      - name: Run EditorConfig Lint
+        run: npx eclint check $(git ls-files | grep -f .eclintignore -v)
