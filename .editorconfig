@@ -8,8 +8,10 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 4
 
-[*.md]
+[*.md,*.markdown]
 trim_trailing_whitespace = false
+indent_style = space
+indent_size = 2
 
 [*.py]
 indent_style = space
@@ -22,7 +24,7 @@ indent_size = 4
 [Makefile]
 indent_style = tab
 
-[{*.html,*.js,*.json,*.yml,*.yaml}]
+[{*.html,*.js,*.json,*.yml,*.yaml,.prettierrc}]
 indent_style = space
 indent_size = 2
 
