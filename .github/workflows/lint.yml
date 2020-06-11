@@ -49,6 +49,8 @@ jobs:
         run: echo "$PATH"
       - name: Pip Packages
         run: pip3 list -v
+      - name: List Python Package Files
+        run: ls -a -R /opt/hostedtoolcache/Python/3.8.3/x64
       - name: Verify Black Style
         run: black . --check
       - name: Install ShellCheck
