@@ -1,118 +1,121 @@
-
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 .notfound-container {
-    min-height: calc(100vh - 56px);
-    text-align: center;
-    display: flex;
-    align-items: center;
+  min-height: calc(100vh - 56px);
+  text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .notfound-container h1 {
-    font-size: 30vmin;
+  font-size: 30vmin;
 }
 
 .project-header img {
-    max-height: 66vh;
-    object-fit: cover;
-    height: 100%;
+  max-height: 66vh;
+  object-fit: cover;
+  height: 100%;
 }
 
 img.project-img {
-    height: 100%;
-    object-fit: cover;
+  height: 100%;
+  object-fit: cover;
 }
 
 @include media-breakpoint-down(xs) {
-    @media (orientation: portrait) {
-        img.project-img {
-            max-height: 30vh;
-        }
+  @media (orientation: portrait) {
+    img.project-img {
+      max-height: 30vh;
     }
+  }
 }
 
 #disqus_thread {
-    padding: 0 10px;
-    max-width: 700px;
-    margin: 0 auto;
+  padding: 0 10px;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .project-content img {
-    @extend .img-fluid
+  @extend .img-fluid;
 }
 
 img.index-project-img {
-    height: 200px;
-    object-fit: cover;
+  height: 200px;
+  object-fit: cover;
 }
 
 img#home-profile-img {
-    max-width: 250px;
-    max-height: 250px;
+  max-width: 250px;
+  max-height: 250px;
 }
 
 .octicon {
-    display: inline-block;
-    vertical-align: text-top;
-    fill: currentColor;
+  display: inline-block;
+  vertical-align: text-top;
+  fill: currentColor;
 }
 
 img#hitCounter {
-    height: 26px;
-    width: 110px;
+  height: 26px;
+  width: 110px;
 }
 
 $chip-size: 30px;
 
 div.chip {
-    background-color: $gray-400;
-    height: $chip-size;
-    display: inline-block;
-    padding: 0 ($chip-size / 2);
-    border-radius: 25px;
-    line-height: $chip-size;
-    margin-right: 10px;
+  background-color: $gray-400;
+  height: $chip-size;
+  display: inline-block;
+  padding: 0 ($chip-size / 2);
+  border-radius: 25px;
+  line-height: $chip-size;
+  margin-right: 10px;
 }
 
 div.chip img {
-    @extend .rounded-circle;
-    float: left;
-    margin-top: 0;
-    margin-right: 10px;
-    margin-bottom: 0;
-    margin-left: (-1 * ($chip-size / 2));
-    height: $chip-size;
-    width: $chip-size;
+  @extend .rounded-circle;
+  float: left;
+  margin-top: 0;
+  margin-right: 10px;
+  margin-bottom: 0;
+  margin-left: (-1 * ($chip-size / 2));
+  height: $chip-size;
+  width: $chip-size;
 }
 
 div.blogpost-date {
-    line-height: $chip-size;
+  line-height: $chip-size;
 }
 
 .hero-image-credit {
-    font-weight: light;
-    color: $gray-600;
-    font-style: italic;
+  font-weight: light;
+  color: $gray-600;
+  font-style: italic;
 }
 
 .hero-image-parallax-container {
-    height: 30vh;
-    overflow: hidden;
+  height: 30vh;
+  overflow: hidden;
 }
 
 .hero-image-parallax {
-    height: 100%;
-    z-index: -1;
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-position:center;
-    background-attachment: fixed;
-    filter: blur(1px);
-    opacity: 0.8;
-    transform: scale(1.2);
+  height: 100%;
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  filter: blur(1px);
+  opacity: 0.8;
+  transform: scale(1.2);
 }
 
-.min-vh-50 { min-height: 50vh; }
-.min-vh-75 { min-height: 75vh; }
+.min-vh-50 {
+  min-height: 50vh;
+}
+.min-vh-75 {
+  min-height: 75vh;
+}

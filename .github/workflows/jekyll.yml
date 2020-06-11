@@ -1,17 +1,16 @@
+name: Jekyll
 
-name: Jekyll Build
-
-# Controls when the action will run. Triggers the workflow on push or pull request 
+# Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
-    branches: 
-    - master
-    - develop
+    branches:
+      - master
+      - develop
   pull_request:
-    branches: 
-    - master
-    - develop
+    branches:
+      - master
+      - develop
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,26 +21,26 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-    - name: Setup Ruby for use with actions
-      uses: actions/setup-ruby@v1.0.0
-      with:
-        # Version range or exact version of a Ruby version to use.
-        version: '2.5' # optional, default is >= 2.4
+      - name: Setup Ruby for use with actions
+        uses: actions/setup-ruby@v1.0.0
+        with:
+          # Version range or exact version of a Ruby version to use.
+          version: "2.5" # optional, default is >= 2.4
 
-    - uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
+      - uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
 
-    - name: Bundle install
-      run: |
-        bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
-        
-    - name: Jekyll Build
-      run: ./scripts/build.sh
+      - name: Bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Jekyll Build
+        run: ./scripts/build.sh

@@ -1,29 +1,13 @@
 ---
 ---
+
 <!DOCTYPE html>
 
 <html>
+  {% include head.html %}
 
-    {% include head.html %}
-
-    <body>
-
-        {% include navigation.html %}
-
-        {{ content }}
-
-        {% include footer.html %}
-
-        {% if site.underConstruction %}
-            {% include construction.html %}
-        {% endif %}
-
-        {% include scripts.html %}
-
-        {% if site.underConstruction and site.url == site.remoteURL %}
-        <script>$("#constructionModal").modal('show');</script>
-        {% endif %}
-
-    </body>
-
+  <body>
+    {% include navigation.html %} {{ content }} {% include footer.html %} {%
+    include scripts.html %}
+  </body>
 </html>

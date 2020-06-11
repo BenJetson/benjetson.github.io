@@ -18,5 +18,5 @@ flickr_url = embed_code[start:end]
 
 pyperclip.copy(flickr_url)
 
-print("\n\u001b[32m✅ URL Found.\u001b[0m") 
-print("\nℹ️  Copied \"{}\" to clipboard.\n".format(flickr_url))
+print("\n\u001b[32m✅ URL Found.\u001b[0m")
+print('\nℹ️  Copied "{}" to clipboard.\n'.format(flickr_url))

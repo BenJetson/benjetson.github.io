@@ -23,7 +23,7 @@ clean:
 	bundle exec jekyll clean
 
 .PHONY: build
-build: 
+build:
 	bundle exec jekyll build
 
 .PHONY: test
