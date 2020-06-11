@@ -16,7 +16,7 @@ on:
       - develop
 
 jobs:
-  validate:
+  check:
     runs-on: ubuntu-latest
 
     steps:
