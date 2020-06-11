@@ -45,6 +45,10 @@ jobs:
         run: ./scripts/test_project_frontmatter.py
       - name: Verify Prettier Style
         run: npx prettier . --check
+      - name: Path
+        run: echo "$PATH"
+      - name: Pip Packages
+        run: pip3 list -v
       - name: Verify Black Style
         run: black . --check
       - name: Install ShellCheck
