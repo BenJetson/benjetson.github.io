@@ -24,7 +24,16 @@ clean:
 
 .PHONY: build
 build:
-	bundle exec jekyll build
+	bundle exec jekyll build \
+		--config=_config.yml,_config_build.yml,
+
+.PHONY: build-qa
+build-qa:
+	JEKYLL_ENV=production bundle exec jekyll build \
+		--config=_config.yml,_config_build.yml,_config_qa.yml
+
+	# Prevent robots from indexing the QA tier.
+	printf "User-agent: *\nDisallow: /\n" > _site/robots.txt
 
 .PHONY: test
 test:
