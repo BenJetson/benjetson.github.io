@@ -17,18 +17,31 @@ profileIMG: https://avatars1.githubusercontent.com/u/10427974?s=460&v=4
 
 # Build settings
 remoteURL: "https://www.bengodfrey.net"
-localURL: "http://localhost:4000"
 markdown: kramdown
 highlighter: rouge
-plugins:
-  - jekyll-feed
-  - jekyll-admin
-  - jekyll-octicons
-  - rouge
-  - github-pages
 sass:
   style: compressed
 permalink: /blog/:year/:month/:day-:title
+
+# Plugins used for production.
+# WARNING: any changes to plugins should be made to _config_dev.yml also!
+plugins:
+  # GitHub Pages mandatory plugins
+  # See also: https://docs.github.com/en/github/working-with-github-pages/about-github-pages-and-jekyll#plugins
+  - jekyll-coffeescript
+  - jekyll-default-layout
+  - jekyll-gist
+  - jekyll-github-metadata
+  - jekyll-optional-front-matter
+  - jekyll-paginate
+  - jekyll-readme-index
+  - jekyll-titles-from-headings
+  - jekyll-relative-links
+
+  # Site plugins
+  - jekyll-feed
+  - jekyll-octicons
+  - rouge
 
 # Collection Settings
 # See also: https://jekyllrb.com/docs/collections/
