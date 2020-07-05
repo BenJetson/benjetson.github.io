@@ -24,23 +24,11 @@ clean:
 
 .PHONY: build
 build:
-	bundle exec jekyll build \
-		--config=_config.yml,_config_build.yml,
+	./scripts/build.sh
 
 .PHONY: build-qa
-build-qa: clean
-	JEKYLL_ENV=production bundle exec jekyll build \
-		--config=_config.yml,_config_build.yml,_config_qa.yml
-
-	# Prevent robots from indexing the QA tier.
-	printf \
-		"User-agent: *\nDisallow: /" \
-		> _site/robots.txt
-
-	# Redirect users from the netlify domain to the QA subdomain.
-	printf \
-		"http://benjetson.netlify.com/* https://qa.bengodfrey.net/:splat 301!" \
-		> _site/_redirects
+build-qa:
+	./scripts/build_qa.sh
 
 .PHONY: test
 test:
