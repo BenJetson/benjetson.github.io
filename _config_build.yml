@@ -2,7 +2,7 @@
 # _config_build.yml                                                            #
 #                                                                              #
 # This config file will be used when building the site for CI builds on the    #
-# GitHub actions platform.                                                     #
+# GitHub actions platform or builds that will be deployed to the QA tier.      #
 #                                                                              #
 # See also: .github/workflows/ci.yml                                           #
 ################################################################################

@@ -1,0 +1,8 @@
+################################################################################
+# _config_build.yml                                                            #
+#                                                                              #
+# This config file will be used when building the site for deployment to the   #
+# quality assurance (QA) tier.                                                 #
+################################################################################
+
+url: https://qa.bengodfrey.net
