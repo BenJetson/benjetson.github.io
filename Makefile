@@ -26,6 +26,14 @@ clean:
 build:
 	./scripts/build.sh
 
+.PHONY: build-netlify
+build-netlify:
+	./scripts/build_netlify.sh
+
+.PHONY: build-preview
+build-preview:
+	./scripts/build_preview.sh
+
 .PHONY: build-qa
 build-qa:
 	./scripts/build_qa.sh
