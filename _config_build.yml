@@ -13,13 +13,13 @@ strict_front_matter: true
 # Cause the build to fail when liquid has problems.
 liquid:
   error_mode: strict
-  strict_variables: true
+  # strict_variables: true # seems not to work with project var usage in layouts
   strict_filters: true
 
 # Mirror GitHub pages produciton configuration.
 # See also: https://docs.github.com/en/github/working-with-github-pages/about-github-pages-and-jekyll
 lsi: false
-safe: true
+# safe: true # FIXME see ticket #65 for details.
 incremental: false
 highlighter: rouge
 gist:
