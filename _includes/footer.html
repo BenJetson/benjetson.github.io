@@ -27,6 +27,12 @@
         <h6>
           &copy; {{ "now" | date: "%Y" }} Ben Godfrey. All rights reserved.
         </h6>
+        <p>
+          <code
+            >build {{ site.github.build_revision | truncate: 8,
+            ""}}-{{site.tier}}</code
+          >
+        </p>
       </div>
     </div>
   </div>

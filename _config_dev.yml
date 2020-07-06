@@ -5,6 +5,8 @@
 # the Jekyll server on local development machines.                             #
 ################################################################################
 
+tier: local
+
 # Reload the page automatically in the browser when its content is edited.
 livereload: true
 
