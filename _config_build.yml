@@ -7,6 +7,8 @@
 # See also: .github/workflows/ci.yml                                           #
 ################################################################################
 
+tier: preview
+
 # Cause the build to fail if there is a YAML syntax error in page front matter.
 strict_front_matter: true
 
