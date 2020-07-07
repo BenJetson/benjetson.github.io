@@ -90,6 +90,11 @@ div.blogpost-date {
   line-height: $chip-size;
 }
 
+.hero-image {
+  max-height: 250px;
+  object-fit: cover;
+}
+
 .hero-image-credit {
   font-weight: light;
   color: $gray-600;
