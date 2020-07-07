@@ -101,23 +101,6 @@ div.blogpost-date {
   font-style: italic;
 }
 
-.hero-image-parallax-container {
-  height: 30vh;
-  overflow: hidden;
-}
-
-.hero-image-parallax {
-  height: 100%;
-  z-index: -1;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  filter: blur(1px);
-  opacity: 0.8;
-  transform: scale(1.2);
-}
-
 .min-vh-50 {
   min-height: 50vh;
 }
