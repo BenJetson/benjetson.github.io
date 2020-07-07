@@ -3,38 +3,45 @@ layout: boilerplate
 ---
 
 {% assign hero-image-src = page.image | replace: "site.url", site.url %}
-<!--  {{hero-image-src}} -->
 
-<div class="hero-image-parallax-container">
-  <div
-    class="hero-image-parallax"
-    style="background-image: url('{{hero-image-src}}');"
-  ></div>
-</div>
-
-<section class="bg-light py-5">
+<section class="py-4">
   <div class="container">
-    <h2 mt-2>{{page.title}}</h2>
-    <div class="row no-guttersmb-2">
-      <div class="col-sm-12 col-md-auto mt-2">
-        <div class="chip">
-          <img src="{{site.profileIMG}}" />
-          Ben Godfrey
-        </div>
+    <div class="card">
+      {% if page.image %}
+      <img
+        src="{{hero-image-src}}"
+        class="card-img-top hero-image"
+        alt="{{page.image-alt}}"
+      />
+      {% endif %}
+      <div class="card-body">
+        <h2 class="m-0">{{page.title}}</h2>
       </div>
-      <div class="col blogpost-date mt-2">
-        {{page.date | date: "%B %d, %Y - %I:%M %P" }}
+      <div class="card-footer text-muted">
+        <div class="row no-gutters mb-2">
+          <div class="col-sm-12 col-md-auto mt-2">
+            <div class="chip">
+              <img src="{{site.profileIMG}}" />
+              Ben Godfrey
+            </div>
+          </div>
+          <div class="col blogpost-date mt-2">
+            {{page.date | date: "%B %d, %Y - %I:%M %P" }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
-<section class="py-5">
+<section class="pb-3">
   <div class="container">
     {{page.content}}
   </div>
+  {% if page.image-credit %}
   <div class="container mt-4 mb-2">
     <div class="hero-image-credit">
       Hero image credit: {{page.image-credit}}
     </div>
   </div>
+  {% endif %}
 </section>
