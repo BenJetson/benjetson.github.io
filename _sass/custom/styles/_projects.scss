@@ -1,0 +1,28 @@
+/**
+ * _projects.scss
+ *
+ * Styles for the projects page and individual project pages.
+ */
+
+.project-header img {
+  max-height: 66vh;
+  object-fit: cover;
+  height: 100%;
+}
+
+img.project-img {
+  height: 100%;
+  object-fit: cover;
+}
+
+@include media-breakpoint-down(xs) {
+  @media (orientation: portrait) {
+    img.project-img {
+      max-height: 30vh;
+    }
+  }
+}
+
+.project-content img {
+  @extend .img-fluid;
+}

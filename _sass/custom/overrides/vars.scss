@@ -1,0 +1,21 @@
+/**
+ * vars.scss
+ *
+ * Overrides of Bootstrap variables.
+ *
+ * MUST be included in the master stylesheet BEFORE Bootstrap is loaded,
+ * otherwise Bootstrap will set these variables to their default values.
+ */
+
+// Define additional colors.
+$dark-blue-green: #01579b;
+$bright-blue: #29b6f6;
+
+// Set the site theme colors.
+$primary: $dark-blue-green;
+
+// Set the size of chip elements.
+$chip-size: 30px;
+
+// Enable background gradient classes.
+$enable-gradients: true;
