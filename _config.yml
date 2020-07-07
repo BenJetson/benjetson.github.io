@@ -63,8 +63,6 @@ defaults:
       type: "posts"
     values:
       layout: "blogpost"
-      image: "site.url/img/felipe-santana-309268.jpg"
-      image-credit: Felipe Santana on Unsplash
       comments: true
   - scope:
       path: "_projects"
