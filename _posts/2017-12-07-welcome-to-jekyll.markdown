@@ -24,6 +24,26 @@ print_hi('Tom')
 #=> prints 'Hi, Tom' to STDOUT.
 ```
 
+```golang
+package main
+
+import (
+  "fmt"
+)
+
+const theImportantValue = "this is a string"
+
+type Foo struct {
+  X int    `json:"-"`
+  Y string `json:"y"`
+  Z bool   `json:"z"`
+}
+
+func main() {
+  fmt.Printf("This is a test of %d.", 6)
+}
+```
+
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most
 out of Jekyll. File all bugs/feature requests at
 [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on
