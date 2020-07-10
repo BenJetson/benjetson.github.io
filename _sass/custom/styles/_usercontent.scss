@@ -44,4 +44,10 @@ div.usercontent {
       @extend .thead-light;
     }
   }
+
+  .footnotes {
+    border-top: 1px solid $gray-300;
+    margin-top: 2em;
+    padding-top: 1em;
+  }
 }
