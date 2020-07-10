@@ -34,4 +34,14 @@ div.usercontent {
       margin: 0 0.5em 0.25em -1.4em;
     }
   }
+
+  table {
+    @extend .table;
+    @extend .table-striped;
+    @extend .table-hover;
+
+    thead {
+      @extend .thead-light;
+    }
+  }
 }
