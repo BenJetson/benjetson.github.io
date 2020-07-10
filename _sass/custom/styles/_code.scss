@@ -5,9 +5,12 @@
 //
 
 pre.highlight {
-  border: 1px solid $gray-300;
-  border-radius: 8px;
+  border: 2px solid $gray-300;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+
   padding: 15px;
+
   background-color: $gray-100;
   background: repeating-linear-gradient(
     -45deg,
@@ -16,4 +19,21 @@ pre.highlight {
     $white 3px,
     $white 6px
   );
+}
+
+div.highlight::before {
+  display: block;
+  content: "Code";
+
+  border-radius: 8px 8px 0 0;
+  border-bottom: none;
+
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 75%;
+  line-height: 1;
+
+  padding: 0.5em 1em;
+
+  background-color: $gray-300;
 }
