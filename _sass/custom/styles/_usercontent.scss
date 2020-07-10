@@ -35,6 +35,10 @@ div.usercontent {
     }
   }
 
+  p code {
+    background-color: $gray-300;
+  }
+
   table {
     @extend .table;
     @extend .table-striped;
