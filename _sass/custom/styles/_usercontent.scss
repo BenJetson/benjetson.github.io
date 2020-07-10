@@ -12,5 +12,17 @@
 div.usercontent {
   img {
     @extend .img-fluid;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .caption {
+    text-align: center;
+    font-style: italic;
+    font-weight: 200;
+
+    img {
+      margin-bottom: 10px;
+    }
   }
 }
