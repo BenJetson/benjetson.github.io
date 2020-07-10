@@ -25,4 +25,13 @@ div.usercontent {
       margin-bottom: 10px;
     }
   }
+
+  .task-list {
+    list-style-type: none;
+    padding-left: 2.5em;
+
+    input[type="checkbox"] {
+      margin: 0 0.5em 0.25em -1.4em;
+    }
+  }
 }
