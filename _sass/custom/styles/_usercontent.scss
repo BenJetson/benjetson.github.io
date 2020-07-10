@@ -1,0 +1,16 @@
+//
+// _usercontent.scss
+//
+// Styles that will be applied to user content areas of the site, such as
+// blog post content and project page content.
+//
+// These posts originate in markdown and are compiled to HTML by Jekyll when
+// building the site. Thus, these documents have no style information save for
+// what is here.
+//
+
+div.usercontent {
+  img {
+    @extend .img-fluid;
+  }
+}
