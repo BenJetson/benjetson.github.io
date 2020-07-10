@@ -28,19 +28,20 @@ print_hi('Tom')
 package main
 
 import (
-  "fmt"
+   "fmt"
 )
 
+// This is a comment!
 const theImportantValue = "this is a string"
 
 type Foo struct {
-  X int    `json:"-"`
-  Y string `json:"y"`
-  Z bool   `json:"z"`
+    X int    `json:"-"`
+    Y string `json:"y"`
+    Z bool   `json:"z"`
 }
 
 func main() {
-  fmt.Printf("This is a test of %d.", 6)
+    fmt.Printf("This is a test of %d.", 6)
 }
 ```
 
