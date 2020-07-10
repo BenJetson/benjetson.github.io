@@ -1,0 +1,110 @@
+---
+title: Demo Post
+date: "2020-07-09 21:57:38 -0500"
+categories: null
+mathjax: true
+---
+
+<!-- markdownlint-disable MD001 MD025 -->
+
+This is a demonstration post for the purpose of testing the site layout for
+blog posts. There really isn't any valuable content here.
+
+First, let's see how headings look!
+
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
+
+Now for some _italic text_ followed by **bold text** followed by **_bold italic
+text_** followed by ~~striked text~~ and finally a [hyperlink](#nowhere).
+
+Interestingly[^1] this text has footnotes[^2].
+
+---
+
+[^1]: This is the contents of the footnote.
+[^2]: While these footnotes are in the center of the text, they appear only at the bottom of the page.
+
+This is an unordered list:
+
+- item
+  - subitem
+  - subitem
+  - subitem
+- item
+- really inexplicably long list item that takes up a lot of space, possibly more
+  than one line when rendered even, who knows what is possible depending on the
+  viewport size!
+- item
+- item
+
+This is an ordered list:
+
+1. one
+1. two
+1. three
+   a. three a
+   a. three b
+   a. three c
+1. four
+1. five
+1. six
+
+This is a checklist.
+
+- [ ] Do this
+- [x] Did this
+- [ ] Do that
+- [ ] really inexplicably long list item that takes up a lot of space, possibly
+      more than one line when rendered even, who knows what is possible
+      depending on the viewport size!
+- [x] Did that
+
+This is a table:
+
+| App Name  | Developer     | Description                                      |
+| --------- | ------------- | ------------------------------------------------ |
+| Safari    | Apple Inc     | Browse the internet with energy efficiency.      |
+| 1Password | AgileBits Inc | Go ahead, forget all of your passwords!          |
+| Xcode     | Apple Inc     | Develop software for Apple platforms and beyond. |
+| GIMP      | GNOME Project | Edit images with the power of open source.       |
+
+This is a SMALL image.
+
+![small dummy image](https://dummyimage.com/300x200)
+This is an image caption.
+{:.caption}
+
+This is a LARGE image.
+
+![large dummy image](https://dummyimage.com/2560x1440)
+This is an image caption.
+{:.caption}
+
+And some math for good measure.
+
+$$
+\begin{aligned}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{aligned}
+$$
