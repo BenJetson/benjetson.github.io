@@ -40,6 +40,8 @@ div.usercontent {
     @extend .table-striped;
     @extend .table-hover;
 
+    word-break: break-word;
+
     thead {
       @extend .thead-light;
     }
