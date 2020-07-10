@@ -42,6 +42,10 @@ div.usercontent {
 
     word-break: break-word;
 
+    @include media-breakpoint-down(xs) {
+      table-layout: fixed;
+    }
+
     thead {
       @extend .thead-light;
     }
