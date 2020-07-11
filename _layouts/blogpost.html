@@ -2,7 +2,7 @@
 layout: boilerplate
 ---
 
-{% assign hero-image-src = page.image | replace: "site.url", site.url %}
+{% assign hero-image-src = page.image | replace: "{{site.url}}", site.url %}
 
 <article>
   <section class="py-4">
