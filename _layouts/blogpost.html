@@ -19,17 +19,17 @@ layout: boilerplate
           <h2 class="m-0">{{page.title}}</h2>
         </div>
         <div class="card-footer text-muted">
-          <div class="row no-gutters mb-2">
-            <div class="col-sm-12 col-md-auto mt-2 mr-3">
+          <div class="row no-gutters mb-2 mt-2">
+            <div class="col-sm-12 col-md-auto mr-3">
               <div class="chip d-print-none">
                 <img src="{{site.profileIMG}}" />
                 Ben Godfrey
               </div>
-              <div class="d-none d-print-block">
+              <div class="d-none d-print-block blogpost-author-print">
                 by Ben Godfrey
               </div>
             </div>
-            <div class="col blogpost-date mt-2">
+            <div class="col blogpost-date">
               {{page.date | date: "%B %d, %Y at %I:%M %P" }}
             </div>
           </div>
