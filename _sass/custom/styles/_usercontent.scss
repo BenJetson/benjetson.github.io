@@ -99,14 +99,23 @@
     }
   }
 
-  // Blockquote spacing styles.
+  // Blockquote inner spacing styles.
   blockquote {
     padding: 1em;
     @include media-breakpoint-down(xs) {
       padding: 0.5em;
     }
-
     padding-bottom: 0;
+  }
+
+  // Blockquote outer spacing styles.
+  > blockquote {
+    margin-left: 2em;
+    margin-right: 2em;
+    @include media-breakpoint-down(xs) {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 
   // Blockquote quote symbol styles.
