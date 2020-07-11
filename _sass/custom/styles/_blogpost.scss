@@ -9,27 +9,28 @@ div.blogpost-header {
   border-radius: 0.5rem;
 }
 
-div.chip {
+.chip {
   background-color: $gray-400;
   height: $chip-size;
   display: inline-block;
   padding: 0 ($chip-size / 2);
   border-radius: 25px;
   line-height: $chip-size;
+
+  img {
+    @extend .rounded-circle;
+    float: left;
+    margin-top: 0;
+    margin-right: 10px;
+    margin-bottom: 0;
+    margin-left: (-1 * ($chip-size / 2));
+    height: $chip-size;
+    width: $chip-size;
+  }
 }
 
-div.chip img {
-  @extend .rounded-circle;
-  float: left;
-  margin-top: 0;
-  margin-right: 10px;
-  margin-bottom: 0;
-  margin-left: (-1 * ($chip-size / 2));
-  height: $chip-size;
-  width: $chip-size;
-}
-
-div.blogpost-date {
+div.blogpost-date,
+div.blogpost-author-print {
   line-height: $chip-size;
 }
 
