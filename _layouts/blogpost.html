@@ -7,7 +7,7 @@ layout: boilerplate
 <article>
   <section class="py-4">
     <div class="container">
-      <div class="card">
+      <div class="card blogpost-header">
         {% if page.image %}
         <img
           src="{{hero-image-src}}"
@@ -20,11 +20,13 @@ layout: boilerplate
         </div>
         <div class="card-footer text-muted">
           <div class="row no-gutters mb-2">
-            <div class="col-sm-12 col-md-auto mt-2">
-              <div class="chip">
+            <div class="col-sm-12 col-md-auto mt-2 mr-3">
+              <div class="chip d-print-none">
                 <img src="{{site.profileIMG}}" />
                 Ben Godfrey
-                <!-- FIXME name does not show in reader mode -->
+              </div>
+              <div class="d-none d-print-block">
+                by Ben Godfrey
               </div>
             </div>
             <div class="col blogpost-date mt-2">
