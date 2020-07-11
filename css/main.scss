@@ -1,10 +1,14 @@
 ---
 ---
 
-@import "bgcode-var-overrides";
+// Include Bootstrap variable overrides.
+// These variables must be set before Bootstrap sets them to default values.
+@import "custom/overrides/vars";
 
+// Import vendored stylesheets.
 @import "vendor/bootstrap/bootstrap";
-@import "vendor/pygments/syntax-highlight";
+@import "vendor/pygments/tango";
 
-@import "bgcode-overrides";
-@import "bgcode-custom";
+// Import custom overrides and styles.
+@import "custom/overrides/overrides";
+@import "custom/styles/styles";

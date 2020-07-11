@@ -1,0 +1,52 @@
+//
+// _code.scss
+//
+// Styles related to code fences used in blogposts and projects.
+//
+
+pre.highlight {
+  border: 2px solid $gray-300;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+
+  padding: 15px;
+
+  background-color: $gray-100;
+  background: repeating-linear-gradient(
+    -45deg,
+    $gray-100,
+    $gray-100 3px,
+    $white 3px,
+    $white 6px
+  );
+}
+
+div.highlight::before {
+  display: block;
+  content: "Code";
+
+  border-radius: 8px 8px 0 0;
+  border-bottom: none;
+
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 75%;
+  line-height: 1;
+
+  padding: 0.5em 1em;
+
+  background-color: $gray-300;
+
+  @media print {
+    border: 1px solid $gray-300;
+  }
+}
+
+div.highlight {
+  margin-left: 2em;
+  margin-right: 2em;
+  @include media-breakpoint-down(xs) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

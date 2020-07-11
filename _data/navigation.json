@@ -8,6 +8,10 @@
     "url": "about"
   },
   {
+    "desc": "Blog",
+    "url": "blog"
+  },
+  {
     "desc": "Projects",
     "url": "projects"
   }

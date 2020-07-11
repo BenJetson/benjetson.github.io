@@ -1,0 +1,18 @@
+---
+layout: boilerplate
+title: All Posts
+---
+
+<div class="container py-3">
+  <h2>Blog</h2>
+  <p>The following blog posts are available:</p>
+  <ul>
+    {% for post in site.posts %}
+    <li>
+      <a href="{{post.url | prepend: site.url }}"
+        >{{post.date | date: "%Y/%m/%d %H:%m"}} - {{post.title}}</a
+      >
+    </li>
+    {% endfor %}
+  </ul>
+</div>
