@@ -36,4 +36,8 @@ div.highlight::before {
   padding: 0.5em 1em;
 
   background-color: $gray-300;
+
+  @media print {
+    border: 1px solid $gray-300;
+  }
 }
