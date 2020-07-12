@@ -52,3 +52,8 @@ layout: boilerplate
     {% endif %}
   </section>
 </article>
+{% if page.comments %}
+<div class="container mt-3 mb-5">
+  {% include comments.html %}
+</div>
+{% endif %}
