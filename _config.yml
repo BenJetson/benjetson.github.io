@@ -28,6 +28,10 @@ sass:
   style: compressed
 permalink: /blog/:year/:month/:day-:title
 
+# Blog settings
+paginate: 6
+paginate_path: "/blog/page:num/"
+
 # Plugins used for production.
 # WARNING: any changes to plugins should be made to _config_dev.yml also!
 plugins:
