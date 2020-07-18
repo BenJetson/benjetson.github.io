@@ -4,8 +4,12 @@ title: Blog
 ---
 
 <div class="container py-3">
-  <h2>Blog</h2>
-  <p>The following blog posts are available:</p>
+  <header class="mb-3">
+    <h2>Blog</h2>
+    {% if paginator.page == 1 %}
+    <p>A collection of random things I've thought were worth writing about.</p>
+    {% endif %}
+  </header>
   <ul>
     {% for post in paginator.posts %}
     <li>
