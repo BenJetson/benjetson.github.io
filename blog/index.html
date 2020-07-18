@@ -1,13 +1,13 @@
 ---
 layout: boilerplate
-title: All Posts
+title: Blog
 ---
 
 <div class="container py-3">
   <h2>Blog</h2>
   <p>The following blog posts are available:</p>
   <ul>
-    {% for post in site.posts %}
+    {% for post in paginator.posts %}
     <li>
       <a href="{{post.url | prepend: site.url }}"
         >{{post.date | date: "%Y/%m/%d %H:%m"}} - {{post.title}}</a
@@ -15,4 +15,64 @@ title: All Posts
     </li>
     {% endfor %}
   </ul>
+
+  <nav aria-label="Blog Pages">
+    <ul class="pagination justify-content-center">
+      {% if paginator.previous_page %}
+      <li class="page-item">
+        <a class="page-link" href="{{ paginator.previous_page_path }}"
+          >Previous</a
+        >
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+          >Previous</a
+        >
+      </li>
+      {% endif %}
+
+      <!--  -->
+      {% for page in (1..paginator.total_pages) %}
+      <!--  -->
+      {% if page == paginator.page %}
+      <li class="page-item active" aria-current="page">
+        <span class="page-link"
+          >{{ page }}<span class="sr-only">(current)</span></span
+        >
+      </li>
+      {% elsif page == 1 %}
+      <li class="page-item">
+        <a class="page-link" href="{{ '/blog' | relative_url }}">{{ page }}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="{{ site.paginate_path | relative_url | replace: ':num', page }}"
+          >{{page}}</a
+        >
+      </li>
+      {% endif %}
+      <!--  -->
+      {% endfor %}
+      <!--  -->
+
+      {% if paginator.next_page %}
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="{{ paginator.next_page_path | relative_url }}"
+          >Next</a
+        >
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+          >Next</a
+        >
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
 </div>
