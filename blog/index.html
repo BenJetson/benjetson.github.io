@@ -29,7 +29,8 @@ title: Blog
           <div class="card-body">
             <h4 class="card-title">{{ post.title }}</h4>
             <h6 class="card-subtitle mb-2 text-muted">
-              {{ post.date | date: "%Y/%m/%d %H:%m" }}
+              {{ post.date | date_to_long_string: "ordinal", "US" }} at {{
+              post.date | date: "%I:%M %P"}}
             </h6>
             <div class="card-text text-left blogpost-excerpt">
               {%- comment -%} Exclude images and other tags here. {%- endcomment
