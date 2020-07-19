@@ -7,94 +7,129 @@ title: Blog
   <header class="mb-3">
     <h2>Blog</h2>
     {% if paginator.page == 1 %}
-    <p>A collection of random things I've thought were worth writing about.</p>
+    <p>
+      A collection of random things I've thought were worth writing about.
+    </p>
     {% endif %}
   </header>
-  <section class="my-2">
-    {% for post in paginator.posts %}
-    <div class="card text-center mb-3 shadow-sm blogpost-card">
-      {% if post.image %} {% assign hero-image-src = post.image | replace:
-      "{{site.url}}", site.url %}
-      <img
-        src="{{hero-image-src}}"
-        class="card-img-top hero-image"
-        alt="{{post.image-alt}}"
-      />
-      {% endif %}
-      <div class="card-body">
-        <h4 class="card-title">{{ post.title }}</h4>
-        <h6 class="card-subtitle mb-2 text-muted">
-          {{ post.date | date: "%Y/%m/%d %H:%m" }}
-        </h6>
-        <div class="card-text text-left">
-          {%- comment -%} Exclude images and other tags here. {%- endcomment -%}
-          {{ post.excerpt | markdownify | strip_html | markdownify }}
+  <div class="row">
+    <div class="col col-md-9">
+      <h4>Posts</h4>
+      <section class="my-3">
+        {% for post in paginator.posts %}
+        <div class="card text-center mb-3 shadow-sm blogpost-card">
+          {% if post.image %} {% assign hero-image-src = post.image | replace:
+          "{{site.url}}", site.url %}
+          <img
+            src="{{hero-image-src}}"
+            class="card-img-top hero-image"
+            alt="{{post.image-alt}}"
+          />
+          {% endif %}
+          <div class="card-body">
+            <h4 class="card-title">{{ post.title }}</h4>
+            <h6 class="card-subtitle mb-2 text-muted">
+              {{ post.date | date: "%Y/%m/%d %H:%m" }}
+            </h6>
+            <div class="card-text text-left">
+              {%- comment -%} Exclude images and other tags here. {%- endcomment
+              -%} {{ post.excerpt | markdownify | strip_html | markdownify }}
+            </div>
+            <a href="{{ post.url | prepend: site.url }}" class="stretched-link"
+              >Read &raquo;</a
+            >
+          </div>
         </div>
-        <a href="{{post.url | prepend: site.url }}" class="stretched-link"
-          >Read &raquo;</a
-        >
-      </div>
+        {% endfor %}
+      </section>
+
+      <nav aria-label="Blog Pages">
+        <ul class="pagination justify-content-center">
+          {% if paginator.previous_page %}
+          <li class="page-item">
+            <a class="page-link" href="{{ paginator.previous_page_path }}"
+              >Previous</a
+            >
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+              >Previous</a
+            >
+          </li>
+          {% endif %}
+
+          <!--  -->
+          {% for page in (1..paginator.total_pages) %}
+          <!--  -->
+          {% if page == paginator.page %}
+          <li class="page-item active" aria-current="page">
+            <span class="page-link"
+              >{{ page }}<span class="sr-only">(current)</span></span
+            >
+          </li>
+          {% elsif page == 1 %}
+          <li class="page-item">
+            <a class="page-link" href="{{ '/blog' | relative_url }}"
+              >{{ page }}</a
+            >
+          </li>
+          {% else %}
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="{{ site.paginate_path | relative_url | replace: ':num', page }}"
+              >{{page}}</a
+            >
+          </li>
+          {% endif %}
+          <!--  -->
+          {% endfor %}
+          <!--  -->
+
+          {% if paginator.next_page %}
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="{{ paginator.next_page_path | relative_url }}"
+              >Next</a
+            >
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+              >Next</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
     </div>
-    {% endfor %}
-  </section>
-
-  <nav aria-label="Blog Pages">
-    <ul class="pagination justify-content-center">
-      {% if paginator.previous_page %}
-      <li class="page-item">
-        <a class="page-link" href="{{ paginator.previous_page_path }}"
-          >Previous</a
-        >
-      </li>
-      {% else %}
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
-          >Previous</a
-        >
-      </li>
-      {% endif %}
-
-      <!--  -->
-      {% for page in (1..paginator.total_pages) %}
-      <!--  -->
-      {% if page == paginator.page %}
-      <li class="page-item active" aria-current="page">
-        <span class="page-link"
-          >{{ page }}<span class="sr-only">(current)</span></span
-        >
-      </li>
-      {% elsif page == 1 %}
-      <li class="page-item">
-        <a class="page-link" href="{{ '/blog' | relative_url }}">{{ page }}</a>
-      </li>
-      {% else %}
-      <li class="page-item">
-        <a
-          class="page-link"
-          href="{{ site.paginate_path | relative_url | replace: ':num', page }}"
-          >{{page}}</a
-        >
-      </li>
-      {% endif %}
-      <!--  -->
-      {% endfor %}
-      <!--  -->
-
-      {% if paginator.next_page %}
-      <li class="page-item">
-        <a
-          class="page-link"
-          href="{{ paginator.next_page_path | relative_url }}"
-          >Next</a
-        >
-      </li>
-      {% else %}
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
-          >Next</a
-        >
-      </li>
-      {% endif %}
-    </ul>
-  </nav>
+    <div class="col col-md-3">
+      <h4>Featured</h4>
+      <section class="my-3">
+        {% assign featuredCount = 0 %}
+        <!--  -->
+        <div class="list-group mb-2">
+          {% for post in site.posts %}
+          <!--  -->
+          {% if post.featured %}
+          <!--  -->
+          {% assign featuredCount = featuredCount | plus: 1 %}
+          <a
+            href="{{ post.url | prepend: site.url }}"
+            class="list-group-item list-group-item-action"
+            >{{ post.title }}</a
+          >
+          {% endif %}
+          <!--  -->
+          {% endfor %}
+        </div>
+        <!--  -->
+        {% if featuredCount == 0 %}
+        <em>No posts are currently featured.</em>
+        {% endif %}
+      </section>
+    </div>
+  </div>
 </div>
