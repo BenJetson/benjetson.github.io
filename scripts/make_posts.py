@@ -37,7 +37,7 @@ for i in range(POST_COUNT):
             ]
         )
 
-    if random.randint(0, 100) < 15:
+    if random.randint(0, 100) < 10:
         front_matter.append("featured: true")
 
     front_matter = ["---", *front_matter, "---\n"]
