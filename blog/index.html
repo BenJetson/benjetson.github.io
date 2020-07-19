@@ -10,15 +10,35 @@ title: Blog
     <p>A collection of random things I've thought were worth writing about.</p>
     {% endif %}
   </header>
-  <ul>
+  <section class="my-2">
     {% for post in paginator.posts %}
-    <li>
-      <a href="{{post.url | prepend: site.url }}"
-        >{{post.date | date: "%Y/%m/%d %H:%m"}} - {{post.title}}</a
-      >
-    </li>
+    <div class="card text-center mb-3 shadow-sm">
+      {% if post.image %} {% assign hero-image-src = post.image | replace:
+      "{{site.url}}", site.url %}
+      <img
+        src="{{hero-image-src}}"
+        class="card-img-top hero-image"
+        alt="{{post.image-alt}}"
+      />
+      {% endif %}
+      <div class="card-body">
+        <h4 class="card-title">{{ post.title }}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">
+          {{ post.date | date: "%Y/%m/%d %H:%m" }}
+        </h6>
+        <div class="card-text text-left">
+          {%- comment -%} Exclude images and other tags here. {%- endcomment -%}
+          {{ post.excerpt | markdownify | strip_html | markdownify }}
+        </div>
+        <a href="{{post.url | prepend: site.url }}" class="stretched-link"
+          >Read &raquo;</a
+        >
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+
     {% endfor %}
-  </ul>
+  </section>
 
   <nav aria-label="Blog Pages">
     <ul class="pagination justify-content-center">
