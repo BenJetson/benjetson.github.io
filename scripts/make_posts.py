@@ -16,7 +16,7 @@ os.chdir("_posts")
 
 for i in range(POST_COUNT):
     date = START_DATE + timedelta(days=i)
-    title = TextLorem(srange=(3, 3)).sentence()[:-1]
+    title = TextLorem(srange=(3, 11)).sentence()[:-1]
 
     filename = FILENAME_TMPL.format(
         date=date.strftime("%Y-%m-%d"), title=title.replace(" ", "-").lower()
