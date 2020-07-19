@@ -24,11 +24,20 @@ for i in range(POST_COUNT):
 
     # inject front matter
     front_matter = [
-        "---",
         "title: " + title,
         "date: " + date.strftime("%Y-%m-%d %H:%M:%S -0500"),
-        "---\n",
     ]
+
+    if random.randint(0, 100) < 40:
+        front_matter.extend(
+            [
+                "image: https://source.unsplash.com/random/1280x720?random="
+                + str(random.randint(0, 9999)),
+                "image-alt: random image",
+            ]
+        )
+
+    front_matter = ["---", *front_matter, "---\n"]
 
     body = []
 
