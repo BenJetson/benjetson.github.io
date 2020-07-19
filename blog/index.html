@@ -46,26 +46,18 @@ title: Blog
 
       <nav aria-label="Blog Pages">
         <ul class="blog-pagination justify-content-center">
-          {% assign range = 2 %}
-          {% assign start = paginator.page | minus: range %}
-          {% assign end = paginator.page | plus: range %}
-          
+          {% assign range = 2 %} {% assign start = paginator.page | minus: range
+          %} {% assign end = paginator.page | plus: range %}
+
           <!--  -->
-          {% if start < 1 %}
-            {% assign diff = start | times: -1 | plus: 1 %}
-            {% assign end = end | plus: diff %}
-            {% assign start = 1 %}
-          {% endif %}
+          {% if start < 1 %} {% assign diff = start | times: -1 | plus: 1 %} {%
+          assign end = end | plus: diff %} {% assign start = 1 %} {% endif %}
           <!--  -->
-          {% if end > paginator.total_pages %}
-            {% assign diff = end | minus: paginator.total_pages %}
-            {% assign start = start | minus: diff %}
-            {% assign end = paginator.total_pages %}
-          {% endif %}
+          {% if end > paginator.total_pages %} {% assign diff = end | minus:
+          paginator.total_pages %} {% assign start = start | minus: diff %} {%
+          assign end = paginator.total_pages %} {% endif %}
           <!--  -->
-          {% if start < 1 %}
-            {% assign start = 1 %}
-          {% endif %}
+          {% if start < 1 %} {% assign start = 1 %} {% endif %}
           <!--  -->
 
           {% if paginator.page != 1 %}
@@ -75,15 +67,13 @@ title: Blog
             >
           </li>
           {% endif %}
-
+          <!--  -->
           {% if start != 1 %}
           <li class="page-item">
-            <a class="page-link" href="{{ '/blog' | relative_url }}"
-              >1</a
-            >
+            <a class="page-link" href="{{ '/blog' | relative_url }}">1</a>
           </li>
           {% endif %}
-
+          <!--  -->
           {% if start > 2 %}
           <li class="page-item disabled">
             <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
@@ -121,22 +111,25 @@ title: Blog
           <!--  -->
 
           {% assign next_to_last = paginator.total_pages | minus: 1 %}
+          <!--  -->
           {% if end < next_to_last %}
           <li class="page-item disabled">
             <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
-            >...</a
+              >...</a
             >
           </li>
           {% endif %}
-
+          <!--  -->
           {% if end != paginator.total_pages %}
           <li class="page-item">
-            <a class="page-link" href="{{ site.paginate_path | relative_url | replace: ':num', paginator.total_pages }}"
+            <a
+              class="page-link"
+              href="{{ site.paginate_path | relative_url | replace: ':num', paginator.total_pages }}"
               >{{ paginator.total_pages }}</a
             >
           </li>
           {% endif %}
-
+          <!--  -->
           {% if paginator.page != paginator.total_pages %}
           <li class="page-item">
             <a
