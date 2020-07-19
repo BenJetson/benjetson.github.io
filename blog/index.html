@@ -13,7 +13,7 @@ title: Blog
     {% endif %}
   </header>
   <div class="row">
-    <div class="col col-md-9">
+    <div class="col-xs-12 col-md-8 col-lg-9">
       <h4>Posts</h4>
       <section class="my-3">
         {% for post in paginator.posts %}
@@ -46,22 +46,54 @@ title: Blog
 
       <nav aria-label="Blog Pages">
         <ul class="pagination justify-content-center">
-          {% if paginator.previous_page %}
+          {% assign range = 2 %}
+          {% assign start = paginator.page | minus: range %}
+          {% assign end = paginator.page | plus: range %}
+          
+          <!--  -->
+          {% if start < 1 %}
+            {% assign diff = start | times: -1 | plus: 1 %}
+            {% assign end = end | plus: diff %}
+            {% assign start = 1 %}
+          {% endif %}
+          <!--  -->
+          {% if end > paginator.total_pages %}
+            {% assign diff = end | minus: paginator.total_pages %}
+            {% assign start = start | minus: diff %}
+            {% assign end = paginator.total_pages %}
+          {% endif %}
+          <!--  -->
+          {% if start < 1 %}
+            {% assign start = 1 %}
+          {% endif %}
+          <!--  -->
+
+          {% if paginator.page != 1 %}
           <li class="page-item">
             <a class="page-link" href="{{ paginator.previous_page_path }}"
-              >Previous</a
+              >&lt;</a
             >
           </li>
-          {% else %}
+          {% endif %}
+
+          {% if start != 1 %}
+          <li class="page-item">
+            <a class="page-link" href="{{ '/blog' | relative_url }}"
+              >1</a
+            >
+          </li>
+          {% endif %}
+
+          {% if start > 2 %}
           <li class="page-item disabled">
             <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
-              >Previous</a
+              >...</a
             >
           </li>
           {% endif %}
 
           <!--  -->
-          {% for page in (1..paginator.total_pages) %}
+          {% for page in (start..end) %}
           <!--  -->
           {% if page == paginator.page %}
           <li class="page-item active" aria-current="page">
@@ -88,25 +120,36 @@ title: Blog
           {% endfor %}
           <!--  -->
 
-          {% if paginator.next_page %}
+          {% assign next_to_last = paginator.total_pages | minus: 1 %}
+          {% if end < next_to_last %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+            >...</a
+            >
+          </li>
+          {% endif %}
+
+          {% if end != paginator.total_pages %}
+          <li class="page-item">
+            <a class="page-link" href="{{ site.paginate_path | relative_url | replace: ':num', paginator.total_pages }}"
+              >{{ paginator.total_pages }}</a
+            >
+          </li>
+          {% endif %}
+
+          {% if paginator.page != paginator.total_pages %}
           <li class="page-item">
             <a
               class="page-link"
               href="{{ paginator.next_page_path | relative_url }}"
-              >Next</a
-            >
-          </li>
-          {% else %}
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
-              >Next</a
+              >&gt;</a
             >
           </li>
           {% endif %}
         </ul>
       </nav>
     </div>
-    <div class="col col-md-3">
+    <div class="col-xs-12 col-md-4 col-lg-3">
       <h4>Featured</h4>
       <section class="my-3">
         {% assign featuredCount = 0 %}
