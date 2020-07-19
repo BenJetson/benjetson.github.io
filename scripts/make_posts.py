@@ -23,42 +23,47 @@ for i in range(POST_COUNT):
     )
 
     # inject front matter
-    lines = [
+    front_matter = [
         "---",
         "title: " + title,
         "date: " + date.strftime("%Y-%m-%d %H:%M:%S -0500"),
         "---\n",
     ]
 
+    body = []
+
     # make random paragraphs
     for _ in range(PARAGRAPHS):
-        paragraph = lorem.paragraph()
-        paragraph = textwrap.wrap(paragraph, width=80)
-
-        paragraph.append("")
-
-        for l in paragraph:
-            lines.append(l)
+        paragraph = [lorem.paragraph(), ""]
+        body.extend(paragraph)
 
     # randomly insert image
-    image_idx = random.randint(4, len(lines) - 1)
+    image_idx = random.randint(0, len(body) - 1)
     image = [
         "![random image](https://source.unsplash.com/random/700x500)",
         TextLorem(srange=(4, 9)).sentence(),
         r"{:.caption}",
     ]
 
-    if lines[image_idx - 1] == "" or image_idx != 4:
+    if image_idx != 0 and body[image_idx - 1] != "":
         image.insert(0, "")
-    if image_idx != len(lines) - 1 and lines[image_idx] != "":
+    if body[image_idx] != "" and image_idx != len(body) - 1:
         image.append("")
 
     for l in reversed(image):
-        lines.insert(image_idx, l)
+        body.insert(image_idx, l)
+
+    # build lines
+    lines = [*front_matter]
+
+    for l in body:
+        ll = textwrap.wrap(l, width=80) if l != "" else [""]
+        lines.extend(ll)
 
     # make each line end with linefeed
     for j in range(len(lines) - 1):
         lines[j] += "\n"
 
+    # write post to disk
     with open(filename, "w") as f:
         f.writelines(lines)
