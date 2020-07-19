@@ -3,8 +3,8 @@
 # This script models the logic of the paginator used on the blog page.
 
 RANGE = 2
-MAX = 23
-CURRENT = 1
+MAX = 17
+CURRENT = 12
 
 start = CURRENT - RANGE
 end = CURRENT + RANGE
@@ -27,14 +27,18 @@ if CURRENT != 1:
 
 if start != 1:
     paginator += " << |"
+
+if start > 2:
     paginator += " ... |"
 
 for page in range(start, end + 1):
     page = page if page != CURRENT else "*{}*".format(page)
     paginator += " {} |".format(page)
 
-if end != MAX:
+if end < MAX - 1:
     paginator += " ... |"
+
+if end != MAX:
     paginator += " >> |"
 
 if CURRENT != MAX:
