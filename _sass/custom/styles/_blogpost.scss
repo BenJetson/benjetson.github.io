@@ -35,7 +35,8 @@ div.blogpost-author-print {
 }
 
 .hero-image {
-  max-height: 250px;
+  height: 250px;
+  background-color: $gray-400;
   object-fit: cover;
 }
 
