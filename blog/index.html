@@ -120,8 +120,12 @@ title: Blog
           <a
             href="{{ post.url | prepend: site.url }}"
             class="list-group-item list-group-item-action"
-            >{{ post.title }}</a
-          >
+            ><h6>{{ post.title }}</h6>
+            <small
+              >{{ post.date | date_to_long_string: "ordinal", "US" }} at {{
+              post.date | date: "%I:%M %P"}}</small
+            >
+          </a>
           {% endif %}
           <!--  -->
           {% endfor %}
