@@ -5,7 +5,7 @@ title: Blog
 
 <div class="container py-3">
   <header class="mb-3">
-    <h2>Blog</h2>
+    <h1>Blog</h1>
     {% if paginator.page == 1 %}
     <p>
       A collection of random things I've thought were worth writing about.
@@ -14,7 +14,7 @@ title: Blog
   </header>
   <div class="row">
     <div class="col-xs-12 col-md-8 col-lg-9">
-      <h4>Posts</h4>
+      <h2>Posts</h2>
       <section class="my-3">
         {% for post in paginator.posts %}
         <div class="card text-center mb-3 shadow-sm blogpost-card">
@@ -27,17 +27,17 @@ title: Blog
           />
           {% endif %}
           <div class="card-body">
-            <h4 class="card-title">{{ post.title }}</h4>
-            <h6 class="card-subtitle mb-2 text-muted">
+            <h3 class="card-title">{{ post.title }}</h3>
+            <div class="card-subtitle mb-2 text-muted">
               {{ post.date | date_to_long_string: "ordinal", "US" }} at {{
               post.date | date: "%I:%M %P"}}
-            </h6>
+            </div>
             <div class="card-text text-left blogpost-excerpt">
               {%- comment -%} Exclude images and other tags here. {%- endcomment
               -%} {{ post.excerpt | markdownify | strip_html | markdownify }}
             </div>
             <a href="{{ post.url | prepend: site.url }}" class="stretched-link"
-              >Read &raquo;</a
+              >Read <span class="sr-only">Post</span>&raquo;</a
             >
           </div>
         </div>
@@ -159,7 +159,7 @@ title: Blog
       </nav>
     </div>
     <div class="col-xs-12 col-md-4 col-lg-3">
-      <h4>Featured</h4>
+      <h3>Featured</h3>
       <section class="my-3">
         {% assign featuredCount = 0 %}
         <!--  -->
@@ -172,7 +172,7 @@ title: Blog
           <a
             href="{{ post.url | prepend: site.url }}"
             class="list-group-item list-group-item-action"
-            ><h6>{{ post.title }}</h6>
+            ><p class="h6">{{ post.title }}</p>
             <small
               >{{ post.date | date_to_long_string: "ordinal", "US" }} at {{
               post.date | date: "%I:%M %P"}}</small
