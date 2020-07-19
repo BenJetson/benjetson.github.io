@@ -4,6 +4,14 @@
 // Styles for the blog post layout.
 //
 
+div.blogpost-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: 4.5em;
+}
+
 div.blogpost-header,
 div.blogpost-card {
   overflow: hidden;

@@ -31,7 +31,7 @@ title: Blog
             <h6 class="card-subtitle mb-2 text-muted">
               {{ post.date | date: "%Y/%m/%d %H:%m" }}
             </h6>
-            <div class="card-text text-left">
+            <div class="card-text text-left blogpost-excerpt">
               {%- comment -%} Exclude images and other tags here. {%- endcomment
               -%} {{ post.excerpt | markdownify | strip_html | markdownify }}
             </div>
