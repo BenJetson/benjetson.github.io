@@ -4,6 +4,34 @@
 // Styles for the blog post layout.
 //
 
+.blog-pagination {
+  @extend .pagination;
+}
+
+@include media-breakpoint-up(xl) {
+  .blog-pagination {
+    @include pagination-size(
+      $pagination-padding-y-lg,
+      $pagination-padding-x-lg,
+      $font-size-lg,
+      $line-height-lg,
+      $border-radius-lg
+    );
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .blog-pagination {
+    @include pagination-size(
+      $pagination-padding-y-sm,
+      $pagination-padding-x-sm,
+      $font-size-sm,
+      $line-height-sm,
+      $border-radius-sm
+    );
+  }
+}
+
 div.blogpost-excerpt {
   display: -webkit-box;
   -webkit-line-clamp: 3;
