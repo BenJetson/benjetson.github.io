@@ -62,20 +62,26 @@ title: Blog
 
           {% if paginator.page != 1 %}
           <li class="page-item">
-            <a class="page-link" href="{{ paginator.previous_page_path }}"
-              >&lt;</a
-            >
+            <a class="page-link" href="{{ paginator.previous_page_path }}">
+              <span aria-hidden="true"
+                >&lt;<span class="d-none d-lg-inline"> Prev</span></span
+              >
+              <span class="sr-only">Previous Page</span>
+            </a>
           </li>
           {% endif %}
           <!--  -->
           {% if start != 1 %}
           <li class="page-item">
-            <a class="page-link" href="{{ '/blog' | relative_url }}">1</a>
+            <a class="page-link" href="{{ '/blog' | relative_url }}">
+              <span aria-hidden="true">1</span>
+              <span class="sr-only">Jump to First Page</span>
+            </a>
           </li>
           {% endif %}
           <!--  -->
           {% if start > 2 %}
-          <li class="page-item disabled">
+          <li class="page-item disabled" aria-hidden="true">
             <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
               >...</a
             >
@@ -87,23 +93,27 @@ title: Blog
           <!--  -->
           {% if page == paginator.page %}
           <li class="page-item active" aria-current="page">
-            <span class="page-link"
-              >{{ page }}<span class="sr-only">(current)</span></span
-            >
+            <span class="page-link">
+              <span aria-hidden="true">{{page}}</span>
+              <span class="sr-only">Page {{page}}</span>
+            </span>
           </li>
           {% elsif page == 1 %}
           <li class="page-item">
-            <a class="page-link" href="{{ '/blog' | relative_url }}"
-              >{{ page }}</a
-            >
+            <a class="page-link" href="{{ '/blog' | relative_url }}">
+              <span aria-hidden="true">{{page}}</span>
+              <span class="sr-only">Page {{page}}</span>
+            </a>
           </li>
           {% else %}
           <li class="page-item">
             <a
               class="page-link"
               href="{{ site.paginate_path | relative_url | replace: ':num', page }}"
-              >{{page}}</a
             >
+              <span aria-hidden="true">{{page}}</span>
+              <span class="sr-only">Page {{page}}</span>
+            </a>
           </li>
           {% endif %}
           <!--  -->
@@ -113,7 +123,7 @@ title: Blog
           {% assign next_to_last = paginator.total_pages | minus: 1 %}
           <!--  -->
           {% if end < next_to_last %}
-          <li class="page-item disabled">
+          <li class="page-item disabled" aria-hidden="true">
             <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
               >...</a
             >
@@ -125,8 +135,10 @@ title: Blog
             <a
               class="page-link"
               href="{{ site.paginate_path | relative_url | replace: ':num', paginator.total_pages }}"
-              >{{ paginator.total_pages }}</a
             >
+              <span aria-hidden="true">{{paginator.total_pages}}</span>
+              <span class="sr-only">Jump to last page</span>
+            </a>
           </li>
           {% endif %}
           <!--  -->
@@ -135,8 +147,12 @@ title: Blog
             <a
               class="page-link"
               href="{{ paginator.next_page_path | relative_url }}"
-              >&gt;</a
             >
+              <span aria-hidden="true"
+                ><span class="d-none d-lg-inline">Next </span>&gt;</span
+              >
+              <span class="sr-only">Next Page</span>
+            </a>
           </li>
           {% endif %}
         </ul>
