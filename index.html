@@ -5,51 +5,107 @@ layout: boilerplate
 <!-- index update -->
 
 <section class="bg-gradient-primary text-light py-3">
-    <div class="container">
-        <div class="d-flex w-100 justify-content-center pb-3">
-            {% comment %} <img class="img-responsive rounded-circle justify-content-center" id="home-profile-img" src="https://images.unsplash.com/photo-1471357674240-e1a485acb3e1?auto=format&fit=crop&w=300&h=300&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"> {% endcomment %}
-            <img class="img-responsive rounded-circle justify-content-center" id="home-profile-img" src="{{site.profileIMG}}">
-        </div>
-        <div class="d-flex w-100 justify-content-center">
-            <h1 class="center">Hi! I'm Ben.</h1>
-        </div>
+  <div class="container">
+    <div class="d-flex w-100 justify-content-center pb-3">
+      {% comment %}
+      <img
+        class="img-responsive rounded-circle justify-content-center"
+        id="home-profile-img"
+        src="{{ site.github.owner_gravatar_url }}"
+      />
+      {% endcomment %}
+      <img
+        class="img-responsive rounded-circle justify-content-center"
+        id="home-profile-img"
+        src="{{site.profileIMG}}"
+      />
     </div>
+    <div class="d-flex w-100 justify-content-center">
+      <h1 class="center">Hi! I'm Ben.</h1>
+    </div>
+  </div>
 </section>
 <section class="bg-light py-3">
-    <div class="container">
-        <p>I'm a technology enthusiast with a passion for code. I code both for school and just for fun.</p>
-        <a class="btn btn-info" href="{{ site.url }}/about">More about me &raquo;</a>
-    </div>
+  <div class="container">
+    <p>
+      I'm a technology enthusiast with a passion for code. I code both for
+      school and just for fun.
+    </p>
+    <a class="btn btn-info" href="{{ site.url }}/about"
+      >More about me &raquo;</a
+    >
+  </div>
 </section>
 <section class="bg-default py-3">
-    <div class="container">
-        <h4>Featured Projects</h4>
-    </div>
-    <div class="container mt-3">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
-            {% assign projects = site.projects | where: "featured",true | sort: "rank" %}
-            {% for project in projects %}
+  <div class="container">
+    <h4>Recent Posts</h4>
+  </div>
+  <div class="container mt-3">
+    <div class="row row-cols-1 row-cols-lg-2">
+      {% for post in site.posts limit: 2 %}
+      <div class="col mb-4">
+        <div class="card h-100 shadow-sm text-center">
+          <!-- <img src="..." class="card-img-top" alt="..."> -->
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-subtitle text-muted mb-2">
+              {{ post.date | date_to_long_string: "ordinal", "US" }} at {{
+              post.date | date: "%I:%M %P"}}
+            </p>
 
-            {% unless project.featured == true %}
-                {% continue %}
-            {% endunless %}
-
-            <div class="col mb-4">
-                <div class="card mb-3 shadow-sm h-100">
-                    <img src="{{project.photo}}" class="card-img-top index-project-img" alt="{{project.photo-alt}}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ project.title }}</h5>
-                        <p class="card-text text-truncate">{{ project.description }}</p>
-                        <p class="card-text mb-0"><small class="text-muted">{{ project.date | date: '%B %Y' }}</small></p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{{ project.url }}" class="stretched-link">Read More &raquo;</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+            <p class="card-text text-truncate">
+              {{ post.excerpt | markdownify | strip_html }}
+            </p>
+          </div>
+          <div class="card-footer">
+            <a href="{{ post.url | prepend: site.url }}" class="stretched-link"
+              >Read Post &raquo;</a
+            >
+          </div>
         </div>
-        <a class="btn btn-info" href="{{site.url}}/projects">More projects &raquo;</a>
+      </div>
+      {% endfor %}
     </div>
-</section>  
+    <a class="btn btn-info" href="{{site.url}}/blog">More posts &raquo;</a>
+  </div>
+</section>
+<section class="bg-default py-3">
+  <div class="container">
+    <h4>Featured Projects</h4>
+  </div>
+  <div class="container my-3">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+      {% assign projects = site.projects | where: "featured",true | sort: "rank"
+      %} {% for project in projects %} {% unless project.featured == true %} {%
+      continue %} {% endunless %}
 
+      <div class="col mb-4">
+        <div class="card mb-3 shadow-sm h-100">
+          <img
+            src="{{project.photo}}"
+            class="card-img-top index-project-img"
+            alt="{{project.photo-alt}}"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ project.title }}</h5>
+            <p class="card-text text-truncate">{{ project.description }}</p>
+            <p class="card-text mb-0">
+              <small class="text-muted"
+                >{{ project.date | date: '%B %Y' }}</small
+              >
+            </p>
+          </div>
+          <div class="card-footer">
+            <a href="{{ project.url }}" class="stretched-link"
+              >Read More &raquo;</a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <a class="btn btn-info" href="{{site.url}}/projects"
+      >More projects &raquo;</a
+    >
+  </div>
+</section>

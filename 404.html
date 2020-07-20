@@ -1,15 +1,30 @@
 ---
-layout: default
+layout: boilerplate
 title: 404
 ---
-<div class="container text-center">
-  <h1>404</h1>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page or resource was not found on this server.</p>
-
-  <h4>Some things to try:</h4>
-  <div>Try navigating from the <a href="{{site.url}}">home page</a></div>
-  <div>Open a public support ticket via GitHub <a href="https://github.com/BenJetson/benjetson.github.io/issues/new">here</a>.</div>
-  </ul>
+<div class="bg-gradient-danger notfound-container">
+  <div class="container pb-3">
+    <div class="py-4 text-light">
+      <h1 class="mb-1">404</h1>
+      <h2>That's an error.</h2>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          The page you are looking for could not be found on this server.
+        </h5>
+        <p class="card-text">
+          Try navigating again from the <a href="{{site.url}}">homepage</a>.
+        </p>
+        <p class="card-text">
+          Is a link broken? Please
+          <a href="https://github.com/BenJetson/benjetson.github.io/issues/new">
+            file a ticket
+          </a>
+          to let me know.
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

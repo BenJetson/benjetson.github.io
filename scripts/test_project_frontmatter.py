@@ -7,14 +7,18 @@ import re
 import sys
 import time
 
-def print_pass(*objects, sep=' ', end='\n'):
+
+def print_pass(*objects, sep=" ", end="\n"):
     print("\u001b[32m", *objects, "\u001b[0m", sep=sep, end=end)
 
-def print_warn(*objects, sep=' ', end='\n'):
+
+def print_warn(*objects, sep=" ", end="\n"):
     print("\u001b[33m", *objects, "\u001b[0m", sep=sep, end=end)
 
-def print_fail(*objects, sep=' ', end='\n'):
+
+def print_fail(*objects, sep=" ", end="\n"):
     print("\u001b[31m", *objects, "\u001b[0m", sep=sep, end=end)
+
 
 # The list list of project files that are missing the photo key.
 missing_photo = []
@@ -56,7 +60,8 @@ print("--- TEST STARTED ---\n")
 start_time = time.monotonic()
 
 url_validator = re.compile(
-    "https:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?")
+    "https:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?"
+)
 
 for directory, _, files in os.walk("./_projects"):
     for f in files:
@@ -65,13 +70,13 @@ for directory, _, files in os.walk("./_projects"):
 
         path = os.path.join(directory, f)
 
-        with open(path, 'r') as project_file:
+        with open(path, "r") as project_file:
             metadata, _ = frontmatter.parse(project_file.read())
 
             # Photo checks.
             if "photo" not in metadata:
                 missing_photo.append(f)
-            else: 
+            else:
                 photo_url = metadata["photo"]
 
                 if len(photo_url) == 0:
@@ -83,7 +88,7 @@ for directory, _, files in os.walk("./_projects"):
             # Photo alt text checks.
             if "photo-alt" not in metadata:
                 missing_photo_alt.append(f)
-            else: 
+            else:
                 photo_alt = metadata["photo-alt"]
 
                 if len(photo_alt) == 0:
@@ -97,7 +102,7 @@ for directory, _, files in os.walk("./_projects"):
 
                 if len(date) == 0:
                     blank_date.append(f)
-                
+
                 try:
                     datetime.datetime.strptime(date, "%Y-%m-%d")
                 except ValueError:
@@ -106,21 +111,20 @@ for directory, _, files in os.walk("./_projects"):
             # Title checks.
             if "title" not in metadata:
                 missing_title.append(f)
-            else: 
+            else:
                 title = metadata["title"]
 
                 if len(title) == 0:
                     blank_title.append(f)
-            
+
             # Description checks.
             if "description" not in metadata:
                 missing_description.append(f)
-            else: 
+            else:
                 description = metadata["description"]
 
                 if len(description) == 0:
                     blank_description.append(f)
-
 
 
 if missing_photo:
@@ -223,18 +227,18 @@ else:
 
 
 retval = (
-    len(missing_photo) +
-    len(blank_photo) +
-    len(bad_photo) +
-    len(missing_photo_alt) +
-    len(blank_photo_alt) +
-    len(missing_date) +
-    len(blank_date) +
-    len(bad_date) +
-    len(missing_title) +
-    len(blank_title) +
-    len(missing_description) +
-    len(blank_description)
+    len(missing_photo)
+    + len(blank_photo)
+    + len(bad_photo)
+    + len(missing_photo_alt)
+    + len(blank_photo_alt)
+    + len(missing_date)
+    + len(blank_date)
+    + len(bad_date)
+    + len(missing_title)
+    + len(blank_title)
+    + len(missing_description)
+    + len(blank_description)
 )
 
 print("\n--- TEST COMPLETE ---")

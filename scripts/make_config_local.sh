@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 cat << EOF > _config_local.yml
 
@@ -17,9 +18,9 @@ cat << EOF > _config_local.yml
 EOF
 
 printf "Enter the port for the local server.\n>>> "
-read port
+read -r port
 
-if [ ! -z "$port" ]; then
+if [ -n "$port" ]; then
     echo "port: $port" >> _config_local.yml
 else
     echo "No input - ABORT."
@@ -27,13 +28,13 @@ else
 fi
 
 printf "Enter the hostname/ip for this computer on the local network.\n>>> "
-read host
+read -r host
 
-if [ ! -z "$host" ]; then
+if [ -n "$host" ]; then
     echo "url: http://$host:$port" >> _config_local.yml
 else
     echo "No input - ABORT."
     exit 2
 fi
 
-echo "\nSuccess. Local config file has been saved to disk.\n"
+printf "\nSuccess. Local config file has been saved to disk.\n"

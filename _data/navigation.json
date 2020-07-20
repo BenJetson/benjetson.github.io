@@ -1,14 +1,26 @@
 [
-    {
-        "desc": "Home",
-        "url": "" 
-    },
-    {
-        "desc": "About",
-        "url": "about"
-    },
-    {
-        "desc": "Projects",
-        "url": "projects"
-    }
+  {
+    "desc": "Home",
+    "url": ""
+  },
+  {
+    "desc": "About",
+    "url": "about"
+  },
+  {
+    "desc": "Resumé",
+    "url": "resume"
+  },
+  {
+    "desc": "Blog",
+    "url": "blog"
+  },
+  {
+    "desc": "Projects",
+    "url": "projects"
+  },
+  {
+    "desc": "Contact",
+    "url": "contact"
+  }
 ]
