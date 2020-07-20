@@ -18,6 +18,7 @@ profileIMG: https://avatars1.githubusercontent.com/u/10427974?s=460&v=4
 
 # Build settings
 tier: prod
+timezone: America/New_York
 remoteURL: "https://www.bengodfrey.net"
 markdown: kramdown
 highlighter: rouge
