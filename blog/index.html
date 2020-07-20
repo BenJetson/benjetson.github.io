@@ -72,9 +72,14 @@ title: Blog
           {% if paginator.page != 1 %}
           <li class="page-item">
             <a class="page-link" href="{{ paginator.previous_page_path }}">
-              <span aria-hidden="true"
-                >&lt;<span class="d-none d-lg-inline"> Prev</span></span
-              >
+              <span aria-hidden="true">
+                <span class="d-none d-xl-inline">
+                  {% octicon arrow-left height: 24 %}
+                </span>
+                <span class="d-xl-none">
+                  {% octicon arrow-left height: 16 %}
+                </span>
+              </span>
               <span class="sr-only">Previous Page</span>
             </a>
           </li>
@@ -157,9 +162,14 @@ title: Blog
               class="page-link"
               href="{{ paginator.next_page_path | relative_url }}"
             >
-              <span aria-hidden="true"
-                ><span class="d-none d-lg-inline">Next </span>&gt;</span
-              >
+              <span aria-hidden="true">
+                <span class="d-none d-xl-inline">
+                  {% octicon arrow-right height: 24 %}
+                </span>
+                <span class="d-xl-none">
+                  {% octicon arrow-right height: 16 %}
+                </span>
+              </span>
               <span class="sr-only">Next Page</span>
             </a>
           </li>
