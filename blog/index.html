@@ -15,6 +15,15 @@ title: Blog
   <div class="row">
     <div class="col-xs-12 col-md-8 col-lg-9">
       <h2>Posts</h2>
+      {% assign first = paginator.page | minus: 1 | times: paginator.per_page |
+      plus: 1%} {% assign last = first | plus: paginator.posts.size | minus: 1
+      %}
+      <p>
+        <em>
+          Showing posts {{ first }}-{{ last }} of {{ paginator.total_posts }}.
+          Page {{ paginator.page }} of {{ paginator.total_pages }}.
+        </em>
+      </p>
       <section class="my-3">
         {% for post in paginator.posts %}
         <div class="card text-center mb-3 shadow-sm blogpost-card">
