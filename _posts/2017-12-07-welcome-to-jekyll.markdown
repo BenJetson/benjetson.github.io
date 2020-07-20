@@ -1,6 +1,6 @@
 ---
 title: Welcome to Jekyll!
-date: "2017-12-07 19:43:40 -0500"
+date: "2017-12-07 19:43:40"
 categories: jekyll update
 ---
 
