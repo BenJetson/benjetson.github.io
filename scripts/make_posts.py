@@ -26,6 +26,7 @@ for i in range(POST_COUNT):
     front_matter = [
         "title: " + title,
         "date: " + date.strftime("%Y-%m-%d %H:%M:%S -0500"),
+        "comments: false",
     ]
 
     if random.randint(0, 100) < 40:
