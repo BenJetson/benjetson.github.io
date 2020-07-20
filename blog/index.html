@@ -12,14 +12,18 @@ title: Blog
   </header>
   <div class="row">
     <div class="col-xs-12 col-md-8 col-lg-9">
-      <h2>Posts</h2>
+      <h2>
+        Posts<small class="text-muted ml-2">
+          Page {{ paginator.page }} of {{ paginator.total_pages }}</small
+        >
+      </h2>
       {% assign first = paginator.page | minus: 1 | times: paginator.per_page |
       plus: 1%} {% assign last = first | plus: paginator.posts.size | minus: 1
       %}
       <p>
         <em>
-          Showing posts {{ first }}-{{ last }} of {{ paginator.total_posts }}.
-          Page {{ paginator.page }} of {{ paginator.total_pages }}.
+          Showing posts {{ first }}&hyphen;{{ last }} of {{
+          paginator.total_posts }}.
         </em>
       </p>
       <section class="my-3">
