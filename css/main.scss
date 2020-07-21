@@ -1,6 +1,8 @@
 ---
 ---
 
+$brand-color: {{site.brand_color}};
+
 // Include Bootstrap variable overrides.
 // These variables must be set before Bootstrap sets them to default values.
 @import "custom/overrides/vars";
