@@ -30,7 +30,8 @@ layout: boilerplate
               </div>
             </div>
             <div class="col blogpost-date">
-              {{page.date | date: "%B %d, %Y at %I:%M %P" }}
+              {{ page.date | date_to_long_string: "ordinal", "US" }} at {{
+              page.date | date: "%I:%M %P"}}
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 ---
 title: Demo Post
-date: "2020-07-09 21:57:38 -0500"
+date: "2020-07-09 21:57:38"
 categories: null
 mathjax: true
 image: "{{site.url}}/img/duy-nguyen-390980.jpg"
