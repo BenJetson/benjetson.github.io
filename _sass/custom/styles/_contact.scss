@@ -1,0 +1,17 @@
+//
+// _contact.css
+//
+// Styles for the contact page.
+//
+
+#form-result {
+  border: none;
+  height: 650px;
+  overflow: hidden;
+  width: 100%;
+  pointer-events: none;
+}
+
+#fail-validation {
+  display: block;
+}
