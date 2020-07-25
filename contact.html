@@ -78,7 +78,6 @@ recaptcha: true
         required
         pattern=""
         class="form-control"
-        name="confirm-email"
         placeholder="Re-enter your email address"
         id="confirmEmailInput"
       />
@@ -177,8 +176,8 @@ recaptcha: true
   escapeRegExp = (s) => s.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
 
   onEmailChange = () => {
-    email = document.getElementsByName("_replyto")[0];
-    confirm = document.getElementsByName("confirm-email")[0];
+    email = document.getElementById("emailInput");
+    confirm = document.getElementById("confirmEmailInput");
 
     // Set the RegEx pattern for the confirmation field to match the value
     // of the email field.
