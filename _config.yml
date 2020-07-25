@@ -19,6 +19,7 @@ brand_color: "#01579b"
 
 # Build settings
 tier: prod
+recaptcha_site_id: 6LfaaLQZAAAAAFqauKWQA3LRGVvHvnl-JJ99tEJI
 timezone: America/New_York
 remoteURL: "https://www.bengodfrey.net"
 markdown: kramdown
