@@ -16,7 +16,7 @@
   display: block;
 }
 
-@include media-breakpoint-down(xs) {
+@media only screen and (max-width: 350px) {
   .g-recaptcha {
     transform: scale(0.9);
     transform-origin: 0 0;
