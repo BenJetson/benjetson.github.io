@@ -2,14 +2,235 @@
 layout: default
 title: Contact
 permalink: /contact/
+recaptcha: true
 ---
 
-{% include wip.html %}
-
-<section class="my-4">
-  <h2>Contact</h2>
-  <p>
-    The contact form that will eventually live on this page is not ready yet.
-    Please consider reaching out via GitHub or Twitter as an alternative.
-  </p>
+<section id="contact-header">
+  <h1>Contact</h1>
 </section>
+
+<noscript>
+  <div class="alert alert-danger my-5" role="alert">
+    <p class="h4 alert-heading">
+      {% octicon alert height: 24 %} Unsupported Configuration
+    </p>
+    <p>
+      This contact form requires JavaScript in order to function.
+    </p>
+    <hr />
+    <p class="mb-0">
+      Please enable JavaScript support in your browser and reload the page.
+    </p>
+  </div>
+</noscript>
+
+<iframe
+  class="d-none"
+  name="form-result"
+  id="form-result"
+  seamless
+  sandbox
+  scrolling="no"
+></iframe>
+
+<form
+  novalidate
+  class="d-none needs-validation"
+  action="https://formspree.io/xzbjkyrr"
+  method="POST"
+  target="form-result"
+  onsubmit="onSubmitContactForm();"
+  id="contact-form"
+>
+  <div class="form-group">
+    <label for="nameInput">Name</label>
+    <input
+      type="text"
+      required
+      class="form-control"
+      name="name"
+      placeholder="Your name here"
+      id="nameInput"
+    />
+    <div class="invalid-feedback">
+      Please enter your name so I will know who sent this message.
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="emailInput">Email</label>
+      <input
+        type="email"
+        required
+        class="form-control"
+        oninput="onEmailChange();"
+        name="_replyto"
+        placeholder="Your email address here"
+        id="emailInput"
+      />
+      <div class="invalid-feedback">
+        Please enter a valid email address so I can respond.
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="confirmEmailInput">Confirm Email</label>
+      <input
+        type="email"
+        required
+        pattern=""
+        class="form-control"
+        name="confirm-email"
+        placeholder="Re-enter your email address"
+        id="confirmEmailInput"
+      />
+      <div class="invalid-feedback">
+        Something isn't quite right. These email addresses don't match!
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="subjectInput">Subject</label>
+    <input
+      type="text"
+      required
+      class="form-control"
+      name="subject"
+      placeholder="Summarize your inquiry"
+      id="subjectInput"
+    />
+    <div class="invalid-feedback">
+      Please specify a descriptive subject line so I know what your inqiry is
+      about.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="messageInput">Message</label>
+    <textarea
+      class="form-control"
+      required
+      name="message"
+      placeholder="Enter your message to me here"
+      rows="6"
+      id="messageInput"
+    ></textarea>
+    <div class="invalid-feedback">
+      Messages must be at least one hundred characters, but no more than one
+      thousand.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="messageInput">Desired Response</label>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        checked
+        name="responseRequested"
+        id="responseRequestedInput"
+      />
+      <label class="form-check-label" for="responseRequestedInput">
+        Please respond to this inquiry.
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        name="urgent"
+        id="urgentInput"
+      />
+      <label class="form-check-label" for="urgentInput">
+        Mark this inqiry as urgent.
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Prove you are human!</label>
+    <div
+      class="g-recaptcha"
+      data-callback="onReCAPTCHAChange"
+      data-expired-callback="onReCAPTCHAChange"
+      data-sitekey="{{site.recaptcha_site_id}}"
+    ></div>
+    <input type="text" id="recaptcha-annotation" class="form-control d-none" />
+    <div class="invalid-feedback">
+      Must complete reCAPTCHA to submit the form!
+    </div>
+  </div>
+
+  <input type="text" name="_gotcha" class="d-none" value="spam FIXME" />
+  <div class="d-none invalid-feedback" id="fail-validation">
+    Please correct the errors above and submit again.
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+  <p class="mt-2">
+    <strong>Disclaimer:</strong> these messages are subject to automated
+    filtration in an effort to reduce spam. Any messages containing profane
+    language will not be delivered.
+  </p>
+</form>
+
+<script>
+  // escapeRegExp takes a user-specified string and converts it to a RegEx that
+  // matches that text. See also:
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Escaping
+  escapeRegExp = (s) => s.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
+
+  onEmailChange = () => {
+    email = document.getElementsByName("_replyto")[0];
+    confirm = document.getElementsByName("confirm-email")[0];
+
+    // Set the RegEx pattern for the confirmation field to match the value
+    // of the email field.
+    // Nothing matches empty RegEx, so this blocks blanks too.
+    pattern = escapeRegExp(email.value);
+    confirm.setAttribute("pattern", pattern);
+  };
+
+  onReCAPTCHAChange = (result) => {
+    annotation = document.getElementById("recaptcha-annotation");
+    if (result !== "") {
+      annotation.classList.remove("is-invalid");
+      return;
+    }
+    annotation.classList.add("is-invalid");
+  };
+
+  onSubmitContactForm = () => {
+    // Add the was-validated class to show the validity annotations.
+    form = document.getElementById("contact-form");
+    form.classList.add("was-validated");
+
+    // Force the email confirmation regex to update.
+    onEmailChange();
+
+    // Check to make sure the form passes the validity checks.
+    if (form.checkValidity() !== true) {
+      document.getElementById("fail-validation").classList.remove("d-none");
+      return false;
+    }
+
+    // Check to make sure that the user did not forget to solve the reCAPTCHA.
+    // Further validation of reCAPTCHA tokens handled by server.
+    if (!grecaptcha.getResponse()) {
+      annotation = document.getElementById("recaptcha-annotation");
+      annotation.classList.add("is-invalid");
+      document.getElementById("fail-validation").classList.remove("d-none");
+
+      return false;
+    }
+
+    // Hide the form and show the result frame.
+    document.getElementById("form-result").classList.remove("d-none");
+    document.getElementById("contact-header").scrollIntoView(true);
+    document.getElementById("contact-form").classList.add("d-none");
+    return true;
+  };
+
+  // On initial page load, show the contact form if JavaScript is available.
+  document.getElementById("contact-form").classList.remove("d-none");
+
+  // On initial page load, set the email confirmation validation.
+  onEmailChange();
+</script>
