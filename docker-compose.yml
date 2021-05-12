@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  server:
+    hostname: webserver
+    container_name: webserver
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000 # jekyll server
+      - 35729:35729 # livereload
+    command: make serve-lan
+    volumes:
+      - .:/mnt/app
