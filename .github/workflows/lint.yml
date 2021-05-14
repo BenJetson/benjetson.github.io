@@ -18,6 +18,10 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    env:
+      SHCK_VERSION: "v0.7.1"
+      ECLINT_VERSION: "0.3.2"
+      ECLINT_GITLAB_UPLOAD_TAG: "38b6bd1c60e02d07b9c8b83ab115ce52"
 
     steps:
       - uses: actions/checkout@v2
@@ -29,12 +33,6 @@ jobs:
           key: ${{ runner.os }}-npm-${{ hashFiles('package.json') }}
       - name: Install Node dependencies
         run: npm install
-      - name: Verify Prettier Style
-        run: npx prettier . --check
-      - name: Run MarkdownLint
-        run: npx markdownlint .
-      - name: Run EditorConfig Lint
-        run: npx eclint check $(git ls-files | grep -f .eclintignore -v)
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
@@ -49,12 +47,28 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           pip3 install -r requirements.txt
-      - name: Projects Front Matter Validation
-        run: ./scripts/test_project_frontmatter.py
-      - name: Verify Black Style
-        run: black . --check
 
       - name: Install ShellCheck
-        run: sudo apt install shellcheck
-      - name: Run ShellCheck
-        run: shellcheck scripts/*.sh
+        run: |
+          set -e;
+          mkdir -p /tmp/shck_install
+          cd /tmp/shck_install
+          wget "https://github.com/koalaman/shellcheck/releases/download/${SHCK_VERSION}/shellcheck-${SHCK_VERSION}.linux.x86_64.tar.xz"
+          tar --xz -xvf shellcheck-"${SHCK_VERSION}".linux.x86_64.tar.xz
+          cp shellcheck-"${SHCK_VERSION}"/shellcheck /usr/bin/
+          shellcheck --version
+          rm -rf /tmp/shck_install
+
+      - name: Install ECLint
+        run: |
+          set -e
+          mkdir -p /tmp/eclint_install
+          cd /tmp/eclint_install
+          wget "https://gitlab.com/greut/eclint/uploads/${ECLINT_GITLAB_UPLOAD_TAG}/eclint_${ECLINT_VERSION}_linux_x86_64.tar.gz"
+          tar -xzvf eclint_"${ECLINT_VERSION}"_linux_x86_64.tar.gz
+          cp eclint /usr/bin
+          eclint --version
+          rm -rf /tmp/eclint_install
+
+      - name: Run Linters
+        run: ./scripts/lint.sh
