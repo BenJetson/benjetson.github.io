@@ -1,7 +1,7 @@
 #!/bin/bash
 # shellcheck disable=SC2015 # chaining is intentional for tests.
 
-PRETTIER_VERSION=2.0.5
+PRETTIER_VERSION=2.3.0
 MDLINT_CLI_VERSION=0.23.1
 
 banner() {
