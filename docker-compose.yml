@@ -12,3 +12,12 @@ services:
     command: make serve-lan
     volumes:
       - .:/mnt/app
+  linter:
+    container_name: linter
+    build:
+      dockerfile: Dockerfile
+    command: ./scripts/lint.sh
+    volumes:
+      - .:/mnt/app
+    profiles:
+      - lint
