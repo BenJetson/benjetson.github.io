@@ -37,7 +37,7 @@ Perform the following steps to set up a machine for local development.
 1. Install Python dependencies.
 
    ```sh
-   pip3 install -r requirements.txt
+   pip3 install -r scripts/requirements.txt
    ```
 
    This is required for the pre-commit hooks to run.
