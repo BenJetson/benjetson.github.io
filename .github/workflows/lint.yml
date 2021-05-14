@@ -34,7 +34,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/Python/3.8.3/x64
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('scripts/requirements.txt') }}
       - name: Install Python dependencies
         run: |
           python3 -m pip install --upgrade pip

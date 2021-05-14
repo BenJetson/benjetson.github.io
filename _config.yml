@@ -99,12 +99,7 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
 
-  - package.json
-  - package-lock.json
   - node_modules
-
-  - requirements.txt
-  - runtime.txt
 
   - Dockerfile
   - docker-compose.yml
