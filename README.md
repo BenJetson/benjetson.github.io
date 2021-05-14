@@ -62,12 +62,6 @@ Perform the following steps to set up a machine for local development.
    brew install node
    ```
 
-1. Install NodeJS dependencies.
-
-   ```sh
-   npm install
-   ```
-
 1. Configure Git hooks.
 
    ```sh

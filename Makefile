@@ -1,4 +1,30 @@
 
+.PHONY: dkr-serve
+start: _config.yml _config_dev.yml _config_lan.yml _config_local.yml
+	docker-compose up server
+
+.PHONY: stop
+stop:
+	docker-compose down
+
+.PHONY: lint
+lint:
+	docker-compose up linter
+
+.PHONY: clean
+clean: stop
+	rm -rf \
+		.sass_cache \
+		_site \
+		node_modules \
+		vendor \
+	;
+	docker-compose rm -v
+
+.PHONY: image
+image: clean
+	docker-compose build
+
 .PHONY: serve
 serve: _config.yml _config_dev.yml
 	bundle exec jekyll serve --config=_config.yml,_config_dev.yml
@@ -8,7 +34,6 @@ _config_local.yml:
 	@printf "Enter data at the prompts to make one.\n\n"
 	@./scripts/make_config_local.sh
 
-
 .PHONY: serve-lan
 serve-lan: _config.yml _config_dev.yml _config_lan.yml _config_local.yml
 	JEKYLL_ENV=lan bundle exec jekyll serve \
@@ -17,10 +42,6 @@ serve-lan: _config.yml _config_dev.yml _config_lan.yml _config_local.yml
 .PHONY: init
 init:
 	bundle install
-
-.PHONY: clean
-clean:
-	bundle exec jekyll clean
 
 .PHONY: build
 build:
