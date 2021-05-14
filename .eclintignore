@@ -1,6 +1,6 @@
-vendor
-node_modules
-_site
-.sass_cache
-_sass/vendor
+vendor/**
+node_modules/**
+_site/**
+.sass_cache/**
+_sass/vendor/**
 Gemfile.lock
