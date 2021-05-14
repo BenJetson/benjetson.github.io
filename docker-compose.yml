@@ -5,6 +5,7 @@ services:
     hostname: webserver
     container_name: webserver
     build:
+      context: .
       dockerfile: Dockerfile
     ports:
       - 4000:4000 # jekyll server
@@ -15,6 +16,7 @@ services:
   linter:
     container_name: linter
     build:
+      context: .
       dockerfile: Dockerfile
     command: ./scripts/lint.sh
     volumes:
