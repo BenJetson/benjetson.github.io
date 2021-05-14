@@ -46,8 +46,4 @@ RUN bundle install --system
 COPY requirements.txt ./
 RUN pip3 install -r requirements.txt
 
-COPY package.json package-lock.json ./
-RUN npm cache clean --force && npm install
-ENV PATH "$PATH:/buildctx/node_modules/.bin"
-
 WORKDIR /mnt/app

@@ -26,14 +26,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Node Dependency Cache
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-npm-${{ hashFiles('package.json') }}
-      - name: Install Node dependencies
-        run: npm install
-
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:

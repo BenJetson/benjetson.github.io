@@ -1,6 +1,9 @@
 #!/bin/bash
 # shellcheck disable=SC2015 # chaining is intentional for tests.
 
+PRETTIER_VERSION=2.0.5
+MDLINT_CLI_VERSION=0.23.1
+
 banner() {
     echo
     echo "==== $* ===="
@@ -55,11 +58,11 @@ trap ctrlc INT
 set -e
 
 banner PRETTIER
-npx prettier . --check \
+npx prettier@$PRETTIER_VERSION . --check \
     && onok || onfail
 
 banner MARKDOWN LINT
-npx markdownlint . \
+npx -p markdownlint-cli@$MDLINT_CLI_VERSION markdownlint .                                                                                                                                                                                           \
     && onok || onfail
 
 banner EDITORCONFIG LINT

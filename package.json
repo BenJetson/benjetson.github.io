@@ -1,9 +1,0 @@
-{
-  "private": true,
-  "devDependencies": {
-    "markdownlint": "0.20.3",
-    "markdownlint-cli": "0.23.1",
-    "prettier": "2.0.5"
-  },
-  "dependencies": {}
-}
