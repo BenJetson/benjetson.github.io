@@ -1,10 +1,9 @@
 {
-  "name": "benjetson.github.io",
-  "version": "0.0.0",
+  "private": true,
   "devDependencies": {
-    "prettier": "2.0.5",
     "markdownlint": "0.20.3",
     "markdownlint-cli": "0.23.1",
-    "eclint": "2.8.1"
-  }
+    "prettier": "2.0.5"
+  },
+  "dependencies": {}
 }
