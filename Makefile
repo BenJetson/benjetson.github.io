@@ -1,5 +1,5 @@
 
-.PHONY: dkr-serve
+.PHONY: start
 start: _config.yml _config_dev.yml _config_lan.yml _config_local.yml
 	docker-compose up server
 
