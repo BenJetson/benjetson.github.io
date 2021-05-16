@@ -43,7 +43,10 @@ RUN set -e; \
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --system
 
-COPY requirements.txt ./
-RUN pip3 install -r scripts/requirements.txt
+COPY scripts/requirements.txt ./
+RUN pip3 install -r requirements.txt
 
 WORKDIR /mnt/app
+
+RUN useradd -m app
+USER app
