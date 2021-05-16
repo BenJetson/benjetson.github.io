@@ -29,6 +29,12 @@ image: clean
 shell:
 	docker-compose run --rm server bash
 
+.PHONY: upgrade
+upgrade:
+	docker-compose run --user root --rm server bundle update
+	rmdir vendor
+	make image
+
 .PHONY: serve
 serve: _config.yml _config_dev.yml
 	bundle exec jekyll serve --config=_config.yml,_config_dev.yml
