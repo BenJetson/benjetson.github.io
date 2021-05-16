@@ -21,9 +21,25 @@ layout: boilerplate
           >
             {% octicon link-external height: 16 %} Webpage
           </a>
-          {% endif %} {% if page.username != nil and page.repo != nil %} {%
-          assign repoURL = "https://github.com/" | append: page.username |
-          append: "/" | append: page.repo %}
+          {% comment %}
+          <!-- prettier-ignore -->
+          {% endcomment %}
+
+          {% endif %}
+
+          {% if page.username != nil and page.repo != nil %}
+
+            {%
+              assign repoURL = "https://github.com/"
+              | append: page.username
+              | append: "/"
+              | append: page.repo
+            %}
+
+          {% comment %}
+          <!-- prettier-ignore -->
+          {% endcomment %}
+
           <a class="btn btn-outline-secondary mb-1 d-block" href="{{repoURL}}">
             {% octicon mark-github height: 16 %} Repository
           </a>
