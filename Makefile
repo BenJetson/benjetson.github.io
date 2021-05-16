@@ -32,7 +32,6 @@ shell:
 .PHONY: upgrade
 upgrade:
 	docker-compose run --user root --rm server bundle update
-	rmdir vendor
 	make image
 
 .PHONY: serve
