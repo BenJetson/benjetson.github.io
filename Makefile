@@ -25,6 +25,10 @@ clean: stop
 image: clean
 	docker-compose build
 
+.PHONY: shell
+shell:
+	docker-compose run --rm server bash
+
 .PHONY: serve
 serve: _config.yml _config_dev.yml
 	bundle exec jekyll serve --config=_config.yml,_config_dev.yml
