@@ -89,12 +89,17 @@ defaults:
 # Exclude from processing.
 exclude:
   - Makefile
+  - scripts/
+  - README.md
+
   - Gemfile
   - Gemfile.lock
-  - node_modules
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - scripts/
-  - README.md
+
+  - node_modules
+
+  - Dockerfile
+  - docker-compose.yml

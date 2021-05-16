@@ -2,8 +2,9 @@
 
 This repository contains the code that powers my personal webpage.
 
-You can see the production version live at [www.bengodfrey.net](https://www.bengodfrey.net),
-which is built from the [`master` branch](https://github.com/BenJetson/benjetson.github.io/tree/master).
+You can see the production version live at
+[www.bengodfrey.net](https://www.bengodfrey.net), which is built from the
+[`master` branch](https://github.com/BenJetson/benjetson.github.io/tree/master).
 
 ## Preview
 
@@ -31,30 +32,15 @@ The site is powered by these services:
 
 Perform the following steps to set up a machine for local development.
 
-1. Install Ruby via RVM
-
-   ```sh
-   url -sSL https://get.rvm.io | bash -s stable
-   rvm install 2.5.3
-   ```
-
-1. Install Bundler to handle Ruby dependencies
-
-   ```sh
-   gem install bundler
-   ```
-
-1. Install Ruby dependencies.
-
-   ```sh
-   bundle install
-   ```
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop).
 
 1. Install Python dependencies.
 
    ```sh
-   pip3 install -r requirements.txt
+   pip3 install -r scripts/requirements.txt
    ```
+
+   This is required for the pre-commit hooks to run.
 
 1. Install Node
 
@@ -62,22 +48,12 @@ Perform the following steps to set up a machine for local development.
    brew install node
    ```
 
-1. Install NodeJS dependencies.
-
-   ```sh
-   npm install
-   ```
+   This is required for Prettier to work.
 
 1. Configure Git hooks.
 
    ```sh
    pre-commit install
-   ```
-
-1. Install ShellCheck
-
-   ```sh
-   brew install shellcheck
    ```
 
 1. Configure VSCode editor
@@ -102,3 +78,29 @@ Perform the following steps to set up a machine for local development.
       "python.formatting.provider": "black",
       "editor.formatOnSave": true
       ```
+
+## Optional: Local Ruby
+
+Since the local webserver will run inside a Docker container, **it is no longer
+necessary** to install Ruby or vendor RubyGems on your host system.
+
+However, should you wish to do so, you may:
+
+1. Install Ruby via RVM
+
+   ```sh
+   url -sSL https://get.rvm.io | bash -s stable
+   rvm install 2.5.3
+   ```
+
+1. Install Bundler to handle Ruby dependencies
+
+   ```sh
+   gem install bundler
+   ```
+
+1. Install Ruby dependencies.
+
+   ```sh
+   bundle install
+   ```

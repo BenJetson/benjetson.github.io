@@ -75,9 +75,25 @@ layout: boilerplate
   </div>
   <div class="container my-3">
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
-      {% assign projects = site.projects | where: "featured",true | sort: "rank"
-      %} {% for project in projects %} {% unless project.featured == true %} {%
-      continue %} {% endunless %}
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+
+      {%
+        assign projects = site.projects
+          | where: "featured",true
+          | sort: "rank"
+      %}
+
+      {% for project in projects %}
+
+      {% unless project.featured == true %}
+        {% continue %}
+      {% endunless %}
+
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
 
       <div class="col mb-4">
         <div class="card mb-3 shadow-sm h-100">

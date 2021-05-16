@@ -8,8 +8,8 @@ image: "{{site.url}}/img/duy-nguyen-390980.jpg"
 
 <!-- markdownlint-disable MD001 MD025 -->
 
-This is a demonstration post for the purpose of testing the site layout for
-blog posts. There really isn't any valuable content here.
+This is a demonstration post for the purpose of testing the site layout for blog
+posts. There really isn't any valuable content here.
 
 First, let's see how headings look!
 
@@ -32,7 +32,9 @@ this sentence has `inline code {}` right in the middle.
 Interestingly[^1] this text has footnotes[^2].
 
 [^1]: This is the contents of the footnote.
-[^2]: While these footnotes are in the center of the text, they appear only at the bottom of the page.
+[^2]:
+    While these footnotes are in the center of the text, they appear only at the
+    bottom of the page.
 
 Did you hear that thing that someone else said?
 
@@ -122,9 +124,9 @@ This is an ordered list:
 1. one
 1. two
 1. three
-   a. three a
-   a. three b
-   a. three c
+   1. three a
+   1. three b
+   1. three c
 1. four
 1. five
 1. six
@@ -150,14 +152,12 @@ This is a table:
 
 This is a SMALL image.
 
-![small dummy image](https://dummyimage.com/300x200)
-This is an image caption.
+![small dummy image](https://dummyimage.com/300x200) This is an image caption.
 {:.caption}
 
 This is a LARGE image.
 
-![large dummy image](https://dummyimage.com/2560x1440)
-This is an image caption.
+![large dummy image](https://dummyimage.com/2560x1440) This is an image caption.
 {:.caption}
 
 And some math for good measure.

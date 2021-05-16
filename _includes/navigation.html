@@ -16,17 +16,28 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav w-100 justify-content-end">
-        {% for navItem in site.data.navigation %} {% assign fullURL = site.url |
-        append: "/" | append: navItem.url %} {% assign currentURL = site.url |
-        append: page.url %} {% assign fullURLX = fullURL | remove: "/" | remove:
-        ".html" %} {% assign currentURLX = currentURL | remove: "/" | remove:
-        ".html" %} {% if currentURLX == fullURLX %}
-        <li class="nav-item active">
-          {% else %}
-        </li>
+        {% comment %}
+        <!-- prettier-ignore -->
+        {% endcomment %}
 
-        <li class="nav-item">
-          {% endif %}
+        {% for navItem in site.data.navigation %}
+
+        {% assign fullURL = site.url | append: "/" | append: navItem.url %}
+        {% assign currentURL = site.url | append: page.url %}
+
+        {% assign fullURLX = fullURL | remove: "/" | remove: ".html" %}
+        {% assign currentURLX = currentURL | remove: "/" | remove: ".html" %}
+
+        {% assign itemClass = "nav-item" %}
+        {% if currentURLX == fullURLX %}
+          {% assign itemClass = itemClass | append: " active" %}
+        {% endif %}
+
+        {% comment %}
+        <!-- prettier-ignore -->
+        {% endcomment %}
+
+        <li class="{{itemClass}}">
           <a class="nav-link" href="{{fullURL}}">{{navItem.desc}}</a>
         </li>
         {% endfor %}

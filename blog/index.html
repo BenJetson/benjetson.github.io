@@ -6,9 +6,7 @@ title: Blog
 <div class="container py-3">
   <header class="mb-3">
     <h1>Blog</h1>
-    <p>
-      A collection of random things I've thought were worth writing about.
-    </p>
+    <p>A collection of random things I've thought were worth writing about.</p>
   </header>
   <div class="row">
     <div class="col-xs-12 col-md-8 col-lg-9">
@@ -17,9 +15,27 @@ title: Blog
           Page {{ paginator.page }} of {{ paginator.total_pages }}</small
         >
       </h2>
-      {% assign first = paginator.page | minus: 1 | times: paginator.per_page |
-      plus: 1%} {% assign last = first | plus: paginator.posts.size | minus: 1
+
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+
+      {%
+        assign first = paginator.page
+          | minus: 1
+          | times: paginator.per_page
+          | plus: 1
       %}
+      {%
+        assign last = first
+          | plus: paginator.posts.size
+          | minus: 1
+      %}
+
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+
       <p>
         <em>
           Showing posts {{ first }}&hyphen;{{ last }} of {{
@@ -44,8 +60,8 @@ title: Blog
               post.date | date: "%I:%M %P"}}
             </div>
             <div class="card-text text-left blogpost-excerpt">
-              {%- comment -%} Exclude images and other tags here. {%- endcomment
-              -%} {{ post.excerpt | markdownify | strip_html | markdownify }}
+              {%- comment -%} Exclude images and other tags. {%- endcomment -%}
+              {{ post.excerpt | markdownify | strip_html | markdownify }}
             </div>
             <a href="{{ post.url | prepend: site.url }}" class="stretched-link"
               >Read <span class="sr-only">Post</span>&raquo;</a
@@ -57,19 +73,35 @@ title: Blog
 
       <nav aria-label="Blog Pages">
         <ul class="blog-pagination justify-content-center">
-          {% assign range = 2 %} {% assign start = paginator.page | minus: range
-          %} {% assign end = paginator.page | plus: range %}
+          {% comment %}
+          <!-- prettier-ignore -->
+          <!--
+          {% endcomment %}
 
-          <!--  -->
-          {% if start < 1 %} {% assign diff = start | times: -1 | plus: 1 %} {%
-          assign end = end | plus: diff %} {% assign start = 1 %} {% endif %}
-          <!--  -->
-          {% if end > paginator.total_pages %} {% assign diff = end | minus:
-          paginator.total_pages %} {% assign start = start | minus: diff %} {%
-          assign end = paginator.total_pages %} {% endif %}
-          <!--  -->
-          {% if start < 1 %} {% assign start = 1 %} {% endif %}
-          <!--  -->
+          {% assign range = 2 %}
+          {% assign start = paginator.page | minus: range %}
+          {% assign end = paginator.page | plus: range %}
+
+          {% if start < 1 %}
+            {% assign diff = start | times: -1 | plus: 1 %}
+            {% assign end = end | plus: diff %}
+            {% assign start = 1 %}
+          {% endif %}
+
+          {% if end > paginator.total_pages %}
+            {% assign diff = end | minus: paginator.total_pages %}
+            {% assign start = start | minus: diff %}
+            {% assign end = paginator.total_pages %}
+          {% endif %}
+
+          {% if start < 1 %}
+            {% assign start = 1 %}
+          {% endif %}
+
+          {% comment %}
+          -->
+          <!-- prettier-ignore -->
+          {% endcomment %}
 
           {% if paginator.page != 1 %}
           <li class="page-item">
