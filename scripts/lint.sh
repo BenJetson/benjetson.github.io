@@ -70,7 +70,6 @@ banner EDITORCONFIG LINT
 eclint_ignored=$(cat .eclintignore)
 eclint_ignored=$(echo -n "$eclint_ignored" | tr '\n' ',')
 
-# shellcheck disable=SC2046 # splitting is intentional here.
 eclint -exclude "{$eclint_ignored}" \
     && onok || onfail
 
