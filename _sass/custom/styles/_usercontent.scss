@@ -41,9 +41,9 @@
 
   table {
     @extend .table;
-    @extend .table-light;
     @extend .table-striped;
     @extend .table-hover;
+    @extend .table-bordered;
 
     word-break: break-word;
 
