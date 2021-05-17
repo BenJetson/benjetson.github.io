@@ -1,4 +1,4 @@
-FROM ruby:2.7
+FROM ruby:3.0.1
 
 VOLUME /mnt/app
 VOLUME /mnt/app/vendor
