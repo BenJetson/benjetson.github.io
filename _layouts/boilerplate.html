@@ -13,7 +13,15 @@
 
     {% include navigation.html %}
 
-    {{ content }}
+    {% comment %}
+    <!-- prettier-ignore -->
+    {% endcomment %}
+
+    <div class="content-area">{{ content }}</div>
+
+    {% comment %}
+    <!-- prettier-ignore -->
+    {% endcomment %}
 
     {% include footer.html %}
     {% include scripts.html %}
