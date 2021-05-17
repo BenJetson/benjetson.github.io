@@ -52,7 +52,6 @@ plugins:
 
   # Site plugins
   - jekyll-feed
-  - jekyll-octicons
   - rouge
 
 # Collection Settings
