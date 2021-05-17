@@ -17,4 +17,8 @@ $primary: $brand-color;
 $chip-size: 30px;
 
 // Enable background gradient classes.
-$enable-gradients: true;
+$gradient: linear-gradient(
+  0deg /* must be 0deg for home page gradient */,
+  rgba(#fff, 0.15),
+  rgba(#fff, 0)
+);
