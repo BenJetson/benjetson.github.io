@@ -41,6 +41,7 @@
 
   table {
     @extend .table;
+    @extend .table-light;
     @extend .table-striped;
     @extend .table-hover;
 
@@ -48,10 +49,6 @@
 
     @include media-breakpoint-down(xs) {
       table-layout: fixed;
-    }
-
-    thead {
-      @extend .thead-light;
     }
   }
 
