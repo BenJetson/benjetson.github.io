@@ -43,15 +43,12 @@
     @extend .table;
     @extend .table-striped;
     @extend .table-hover;
+    @extend .table-bordered;
 
     word-break: break-word;
 
-    @include media-breakpoint-down(xs) {
+    @include media-breakpoint-down(sm) {
       table-layout: fixed;
-    }
-
-    thead {
-      @extend .thead-light;
     }
   }
 
@@ -102,7 +99,7 @@
   // Blockquote inner spacing styles.
   blockquote {
     padding: 1em;
-    @include media-breakpoint-down(xs) {
+    @include media-breakpoint-down(sm) {
       padding: 0.5em;
     }
     padding-bottom: 0;
@@ -112,7 +109,7 @@
   > blockquote {
     margin-left: 2em;
     margin-right: 2em;
-    @include media-breakpoint-down(xs) {
+    @include media-breakpoint-down(sm) {
       margin-left: 0;
       margin-right: 0;
     }

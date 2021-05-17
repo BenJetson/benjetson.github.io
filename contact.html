@@ -22,13 +22,15 @@ recaptcha: true
   </div>
 </noscript>
 
-<iframe
-  class="d-none"
-  name="form-result"
-  id="form-result"
-  sandbox
-  scrolling="no"
-></iframe>
+<div class="form-result-wrapper">
+  <iframe
+    class="d-none"
+    name="form-result"
+    id="form-result"
+    sandbox
+    scrolling="no"
+  ></iframe>
+</div>
 
 <form
   novalidate
@@ -40,7 +42,7 @@ recaptcha: true
   id="contact-form"
 >
   <div class="form-group">
-    <label for="nameInput">Name</label>
+    <label class="form-label" for="nameInput">Name</label>
     <input
       type="text"
       required
@@ -53,9 +55,9 @@ recaptcha: true
       Please enter your name so I will know who sent this message.
     </div>
   </div>
-  <div class="form-row">
+  <div class="row">
     <div class="form-group col-md-6">
-      <label for="emailInput">Email</label>
+      <label class="form-label" for="emailInput">Email</label>
       <input
         type="email"
         required
@@ -70,7 +72,7 @@ recaptcha: true
       </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="confirmEmailInput">Confirm Email</label>
+      <label class="form-label" for="confirmEmailInput">Confirm Email</label>
       <input
         type="email"
         required
@@ -85,7 +87,7 @@ recaptcha: true
     </div>
   </div>
   <div class="form-group">
-    <label for="subjectInput">Subject</label>
+    <label class="form-label" for="subjectInput">Subject</label>
     <input
       type="text"
       required
@@ -100,7 +102,7 @@ recaptcha: true
     </div>
   </div>
   <div class="form-group">
-    <label for="messageInput">Message</label>
+    <label class="form-label" for="messageInput">Message</label>
     <textarea
       class="form-control"
       required
@@ -115,7 +117,7 @@ recaptcha: true
     </div>
   </div>
   <div class="form-group">
-    <label for="messageInput">Desired Response</label>
+    <label class="form-label" for="messageInput">Desired Response</label>
     <div class="form-check">
       <input
         class="form-check-input"

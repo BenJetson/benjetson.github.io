@@ -15,7 +15,7 @@ img.project-img {
   object-fit: cover;
 }
 
-@include media-breakpoint-down(xs) {
+@include media-breakpoint-down(sm) {
   @media (orientation: portrait) {
     img.project-img {
       max-height: 30vh;

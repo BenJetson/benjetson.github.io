@@ -45,7 +45,7 @@ div.highlight::before {
 div.highlight {
   margin-left: 2em;
   margin-right: 2em;
-  @include media-breakpoint-down(xs) {
+  @include media-breakpoint-down(sm) {
     margin-left: 0;
     margin-right: 0;
   }
