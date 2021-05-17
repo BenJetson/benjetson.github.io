@@ -7,7 +7,7 @@ layout: boilerplate
     <div class="col-md-4 p-3">
       <div class="card project-header">
         <div class="card-body">
-          <h2>{{page.title}}</h2>
+          <h1>{{page.title}}</h1>
           <p class="card-description">{{page.description}}</p>
           <p class="card-text">
             <small class="text-muted">{{ page.date | date: '%B %Y' }}</small>
@@ -19,34 +19,50 @@ layout: boilerplate
             class="btn btn-outline-secondary mb-1 d-block"
             href="{{page.webpage}}"
           >
-            {% octicon link-external height: 16 %} Webpage
+            <i class="bi bi-box-arrow-in-up-left"></i> Webpage
           </a>
-          {% endif %} {% if page.username != nil and page.repo != nil %} {%
-          assign repoURL = "https://github.com/" | append: page.username |
-          append: "/" | append: page.repo %}
+          {% comment %}
+          <!-- prettier-ignore -->
+          {% endcomment %}
+
+          {% endif %}
+
+          {% if page.username != nil and page.repo != nil %}
+
+            {%
+              assign repoURL = "https://github.com/"
+              | append: page.username
+              | append: "/"
+              | append: page.repo
+            %}
+
+          {% comment %}
+          <!-- prettier-ignore -->
+          {% endcomment %}
+
           <a class="btn btn-outline-secondary mb-1 d-block" href="{{repoURL}}">
-            {% octicon mark-github height: 16 %} Repository
+            <i class="bi bi-github"></i> Repository
           </a>
           {% endif %} {% if page.issues %}
           <a
             class="btn btn-outline-secondary mb-1 d-block"
             href="{{repoURL}}/issues"
           >
-            {% octicon issue-opened height: 16 %} Issues
+            <i class="bi bi-exclamation-circle"></i> Issues
           </a>
           {% endif %} {% if page.wiki %}
           <a
             class="btn btn-outline-secondary mb-1 d-block"
             href="{{repoURL}}/wiki"
           >
-            {% octicon book height: 16 %} Wiki
+            <i class="bi bi-book"></i> Wiki
           </a>
           {% endif %} {% if page.releases %}
           <a
             class="btn btn-outline-secondary mb-1 d-block"
             href="{{repoURL}}/releases"
           >
-            {% octicon desktop-download height: 16 %} Releases
+            <i class="bi bi-file-earmark-zip"></i> Releases
           </a>
           {% endif %}
         </div>
@@ -54,16 +70,12 @@ layout: boilerplate
     </div>
     <div class="col-md-8 p-3 min-vh-50">
       <div class="mb-3 d-none d-md-block"></div>
-      <h3 id="more">About This Project</h3>
-      <div class="usercontent">
-        {{page.content}}
-      </div>
+      <h2 id="more">About This Project</h2>
+      <div class="usercontent">{{page.content}}</div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-4 p-3"></div>
-    <div class="col-md-8 p-3">
-      {% include comments.html %}
-    </div>
+    <div class="col-md-8 p-3">{% include comments.html %}</div>
   </div>
 </div>

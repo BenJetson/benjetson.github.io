@@ -24,11 +24,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Setup Ruby for use with actions
-        uses: actions/setup-ruby@v1.0.0
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          # Version range or exact version of a Ruby version to use.
-          version: "2.5" # optional, default is >= 2.4
+          ruby-version: 2.5
 
       - uses: actions/cache@v1
         with:

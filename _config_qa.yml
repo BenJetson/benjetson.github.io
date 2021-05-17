@@ -1,5 +1,5 @@
 ################################################################################
-# _config_build.yml                                                            #
+# _config_qa.yml                                                            #
 #                                                                              #
 # This config file will be used when building the site for deployment to the   #
 # quality assurance (QA) tier.                                                 #

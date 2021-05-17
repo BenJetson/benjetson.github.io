@@ -6,9 +6,7 @@ title: Blog
 <div class="container py-3">
   <header class="mb-3">
     <h1>Blog</h1>
-    <p>
-      A collection of random things I've thought were worth writing about.
-    </p>
+    <p>A collection of random things I've thought were worth writing about.</p>
   </header>
   <div class="row">
     <div class="col-xs-12 col-md-8 col-lg-9">
@@ -17,9 +15,27 @@ title: Blog
           Page {{ paginator.page }} of {{ paginator.total_pages }}</small
         >
       </h2>
-      {% assign first = paginator.page | minus: 1 | times: paginator.per_page |
-      plus: 1%} {% assign last = first | plus: paginator.posts.size | minus: 1
+
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+
+      {%
+        assign first = paginator.page
+          | minus: 1
+          | times: paginator.per_page
+          | plus: 1
       %}
+      {%
+        assign last = first
+          | plus: paginator.posts.size
+          | minus: 1
+      %}
+
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+
       <p>
         <em>
           Showing posts {{ first }}&hyphen;{{ last }} of {{
@@ -44,11 +60,11 @@ title: Blog
               post.date | date: "%I:%M %P"}}
             </div>
             <div class="card-text text-left blogpost-excerpt">
-              {%- comment -%} Exclude images and other tags here. {%- endcomment
-              -%} {{ post.excerpt | markdownify | strip_html | markdownify }}
+              {%- comment -%} Exclude images and other tags. {%- endcomment -%}
+              {{ post.excerpt | markdownify | strip_html | markdownify }}
             </div>
             <a href="{{ post.url | prepend: site.url }}" class="stretched-link"
-              >Read <span class="sr-only">Post</span>&raquo;</a
+              >Read <span class="visually-hidden">Post</span>&raquo;</a
             >
           </div>
         </div>
@@ -57,32 +73,48 @@ title: Blog
 
       <nav aria-label="Blog Pages">
         <ul class="blog-pagination justify-content-center">
-          {% assign range = 2 %} {% assign start = paginator.page | minus: range
-          %} {% assign end = paginator.page | plus: range %}
+          {% comment %}
+          <!-- prettier-ignore -->
+          <!--
+          {% endcomment %}
 
-          <!--  -->
-          {% if start < 1 %} {% assign diff = start | times: -1 | plus: 1 %} {%
-          assign end = end | plus: diff %} {% assign start = 1 %} {% endif %}
-          <!--  -->
-          {% if end > paginator.total_pages %} {% assign diff = end | minus:
-          paginator.total_pages %} {% assign start = start | minus: diff %} {%
-          assign end = paginator.total_pages %} {% endif %}
-          <!--  -->
-          {% if start < 1 %} {% assign start = 1 %} {% endif %}
-          <!--  -->
+          {% assign range = 2 %}
+          {% assign start = paginator.page | minus: range %}
+          {% assign end = paginator.page | plus: range %}
+
+          {% if start < 1 %}
+            {% assign diff = start | times: -1 | plus: 1 %}
+            {% assign end = end | plus: diff %}
+            {% assign start = 1 %}
+          {% endif %}
+
+          {% if end > paginator.total_pages %}
+            {% assign diff = end | minus: paginator.total_pages %}
+            {% assign start = start | minus: diff %}
+            {% assign end = paginator.total_pages %}
+          {% endif %}
+
+          {% if start < 1 %}
+            {% assign start = 1 %}
+          {% endif %}
+
+          {% comment %}
+          -->
+          <!-- prettier-ignore -->
+          {% endcomment %}
 
           {% if paginator.page != 1 %}
           <li class="page-item">
             <a class="page-link" href="{{ paginator.previous_page_path }}">
               <span aria-hidden="true">
                 <span class="d-none d-xl-inline">
-                  {% octicon arrow-left height: 24 %}
+                  <i class="bi bi-chevron-left"></i>
                 </span>
                 <span class="d-xl-none">
-                  {% octicon arrow-left height: 16 %}
+                  <i class="bi bi-chevron-left"></i>
                 </span>
               </span>
-              <span class="sr-only">Previous Page</span>
+              <span class="visually-hidden">Previous Page</span>
             </a>
           </li>
           {% endif %}
@@ -91,7 +123,7 @@ title: Blog
           <li class="page-item">
             <a class="page-link" href="{{ '/blog' | relative_url }}">
               <span aria-hidden="true">1</span>
-              <span class="sr-only">Jump to First Page</span>
+              <span class="visually-hidden">Jump to First Page</span>
             </a>
           </li>
           {% endif %}
@@ -111,14 +143,14 @@ title: Blog
           <li class="page-item active" aria-current="page">
             <span class="page-link">
               <span aria-hidden="true">{{page}}</span>
-              <span class="sr-only">Current Page: Page {{page}}</span>
+              <span class="visually-hidden">Current Page: Page {{page}}</span>
             </span>
           </li>
           {% elsif page == 1 %}
           <li class="page-item">
             <a class="page-link" href="{{ '/blog' | relative_url }}">
               <span aria-hidden="true">{{page}}</span>
-              <span class="sr-only">Page {{page}}</span>
+              <span class="visually-hidden">Page {{page}}</span>
             </a>
           </li>
           {% else %}
@@ -128,7 +160,7 @@ title: Blog
               href="{{ site.paginate_path | relative_url | replace: ':num', page }}"
             >
               <span aria-hidden="true">{{page}}</span>
-              <span class="sr-only">Page {{page}}</span>
+              <span class="visually-hidden">Page {{page}}</span>
             </a>
           </li>
           {% endif %}
@@ -153,7 +185,7 @@ title: Blog
               href="{{ site.paginate_path | relative_url | replace: ':num', paginator.total_pages }}"
             >
               <span aria-hidden="true">{{paginator.total_pages}}</span>
-              <span class="sr-only">Jump to last page</span>
+              <span class="visually-hidden">Jump to last page</span>
             </a>
           </li>
           {% endif %}
@@ -166,13 +198,13 @@ title: Blog
             >
               <span aria-hidden="true">
                 <span class="d-none d-xl-inline">
-                  {% octicon arrow-right height: 24 %}
+                  <i class="bi bi-chevron-right"></i>
                 </span>
                 <span class="d-xl-none">
-                  {% octicon arrow-right height: 16 %}
+                  <i class="bi bi-chevron-right"></i>
                 </span>
               </span>
-              <span class="sr-only">Next Page</span>
+              <span class="visually-hidden">Next Page</span>
             </a>
           </li>
           {% endif %}
@@ -180,7 +212,7 @@ title: Blog
       </nav>
     </div>
     <div class="col-xs-12 col-md-4 col-lg-3">
-      <h3>Featured</h3>
+      <h2>Featured</h2>
       <section class="my-3">
         {% assign featuredCount = 0 %}
         <!--  -->

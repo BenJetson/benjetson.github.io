@@ -8,14 +8,18 @@
 //
 
 // Define additional colors.
-$dark-blue-green: #01579b;
 $bright-blue: #29b6f6;
+$info: darken(#17a2b8, 8%);
 
 // Set the site theme colors.
-$primary: $dark-blue-green;
+$primary: $brand-color;
 
 // Set the size of chip elements.
 $chip-size: 30px;
 
 // Enable background gradient classes.
-$enable-gradients: true;
+$gradient: linear-gradient(
+  0deg /* must be 0deg for home page gradient */,
+  rgba(#fff, 0.15),
+  rgba(#fff, 0)
+);

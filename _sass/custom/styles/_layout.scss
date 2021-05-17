@@ -1,0 +1,21 @@
+//
+// _layout.scss
+//
+// Styles to control the general site layout/framing.
+//
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-area {
+  // Make the content area expand and fill vertical space if there is not enough
+  // content to fill the page.
+  flex-grow: 1;
+}

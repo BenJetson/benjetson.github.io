@@ -16,7 +16,7 @@ layout: boilerplate
         />
         {% endif %}
         <div class="card-body">
-          <h2 class="m-0">{{page.title}}</h2>
+          <h1 class="m-0">{{page.title}}</h1>
         </div>
         <div class="card-footer text-muted">
           <div class="row no-gutters mb-2 mt-2">
@@ -40,9 +40,7 @@ layout: boilerplate
   </section>
   <section class="pb-3">
     <div class="container">
-      <div class="usercontent">
-        {{page.content}}
-      </div>
+      <div class="usercontent">{{page.content}}</div>
     </div>
     {% if page.image-credit %}
     <div class="container mt-4 mb-2">
@@ -54,7 +52,5 @@ layout: boilerplate
   </section>
 </article>
 {% if page.comments %}
-<div class="container mt-3 mb-5">
-  {% include comments.html %}
-</div>
+<div class="container mt-3 mb-5">{% include comments.html %}</div>
 {% endif %}

@@ -17,6 +17,10 @@ cat << EOF > _config_netlify.yml
 
 tier: preview
 url: $DEPLOY_PRIME_URL
+
+# Use reCAPTCHA testing key for deploy preview. See also:
+# https://developers.google.com/recaptcha/docs/faq#id-like-to-run-automated-tests-with-recaptcha.-what-should-i-do
+recaptcha_site_id: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
 EOF
 
 # Perform Jekyll build, with production target environment and build/QA config.

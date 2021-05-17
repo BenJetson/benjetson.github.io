@@ -4,3 +4,4 @@ _site
 .sass_cache
 _sass/vendor
 runtime.txt
+css/main.scss
