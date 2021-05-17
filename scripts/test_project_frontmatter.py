@@ -56,7 +56,7 @@ missing_description = []
 # The list of project files that do not have a description.
 blank_description = []
 
-print("--- TEST STARTED ---\n")
+# Test is starting!
 start_time = time.monotonic()
 
 url_validator = re.compile(
@@ -241,11 +241,12 @@ retval = (
     + len(blank_description)
 )
 
-print("\n--- TEST COMPLETE ---")
+# Test is complete.
 end_time = time.monotonic()
+print()
 print_warn("⏳ {} seconds elapsed.".format(end_time - start_time))
 
 if retval:
-    print_fail("⛔️ FAIL - found {} error(s)!".format(retval))
+    print_fail("⛔️ FINAL FAIL - found {} error(s)!".format(retval))
     sys.exit(retval)
-print_pass("✅ PASS - All project files meet test requirements.")
+print_pass("✅ FINAL PASS - All project files meet test requirements.")

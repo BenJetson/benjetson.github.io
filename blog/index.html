@@ -1,0 +1,245 @@
+---
+layout: boilerplate
+title: Blog
+---
+
+<div class="container py-3">
+  <header class="mb-3">
+    <h1>Blog</h1>
+    <p>A collection of random things I've thought were worth writing about.</p>
+  </header>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-lg-9">
+      <h2>
+        Posts<small class="text-muted ml-2">
+          Page {{ paginator.page }} of {{ paginator.total_pages }}</small
+        >
+      </h2>
+
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+
+      {%
+        assign first = paginator.page
+          | minus: 1
+          | times: paginator.per_page
+          | plus: 1
+      %}
+      {%
+        assign last = first
+          | plus: paginator.posts.size
+          | minus: 1
+      %}
+
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+
+      <p>
+        <em>
+          Showing posts {{ first }}&hyphen;{{ last }} of {{
+          paginator.total_posts }}.
+        </em>
+      </p>
+      <section class="my-3">
+        {% for post in paginator.posts %}
+        <div class="card text-center mb-3 shadow-sm blogpost-card">
+          {% if post.image %} {% assign hero-image-src = post.image | replace:
+          "{{site.url}}", site.url %}
+          <img
+            src="{{hero-image-src}}"
+            class="card-img-top hero-image"
+            alt="{{post.image-alt}}"
+          />
+          {% endif %}
+          <div class="card-body">
+            <h3 class="card-title">{{ post.title }}</h3>
+            <div class="card-subtitle mb-2 text-muted">
+              {{ post.date | date_to_long_string: "ordinal", "US" }} at {{
+              post.date | date: "%I:%M %P"}}
+            </div>
+            <div class="card-text text-left blogpost-excerpt">
+              {%- comment -%} Exclude images and other tags. {%- endcomment -%}
+              {{ post.excerpt | markdownify | strip_html | markdownify }}
+            </div>
+            <a href="{{ post.url | prepend: site.url }}" class="stretched-link"
+              >Read <span class="visually-hidden">Post</span>&raquo;</a
+            >
+          </div>
+        </div>
+        {% endfor %}
+      </section>
+
+      <nav aria-label="Blog Pages">
+        <ul class="blog-pagination justify-content-center">
+          {% comment %}
+          <!-- prettier-ignore -->
+          <!--
+          {% endcomment %}
+
+          {% assign range = 2 %}
+          {% assign start = paginator.page | minus: range %}
+          {% assign end = paginator.page | plus: range %}
+
+          {% if start < 1 %}
+            {% assign diff = start | times: -1 | plus: 1 %}
+            {% assign end = end | plus: diff %}
+            {% assign start = 1 %}
+          {% endif %}
+
+          {% if end > paginator.total_pages %}
+            {% assign diff = end | minus: paginator.total_pages %}
+            {% assign start = start | minus: diff %}
+            {% assign end = paginator.total_pages %}
+          {% endif %}
+
+          {% if start < 1 %}
+            {% assign start = 1 %}
+          {% endif %}
+
+          {% comment %}
+          -->
+          <!-- prettier-ignore -->
+          {% endcomment %}
+
+          {% if paginator.page != 1 %}
+          <li class="page-item">
+            <a class="page-link" href="{{ paginator.previous_page_path }}">
+              <span aria-hidden="true">
+                <span class="d-none d-xl-inline">
+                  {% octicon arrow-left height: 24 %}
+                </span>
+                <span class="d-xl-none">
+                  {% octicon arrow-left height: 16 %}
+                </span>
+              </span>
+              <span class="visually-hidden">Previous Page</span>
+            </a>
+          </li>
+          {% endif %}
+          <!--  -->
+          {% if start != 1 %}
+          <li class="page-item">
+            <a class="page-link" href="{{ '/blog' | relative_url }}">
+              <span aria-hidden="true">1</span>
+              <span class="visually-hidden">Jump to First Page</span>
+            </a>
+          </li>
+          {% endif %}
+          <!--  -->
+          {% if start > 2 %}
+          <li class="page-item disabled" aria-hidden="true">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+              >...</a
+            >
+          </li>
+          {% endif %}
+
+          <!--  -->
+          {% for page in (start..end) %}
+          <!--  -->
+          {% if page == paginator.page %}
+          <li class="page-item active" aria-current="page">
+            <span class="page-link">
+              <span aria-hidden="true">{{page}}</span>
+              <span class="visually-hidden">Current Page: Page {{page}}</span>
+            </span>
+          </li>
+          {% elsif page == 1 %}
+          <li class="page-item">
+            <a class="page-link" href="{{ '/blog' | relative_url }}">
+              <span aria-hidden="true">{{page}}</span>
+              <span class="visually-hidden">Page {{page}}</span>
+            </a>
+          </li>
+          {% else %}
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="{{ site.paginate_path | relative_url | replace: ':num', page }}"
+            >
+              <span aria-hidden="true">{{page}}</span>
+              <span class="visually-hidden">Page {{page}}</span>
+            </a>
+          </li>
+          {% endif %}
+          <!--  -->
+          {% endfor %}
+          <!--  -->
+
+          {% assign next_to_last = paginator.total_pages | minus: 1 %}
+          <!--  -->
+          {% if end < next_to_last %}
+          <li class="page-item disabled" aria-hidden="true">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+              >...</a
+            >
+          </li>
+          {% endif %}
+          <!--  -->
+          {% if end != paginator.total_pages %}
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="{{ site.paginate_path | relative_url | replace: ':num', paginator.total_pages }}"
+            >
+              <span aria-hidden="true">{{paginator.total_pages}}</span>
+              <span class="visually-hidden">Jump to last page</span>
+            </a>
+          </li>
+          {% endif %}
+          <!--  -->
+          {% if paginator.page != paginator.total_pages %}
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="{{ paginator.next_page_path | relative_url }}"
+            >
+              <span aria-hidden="true">
+                <span class="d-none d-xl-inline">
+                  {% octicon arrow-right height: 24 %}
+                </span>
+                <span class="d-xl-none">
+                  {% octicon arrow-right height: 16 %}
+                </span>
+              </span>
+              <span class="visually-hidden">Next Page</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+    <div class="col-xs-12 col-md-4 col-lg-3">
+      <h3>Featured</h3>
+      <section class="my-3">
+        {% assign featuredCount = 0 %}
+        <!--  -->
+        <div class="list-group mb-2">
+          {% for post in site.posts %}
+          <!--  -->
+          {% if post.featured %}
+          <!--  -->
+          {% assign featuredCount = featuredCount | plus: 1 %}
+          <a
+            href="{{ post.url | prepend: site.url }}"
+            class="list-group-item list-group-item-action"
+            ><p class="h6">{{ post.title }}</p>
+            <small
+              >{{ post.date | date_to_long_string: "ordinal", "US" }} at {{
+              post.date | date: "%I:%M %P"}}</small
+            >
+          </a>
+          {% endif %}
+          <!--  -->
+          {% endfor %}
+        </div>
+        <!--  -->
+        {% if featuredCount == 0 %}
+        <em>No posts are currently featured.</em>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+</div>

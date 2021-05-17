@@ -8,7 +8,19 @@
     "url": "about"
   },
   {
+    "desc": "Resumé",
+    "url": "resume"
+  },
+  {
+    "desc": "Blog",
+    "url": "blog"
+  },
+  {
     "desc": "Projects",
     "url": "projects"
+  },
+  {
+    "desc": "Contact",
+    "url": "contact"
   }
 ]

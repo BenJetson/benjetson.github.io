@@ -1,12 +1,43 @@
 <head>
+  {% comment %}
+  <!-- prettier-ignore -->
+  {% endcomment %}
+
+  {% assign tab_title = site.title %}
+
+  {% if page.title != nil %}
+    {% assign tab_title = page.title %}
+
+    {% if paginator != nil and paginator.page > 1 %}
+      {%
+        assign tab_title = tab_title
+          | append: " (Page "
+          | append: paginator.page
+          | append: ")"
+      %}
+    {% endif %}
+
+    {% assign tab_title = tab_title | append: " | " | append: site.title %}
+  {% endif %}
+
+  {% comment %}
+  <!-- prettier-ignore -->
+  {% endcomment %}
+
   <!-- Meta -->
-  {% assign tab_title = site.title %} {% if page.title != nil %} {% assign
-  tab_title = site.title | prepend: " | " | prepend: page.title %} {% endif %}
   <title>{{tab_title}}</title>
   <meta charset="utf-8" />
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  <meta name="theme-color" content="{{site.brand_color}}" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/img/brand/apple-touch-icon.png"
   />
 
   <!-- Stylesheet -->

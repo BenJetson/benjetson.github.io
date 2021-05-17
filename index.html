@@ -4,7 +4,7 @@ layout: boilerplate
 
 <!-- index update -->
 
-<section class="bg-gradient-primary text-light py-3">
+<section class="bg-primary bg-gradient text-light py-3">
   <div class="container">
     <div class="d-flex w-100 justify-content-center pb-3">
       {% comment %}
@@ -38,13 +38,62 @@ layout: boilerplate
 </section>
 <section class="bg-default py-3">
   <div class="container">
-    <h4>Featured Projects</h4>
+    <h4>Recent Posts</h4>
   </div>
   <div class="container mt-3">
+    <div class="row row-cols-1 row-cols-lg-2">
+      {% for post in site.posts limit: 2 %}
+      <div class="col mb-4">
+        <div class="card h-100 shadow-sm text-center">
+          <!-- <img src="..." class="card-img-top" alt="..."> -->
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-subtitle text-muted mb-2">
+              {{ post.date | date_to_long_string: "ordinal", "US" }} at {{
+              post.date | date: "%I:%M %P"}}
+            </p>
+
+            <p class="card-text text-truncate">
+              {{ post.excerpt | markdownify | strip_html }}
+            </p>
+          </div>
+          <div class="card-footer">
+            <a href="{{ post.url | prepend: site.url }}" class="stretched-link"
+              >Read Post &raquo;</a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <a class="btn btn-info" href="{{site.url}}/blog">More posts &raquo;</a>
+  </div>
+</section>
+<section class="bg-default py-3">
+  <div class="container">
+    <h4>Featured Projects</h4>
+  </div>
+  <div class="container my-3">
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
-      {% assign projects = site.projects | where: "featured",true | sort: "rank"
-      %} {% for project in projects %} {% unless project.featured == true %} {%
-      continue %} {% endunless %}
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+
+      {%
+        assign projects = site.projects
+          | where: "featured",true
+          | sort: "rank"
+      %}
+
+      {% for project in projects %}
+
+      {% unless project.featured == true %}
+        {% continue %}
+      {% endunless %}
+
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
 
       <div class="col mb-4">
         <div class="card mb-3 shadow-sm h-100">

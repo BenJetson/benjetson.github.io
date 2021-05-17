@@ -1,0 +1,82 @@
+//
+// _blog.scss
+//
+// Styles for both the blog post layout and the blog page.
+//
+
+.blog-pagination {
+  @extend .pagination;
+}
+
+@include media-breakpoint-up(xl) {
+  .blog-pagination {
+    @include pagination-size(
+      $pagination-padding-y-lg,
+      $pagination-padding-x-lg,
+      $font-size-lg,
+      $pagination-border-radius-lg
+    );
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .blog-pagination {
+    @include pagination-size(
+      $pagination-padding-y-sm,
+      $pagination-padding-x-sm,
+      $font-size-sm,
+      $pagination-border-radius-sm
+    );
+  }
+}
+
+div.blogpost-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: 4.5em;
+}
+
+div.blogpost-header,
+div.blogpost-card {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.chip {
+  background-color: $gray-400;
+  height: $chip-size;
+  display: inline-block;
+  padding: 0 ($chip-size / 2);
+  border-radius: 25px;
+  line-height: $chip-size;
+
+  img {
+    @extend .rounded-circle;
+    float: left;
+    margin-top: 0;
+    margin-right: 10px;
+    margin-bottom: 0;
+    margin-left: (-1 * ($chip-size / 2));
+    height: $chip-size;
+    width: $chip-size;
+  }
+}
+
+div.blogpost-date,
+div.blogpost-author-print {
+  line-height: $chip-size;
+}
+
+.hero-image {
+  height: 250px;
+  background-color: $gray-400;
+  object-fit: cover;
+}
+
+.hero-image-credit {
+  font-weight: light;
+  color: $gray-600;
+  font-style: italic;
+}

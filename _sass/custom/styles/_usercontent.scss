@@ -1,0 +1,133 @@
+//
+// _usercontent.scss
+//
+// Styles that will be applied to user content areas of the site, such as
+// blog post content and project page content.
+//
+// These posts originate in markdown and are compiled to HTML by Jekyll when
+// building the site. Thus, these documents have no style information save for
+// what is here.
+//
+
+.usercontent {
+  img {
+    @extend .img-fluid;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .caption {
+    text-align: center;
+    font-style: italic;
+    font-weight: 200;
+
+    img {
+      margin-bottom: 10px;
+    }
+  }
+
+  .task-list {
+    list-style-type: none;
+    padding-left: 2.5em;
+
+    input[type="checkbox"] {
+      margin: 0 0.5em 0.25em -1.4em;
+    }
+  }
+
+  p code {
+    background-color: $gray-300;
+  }
+
+  table {
+    @extend .table;
+    @extend .table-striped;
+    @extend .table-hover;
+    @extend .table-bordered;
+
+    word-break: break-word;
+
+    @include media-breakpoint-down(sm) {
+      table-layout: fixed;
+    }
+  }
+
+  .footnotes {
+    border-top: 1px solid $gray-300;
+    margin-top: 2em;
+    padding-top: 1em;
+  }
+
+  .MathJax_Display {
+    padding-bottom: 1em;
+    overflow-x: auto;
+  }
+
+  // Blockquote border styling.
+  blockquote {
+    border: 1px solid $gray-300;
+    border-left: 3px solid $gray-500;
+    border-radius: 0 10px 10px 0;
+
+    // Set different left border colors for nested blockquotes,
+    // similar to the effect in Apple Mail.
+    blockquote {
+      // Each blockquote's other borders will be slightly darker than parent.
+      border: 1px solid rgba(0, 0, 0, 0.1);
+
+      border-left: 3px solid lightseagreen;
+      blockquote {
+        border-left: 3px solid darkgoldenrod;
+        blockquote {
+          // 4th level and onward will be dark red.
+          border-left: 3px solid darkred;
+        }
+      }
+    }
+  }
+
+  // Blockquote background styling.
+  blockquote {
+    background-color: $gray-100;
+
+    // Make each nested blockquote a bit darker than its parent.
+    blockquote {
+      background-color: rgba(100, 100, 100, 0.15);
+    }
+  }
+
+  // Blockquote inner spacing styles.
+  blockquote {
+    padding: 1em;
+    @include media-breakpoint-down(sm) {
+      padding: 0.5em;
+    }
+    padding-bottom: 0;
+  }
+
+  // Blockquote outer spacing styles.
+  > blockquote {
+    margin-left: 2em;
+    margin-right: 2em;
+    @include media-breakpoint-down(sm) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  // Blockquote quote symbol styles.
+  blockquote::before,
+  blockquote::after {
+    font-family: serif;
+    font-size: 200%;
+    line-height: 1;
+  }
+  blockquote::before {
+    content: "\201c";
+  }
+  blockquote::after {
+    content: "\201d";
+    position: relative;
+    left: calc(100% - 0.5em);
+  }
+}

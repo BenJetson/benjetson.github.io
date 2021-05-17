@@ -6,7 +6,7 @@
 ################################################################################
 
 # Site settings
-title: Ben's Code Projects
+title: Ben's Realm
 email: BenJetson@users.noreply.github.com
 description: >-
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -15,15 +15,25 @@ twitter_username: BenJetson
 github_username: BenJetson
 repository: BenJetson/benjetson.github.io
 profileIMG: https://avatars1.githubusercontent.com/u/10427974?s=460&v=4
+brand_color: "#01579b"
 
 # Build settings
 tier: prod
+recaptcha_site_id: 6LfaaLQZAAAAAFqauKWQA3LRGVvHvnl-JJ99tEJI
+timezone: America/New_York
 remoteURL: "https://www.bengodfrey.net"
 markdown: kramdown
 highlighter: rouge
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
 sass:
   style: compressed
 permalink: /blog/:year/:month/:day-:title
+
+# Blog settings
+paginate: 6
+paginate_path: "/blog/page:num/"
 
 # Plugins used for production.
 # WARNING: any changes to plugins should be made to _config_dev.yml also!
@@ -63,8 +73,6 @@ defaults:
       type: "posts"
     values:
       layout: "blogpost"
-      image: "site.url/img/felipe-santana-309268.jpg"
-      image-credit: Felipe Santana on Unsplash
       comments: true
   - scope:
       path: "_projects"
@@ -81,12 +89,17 @@ defaults:
 # Exclude from processing.
 exclude:
   - Makefile
+  - scripts/
+  - README.md
+
   - Gemfile
   - Gemfile.lock
-  - node_modules
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - scripts/
-  - README.md
+
+  - node_modules
+
+  - Dockerfile
+  - docker-compose.yml
