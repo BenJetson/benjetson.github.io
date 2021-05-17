@@ -1,0 +1,11 @@
+//
+// _forms.scss
+//
+// Styles to help form layouts look nice.
+//
+
+form {
+  .form-group {
+    @extend .mb-3;
+  }
+}
