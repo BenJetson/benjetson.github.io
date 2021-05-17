@@ -6,7 +6,32 @@
 version: 2
 
 updates:
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: bundler
+    directory: /
     schedule:
-      interval: "daily"
+      interval: daily
+    target-branch: develop
+    assignees:
+      - BenJetson
+    reviewers:
+      - BenJetson
+
+  - package-ecosystem: pip
+    directory: /scripts
+    schedule:
+      interval: daily
+    target-branch: develop
+    assignees:
+      - BenJetson
+    reviewers:
+      - BenJetson
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: daily
+    target-branch: develop
+    assignees:
+      - BenJetson
+    reviewers:
+      - BenJetson
