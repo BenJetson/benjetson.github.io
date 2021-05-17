@@ -37,7 +37,6 @@ plugins:
 
   # Site plugins
   - jekyll-feed
-  - jekyll-octicons
   - rouge
 
   # Development-only plugins.
