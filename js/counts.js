@@ -19,6 +19,12 @@ window.counter.update = async () => {
   let value = data.value;
   window.counter.value = value;
 
+  // Add an accessible version of the counter, hidden from normal view.
+  const a11yCounter = document.createElement("p");
+  a11yCounter.classList.add("visually-hidden");
+  a11yCounter.innerText = `The current pageview count is ${value}.`;
+  counter.append(a11yCounter);
+
   while (value > 0) {
     const digit = value % 10;
     value = Math.floor(value / 10);
@@ -26,6 +32,9 @@ window.counter.update = async () => {
     const digitNode = document.createElement("span");
     digitNode.classList.add("digit");
     digitNode.innerText = digit;
+
+    // Hide digits from screen readers since their readout would be confusing.
+    digitNode.setAttribute("aria-hidden", true);
 
     counter.prepend(digitNode);
   }
