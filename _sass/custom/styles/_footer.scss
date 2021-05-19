@@ -4,7 +4,50 @@
 // Styles for elements in the footer.
 //
 
-img#hitCounter {
-  height: 26px;
-  width: 110px;
+footer {
+  .social-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .social-icon {
+      display: block;
+      margin-right: 1em;
+
+      font-size: 32px;
+      text-align: center;
+
+      color: inherit;
+    }
+  }
+
+  #counter {
+    margin: 1em 0;
+
+    span.digit {
+      background-color: $black;
+      font-family: monospace;
+      font-size: 28px;
+      font-style: italic;
+
+      border: 2px solid $gray-700;
+      border-radius: 7px;
+
+      position: relative;
+
+      padding: 0.25em;
+      padding-right: 0.35em;
+      margin-right: 1px;
+    }
+
+    span.digit::before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      bottom: 50%;
+      left: 0;
+      border-bottom: 2px solid rgba($gray-600, 50%);
+      width: 100%;
+    }
+  }
 }

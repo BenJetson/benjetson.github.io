@@ -7,22 +7,27 @@
       </div>
       <div class="col-sm-12 col-md-3 d-print-none">
         <h5>Follow me!</h5>
-        <img src="https://dummyimage.com/50x50/f55/fff&text=g" alt="google+" />
-        <img
-          src="https://dummyimage.com/50x50/2bcaff/0011ff&text=t"
-          alt="twitter"
-        />
-        <img src="https://dummyimage.com/50x50/444/fff&text=gh" alt="github" />
+        <div class="social-grid">
+          <a class="social-icon" href="https://github.com/benjetson">
+            <i class="bi bi-github"></i>
+            <span class="visually-hidden">GitHub</span>
+          </a>
+          <a class="social-icon" href="https://twitter.com/benjetson">
+            <i class="bi bi-twitter"></i>
+            <span class="visually-hidden">Twitter</span>
+          </a>
+          <a class="social-icon" href="https://www.linkedin.com/in/bfgodfrey">
+            <i class="bi bi-linkedin"></i>
+            <span class="visually-hidden">LinkedIn</span>
+          </a>
+        </div>
       </div>
-      <div class="col-sm-12 col-md-3 py-3 d-print-none">
-        <img
-          src="https://www.free-website-hit-counter.com/c.php?d=5&id=109636&s=8"
-          class="img-fluid"
-          id="hitCounter"
-        />
+      <div class="col-sm-12 col-md-3 d-print-none">
+        <h5>Pageviews</h5>
+        <div id="counter"></div>
       </div>
     </div>
-    <div class="row pb-3">
+    <div class="row pt-4 pb-3">
       <div class="col">
         <h6>
           &copy; {{ "now" | date: "%Y" }} Ben Godfrey. All rights reserved.

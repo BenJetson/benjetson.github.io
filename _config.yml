@@ -8,7 +8,7 @@
 # Site settings
 title: Ben's Realm
 email: BenJetson@users.noreply.github.com
-description: >-
+description: The internet home for all of my personal projects and thoughts.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.bengodfrey.net" #interwebz
 twitter_username: BenJetson
@@ -34,6 +34,11 @@ permalink: /blog/:year/:month/:day-:title
 # Blog settings
 paginate: 6
 paginate_path: "/blog/page:num/"
+
+# Counter settings
+counter:
+  namespace: bengodfrey.net
+  key: visitors
 
 # Plugins used for production.
 # WARNING: any changes to plugins should be made to _config_dev.yml also!
