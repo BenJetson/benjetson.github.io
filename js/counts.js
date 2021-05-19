@@ -3,6 +3,9 @@ window.counter.update = async () => {
     key = window.counter.key,
     namespace = window.counter.namespace;
 
+  // Clear existing nodes in the counter.
+  while (counter.firstChild) counter.removeChild(counter.lastChild);
+
   const res = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
   if (res.status !== 200) {
     throw `Failed to hit the counter API; received status ${res.status}.`;
@@ -13,10 +16,19 @@ window.counter.update = async () => {
     throw `Missing counter value!`;
   }
 
-  const value = data.value;
-
-  counter.innerText = value;
+  let value = data.value;
   window.counter.value = value;
+
+  while (value > 0) {
+    const digit = value % 10;
+    value = Math.floor(value / 10);
+
+    const digitNode = document.createElement("span");
+    digitNode.classList.add("digit");
+    digitNode.innerText = digit;
+
+    counter.prepend(digitNode);
+  }
 
   return value;
 };
