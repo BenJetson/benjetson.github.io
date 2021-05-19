@@ -4,7 +4,25 @@
 // Styles for elements in the footer.
 //
 
-img#hitCounter {
-  height: 26px;
-  width: 110px;
+footer {
+  img#hitCounter {
+    height: 26px;
+    width: 110px;
+  }
+
+  .social-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .social-icon {
+      display: block;
+      margin-right: 1em;
+
+      font-size: 32px;
+      text-align: center;
+
+      color: inherit;
+    }
+  }
 }
