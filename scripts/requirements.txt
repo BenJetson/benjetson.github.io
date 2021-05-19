@@ -1,3 +1,4 @@
 black
 python-frontmatter
 pre-commit
+countapi
