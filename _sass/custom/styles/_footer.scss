@@ -22,30 +22,47 @@ footer {
   }
 
   #counter {
-    margin: 1em 0;
+    $digit-numeral-height: 1em;
+    $digit-vertical-padding: 0.3rem;
+    $digit-border-size: 2px;
+
+    font-family: $font-family-monospace;
+    font-size: 28px;
+    font-style: italic;
+
+    text-align: left;
+
+    margin: 1rem 0;
+
+    // prettier-ignore
+    height: calc(
+      #{$digit-numeral-height} +
+      (#{$digit-vertical-padding} * 2) +
+      (#{$digit-border-size} * 2)
+    );
 
     span.digit {
       background-color: $black;
-      font-family: monospace;
-      font-size: 28px;
-      font-style: italic;
-
-      border: 2px solid $gray-700;
+      border: $digit-border-size solid $gray-800;
       border-radius: 7px;
 
       position: relative;
 
-      padding: 0.25em;
-      padding-right: 0.35em;
-      margin-right: 1px;
+      padding: $digit-vertical-padding 0.4rem;
+
+      margin-right: 1px; // to separate the digits.
     }
 
+    // This renders the little border line in the center of the digit.
     span.digit::before {
-      content: "";
+      content: ""; // must be present for this to render.
+
       position: absolute;
-      z-index: 0;
       bottom: 50%;
       left: 0;
+
+      z-index: 0;
+
       border-bottom: 2px solid rgba($gray-600, 50%);
       width: 100%;
     }
