@@ -3,9 +3,6 @@ window.counter.update = async () => {
     key = window.counter.key,
     namespace = window.counter.namespace;
 
-  // Clear existing nodes in the counter.
-  while (counter.firstChild) counter.removeChild(counter.lastChild);
-
   const res = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
   if (res.status !== 200) {
     throw `Failed to hit the counter API; received status ${res.status}.`;
@@ -18,6 +15,9 @@ window.counter.update = async () => {
 
   let value = data.value;
   window.counter.value = value;
+
+  // Clear existing nodes in the counter.
+  while (counter.firstChild) counter.removeChild(counter.lastChild);
 
   // Add an accessible version of the counter, hidden from normal view.
   const a11yCounter = document.createElement("p");
