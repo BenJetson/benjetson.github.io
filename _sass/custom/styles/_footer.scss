@@ -26,7 +26,8 @@ footer {
     $digit-vertical-padding: 0.3rem;
     $digit-border-size: 2px;
 
-    $flip-speed: 0.5s;
+    $flip-opacity: 0.3;
+    $flip-speed: 0.12s;
     $flip-distance: 10px;
 
     font-family: $font-family-monospace;
@@ -59,6 +60,9 @@ footer {
         (#{$digit-vertical-padding} * 2) +
         (#{$digit-border-size} * 2)
       );
+      width: calc(
+        5px + 1em
+      ); // approximately the width of one monospace character.
 
       span.current {
         animation: none;
@@ -74,17 +78,16 @@ footer {
 
       span.previous,
       span.next {
-        // display: block;
         position: absolute;
       }
 
-      &.mutating {
-        width: 1.2em;
+      &.mutating span {
+        opacity: $flip-opacity;
       }
 
       @keyframes slideAway {
         0% {
-          opacity: 1;
+          opacity: $flip-opacity;
           bottom: 0;
         }
 
@@ -101,7 +104,7 @@ footer {
         }
 
         100% {
-          opacity: 1;
+          opacity: $flip-opacity;
           top: 0;
         }
       }
