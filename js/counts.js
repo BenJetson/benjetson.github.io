@@ -22,7 +22,7 @@ class Digit {
     this.value = -1;
     this.target = 0;
 
-    this.rootNode = document.createElement("span");
+    this.rootNode = document.createElement("div");
     this.rootNode.classList.add("digit");
     this.rootNode.setAttribute("aria-hidden", true);
 
@@ -37,6 +37,7 @@ class Digit {
     this.innerNode.classList.replace("next", "current");
 
     if (this.value === this.target) {
+      this.rootNode.classList.remove("mutating");
       return;
     }
 
@@ -70,6 +71,7 @@ class Digit {
       return;
     }
 
+    this.rootNode.classList.add("mutating");
     this.rollCurrentToPrevious();
   }
 }
