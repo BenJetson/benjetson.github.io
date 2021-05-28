@@ -52,7 +52,6 @@ class Digit {
     next.classList.add("next");
     next.addEventListener("animationend", () => this.nextRolled());
 
-    console.log(this.innerNode, next);
     this.rootNode.replaceChild(next, this.innerNode);
     this.innerNode = next;
   }
@@ -150,7 +149,7 @@ class Counter {
       }
     }
 
-    this.a11yText = `The current pageview count is ${this.value}.`;
+    this.a11yText.innerText = `The current pageview count is ${this.value}.`;
 
     let remaining = this.value;
     let idx = 0;
