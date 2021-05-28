@@ -26,24 +26,17 @@ class Digit {
     this.rootNode.classList.add("digit");
     this.rootNode.setAttribute("aria-hidden", true);
 
-    this.currentNode = document.createElement("span");
-    this.currentNode.classList.add("current");
-    this.currentNode.innerText = ".";
+    this.innerNode = document.createElement("span");
+    this.innerNode.classList.add("current");
+    this.innerNode.innerText = ".";
 
-    this.rootNode.append(this.currentNode);
-
-    /** @type HTMLElement */
-    this.previousNode = null;
-    /** @type HTMLElement */
-    this.nextNode = null;
+    this.rootNode.append(this.innerNode);
   }
 
   nextRolled() {
-    this.nextNode.classList.replace("next", "current");
-    this.currentNode = this.nextNode;
-    this.nextNode = null;
+    this.innerNode.classList.replace("next", "current");
 
-    if (value === target) {
+    if (this.value === this.target) {
       return;
     }
 
@@ -51,24 +44,23 @@ class Digit {
   }
 
   previousRolled() {
-    this.value = (this.value + 1) % 9;
-
-    this.rootNode.remove(this.previousNode);
+    this.value = (this.value + 1) % 10;
 
     let next = document.createElement("span");
     next.innerText = this.value;
     next.classList.add("next");
-    next.addEventListener("animationend", this.nextRolled);
+    next.addEventListener("animationend", () => this.nextRolled());
 
-    this.rootNode.append(this.nextNode);
+    console.log(this.innerNode, next);
+    this.rootNode.replaceChild(next, this.innerNode);
+    this.innerNode = next;
   }
 
   rollCurrentToPrevious() {
-    this.currentNode.classList.replace("current", "previous");
-    this.previousNode = this.currentNode;
-    this.currentNode = null;
-
-    this.previousNode.addEventListener("animationend", this.previousRolled);
+    this.innerNode.classList.replace("current", "previous");
+    this.innerNode.addEventListener("animationend", () =>
+      this.previousRolled()
+    );
   }
 
   updateValue(target) {
@@ -118,7 +110,7 @@ class Counter {
     const d = new Digit();
 
     this.digits.push(d);
-    this.digitContainer.append(d.rootNode);
+    this.digitContainer.prepend(d.rootNode);
   }
 
   removeDigit() {
@@ -165,6 +157,7 @@ class Counter {
       remaining = Math.floor(remaining / 10);
 
       this.digits[idx].updateValue(digitValue);
+      idx++;
     }
   }
 }
