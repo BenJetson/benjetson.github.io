@@ -28,7 +28,6 @@ footer {
 
     font-family: $font-family-monospace;
     font-size: 28px;
-    font-style: italic;
 
     text-align: left;
 
@@ -51,6 +50,47 @@ footer {
       padding: $digit-vertical-padding 0.4rem;
 
       margin-right: 1px; // to separate the digits.
+
+      span.current {
+        animation: none;
+      }
+
+      span.previous {
+        animation: "slide-away" 1s;
+      }
+
+      span.next {
+        animation: "slide-into" 1s;
+      }
+
+      span.previous,
+      span.next {
+        position: absolute;
+      }
+
+      @keyframes slide-away {
+        0% {
+          opacity: 1;
+          bottom: 0;
+        }
+
+        100% {
+          opacity: 0;
+          bottom: 20px;
+        }
+      }
+
+      @keyframes slide-into {
+        0% {
+          opacity: 0;
+          top: 20px;
+        }
+
+        100% {
+          opacity: 1;
+          top: 0;
+        }
+      }
     }
 
     // This renders the little border line in the center of the digit.

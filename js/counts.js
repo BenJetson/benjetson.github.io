@@ -14,81 +14,162 @@ const countDigits = (n) => {
   return counter;
 };
 
-const findDigitNodes = (count) => {
-  // Will give a NodeList
-  const counter = document.getElementById("counter");
-  const found = counter.querySelectorAll("span.digit");
+class Digit {
+  /**
+   * @param {HTMLElement} node the node that wraps the digit.
+   */
+  constructor() {
+    this.value = -1;
+    this.target = 0;
 
-  // Move nodes into an array for greater mutability.
-  let nodes = [];
-  for (const n of found) nodes.push(n);
+    this.rootNode = document.createElement("span");
+    this.rootNode.classList.add("digit");
+    this.rootNode.setAttribute("aria-hidden", true);
 
-  const diff = nodes.length - count;
-  if (diff > 0) {
-    // We have more nodes than we need. Delete some in the amount of diff.
-    for (null; diff > 0; diff--) {
-      counter.remove(nodes.pop());
+    this.currentNode = document.createElement("span");
+    this.currentNode.classList.add("current");
+    this.currentNode.innerText = ".";
+
+    this.rootNode.append(this.currentNode);
+
+    /** @type HTMLElement */
+    this.previousNode = null;
+    /** @type HTMLElement */
+    this.nextNode = null;
+  }
+
+  nextRolled() {
+    this.nextNode.classList.replace("next", "current");
+    this.currentNode = this.nextNode;
+    this.nextNode = null;
+
+    if (value === target) {
+      return;
     }
-  } else if (diff < 0) {
-    // We don't have enough nodes; make some more in the amount of diff.
-    for (null; diff < 0; diff++) {
-      const digitNode = document.createElement("span");
-      digitNode.classList.add("digit");
-      digitNode.innerText = "."; // placeholder text
 
-      // Hide digits from screen readers since their readout would be confusing.
-      digitNode.setAttribute("aria-hidden", true);
+    this.rollCurrentToPrevious();
+  }
 
-      counter.prepend(digitNode);
-      nodes.unshift(digitNode);
+  previousRolled() {
+    this.value = (this.value + 1) % 9;
+
+    this.rootNode.remove(this.previousNode);
+
+    let next = document.createElement("span");
+    next.innerText = this.value;
+    next.classList.add("next");
+    next.addEventListener("animationend", this.nextRolled);
+
+    this.rootNode.append(this.nextNode);
+  }
+
+  rollCurrentToPrevious() {
+    this.currentNode.classList.replace("current", "previous");
+    this.previousNode = this.currentNode;
+    this.currentNode = null;
+
+    this.previousNode.addEventListener("animationend", this.previousRolled);
+  }
+
+  updateValue(target) {
+    this.target = target;
+
+    if (this.value === target) {
+      return;
+    }
+
+    this.rollCurrentToPrevious();
+  }
+}
+
+class Counter {
+  constructor({ namespace, key }) {
+    this.namespace = namespace;
+    this.key = key;
+
+    this.rootNode = document.createElement("div");
+    this.rootNode.id = "counter";
+
+    this.digitContainer = document.createElement("div");
+    this.digitContainer.classList.add("digits");
+    this.digitContainer.setAttribute("aria-hidden", true);
+
+    this.a11yText = document.createElement("p");
+    this.a11yText.classList.add("visually-hidden");
+    this.a11yText.innerText = "The pageview count is still loading.";
+
+    this.rootNode.append(this.digitContainer);
+    this.rootNode.append(this.a11yText);
+
+    this.value = -1;
+
+    /** @type Digit[] */
+    this.digits = [];
+
+    const defaultDigitCount = 5;
+    for (let i = 0; i < defaultDigitCount; i++) {
+      this.addDigit();
+    }
+
+    document.getElementById("counter").replaceWith(this.rootNode);
+  }
+
+  addDigit() {
+    const d = new Digit();
+
+    this.digits.push(d);
+    this.digitContainer.append(d.rootNode);
+  }
+
+  removeDigit() {
+    const d = this.digits.pop();
+    this.digitContainer.remove(d.rootNode);
+  }
+
+  async hitCounter() {
+    const res = await fetch(
+      `https://api.countapi.xyz/hit/${this.namespace}/${this.key}`
+    );
+    if (res.status !== 200) {
+      throw `Failed to hit the counter API; received status ${res.status}.`;
+    }
+
+    const data = await res.json();
+    if (data.value === undefined) {
+      throw "Missing counter value!";
+    } else if (!Number.isInteger(data.value)) {
+      throw `Counter value of ${JSON.stringify(data.value)} is not an integer!`;
+    }
+
+    return data.value;
+  }
+
+  async update() {
+    this.value = await this.hitCounter();
+
+    const digitCount = countDigits(this.value);
+    while (this.digits.length !== digitCount) {
+      if (this.digits.length < digitCount) {
+        this.addDigit();
+      } else {
+        this.removeDigit();
+      }
+    }
+
+    this.a11yText = `The current pageview count is ${this.value}.`;
+
+    let remaining = this.value;
+    let idx = 0;
+    while (remaining > 0) {
+      const digitValue = remaining % 10;
+      remaining = Math.floor(remaining / 10);
+
+      this.digits[idx].updateValue(digitValue);
     }
   }
+}
 
-  return nodes;
-};
-
-window.counter.update = async () => {
-  const counter = document.getElementById("counter"),
-    key = window.counter.key,
-    namespace = window.counter.namespace;
-
-  const res = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
-  if (res.status !== 200) {
-    throw `Failed to hit the counter API; received status ${res.status}.`;
-  }
-
-  const data = await res.json();
-  if (data.value === undefined) {
-    throw `Missing counter value!`;
-  }
-
-  let value = data.value;
-  window.counter.value = value;
-
-  // Clear existing nodes in the counter.
-  while (counter.firstChild) counter.removeChild(counter.lastChild);
-
-  // Add an accessible version of the counter, hidden from normal view.
-  const a11yCounter = document.createElement("p");
-  a11yCounter.classList.add("visually-hidden");
-  a11yCounter.innerText = `The current pageview count is ${value}.`;
-  counter.append(a11yCounter);
-
-  while (value > 0) {
-    const digit = value % 10;
-    value = Math.floor(value / 10);
-
-    const digitNode = document.createElement("span");
-    digitNode.classList.add("digit");
-    digitNode.innerText = digit;
-
-    // Hide digits from screen readers since their readout would be confusing.
-    digitNode.setAttribute("aria-hidden", true);
-
-    counter.prepend(digitNode);
-  }
-
-  return value;
-};
-
-window.addEventListener("load", () => window.counter.update());
+window.addEventListener("load", () => {
+  window.counter = new Counter(window.counterInfo);
+  window.counter.update();
+});
