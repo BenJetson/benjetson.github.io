@@ -5,3 +5,4 @@ _site
 _sass/vendor
 runtime.txt
 css/main.scss
+*.gen.md
