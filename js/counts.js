@@ -138,8 +138,8 @@ class Counter {
     return data.value;
   }
 
-  async update() {
-    this.value = await this.hitCounter();
+  setCount(newCount) {
+    this.value = newCount;
 
     const digitCount = countDigits(this.value);
     while (this.digits.length !== digitCount) {
@@ -161,6 +161,11 @@ class Counter {
       this.digits[idx].updateValue(digitValue);
       idx++;
     }
+  }
+
+  async update() {
+    const newCount = await this.hitCounter();
+    this.setCount(newCount);
   }
 }
 
