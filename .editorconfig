@@ -33,3 +33,8 @@ indent_size = 2
 [{*.css,*.scss}]
 indent_style = space
 indent_size = 2
+
+[*.js]
+block_comment_start = /*
+block_comment_end = */
+block_comment = *
