@@ -22,14 +22,6 @@ footer {
   }
 
   #counter {
-    $digit-numeral-height: 1em;
-    $digit-vertical-padding: 0.5rem;
-    $digit-border-size: 2px;
-
-    $flip-opacity: 0.3;
-    $flip-speed: 0.12s;
-    $flip-distance: 10px;
-
     font-family: $font-family-monospace;
     font-size: 28px;
     line-height: 1;
@@ -44,6 +36,10 @@ footer {
     }
 
     div.digit {
+      $digit-numeral-height: 1em;
+      $digit-vertical-padding: 0.5rem;
+      $digit-border-size: 2px;
+
       background-color: $black;
       border: $digit-border-size solid $gray-800;
       border-radius: 7px;
@@ -63,6 +59,10 @@ footer {
       width: calc(
         5px + 1em
       ); // approximately the width of one monospace character.
+
+      $flip-opacity: 0.3;
+      $flip-speed: 0.05s;
+      $flip-distance: 10px;
 
       span.current {
         animation: none;
