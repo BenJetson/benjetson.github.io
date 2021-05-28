@@ -26,6 +26,9 @@ footer {
     $digit-vertical-padding: 0.3rem;
     $digit-border-size: 2px;
 
+    $flip-speed: 5s;
+    $flip-distance: 10px;
+
     font-family: $font-family-monospace;
     font-size: 28px;
 
@@ -56,11 +59,11 @@ footer {
       }
 
       span.previous {
-        animation: "slide-away" 1s;
+        animation: "slide-away" ($flip-speed / 2);
       }
 
       span.next {
-        animation: "slide-into" 1s;
+        animation: "slide-into" ($flip-speed / 2);
       }
 
       span.previous,
@@ -76,14 +79,14 @@ footer {
 
         100% {
           opacity: 0;
-          bottom: 20px;
+          bottom: $flip-distance;
         }
       }
 
       @keyframes slide-into {
         0% {
           opacity: 0;
-          top: 20px;
+          top: $flip-distance;
         }
 
         100% {
