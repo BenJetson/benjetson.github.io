@@ -19,10 +19,9 @@
 <script async defer src="https://www.google.com/recaptcha/api.js"></script>
 {% endif %}
 <script>
-  window.counter = {
+  window.counterInfo = {
     namespace: "{{site.counter.namespace}}",
     key: "{{site.counter.key}}",
-    value: null,
   };
 </script>
 <script async defer src="{{site.url}}/js/counts.js"></script>

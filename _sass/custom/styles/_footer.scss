@@ -22,30 +22,104 @@ footer {
   }
 
   #counter {
-    margin: 1em 0;
+    font-family: $font-family-monospace;
+    font-size: 28px;
+    line-height: 1;
 
-    span.digit {
+    text-align: left;
+
+    margin: 1rem 0;
+
+    div.digits {
+      display: flex;
+      flex-direction: row;
+    }
+
+    div.digit {
+      $digit-numeral-height: 1em;
+      $digit-vertical-padding: 0.5rem;
+      $digit-border-size: 2px;
+
       background-color: $black;
-      font-family: monospace;
-      font-size: 28px;
-      font-style: italic;
-
-      border: 2px solid $gray-700;
+      border: $digit-border-size solid $gray-800;
       border-radius: 7px;
 
       position: relative;
 
-      padding: 0.25em;
-      padding-right: 0.35em;
-      margin-right: 1px;
+      padding: $digit-vertical-padding 0.4rem;
+
+      margin-right: 1px; // to separate the digits.
+
+      // prettier-ignore
+      height: calc(
+        #{$digit-numeral-height} +
+        (#{$digit-vertical-padding} * 2) +
+        (#{$digit-border-size} * 2)
+      );
+      width: calc(
+        5px + 1em
+      ); // approximately the width of one monospace character.
+
+      $flip-opacity: 0.3;
+      $flip-speed: 0.05s;
+      $flip-distance: 10px;
+
+      span.current {
+        animation: none;
+      }
+
+      span.previous {
+        animation: slideAway ($flip-speed / 2);
+      }
+
+      span.next {
+        animation: slideInto ($flip-speed / 2);
+      }
+
+      span.previous,
+      span.next {
+        position: absolute;
+      }
+
+      &.mutating span {
+        opacity: $flip-opacity;
+      }
+
+      @keyframes slideAway {
+        0% {
+          opacity: $flip-opacity;
+          bottom: 0;
+        }
+
+        100% {
+          opacity: 0;
+          bottom: $flip-distance;
+        }
+      }
+
+      @keyframes slideInto {
+        0% {
+          opacity: 0;
+          top: $flip-distance;
+        }
+
+        100% {
+          opacity: $flip-opacity;
+          top: 0;
+        }
+      }
     }
 
-    span.digit::before {
-      content: "";
+    // This renders the little border line in the center of the digit.
+    div.digit::before {
+      content: ""; // must be present for this to render.
+
       position: absolute;
-      z-index: 0;
       bottom: 50%;
       left: 0;
+
+      z-index: 0;
+
       border-bottom: 2px solid rgba($gray-600, 50%);
       width: 100%;
     }
