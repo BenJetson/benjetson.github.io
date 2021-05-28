@@ -117,7 +117,7 @@ class Counter {
 
   removeDigit() {
     const d = this.digits.pop();
-    this.digitContainer.remove(d.rootNode);
+    this.digitContainer.removeChild(d.rootNode);
   }
 
   async hitCounter() {
