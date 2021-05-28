@@ -59,11 +59,11 @@ footer {
       }
 
       span.previous {
-        animation: "slide-away" ($flip-speed / 2);
+        animation: slideAway ($flip-speed / 2);
       }
 
       span.next {
-        animation: "slide-into" ($flip-speed / 2);
+        animation: slideInto ($flip-speed / 2);
       }
 
       span.previous,
@@ -71,7 +71,7 @@ footer {
         position: absolute;
       }
 
-      @keyframes slide-away {
+      @keyframes slideAway {
         0% {
           opacity: 1;
           bottom: 0;
@@ -83,7 +83,7 @@ footer {
         }
       }
 
-      @keyframes slide-into {
+      @keyframes slideInto {
         0% {
           opacity: 0;
           top: $flip-distance;
