@@ -2,17 +2,18 @@ name: Ben Godfrey
 tagline: Full Stack Developer
 location: Greenville, SC
 
-objective: Just testing this block. Will remove later. # FIXME
+objective: Just testing this block. Will remove later. # FIXME remove this
 
 education:
   - institution: Clemson University
     location: Clemson, SC
-    degree: Bachelor of Science in Computer Science
+    degree: Computer Science, B.S.
     gpa: "3.96"
     term:
       start: August 2018
-      finish: December 2021
+      end: December 2021
       in_progress: true
+    logo: https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg
 
 jobs:
   - employer: Clemson University
@@ -23,7 +24,8 @@ jobs:
       end: null
       current: true
     accomplishments:
-      - Still need to write these down. # TODO
+      - Still need to write these down. # TODO add some
+    logo: https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg
 
   - employer: SC Governor's School for the Arts
     location: Greenville, SC
@@ -40,6 +42,7 @@ jobs:
         deployment to students
       - Conceptualize and design a system for sorting student applications using
         Google Application Script
+    logo: https://live.staticflickr.com/65535/51211352931_a44432ab0a_m.jpg
 
   - employer: SC Governor's School for the Arts
     location: Greenville, SC
@@ -59,6 +62,7 @@ jobs:
       - Configure and secure Cisco network switches and reorganize patch panel
         wiring
       - Document and assist with mitigation of malware infection
+    logo: https://live.staticflickr.com/65535/51211352931_a44432ab0a_m.jpg
 
 skills:
   - cluster: Programming Languages
