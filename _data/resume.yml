@@ -1,0 +1,86 @@
+name: Ben Godfrey
+tagline: Full Stack Developer
+location: Greenville, SC
+
+objective: Just testing this block. Will remove later. # FIXME
+
+education:
+  - institution: Clemson University
+    location: Clemson, SC
+    degree: Bachelor of Science in Computer Science
+    gpa: "3.96"
+    term:
+      start: August 2018
+      finish: December 2021
+      in_progress: true
+
+jobs:
+  - employer: Clemson University
+    location: Clemson, SC
+    job_title: Mobile Team Intern
+    term:
+      start: January 2019
+      end: null
+      current: true
+    accomplishments:
+      - Still need to write these down. # TODO
+
+  - employer: SC Governor's School for the Arts
+    location: Greenville, SC
+    job_title: IT Intern
+    term:
+      start: June 2018
+      end: August 2018
+    accomplishments:
+      - Troubleshooting technology issues with end users
+      - Deployment and imaging of new Windows workstations
+      - Designing shell scripts to expedite imaging and software deployment to
+        OS X workstations
+      - Reimaging and reporting condition of a fleet of iPads for future
+        deployment to students
+      - Conceptualize and design a system for sorting student applications using
+        Google Application Script
+
+  - employer: SC Governor's School for the Arts
+    location: Greenville, SC
+    job_title: IT Intern
+    term:
+      start: June 2017
+      end: August 2017
+    accomplishments:
+      - Collaborate with other departments to create an inventory of campus
+        technology resources
+      - Appraise and remove data from a fleet of older iPads to prepare them for
+        leaving the organization
+      - Manage and prepare a fleet of new iPads for deployment to students using
+        ZuluDesk MDM
+      - Develop and maintain a web portal for installation of the school's root
+        certificate for use with TLS inspection
+      - Configure and secure Cisco network switches and reorganize patch panel
+        wiring
+      - Document and assist with mitigation of malware infection
+
+skills:
+  - cluster: Programming Languages
+    items:
+      - Golang
+      - PHP
+      - Python
+      - HTML
+      - CSS
+      - JavaScript
+      - Java
+      - C
+      - C++
+  - cluster: Frameworks
+    items:
+      - Bootstrap
+      - MaterializeCSS
+      - AngularJS
+      - Alexa Skills Kit
+  - cluster: Technologies
+    items:
+      - Linux
+      - Git
+      - GitHub
+      - AWS Lambda
