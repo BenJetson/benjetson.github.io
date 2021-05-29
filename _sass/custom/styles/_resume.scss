@@ -1,0 +1,15 @@
+//
+// _resume.scss
+//
+// Styles for the resumé page of the site.
+//
+
+div.resume {
+  section {
+    @extend .mt-4;
+  }
+
+  .card.resume-item {
+    @extend .mt-3;
+  }
+}
