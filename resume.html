@@ -41,14 +41,40 @@ permalink: /resume/
   </section>
   {% endif %}
 
-  <section>
+  <section class="card-section">
     <h2>Education</h2>
     {% for degree in resume.education %}
-    <div class="card resume-item"><div class="card-body"></div></div>
+    <div class="card resume-item">
+      <div class="row g-0">
+        <div class="col-sm-auto d-flex justify-contentx-center">
+          <img src="{{degree.logo}}" alt="{{degree.institution}} logo" />
+        </div>
+        <div class="col-sm">
+          <div class="card-body">
+            <h3 class="h5 card-title">{{degree.degree}}</h3>
+            <p class="h6 card-subtitle mb-2">
+              {{degree.institution}}
+              <small class="text-muted ws-nowrap">{{degree.location}}</small>
+            </p>
+            <p class="card-text">
+              <small class="text-muted"
+                >{{degree.term.start}}&mdash;{{degree.term.end}}</small
+              >
+              {% if degree.term.in_progress %}
+              <small class="ws-nowrap">(In Progress)</small>
+              {% endif %}
+            </p>
+            {% if degree.gpa %}
+            <p class="card-text">GPA: {{degree.gpa}}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
     {% endfor %}
   </section>
 
-  <section>
+  <section class="card-section">
     <h2>Experience</h2>
     {% for job in resume.jobs %}
     <div class="card resume-item"><div class="card-body"></div></div>

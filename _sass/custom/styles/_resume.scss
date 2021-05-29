@@ -9,7 +9,22 @@ div.resume {
     @extend .mt-4;
   }
 
+  .card-section {
+    max-width: 750px;
+  }
+
   .card.resume-item {
     @extend .mt-3;
+
+    img {
+      @extend .rounded;
+      @extend .mx-3;
+      @extend .mt-3;
+
+      $img-size: 75px;
+
+      height: $img-size;
+      width: $img-size;
+    }
   }
 }
