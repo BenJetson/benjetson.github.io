@@ -22,7 +22,6 @@ jobs:
     term:
       start: January 2019
       end: null
-      current: true
     accomplishments:
       - Still need to write these down. # TODO add some
     logo: https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg
