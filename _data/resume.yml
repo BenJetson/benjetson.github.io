@@ -2,6 +2,11 @@ name: Ben Godfrey
 tagline: Full Stack Developer
 location: Greenville, SC
 
+download_urls:
+  pages: null
+  word: null
+  pdf: null
+
 objective: Just testing this block. Will remove later. # FIXME remove this
 
 education:

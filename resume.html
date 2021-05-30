@@ -34,6 +34,28 @@ main_class: resume
   </div>
 </section>
 
+<section class="d-print-none">
+  <div class="card bg-light">
+    <div class="card-body d-flex flex-column flex-sm-row align-items-center">
+      <p class="h5 card-title my-1 me-2" aria-hidden="true">
+        <i class="bi bi-cloud-download"></i>
+      </p>
+      <p class="h5 card-title my-1 me-4 mb-0 flex-grow-1 ws-100">
+        Download Options
+      </p>
+      <a href="{{resume.download_urls.pages}}" class="btn-download">
+        <i class="bi bi-file-earmark-richtext"></i> Pages
+      </a>
+      <a href="{{resume.download_urls.word}}" class="btn-download">
+        <i class="bi bi-file-earmark-word"></i> Word
+      </a>
+      <a href="{{resume.download_urls.pdf}}" class="btn-download">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </a>
+    </div>
+  </div>
+</section>
+
 {% if resume.objective %}
 <section>
   <h2>Objective</h2>

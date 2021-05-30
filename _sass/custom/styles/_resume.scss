@@ -5,7 +5,7 @@
 //
 
 main.resume {
-  max-width: 750px;
+  // max-width: 750px;
   margin: 0 auto;
   @extend .mb-4;
 
@@ -29,6 +29,21 @@ main.resume {
 
     ul {
       padding-left: 1.5rem;
+    }
+  }
+
+  .btn-download {
+    @extend .btn;
+    @extend .btn-secondary;
+
+    @extend .me-2;
+    @extend .text-center;
+
+    margin-bottom: 0;
+
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+      margin-top: map-get($map: $spacers, $key: 2);
     }
   }
 
