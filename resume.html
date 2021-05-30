@@ -77,7 +77,33 @@ permalink: /resume/
   <section class="card-section">
     <h2>Experience</h2>
     {% for job in resume.jobs %}
-    <div class="card resume-item"><div class="card-body"></div></div>
+    <div class="card resume-item">
+      <div class="row g-0">
+        <div class="col-sm-auto d-flex justify-contentx-center">
+          <img src="{{job.logo}}" alt="{{job.employer}} logo" />
+        </div>
+        <div class="col-sm">
+          <div class="card-body">
+            <h3 class="h5 card-title">{{job.job_title}}</h3>
+            <p class="h6 card-subtitle mb-2">
+              {{job.employer}}
+              <small class="text-muted ws-nowrap">{{job.location}}</small>
+            </p>
+            <p class="card-text">
+              <small class="text-muted"
+                >{{job.term.start}}&mdash;{{job.term.end}}</small
+              >{% unless job.term.end %}<small class="ws-nowrap">Present</small>
+              {% endunless %}
+            </p>
+            <ul>
+              {% for item in job.accomplishments %}
+              <li>{{item}}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     {% endfor %}
   </section>
 
