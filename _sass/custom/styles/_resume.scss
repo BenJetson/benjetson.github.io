@@ -4,13 +4,13 @@
 // Styles for the resumé page of the site.
 //
 
-div.resume {
+main.resume {
+  max-width: 750px;
+  margin: 0 auto;
+  @extend .mb-4;
+
   section {
     @extend .mt-4;
-  }
-
-  .card-section {
-    max-width: 750px;
   }
 
   .card.resume-item {
