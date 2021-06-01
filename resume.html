@@ -47,29 +47,29 @@ main_class: resume
         </div>
         <div class="list-group list-group-flush">
           <a class="list-group-item list-group-item-action" href="#general"
-            >General</a
+            ><i class="bi bi-person-circle"></i> General</a
           >
           <a class="list-group-item list-group-item-action" href="#download"
-            >Download</a
+            ><i class="bi bi-cloud-download"></i> Download</a
           >
 
           {% if resume.objective %}
           <a class="list-group-item list-group-item-action" href="#objective"
-            >Objective</a
+            ><i class="bi bi-patch-exclamation"></i> Objective</a
           >
           {% endif %}
 
           <a class="list-group-item list-group-item-action" href="#education"
-            >Education</a
+            ><i class="bi bi-bookmark"></i> Education</a
           >
           <a class="list-group-item list-group-item-action" href="#experience"
-            >Experience</a
+            ><i class="bi bi-briefcase"></i> Experience</a
           >
           <a class="list-group-item list-group-item-action" href="#skills"
-            >Skills</a
+            ><i class="bi bi-sliders"></i> Skills</a
           >
           <a class="list-group-item list-group-item-action" href="#portfolio"
-            >Portfolio</a
+            ><i class="bi bi-journal-code"></i> Portfolio</a
           >
         </div>
       </div>
@@ -82,7 +82,7 @@ main_class: resume
         <div
           class="card-body d-flex flex-column flex-sm-row align-items-center"
         >
-          <p class="h5 card-title my-1 me-2" aria-hidden="true">
+          <p class="h5 card-title my-1 me-2 mb-0" aria-hidden="true">
             <i class="bi bi-cloud-download"></i>
           </p>
           <p class="h5 card-title my-1 me-4 mb-0 flex-grow-1 ws-100">
@@ -105,7 +105,7 @@ main_class: resume
     <section id="objective">
       <div class="resume-group">
         <div class="resume-group-header">
-          <h2>Objective</h2>
+          <h2><i class="bi bi-patch-exclamation"></i> Objective</h2>
         </div>
         <div class="card-body">
           <p class="mb-0">{{resume.objective}}</p>
@@ -117,7 +117,7 @@ main_class: resume
     <section id="education">
       <div class="resume-group">
         <div class="resume-group-header">
-          <h2>Education</h2>
+          <h2><i class="bi bi-bookmark"></i> Education</h2>
         </div>
         <ul class="resume-group-list">
           {% for degree in resume.education %}
@@ -156,7 +156,7 @@ main_class: resume
     <section id="experience">
       <div class="resume-group">
         <div class="resume-group-header">
-          <h2>Experience</h2>
+          <h2><i class="bi bi-briefcase"></i> Experience</h2>
         </div>
         <ul class="resume-group-list">
           {% for job in resume.jobs %}
@@ -195,7 +195,7 @@ main_class: resume
     <section id="skills">
       <div class="resume-group">
         <div class="resume-group-header">
-          <h2>Skills</h2>
+          <h2><i class="bi bi-sliders"></i> Skills</h2>
         </div>
         <ul class="resume-group-list">
           {% for cluster in resume.skills.clusters %}
@@ -242,7 +242,7 @@ main_class: resume
     <section id="portfolio">
       <div class="resume-group">
         <div class="resume-group-header">
-          <h2>Portfolio</h2>
+          <h2><i class="bi bi-journal-code"></i> Portfolio</h2>
         </div>
         <div class="card-body">
           <p>

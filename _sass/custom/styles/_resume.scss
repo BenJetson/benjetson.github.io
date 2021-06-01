@@ -16,6 +16,11 @@ main.resume {
     }
   }
 
+  h2 .bi,
+  section.sticky-sidenav a .bi {
+    margin-right: map-get($map: $spacers, $key: 2);
+  }
+
   section {
     margin-top: map-get($map: $spacers, $key: 4);
   }
