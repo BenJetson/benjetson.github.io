@@ -40,12 +40,9 @@ jobs:
     accomplishments:
       - Troubleshooting technology issues with end users
       - Deployment and imaging of new Windows workstations
-      - Designing shell scripts to expedite imaging and software deployment to
-        OS X workstations
-      - Reimaging and reporting condition of a fleet of iPads for future
-        deployment to students
-      - Conceptualize and design a system for sorting student applications using
-        Google Application Script
+      - Designing shell scripts to expedite setup of macOS workstations
+      - Reimaging and reporting condition of a fleet of student iPads
+      - Conceptualize and implement spreadsheet macros using Google App Scripts
     logo: https://live.staticflickr.com/65535/51211352931_a44432ab0a_m.jpg
 
   - employer: SC Governor's School for the Arts
@@ -55,17 +52,11 @@ jobs:
       start: June 2017
       end: August 2017
     accomplishments:
-      - Collaborate with other departments to create an inventory of campus
-        technology resources
-      - Appraise and remove data from a fleet of older iPads to prepare them for
-        leaving the organization
-      - Manage and prepare a fleet of new iPads for deployment to students using
-        ZuluDesk MDM
-      - Develop and maintain a web portal for installation of the school's root
-        certificate for use with TLS inspection
-      - Configure and secure Cisco network switches and reorganize patch panel
-        wiring
-      - Document and assist with mitigation of malware infection
+      - Collaborate with other departments to inventory technology resources
+      - Appraise and wipe a fleet of older iPads to prepare them for surplus
+      - Manage and prepare a fleet of new iPads using ZuluDesk MDM
+      - Develop a web portal to help users install the school's root certificate
+      - Configure and secure Cisco network switches and reorganize patch panels
     logo: https://live.staticflickr.com/65535/51211352931_a44432ab0a_m.jpg
 
 skills:
