@@ -69,26 +69,60 @@ jobs:
     logo: https://live.staticflickr.com/65535/51211352931_a44432ab0a_m.jpg
 
 skills:
-  - cluster: Programming Languages
-    items:
-      - Golang
-      - PHP
-      - Python
-      - HTML
-      - CSS
-      - JavaScript
-      - Java
-      - C
-      - C++
-  - cluster: Frameworks
-    items:
-      - Bootstrap
-      - MaterializeCSS
-      - AngularJS
-      - Alexa Skills Kit
-  - cluster: Technologies
-    items:
-      - Linux
-      - Git
-      - GitHub
-      - AWS Lambda
+  levels:
+    - value: 1
+      description: Expert
+      class: skill-bar-level-one
+    - value: 2
+      description: Proficient
+      class: skill-bar-level-two
+    - value: 3
+      description: Competent
+      class: skill-bar-level-three
+    - value: 4
+      description: Novice
+      class: skill-bar-level-four
+
+  clusters:
+    - title: Programming Languages
+      items:
+        - skill: Golang
+          level: 1
+        - skill: PHP
+          level: 2
+        - skill: Python
+          level: 2
+        - skill: HTML
+          level: 1
+        - skill: CSS
+          level: 2
+        - skill: JavaScript
+          level: 1
+        - skill: Java
+          level: 2
+        - skill: C
+          level: 3
+        - skill: C++
+          level: 3
+    - title: Frameworks
+      items:
+        - skill: ReactJS
+          level: 1
+        - skill: Bootstrap
+          level: 1
+        - skill: MaterialUI
+          level: 1
+        - skill: AngularJS
+          level: 4
+        - skill: Alexa Skills Kit
+          level: 3
+    - title: Technologies
+      items:
+        - skill: Linux
+          level: 2
+        - skill: Git
+          level: 2
+        - skill: GitHub
+          level: 4
+        - skill: AWS Lambda
+          level: 4

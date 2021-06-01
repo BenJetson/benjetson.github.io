@@ -149,10 +149,41 @@ main_class: resume
       <h2>Skills</h2>
     </div>
     <ul class="resume-group-list">
-      {% for group in resume.skills %}
+      {% for cluster in resume.skills.clusters %}
       <li class="resume-item">
-        <h3 class="h5 card-title">{{group.cluster}}</h3>
-        <p class="card-text">{{group.items | array_to_sentence_string}}</p>
+        {% assign items = cluster.items | sort: "level" %}
+        <h3 class="h5 card-title">{{cluster.title}}</h3>
+        <dl class="row skill-list">
+          {% for item in items %}
+          <dt class="col-sm-4 col-md-3">{{item.skill}}</dt>
+          <dd class="col-sm-8 col-md-9">
+            <div class="skill-meter">
+              {% comment %}
+              <!-- prettier-ignore -->
+              {% endcomment %}
+
+              {%
+                assign level = resume.skills.levels
+                  | where: "value",item.level
+                  | first
+              %}
+
+              {% comment %}
+              <!-- prettier-ignore -->
+              {% endcomment %}
+              <div
+                class="skill-bar {{level.class}}"
+                role="progressbar"
+                aria-valuenow="{{item.level}}"
+                aria-valuemin="0"
+                aria-valuemax="5"
+              >
+                {{level.description}}
+              </div>
+            </div>
+          </dd>
+          {% endfor %}
+        </dl>
       </li>
       {% endfor %}
     </ul>
