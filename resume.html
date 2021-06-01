@@ -68,6 +68,9 @@ main_class: resume
           <a class="list-group-item list-group-item-action" href="#skills"
             ><i class="bi bi-sliders"></i> Skills</a
           >
+          <a class="list-group-item list-group-item-action" href="#awards"
+            ><i class="bi bi-trophy"></i> Awards</a
+          >
           <a class="list-group-item list-group-item-action" href="#portfolio"
             ><i class="bi bi-journal-code"></i> Portfolio</a
           >
@@ -233,6 +236,41 @@ main_class: resume
               </dd>
               {% endfor %}
             </dl>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section id="awards">
+      <div class="resume-group">
+        <div class="resume-group-header">
+          <h2><i class="bi bi-trophy"></i> Awards</h2>
+        </div>
+        <ul class="resume-group-list">
+          {% for award in resume.awards %}
+          <li class="resume-item">
+            <div class="row">
+              <div class="col-sm-auto">
+                <img src="{{award.image_url}}" alt="{{award.project}}" />
+              </div>
+              <div class="col-sm">
+                <h3 class="h5 card-title">{{award.title}}</h3>
+                <p class="h6 card-subtitle mb-2">{{award.project}}</p>
+                <p class="card-text">
+                  {{award.from}},
+                  <small class="text-muted">{{award.date}}</small>
+                </p>
+                <p class="card-text">
+                  <a
+                    href="{{award.more_url}}"
+                    class="stretched-link"
+                    aria-label="learn more about the {{award.title}} award"
+                    >more information &raquo;</a
+                  >
+                </p>
+              </div>
+            </div>
           </li>
           {% endfor %}
         </ul>

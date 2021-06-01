@@ -119,3 +119,22 @@ skills:
           level: 4
         - skill: AWS Lambda
           level: 4
+
+awards:
+  - title: Best Project Using Domain.com
+    project: CUparkit
+    from: CUhackit
+    date: January 27th, 2019
+    image_url: https://live.staticflickr.com/65535/51217790839_b0d904c837_q.jpg
+    more_url: https://devpost.com/software/cuparkit
+  - title: Best Software Hack
+    project: Tiger Dining Alexa Skill
+    from: CUhackit Hello World
+    date: October 13th, 2018
+    image_url: https://live.staticflickr.com/65535/49692245241_a2b4aec229_q.jpg
+    more_url: https://devpost.com/software/clemson-dining-alexa-skill
+# Currently, there are none of these.
+# Just thinking about future sections.
+publications:
+  - title: XXX
+    date: XXX
