@@ -10,7 +10,7 @@ main.resume {
   .sticky-sidenav {
     @include media-breakpoint-up(lg) {
       position: sticky;
-      top: map-get($map: $spacers, $key: 4);
+      top: 0;
 
       z-index: $zindex-sticky;
     }
@@ -22,12 +22,14 @@ main.resume {
   }
 
   section {
-    margin-top: map-get($map: $spacers, $key: 4);
+    // We use padding instead of margin here so that when the jump links are
+    // used in the sidebar navigation, there is a small amount of buffer between
+    // the top of the viewport and the target item.
+    padding-top: map-get($map: $spacers, $key: 4);
   }
 
   .resume-group {
     @extend .card;
-    margin-top: map-get($map: $spacers, $key: 3);
 
     .resume-group-header {
       @extend .card-header;
