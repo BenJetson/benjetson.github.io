@@ -12,6 +12,7 @@ main_class: resume
 <section id="general">
   <div class="card bg-light bg-gradient">
     <div class="card-body">
+      {% if resume.show_photo %}
       <div class="d-flex w-100 justify-content-center pb-3">
         <img
           class="img-responsive rounded-circle justify-content-center"
@@ -19,6 +20,8 @@ main_class: resume
           src="{{site.profileIMG}}"
         />
       </div>
+      {% endif %}
+
       <div class="d-flex w-100 flex-column align-items-center">
         <p class="h1">{{resume.name}}</p>
         {% if resume.tagline %}

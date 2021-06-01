@@ -2,6 +2,8 @@ name: Ben Godfrey
 tagline: Full Stack Developer
 location: Greenville, SC
 
+show_photo: false
+
 download_urls:
   pages: null
   word: null
