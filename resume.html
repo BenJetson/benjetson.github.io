@@ -58,8 +58,14 @@ main_class: resume
 
 {% if resume.objective %}
 <section>
-  <h2>Objective</h2>
-  <p>{{resume.objective}}</p>
+  <div class="resume-group">
+    <div class="resume-group-header">
+      <h2>Objective</h2>
+    </div>
+    <div class="card-body">
+      <p class="mb-0">{{resume.objective}}</p>
+    </div>
+  </div>
 </section>
 {% endif %}
 
@@ -154,15 +160,21 @@ main_class: resume
 </section>
 
 <section>
-  <h2>Portfolio</h2>
-  <p>
-    Please check out my
-    <a href="{{site.url}}/projects">projects page</a>
-    and
-    <a href="https://github.com/BenJetson">GitHub profile</a>.
-  </p>
-  <p>
-    If you would like a list of projects most relevant to you,
-    <a href="{{site.url}}/contact">reach out to me</a> for details.
-  </p>
+  <div class="resume-group">
+    <div class="resume-group-header">
+      <h2>Portfolio</h2>
+    </div>
+    <div class="card-body">
+      <p>
+        Please check out my
+        <a href="{{site.url}}/projects">projects page</a>
+        and
+        <a href="https://github.com/BenJetson">GitHub profile</a>.
+      </p>
+      <p class="mb-0">
+        If you would like a list of projects most relevant to you,
+        <a href="{{site.url}}/contact">reach out to me</a> for details.
+      </p>
+    </div>
+  </div>
 </section>
