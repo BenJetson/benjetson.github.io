@@ -7,28 +7,55 @@
 main.resume {
   // max-width: 750px;
   margin: 0 auto;
-  @extend .mb-4;
+  margin-bottom: map-get($map: $spacers, $key: 4);
 
   section {
-    @extend .mt-4;
+    margin-top: map-get($map: $spacers, $key: 4);
   }
 
-  .card.resume-item {
-    @extend .mt-3;
-    @extend .shadow-sm;
+  .resume-group {
+    @extend .card;
+    margin-top: map-get($map: $spacers, $key: 3);
+
+    .resume-group-header {
+      @extend .card-header;
+
+      padding-top: map-get($map: $spacers, $key: 3);
+      padding-bottom: map-get($map: $spacers, $key: 3);
+
+      h2 {
+        margin-bottom: 0;
+      }
+    }
+
+    ul.resume-group-list {
+      @extend .list-group;
+      @extend .list-group-flush;
+
+      li.resume-item {
+        @extend .list-group-item;
+
+        padding-top: map-get($map: $spacers, $key: 3);
+        padding-bottom: map-get($map: $spacers, $key: 3);
+      }
+    }
 
     img {
       @extend .rounded;
-      @extend .ms-3;
-      @extend .mt-3;
 
       $img-size: 75px;
 
       height: $img-size;
       width: $img-size;
+
+      @include media-breakpoint-down(sm) {
+        margin-bottom: 1rem;
+      }
     }
 
-    ul {
+    ul.accomplishments {
+      list-style-type: disc;
+      margin-bottom: 0;
       padding-left: 1.5rem;
     }
   }
@@ -37,9 +64,8 @@ main.resume {
     @extend .btn;
     @extend .btn-secondary;
 
-    @extend .me-2;
-    @extend .text-center;
-
+    text-align: center;
+    margin-right: map-get($map: $spacers, $key: 2);
     margin-bottom: 0;
 
     @include media-breakpoint-down(sm) {
@@ -49,7 +75,8 @@ main.resume {
   }
 
   @media print {
-    section {
+    section,
+    li.resume-item {
       page-break-inside: avoid;
     }
 
