@@ -8,7 +8,8 @@ main_class: resume
 {% assign resume = site.data.resume %}
 
 <h1 class="mt-4">Resumé</h1>
-<section>
+
+<section id="general">
   <div class="card bg-light bg-gradient">
     <div class="card-body">
       <div class="d-flex w-100 justify-content-center pb-3">
@@ -34,133 +35,178 @@ main_class: resume
   </div>
 </section>
 
-<section class="d-print-none">
-  <div class="card bg-light">
-    <div class="card-body d-flex flex-column flex-sm-row align-items-center">
-      <p class="h5 card-title my-1 me-2" aria-hidden="true">
-        <i class="bi bi-cloud-download"></i>
-      </p>
-      <p class="h5 card-title my-1 me-4 mb-0 flex-grow-1 ws-100">
-        Download Options
-      </p>
-      <a href="{{resume.download_urls.pages}}" class="btn-download">
-        <i class="bi bi-file-earmark-richtext"></i> Pages
-      </a>
-      <a href="{{resume.download_urls.word}}" class="btn-download">
-        <i class="bi bi-file-earmark-word"></i> Word
-      </a>
-      <a href="{{resume.download_urls.pdf}}" class="btn-download">
-        <i class="bi bi-file-earmark-pdf"></i> PDF
-      </a>
-    </div>
-  </div>
-</section>
-
-{% if resume.objective %}
-<section>
-  <div class="resume-group">
-    <div class="resume-group-header">
-      <h2>Objective</h2>
-    </div>
-    <div class="card-body">
-      <p class="mb-0">{{resume.objective}}</p>
-    </div>
-  </div>
-</section>
-{% endif %}
-
-<section>
-  <div class="resume-group">
-    <div class="resume-group-header">
-      <h2>Education</h2>
-    </div>
-    <ul class="resume-group-list">
-      {% for degree in resume.education %}
-      <li class="resume-item">
-        <div class="row">
-          <div class="col-sm-auto">
-            <img src="{{degree.logo}}" alt="{{degree.institution}} logo" />
-          </div>
-          <div class="col-sm">
-            <h3 class="h5 card-title">{{degree.degree}}</h3>
-            <p class="h6 card-subtitle mb-2">
-              {{degree.institution}}
-              <small class="text-muted ws-nowrap">{{degree.location}}</small>
-            </p>
-            <p class="card-text">
-              <small class="text-muted"
-                >{{degree.term.start}}&mdash;{{degree.term.end}}</small
-              >
-              {% if degree.term.in_progress %}
-              <small class="ws-nowrap">(In Progress)</small>
-              {% endif %}
-            </p>
-            {% if degree.gpa %}
-            <p class="card-text">GPA: {{degree.gpa}}</p>
-            {% endif %}
-          </div>
+<div class="row">
+  <div class="col-lg-3 d-print-none">
+    <section class="sticky-sidenav">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="h5 mb-0 card-title">Contents</h2>
         </div>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
+        <div class="list-group list-group-flush">
+          <a class="list-group-item list-group-item-action" href="#general"
+            >General</a
+          >
+          <a class="list-group-item list-group-item-action" href="#download"
+            >Download</a
+          >
 
-<section>
-  <div class="resume-group">
-    <div class="resume-group-header">
-      <h2>Experience</h2>
-    </div>
-    <ul class="resume-group-list">
-      {% for job in resume.jobs %}
-      <li class="resume-item">
-        <div class="row">
-          <div class="col-sm-auto">
-            <img src="{{job.logo}}" alt="{{job.employer}} logo" />
-          </div>
-          <div class="col-sm">
-            <h3 class="h5 card-title">{{job.job_title}}</h3>
-            <p class="h6 card-subtitle mb-2">
-              {{job.employer}}
-              <small class="text-muted ws-nowrap">{{job.location}}</small>
-            </p>
-            <p class="card-text">
-              <small class="text-muted"
-                >{{job.term.start}}&mdash;{{job.term.end}}</small
-              >{% unless job.term.end %}<small class="ws-nowrap">Present</small>
-              {% endunless %}
-            </p>
-            <ul class="accomplishments">
-              {% for item in job.accomplishments %}
-              <li>{{item}}</li>
-              {% endfor %}
-            </ul>
-          </div>
+          {% if resume.objective %}
+          <a class="list-group-item list-group-item-action" href="#objective"
+            >Objective</a
+          >
+          {% endif %}
+
+          <a class="list-group-item list-group-item-action" href="#education"
+            >Education</a
+          >
+          <a class="list-group-item list-group-item-action" href="#experience"
+            >Experience</a
+          >
+          <a class="list-group-item list-group-item-action" href="#skills"
+            >Skills</a
+          >
+          <a class="list-group-item list-group-item-action" href="#portfolio"
+            >Portfolio</a
+          >
         </div>
-      </li>
-      {% endfor %}
-    </ul>
+      </div>
+    </section>
   </div>
-</section>
 
-<section>
-  <div class="resume-group">
-    <div class="resume-group-header">
-      <h2>Skills</h2>
-    </div>
-    <ul class="resume-group-list">
-      {% for cluster in resume.skills.clusters %}
-      <li class="resume-item">
-        {% assign items = cluster.items | sort: "level" %}
-        <h3 class="h5 card-title">{{cluster.title}}</h3>
-        <dl class="row skill-list">
-          {% for item in items %}
-          <dt class="col-sm-4 col-md-3">{{item.skill}}</dt>
-          <dd class="col-sm-8 col-md-9">
-            <div class="skill-meter">
-              {% comment %}
-              <!-- prettier-ignore -->
-              {% endcomment %}
+  <div class="col-lg-9 resume-content">
+    <section class="d-print-none" id="download">
+      <div class="card bg-light">
+        <div
+          class="card-body d-flex flex-column flex-sm-row align-items-center"
+        >
+          <p class="h5 card-title my-1 me-2" aria-hidden="true">
+            <i class="bi bi-cloud-download"></i>
+          </p>
+          <p class="h5 card-title my-1 me-4 mb-0 flex-grow-1 ws-100">
+            Download Options
+          </p>
+          <a href="{{resume.download_urls.pages}}" class="btn-download">
+            <i class="bi bi-file-earmark-richtext"></i> Pages
+          </a>
+          <a href="{{resume.download_urls.word}}" class="btn-download">
+            <i class="bi bi-file-earmark-word"></i> Word
+          </a>
+          <a href="{{resume.download_urls.pdf}}" class="btn-download">
+            <i class="bi bi-file-earmark-pdf"></i> PDF
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {% if resume.objective %}
+    <section id="objective">
+      <div class="resume-group">
+        <div class="resume-group-header">
+          <h2>Objective</h2>
+        </div>
+        <div class="card-body">
+          <p class="mb-0">{{resume.objective}}</p>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <section id="education">
+      <div class="resume-group">
+        <div class="resume-group-header">
+          <h2>Education</h2>
+        </div>
+        <ul class="resume-group-list">
+          {% for degree in resume.education %}
+          <li class="resume-item">
+            <div class="row">
+              <div class="col-sm-auto">
+                <img src="{{degree.logo}}" alt="{{degree.institution}} logo" />
+              </div>
+              <div class="col-sm">
+                <h3 class="h5 card-title">{{degree.degree}}</h3>
+                <p class="h6 card-subtitle mb-2">
+                  {{degree.institution}}
+                  <small class="text-muted ws-nowrap"
+                    >{{degree.location}}</small
+                  >
+                </p>
+                <p class="card-text">
+                  <small class="text-muted"
+                    >{{degree.term.start}}&mdash;{{degree.term.end}}</small
+                  >
+                  {% if degree.term.in_progress %}
+                  <small class="ws-nowrap">(In Progress)</small>
+                  {% endif %}
+                </p>
+                {% if degree.gpa %}
+                <p class="card-text">GPA: {{degree.gpa}}</p>
+                {% endif %}
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="resume-group">
+        <div class="resume-group-header">
+          <h2>Experience</h2>
+        </div>
+        <ul class="resume-group-list">
+          {% for job in resume.jobs %}
+          <li class="resume-item">
+            <div class="row">
+              <div class="col-sm-auto">
+                <img src="{{job.logo}}" alt="{{job.employer}} logo" />
+              </div>
+              <div class="col-sm">
+                <h3 class="h5 card-title">{{job.job_title}}</h3>
+                <p class="h6 card-subtitle mb-2">
+                  {{job.employer}}
+                  <small class="text-muted ws-nowrap">{{job.location}}</small>
+                </p>
+                <p class="card-text">
+                  <small class="text-muted"
+                    >{{job.term.start}}&mdash;{{job.term.end}}</small
+                  >{% unless job.term.end %}<small class="ws-nowrap"
+                    >Present</small
+                  >
+                  {% endunless %}
+                </p>
+                <ul class="accomplishments">
+                  {% for item in job.accomplishments %}
+                  <li>{{item}}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="resume-group">
+        <div class="resume-group-header">
+          <h2>Skills</h2>
+        </div>
+        <ul class="resume-group-list">
+          {% for cluster in resume.skills.clusters %}
+          <li class="resume-item">
+            {% assign items = cluster.items | sort: "level" %}
+            <h3 class="h5 card-title">{{cluster.title}}</h3>
+            <dl class="row skill-list">
+              {% for item in items %}
+              <dt class="col-sm-4 col-md-3">{{item.skill}}</dt>
+              <dd class="col-sm-8 col-md-9">
+                <div class="skill-meter">
+                  {% comment %}
+                  <!-- prettier-ignore -->
+                  {% endcomment %}
 
               {%
                 assign level = resume.skills.levels
@@ -169,43 +215,45 @@ main_class: resume
               %}
 
               {% comment %}
-              <!-- prettier-ignore -->
-              {% endcomment %}
-              <div
-                class="skill-bar {{level.class}}"
-                role="progressbar"
-                aria-valuenow="{{item.level}}"
-                aria-valuemin="0"
-                aria-valuemax="5"
-              >
-                {{level.description}}
-              </div>
-            </div>
-          </dd>
+                  <!-- prettier-ignore -->
+                  {% endcomment %}
+                  <div
+                    class="skill-bar {{level.class}}"
+                    role="progressbar"
+                    aria-valuenow="{{item.level}}"
+                    aria-valuemin="0"
+                    aria-valuemax="5"
+                  >
+                    {{level.description}}
+                  </div>
+                </div>
+              </dd>
+              {% endfor %}
+            </dl>
+          </li>
           {% endfor %}
-        </dl>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
+        </ul>
+      </div>
+    </section>
 
-<section>
-  <div class="resume-group">
-    <div class="resume-group-header">
-      <h2>Portfolio</h2>
-    </div>
-    <div class="card-body">
-      <p>
-        Please check out my
-        <a href="{{site.url}}/projects">projects page</a>
-        and
-        <a href="https://github.com/BenJetson">GitHub profile</a>.
-      </p>
-      <p class="mb-0">
-        If you would like a list of projects most relevant to you,
-        <a href="{{site.url}}/contact">reach out to me</a> for details.
-      </p>
-    </div>
+    <section id="portfolio">
+      <div class="resume-group">
+        <div class="resume-group-header">
+          <h2>Portfolio</h2>
+        </div>
+        <div class="card-body">
+          <p>
+            Please check out my
+            <a href="{{site.url}}/projects">projects page</a>
+            and
+            <a href="https://github.com/BenJetson">GitHub profile</a>.
+          </p>
+          <p class="mb-0">
+            If you would like a list of projects most relevant to you,
+            <a href="{{site.url}}/contact">reach out to me</a> for details.
+          </p>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
+</div>

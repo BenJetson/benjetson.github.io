@@ -5,9 +5,16 @@
 //
 
 main.resume {
-  max-width: 750px;
-  margin: 0 auto;
   margin-bottom: map-get($map: $spacers, $key: 4);
+
+  .sticky-sidenav {
+    @include media-breakpoint-up(lg) {
+      position: sticky;
+      top: map-get($map: $spacers, $key: 4);
+
+      z-index: $zindex-sticky;
+    }
+  }
 
   section {
     margin-top: map-get($map: $spacers, $key: 4);
