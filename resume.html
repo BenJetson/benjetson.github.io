@@ -138,12 +138,19 @@ main_class: resume
 </section>
 
 <section>
-  <h2>Skills</h2>
-  <ul>
-    {% for group in resume.skills %}
-    <li><strong>{{group.cluster}}</strong>: {{group.items | join: ", "}}</li>
-    {% endfor %}
-  </ul>
+  <div class="resume-group">
+    <div class="resume-group-header">
+      <h2>Skills</h2>
+    </div>
+    <ul class="resume-group-list">
+      {% for group in resume.skills %}
+      <li class="resume-item">
+        <h3 class="h5 card-title">{{group.cluster}}</h3>
+        <p class="card-text">{{group.items | array_to_sentence_string}}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
 </section>
 
 <section>
