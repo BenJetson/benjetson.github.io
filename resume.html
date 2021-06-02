@@ -41,41 +41,43 @@ main_class: resume
 <div class="row">
   <div class="col-lg-3 d-print-none">
     <section class="sticky-sidenav">
-      <div class="card">
-        <div class="card-header">
-          <h2 class="h5 mb-0 card-title">Contents</h2>
-        </div>
-        <div class="list-group list-group-flush">
-          <a class="list-group-item list-group-item-action" href="#general"
-            ><i class="bi bi-person-circle"></i> General</a
-          >
-          <a class="list-group-item list-group-item-action" href="#download"
-            ><i class="bi bi-cloud-download"></i> Download</a
-          >
+      <nav aria-label="resumé sections">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="h5 mb-0 card-title">Contents</h2>
+          </div>
+          <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action" href="#general"
+              ><i class="bi bi-person-circle"></i> General</a
+            >
+            <a class="list-group-item list-group-item-action" href="#download"
+              ><i class="bi bi-cloud-download"></i> Download</a
+            >
 
-          {% if resume.objective %}
-          <a class="list-group-item list-group-item-action" href="#objective"
-            ><i class="bi bi-patch-exclamation"></i> Objective</a
-          >
-          {% endif %}
+            {% if resume.objective %}
+            <a class="list-group-item list-group-item-action" href="#objective"
+              ><i class="bi bi-patch-exclamation"></i> Objective</a
+            >
+            {% endif %}
 
-          <a class="list-group-item list-group-item-action" href="#education"
-            ><i class="bi bi-award"></i> Education</a
-          >
-          <a class="list-group-item list-group-item-action" href="#experience"
-            ><i class="bi bi-briefcase"></i> Experience</a
-          >
-          <a class="list-group-item list-group-item-action" href="#skills"
-            ><i class="bi bi-sliders"></i> Skills</a
-          >
-          <a class="list-group-item list-group-item-action" href="#awards"
-            ><i class="bi bi-trophy"></i> Awards</a
-          >
-          <a class="list-group-item list-group-item-action" href="#portfolio"
-            ><i class="bi bi-journal-code"></i> Portfolio</a
-          >
+            <a class="list-group-item list-group-item-action" href="#education"
+              ><i class="bi bi-award"></i> Education</a
+            >
+            <a class="list-group-item list-group-item-action" href="#experience"
+              ><i class="bi bi-briefcase"></i> Experience</a
+            >
+            <a class="list-group-item list-group-item-action" href="#skills"
+              ><i class="bi bi-sliders"></i> Skills</a
+            >
+            <a class="list-group-item list-group-item-action" href="#awards"
+              ><i class="bi bi-trophy"></i> Awards</a
+            >
+            <a class="list-group-item list-group-item-action" href="#portfolio"
+              ><i class="bi bi-journal-code"></i> Portfolio</a
+            >
+          </div>
         </div>
-      </div>
+      </nav>
     </section>
   </div>
 
