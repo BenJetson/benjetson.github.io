@@ -207,20 +207,20 @@ main_class: resume
             <h3 class="h5 card-title">{{cluster.title}}</h3>
             <dl class="row skill-list">
               {% for item in items %}
-              <dt class="col-sm-4 col-md-3">{{item.skill}}</dt>
-              <dd class="col-sm-8 col-md-9">
+              <dt class="col-sm-4 col-md-2">{{item.skill}}</dt>
+              <dd class="col-sm-8 col-md-4">
                 <div class="skill-meter">
                   {% comment %}
                   <!-- prettier-ignore -->
                   {% endcomment %}
 
-              {%
-                assign level = resume.skills.levels
-                  | where: "value",item.level
-                  | first
-              %}
+                  {%
+                    assign level = resume.skills.levels
+                      | where: "value",item.level
+                      | first
+                  %}
 
-              {% comment %}
+                  {% comment %}
                   <!-- prettier-ignore -->
                   {% endcomment %}
                   <div
