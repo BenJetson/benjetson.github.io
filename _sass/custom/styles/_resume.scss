@@ -79,6 +79,7 @@ main.resume {
     @extend .btn-secondary;
 
     text-align: center;
+
     margin-right: map-get($map: $spacers, $key: 2);
     margin-bottom: 0;
 
@@ -88,6 +89,8 @@ main.resume {
 
     @include media-breakpoint-down(sm) {
       width: 100%;
+
+      margin-right: 0;
       margin-top: map-get($map: $spacers, $key: 2);
     }
   }
