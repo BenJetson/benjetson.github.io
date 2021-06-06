@@ -29,9 +29,19 @@ jobs:
     term:
       start: January 2019
       end: null
-    accomplishments:
-      - Still need to write these down. # TODO add some
     logo: https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg
+    accomplishments:
+      - Implement new features for and maintain the Clemson University Alexa
+        Skill
+      - Build RESTful backend APIs and React web frontends for my.Clemson 2.0
+      - Develop a suite of tools as part of the COVID-19 team to help the
+        university respond to the pandemic
+      - Collaborate across teams within CCIT to design cohesive sofware
+        integrations
+      - Communicate with project managers to meet stakeholder requirements
+      - Redesign software with input from Quality Assurance and Accessibility
+        teams
+      - Assist and guide other interns when they get stuck
 
   - employer: SC Governor's School for the Arts
     location: Greenville, SC
@@ -39,13 +49,13 @@ jobs:
     term:
       start: June 2018
       end: August 2018
+    logo: https://live.staticflickr.com/65535/51211352931_a44432ab0a_m.jpg
     accomplishments:
       - Troubleshooting technology issues with end users
       - Deployment and imaging of new Windows workstations
       - Designing shell scripts to expedite setup of macOS workstations
       - Reimaging and reporting condition of a fleet of student iPads
       - Conceptualize and implement spreadsheet macros using Google App Scripts
-    logo: https://live.staticflickr.com/65535/51211352931_a44432ab0a_m.jpg
 
   - employer: SC Governor's School for the Arts
     location: Greenville, SC
@@ -53,13 +63,13 @@ jobs:
     term:
       start: June 2017
       end: August 2017
+    logo: https://live.staticflickr.com/65535/51211352931_a44432ab0a_m.jpg
     accomplishments:
       - Collaborate with other departments to inventory technology resources
       - Appraise and wipe a fleet of older iPads to prepare them for surplus
       - Manage and prepare a fleet of new iPads using ZuluDesk MDM
       - Develop a web portal to help users install the school's root certificate
       - Configure and secure Cisco network switches and reorganize patch panels
-    logo: https://live.staticflickr.com/65535/51211352931_a44432ab0a_m.jpg
 
 skills:
   levels:
@@ -121,6 +131,20 @@ skills:
           level: 4
 
 awards:
+  - title: President's List
+    project: 4.0 GPA
+    from: Clemson University
+    # using the line breaks here since none of the other awards have multiple
+    # dates. If others need this, probably should write an abstraction.
+    # prettier-ignore
+    date: >
+      <br /> Fall 2018
+      <br /> Spring 2019
+      <br /> Fall 2019
+      <br /> Spring 2020
+      <br /> Fall 2020
+    image_url: https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg
+    more_url: https://meritpages.com/bengodfrey
   - title: Best Project Using Domain.com
     project: CUparkit
     from: CUhackit
