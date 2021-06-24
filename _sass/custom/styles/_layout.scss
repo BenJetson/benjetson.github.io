@@ -14,7 +14,7 @@ body {
   flex-direction: column;
 }
 
-.content-area {
+main {
   // Make the content area expand and fill vertical space if there is not enough
   // content to fill the page.
   flex-grow: 1;
