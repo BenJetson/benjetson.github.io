@@ -5,11 +5,11 @@ location: Greenville, SC
 show_photo: false
 
 download_urls:
-  pages: null
-  word: null
-  pdf: null
+  pages: https://link.bengodfrey.net/resume-apple-pages
+  word: https://link.bengodfrey.net/resume-ms-word
+  pdf: https://link.bengodfrey.net/resume-pdf
 
-objective: Just testing this block. Will remove later. # FIXME remove this
+objective: null
 
 education:
   - institution: Clemson University
