@@ -5,8 +5,8 @@ description: >-
   A web application that allows companies to reward their drivers for good
   driving behavior with points, redeemable for products from Etsy.
 
-  Term project for CPSC 491, created in collaboration with a team of 3 others.
 
+  Term project for CPSC 491, created in collaboration with a team of 3 others.
   Written in ReactJS and Go, backed by a PostgreSQL database.
 
 username: BenJetson

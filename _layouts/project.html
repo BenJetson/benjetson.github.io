@@ -13,7 +13,7 @@ layout: boilerplate
         />
         <div class="card-body">
           <h1>{{page.title}}</h1>
-          <p class="card-description">{{page.description}}</p>
+          <div class="card-text">{{page.description | markdownify}}</div>
           <p class="card-text">
             <small class="text-muted">{{ page.date | date: '%B %Y' }}</small>
           </p>
