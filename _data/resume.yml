@@ -119,16 +119,14 @@ skills:
           level: 4
         - skill: Alexa Skills Kit
           level: 3
-    - title: Technologies
+    - title: Other Skills
       items:
+        - skill: Agile
+          level: 2
         - skill: Linux
           level: 2
         - skill: Git
           level: 2
-        - skill: GitHub
-          level: 4
-        - skill: AWS Lambda
-          level: 4
 
 awards:
   - title: President's List
