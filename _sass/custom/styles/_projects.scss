@@ -4,21 +4,28 @@
 // Styles for the projects page and individual project pages.
 //
 
+.project-header {
+  position: sticky;
+  top: map-get($map: $spacers, $key: 3);
+
+  z-index: $zindex-sticky;
+}
+
 .project-header img {
-  max-height: 66vh;
-  object-fit: cover;
+  // This is for the individual project pages.
   height: 100%;
+  width: 100%;
+
+  object-fit: cover;
+  max-height: min(280px, 66vh);
 }
 
 img.project-img {
+  // This is for the project cards on the all projects page.
   height: 100%;
   object-fit: cover;
-}
 
-@include media-breakpoint-down(sm) {
-  @media (orientation: portrait) {
-    img.project-img {
-      max-height: 30vh;
-    }
+  @include media-breakpoint-down(sm) {
+    max-height: 30vh;
   }
 }

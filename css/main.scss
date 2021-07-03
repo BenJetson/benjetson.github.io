@@ -1,6 +1,9 @@
 ---
+# // This front matter block is necessary for Liquid to process this file.
 ---
 
+// This value exists also in the site manifest and metadata, so it makes sense
+// to handle this at the Jekyll site config level rather than in SASS itself.
 $brand-color: {{site.brand_color}};
 
 // Include Bootstrap variable overrides.
