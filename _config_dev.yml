@@ -29,6 +29,7 @@ plugins:
   - jekyll-default-layout
   - jekyll-gist
   - jekyll-github-metadata
+  - jekyll-mentions
   - jekyll-optional-front-matter
   - jekyll-paginate
   - jekyll-readme-index
