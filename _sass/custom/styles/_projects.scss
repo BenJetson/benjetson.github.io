@@ -4,6 +4,13 @@
 // Styles for the projects page and individual project pages.
 //
 
+.project-header {
+  position: sticky;
+  top: map-get($map: $spacers, $key: 3);
+
+  z-index: $zindex-sticky;
+}
+
 .project-header img {
   // This is for the individual project pages.
   height: 100%;
