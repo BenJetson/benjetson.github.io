@@ -3,8 +3,16 @@
 require 'github-pages-health-check'
 require 'yaml'
 
+# Check for proper number of arguments.
+unless ARGV.length() == 1 then
+    Kernel.abort( "\n" +
+        "<!> ERROR: expected exactly one argument.\n\n" +
+        "    Usage:\t health_check.rb [path to _config.yml]\n\n"
+    )
+end
+
 # Load the site global configuration.
-config = YAML.load_file("../_config.yml")
+config = YAML.load_file(ARGV[0])
 
 # Create a system for reporting problems.
 $found_problems = false
