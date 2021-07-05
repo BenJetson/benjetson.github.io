@@ -53,7 +53,9 @@ end
 
 # End of all tests; report the final result.
 if $found_problems then
-    puts "\n<!> FAIL: problem(s) were detected with the site (see above).\n\n"
+    Kernel.abort(
+        "\n<!> FAIL: problem(s) were detected with the site (see above).\n\n"
+    )
 else
     puts "<i> PASS: no problems were found.\n\n"
 end
