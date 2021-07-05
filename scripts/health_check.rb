@@ -32,7 +32,7 @@ unless check.domain.served_by_pages? then
 end
 
 unless check.domain.https_eligible? then
-    raise_problem("Site is not HTTPS eligible.")¬
+    raise_problem("Site is not HTTPS eligible.")
 end
 
 unless check.domain.https? then
