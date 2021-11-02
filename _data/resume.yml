@@ -14,21 +14,38 @@ objective: Just testing this block. Will remove later. # FIXME remove this
 education:
   - institution: Clemson University
     location: Clemson, SC
+    degree: Computer Science, M.S.
+    gpa: null
+    term:
+      start: January 2022
+      end: null
+      in_progress: true
+    logo: https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg
+  - institution: Clemson University
+    location: Clemson, SC
     degree: Computer Science, B.S.
     gpa: "3.96"
     term:
       start: August 2018
       end: December 2021
-      in_progress: true
+      in_progress: false
     logo: https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg
 
 jobs:
   - employer: Clemson University
     location: Clemson, SC
+    job_title: Mobile Application Developer
+    term:
+      start: December 2021
+      end: null
+    logo: https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg
+    accomplishments: null
+  - employer: Clemson University
+    location: Clemson, SC
     job_title: Mobile Team Intern
     term:
       start: January 2019
-      end: null
+      end: December 2021
     logo: https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg
     accomplishments:
       - Implement new features for and maintain the Clemson University Alexa
