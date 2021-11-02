@@ -31,6 +31,8 @@ jobs:
       end: null
     logo: https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg
     accomplishments:
+      - Maintained legacy my.Clemson 1.0 with a team of other interns and developers,
+        an app used by more than 120k unique users per month!
       - Implement new features for and maintain the Clemson University Alexa
         Skill
       - Build RESTful backend APIs and React web frontends for my.Clemson 2.0
