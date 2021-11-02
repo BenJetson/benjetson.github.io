@@ -5,11 +5,11 @@ location: Greenville, SC
 show_photo: false
 
 download_urls:
-  pages: null
-  word: null
-  pdf: null
+  pages: https://link.bengodfrey.net/resume-apple-pages
+  word: https://link.bengodfrey.net/resume-ms-word
+  pdf: https://link.bengodfrey.net/resume-pdf
 
-objective: Just testing this block. Will remove later. # FIXME remove this
+objective: null
 
 education:
   - institution: Clemson University
@@ -48,6 +48,8 @@ jobs:
       end: December 2021
     logo: https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg
     accomplishments:
+      - Maintained legacy my.Clemson 1.0 with a team of other interns and developers,
+        an app used by more than 120k unique users per month!
       - Implement new features for and maintain the Clemson University Alexa
         Skill
       - Build RESTful backend APIs and React web frontends for my.Clemson 2.0
@@ -136,16 +138,14 @@ skills:
           level: 4
         - skill: Alexa Skills Kit
           level: 3
-    - title: Technologies
+    - title: Other Skills
       items:
+        - skill: Agile
+          level: 2
         - skill: Linux
           level: 2
         - skill: Git
           level: 2
-        - skill: GitHub
-          level: 4
-        - skill: AWS Lambda
-          level: 4
 
 awards:
   - title: President's List

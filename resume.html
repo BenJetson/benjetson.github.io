@@ -170,7 +170,20 @@ main_class: resume
           <h2><i class="bi bi-briefcase" aria-hidden="true"></i> Experience</h2>
         </div>
         <ul class="resume-group-list">
+          {% comment %}
+          <!-- prettier-ignore -->
+          {% endcomment %}
+
           {% for job in resume.jobs %}
+
+          {% if job.hide %}
+            {% continue %}
+          {% endif %}
+
+          {% comment %}
+          <!-- prettier-ignore -->
+          {% endcomment %}
+
           <li class="resume-item">
             <div class="row">
               <div class="col-sm-auto">
