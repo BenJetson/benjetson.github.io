@@ -1,0 +1,16 @@
+message: >
+  This is my message.
+
+links:
+  - title: Twitter
+    icon: twitter
+    url: https://twitter.com/BenJetson # TODO use site.yml
+  - title: Instagram
+    icon: instagram
+    url: https://instagram.com/bfgodfr # TODO use site.yml
+  - title: GitHub
+    icon: github
+    url: https://github.com/BenJetson # TODO use site.yml
+  - title: LinkedIn
+    icon: linkedin
+    url: https://linkedin.com # TODO use site.yml
