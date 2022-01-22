@@ -1,0 +1,60 @@
+---
+layout: boilerplate
+title: Links
+---
+
+{% include introduction.html %}
+
+<section class="stack">
+  {%- assign stack = site.data.stack -%}
+
+  <div class="message">{{stack.message | strip_newlines | markdownify}}</div>
+
+  {% comment %}
+  <!-- prettier-ignore -->
+  {% endcomment %}
+
+  {% for item in stack.links %}
+
+    {% assign url = "#" %}
+    {% if item.url %}
+      {% assign url = item.url %}
+    {% elsif item.social_key %}
+      {% assign url = site.social_urls[item.social_key] %}
+    {% endif %}
+
+
+  {% comment %}
+  <!-- prettier-ignore -->
+  {% endcomment %}
+
+  <div class="stack-item">
+    <a href="{{url}}" class="stretched-link">
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+
+      {% if item.icon %}
+
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+
+      <i class="bi bi-{{item.icon}}"></i>
+
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+
+      {% endif %}
+
+      {{item.title}}
+
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+    </a>
+  </div>
+
+  {% endfor %}
+</section>

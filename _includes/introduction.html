@@ -1,0 +1,27 @@
+{% comment %}
+<!-- prettier-ignore -->
+{% endcomment %}
+
+{% assign intro_class = "" %}
+
+{% if include.size %}
+  {% assign intro_class = "intro-" | append: include.size %}
+{% endif %}
+
+{% comment %}
+<!-- prettier-ignore -->
+{% endcomment %}
+
+<section class="introduction {{intro_class}}">
+  <div class="container">
+    <div class="d-flex w-100 justify-content-center pb-3">
+      <img
+        class="img-responsive rounded-circle justify-content-center"
+        src="{{ site.github.owner_gravatar_url }}"
+      />
+    </div>
+    <div class="d-flex w-100 justify-content-center">
+      <h1 class="center">Hi! I'm Ben.</h1>
+    </div>
+  </div>
+</section>
