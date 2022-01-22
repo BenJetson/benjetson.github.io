@@ -29,6 +29,12 @@ image: clean
 shell:
 	docker-compose run --rm server bash
 
+.PHONY: health-check
+health-check:
+	docker-compose run --rm server bundle exec \
+		/mnt/app/scripts/health_check.rb \
+		/mnt/app/_config.yml
+
 .PHONY: upgrade
 upgrade:
 	docker-compose run --user root --rm server bundle update

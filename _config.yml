@@ -11,11 +11,18 @@ email: BenJetson@users.noreply.github.com
 description: The internet home for all of my personal projects and thoughts.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.bengodfrey.net" #interwebz
-twitter_username: BenJetson
-github_username: BenJetson
 repository: BenJetson/benjetson.github.io
 profileIMG: https://avatars1.githubusercontent.com/u/10427974?s=460&v=4
 brand_color: "#01579b"
+
+# Social Links
+# If these are updates, you might want to check _data/stack.yml for entries that
+# need updating.
+social_urls:
+  twitter: https://twitter.com/BenJetson
+  instagram: https://instagram.com/bfgodfr
+  github: https://github.com/BenJetson
+  linkedin: https://linkedin.com/in/bfgodfrey
 
 # Build settings
 tier: prod
