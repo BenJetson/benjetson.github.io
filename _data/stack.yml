@@ -1,16 +1,25 @@
 message: >
-  This is my message.
+  Here's a convenient stack of my personal internet links.
 
 links:
+  - title: My Website
+    icon: globe2
+    url: /
   - title: Twitter
     icon: twitter
-    url: https://twitter.com/BenJetson # TODO use site.yml
+    social_key: twitter
   - title: Instagram
     icon: instagram
-    url: https://instagram.com/bfgodfr # TODO use site.yml
+    social_key: instagram
   - title: GitHub
     icon: github
-    url: https://github.com/BenJetson # TODO use site.yml
+    social_key: github
   - title: LinkedIn
     icon: linkedin
-    url: https://linkedin.com # TODO use site.yml
+    social_key: linkedin
+  - title: My Resume
+    icon: file-earmark-person
+    url: /resume
+  - title: Contact Me
+    icon: envelope
+    url: /contact
