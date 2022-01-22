@@ -26,6 +26,7 @@ main.resume {
     // used in the sidebar navigation, there is a small amount of buffer between
     // the top of the viewport and the target item.
     padding-top: map-get($map: $spacers, $key: 4);
+    page-break-inside: avoid;
   }
 
   .resume-group {
@@ -48,6 +49,8 @@ main.resume {
 
       li.resume-item {
         @extend .list-group-item;
+
+        page-break-inside: avoid;
 
         padding-top: map-get($map: $spacers, $key: 3);
         padding-bottom: map-get($map: $spacers, $key: 3);
