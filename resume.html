@@ -2,14 +2,316 @@
 layout: default
 title: Resumé
 permalink: /resume/
+main_class: resume
 ---
 
-{% include wip.html %}
+{% assign resume = site.data.resume %}
 
-<section class="my-4">
-  <h1>Resumé/CV</h1>
-  <p>
-    Coming soon: resumé and CV are not available yet on this webpage. Interested
-    parties should contact me directly.
-  </p>
+<h1 class="mt-4">Resumé</h1>
+
+<section id="general">
+  <div class="card bg-light bg-gradient">
+    <div class="card-body">
+      {% if resume.show_photo %}
+      <div class="d-flex w-100 justify-content-center pb-3">
+        <img
+          class="img-responsive rounded-circle justify-content-center"
+          id="home-profile-img"
+          src="{{site.profileIMG}}"
+        />
+      </div>
+      {% endif %}
+
+      <div class="d-flex w-100 flex-column align-items-center">
+        <p class="h1">{{resume.name}}</p>
+        {% if resume.tagline %}
+        <p class="h3 text-muted">
+          <!-- <i class="bi bi-patch-check-fill"aria-hidden="true" ></i> -->
+          {{resume.tagline}}
+        </p>
+        {% endif %}
+        <p class="h4 text-muted">
+          <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+          {{resume.location}}
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
+
+<div class="row">
+  <div class="col-lg-3 d-print-none">
+    <section class="sticky-sidenav">
+      <nav aria-label="resumé sections">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="h5 mb-0 card-title">Contents</h2>
+          </div>
+          <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action" href="#general"
+              ><i class="bi bi-person-circle" aria-hidden="true"></i> General</a
+            >
+            <a class="list-group-item list-group-item-action" href="#download"
+              ><i class="bi bi-cloud-download" aria-hidden="true"></i>
+              Download</a
+            >
+
+            {% if resume.objective %}
+            <a class="list-group-item list-group-item-action" href="#objective"
+              ><i class="bi bi-patch-exclamation" aria-hidden="true"></i>
+              Objective</a
+            >
+            {% endif %}
+
+            <a class="list-group-item list-group-item-action" href="#education"
+              ><i class="bi bi-award" aria-hidden="true"></i> Education</a
+            >
+            <a class="list-group-item list-group-item-action" href="#experience"
+              ><i class="bi bi-briefcase" aria-hidden="true"></i> Experience</a
+            >
+            <a class="list-group-item list-group-item-action" href="#skills"
+              ><i class="bi bi-sliders" aria-hidden="true"></i> Skills</a
+            >
+            <a class="list-group-item list-group-item-action" href="#awards"
+              ><i class="bi bi-trophy" aria-hidden="true"></i> Awards</a
+            >
+            <a class="list-group-item list-group-item-action" href="#portfolio"
+              ><i class="bi bi-journal-code" aria-hidden="true"></i>
+              Portfolio</a
+            >
+          </div>
+        </div>
+      </nav>
+    </section>
+  </div>
+
+  <div class="col-lg-9 resume-content">
+    <section class="d-print-none" id="download">
+      <div class="card bg-light">
+        <div
+          class="card-body d-flex flex-column flex-sm-row align-items-center"
+        >
+          <p class="h5 card-title my-1 me-2 mb-0" aria-hidden="true">
+            <i class="bi bi-cloud-download" aria-hidden="true"></i>
+          </p>
+          <p class="h5 card-title my-1 me-4 mb-0 flex-grow-1 ws-100">
+            Download Options
+          </p>
+          <a href="{{resume.download_urls.pages}}" class="btn-download">
+            <i class="bi bi-file-earmark-richtext" aria-hidden="true"></i> Pages
+          </a>
+          <a href="{{resume.download_urls.word}}" class="btn-download">
+            <i class="bi bi-file-earmark-word" aria-hidden="true"></i> Word
+          </a>
+          <a href="{{resume.download_urls.pdf}}" class="btn-download">
+            <i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> PDF
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {% if resume.objective %}
+    <section id="objective">
+      <div class="resume-group">
+        <div class="resume-group-header">
+          <h2>
+            <i class="bi bi-patch-exclamation" aria-hidden="true"></i> Objective
+          </h2>
+        </div>
+        <div class="card-body">
+          <p class="mb-0">{{resume.objective}}</p>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <section id="education">
+      <div class="resume-group">
+        <div class="resume-group-header">
+          <h2><i class="bi bi-award" aria-hidden="true"></i> Education</h2>
+        </div>
+        <ul class="resume-group-list">
+          {% for degree in resume.education %}
+          <li class="resume-item">
+            <div class="row">
+              <div class="col-sm-auto">
+                <img src="{{degree.logo}}" alt="{{degree.institution}} logo" />
+              </div>
+              <div class="col-sm">
+                <h3 class="h5 card-title">{{degree.degree}}</h3>
+                <p class="h6 card-subtitle mb-2">
+                  {{degree.institution}}
+                  <small class="text-muted ws-nowrap"
+                    >{{degree.location}}</small
+                  >
+                </p>
+                <p class="card-text">
+                  <small class="text-muted"
+                    >{{degree.term.start}}&mdash;{{degree.term.end}}</small
+                  >
+                  {% if degree.term.in_progress %}
+                  <small class="ws-nowrap">(In Progress)</small>
+                  {% endif %}
+                </p>
+                {% if degree.gpa %}
+                <p class="card-text">GPA: {{degree.gpa}}</p>
+                {% endif %}
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="resume-group">
+        <div class="resume-group-header">
+          <h2><i class="bi bi-briefcase" aria-hidden="true"></i> Experience</h2>
+        </div>
+        <ul class="resume-group-list">
+          {% comment %}
+          <!-- prettier-ignore -->
+          {% endcomment %}
+
+          {% for job in resume.jobs %}
+
+          {% if job.hide %}
+            {% continue %}
+          {% endif %}
+
+          {% comment %}
+          <!-- prettier-ignore -->
+          {% endcomment %}
+
+          <li class="resume-item">
+            <div class="row">
+              <div class="col-sm-auto">
+                <img src="{{job.logo}}" alt="{{job.employer}} logo" />
+              </div>
+              <div class="col-sm">
+                <h3 class="h5 card-title">{{job.job_title}}</h3>
+                <p class="h6 card-subtitle mb-2">
+                  {{job.employer}}
+                  <small class="text-muted ws-nowrap">{{job.location}}</small>
+                </p>
+                <p class="card-text">
+                  <small class="text-muted"
+                    >{{job.term.start}}&mdash;{{job.term.end}}</small
+                  >{% unless job.term.end %}<small class="ws-nowrap"
+                    >Present</small
+                  >
+                  {% endunless %}
+                </p>
+                <ul class="accomplishments">
+                  {% for item in job.accomplishments %}
+                  <li>{{item}}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="resume-group">
+        <div class="resume-group-header">
+          <h2><i class="bi bi-sliders" aria-hidden="true"></i> Skills</h2>
+        </div>
+        <ul class="resume-group-list">
+          {% for cluster in resume.skills.clusters %}
+          <li class="resume-item">
+            {% assign items = cluster.items | sort: "level" %}
+            <h3 class="h5 card-title">{{cluster.title}}</h3>
+            <dl class="row skill-list">
+              {% for item in items %}
+              <dt class="col-sm-4 col-md-2">{{item.skill}}</dt>
+              <dd class="col-sm-8 col-md-4">
+                <div class="skill-meter">
+                  {% comment %}
+                  <!-- prettier-ignore -->
+                  {% endcomment %}
+
+                  {%
+                    assign level = resume.skills.levels
+                      | where: "value",item.level
+                      | first
+                  %}
+
+                  {% comment %}
+                  <!-- prettier-ignore -->
+                  {% endcomment %}
+                  <div class="skill-bar {{level.class}}">
+                    {{level.description}}
+                  </div>
+                </div>
+              </dd>
+              {% endfor %}
+            </dl>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section id="awards">
+      <div class="resume-group">
+        <div class="resume-group-header">
+          <h2><i class="bi bi-trophy" aria-hidden="true"></i> Awards</h2>
+        </div>
+        <ul class="resume-group-list">
+          {% for award in resume.awards %}
+          <li class="resume-item">
+            <div class="row">
+              <div class="col-sm-auto">
+                <img src="{{award.image_url}}" alt="{{award.project}}" />
+              </div>
+              <div class="col-sm">
+                <h3 class="h5 card-title">{{award.title}}</h3>
+                <p class="h6 card-subtitle mb-2">{{award.project}}</p>
+                <p class="card-text">
+                  {{award.from}},
+                  <small class="text-muted">{{award.date}}</small>
+                </p>
+                <p class="card-text">
+                  <a
+                    href="{{award.more_url}}"
+                    class="stretched-link"
+                    aria-label="learn more about the {{award.title}} award"
+                    >more information &raquo;</a
+                  >
+                </p>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="resume-group">
+        <div class="resume-group-header">
+          <h2>
+            <i class="bi bi-journal-code" aria-hidden="true"></i> Portfolio
+          </h2>
+        </div>
+        <div class="card-body">
+          <p>
+            Please check out my
+            <a href="{{site.url}}/projects">projects page</a>
+            and
+            <a href="https://github.com/BenJetson">GitHub profile</a>.
+          </p>
+          <p class="mb-0">
+            If you would like a list of projects most relevant to you,
+            <a href="{{site.url}}/contact">reach out to me</a> for details.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

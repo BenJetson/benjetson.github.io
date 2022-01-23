@@ -1,0 +1,159 @@
+//
+// _resume.scss
+//
+// Styles for the resumé page of the site.
+//
+
+main.resume {
+  margin-bottom: map-get($map: $spacers, $key: 4);
+
+  .sticky-sidenav {
+    @include media-breakpoint-up(lg) {
+      position: sticky;
+      top: 0;
+
+      z-index: $zindex-sticky;
+    }
+  }
+
+  h2 .bi,
+  section.sticky-sidenav a .bi {
+    margin-right: map-get($map: $spacers, $key: 2);
+  }
+
+  section {
+    // We use padding instead of margin here so that when the jump links are
+    // used in the sidebar navigation, there is a small amount of buffer between
+    // the top of the viewport and the target item.
+    padding-top: map-get($map: $spacers, $key: 4);
+    page-break-inside: avoid;
+  }
+
+  .resume-group {
+    @extend .card;
+
+    .resume-group-header {
+      @extend .card-header;
+
+      padding-top: map-get($map: $spacers, $key: 3);
+      padding-bottom: map-get($map: $spacers, $key: 3);
+
+      h2 {
+        margin-bottom: 0;
+      }
+    }
+
+    ul.resume-group-list {
+      @extend .list-group;
+      @extend .list-group-flush;
+
+      li.resume-item {
+        @extend .list-group-item;
+
+        page-break-inside: avoid;
+
+        padding-top: map-get($map: $spacers, $key: 3);
+        padding-bottom: map-get($map: $spacers, $key: 3);
+      }
+    }
+
+    img {
+      @extend .rounded;
+
+      $img-size: 75px;
+
+      height: $img-size;
+      width: $img-size;
+
+      @include media-breakpoint-down(sm) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    ul.accomplishments {
+      list-style-type: disc;
+      margin-bottom: 0;
+      padding-left: 1.5rem;
+    }
+  }
+
+  .btn-download {
+    @extend .btn;
+    @extend .btn-secondary;
+
+    text-align: center;
+
+    margin-right: map-get($map: $spacers, $key: 2);
+    margin-bottom: 0;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+
+      margin-right: 0;
+      margin-top: map-get($map: $spacers, $key: 2);
+    }
+  }
+
+  dl.skill-list {
+    margin-bottom: 0;
+
+    dt {
+      font-weight: 450;
+
+      @include media-breakpoint-up(sm) {
+        padding-right: 0;
+        text-align: right;
+      }
+    }
+  }
+
+  .skill-meter {
+    @extend .progress;
+    height: 1.5rem;
+
+    .skill-bar {
+      @extend .progress-bar;
+
+      text-align: left;
+      padding-left: 0.5rem;
+      color: #000;
+    }
+
+    $bar-level-color: lighten($primary, 37.5%);
+
+    .skill-bar-level-one {
+      background-color: $bar-level-color;
+      width: 95%; // Nobody is ever perfect at a skill; leave 5% for growth.
+    }
+
+    .skill-bar-level-two {
+      background-color: lighten($bar-level-color, 8%);
+      width: 75%;
+    }
+
+    .skill-bar-level-three {
+      background-color: lighten($bar-level-color, 16%);
+      width: 55%;
+    }
+
+    .skill-bar-level-four {
+      background-color: lighten($bar-level-color, 24%);
+      width: 38%;
+    }
+  }
+
+  @media print {
+    section,
+    li.resume-item {
+      page-break-inside: avoid;
+    }
+
+    #home-profile-img {
+      max-height: 1.75in;
+    }
+  }
+}
