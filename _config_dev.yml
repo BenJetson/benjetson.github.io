@@ -20,6 +20,9 @@ strict_front_matter: true
 # https://developers.google.com/recaptcha/docs/faq#id-like-to-run-automated-tests-with-recaptcha.-what-should-i-do
 recaptcha_site_id: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
 
+# Development contact form.
+contact_form_id: WzEwOSwxMjEsMTIxLDExMSwxMTksMTIyLDEwNiwxMTJd
+
 # Plugins used for the development server.
 # WARNING: any plugins enabled in _config.yml should also appear here!
 plugins:

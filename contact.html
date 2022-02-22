@@ -269,9 +269,22 @@ recaptcha: true
       return;
     }
 
-    // base64-encoded string of the URL for the form endpoint. Hoping this
-    // confuses whatever spambots read this code.
-    const target = "aHR0cHM6Ly9mb3Jtc3ByZWUuaW8veHpiamt5cnIK";
+    const target =
+      "https://formspree.io/f/" +
+      ((input) => {
+        // This function decodes the contact form ID.
+        // The goal of obfuscating this is to prevent idle spambots from finding
+        // the full URL of the form, unless they decide to run JavaScript.
+        // Time and my inbox will tell whether or not this works.
+
+        let decoded = atob(input);
+        let data = JSON.parse(decoded);
+
+        let result = "";
+        for (const charCode of data) result += String.fromCharCode(charCode);
+
+        return result;
+      })("{{site.contact_form_id}}");
 
     // Retrieve form data and convert to URLSearchParams. We must convert
     // because the FormData object will have a content type of multipart form
@@ -281,7 +294,7 @@ recaptcha: true
     for (const [key, value] of formData.entries()) data.append(key, value);
 
     try {
-      const response = await fetch(atob(target), {
+      const response = await fetch(target, {
         method: "POST",
         body: data,
         headers: {
@@ -290,14 +303,14 @@ recaptcha: true
         },
       });
 
-      // if (response.status > 200) {
-      //   const info = await response.json();
-      //   console.error(
-      //     `non-OK form submission status ${response.status}`,
-      //     info?.error
-      //   );
-      //   throw "form submission not accepted";
-      // }
+      if (response.status > 200) {
+        const info = await response.json();
+        console.error(
+          `non-OK form submission status ${response.status}`,
+          info?.error
+        );
+        throw "form submission not accepted";
+      }
     } catch (error) {
       document.getElementById("submit-error").classList.remove("d-none");
       setSubmitting(false);
