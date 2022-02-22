@@ -4,22 +4,6 @@
 // Styles for the contact page.
 //
 
-.form-result-wrapper {
-  user-select: none;
-}
-
-#form-result {
-  border: none;
-  height: 650px;
-  overflow: hidden;
-  width: 100%;
-  pointer-events: none;
-}
-
-#fail-validation {
-  display: block;
-}
-
 @media only screen and (max-width: 350px) {
   .g-recaptcha {
     transform: scale(0.9);

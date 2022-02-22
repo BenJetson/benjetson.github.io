@@ -139,29 +139,29 @@ recaptcha: true
 
   <input type="text" name="_gotcha" class="d-none" />
 
-  <div
-    class="alert alert-danger d-none invalid-feedback"
-    role="alert"
-    id="fail-validation"
-  >
-    <h4 class="alert-heading">Whoops, that's not right.</h4>
+  <div class="alert alert-warning d-none" role="alert" id="fail-validation">
+    <h2 class="alert-heading">
+      <i class="bi bi-exclamation-triangle-fill"></i>
+      Whoops, that's not right.
+    </h2>
     <p class="mb-0">
       Looks like there are some problems with the data you entered. Please
       correct the errors and try again.
     </p>
   </div>
   <div class="alert alert-danger d-none" role="alert" id="submit-error">
-    <h4 class="alert-heading">
-      Uh oh, there was a problem sending the message.
-    </h4>
+    <h2 class="alert-heading">
+      <i class="bi bi-x-octagon-fill"></i>
+      Uh oh, there's a problem.
+    </h2>
     <p>
-      Unfortunately, your message could not be sent due to an error. Don't
-      worry, this isn't your fault.
+      Unfortunately, your message could not be sent to the server due to an
+      error.
     </p>
-    <p class="mb-0">Try submitting the form again in a few minutes.</p>
-  </div>
-  <div class="d-none invalid-feedback" id="fail-validation">
-    Please correct the errors above and submit again.
+    <p class="mb-0">
+      Don't worry, this isn't your fault. Try submitting the form again in a few
+      minutes.
+    </p>
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
@@ -174,9 +174,16 @@ recaptcha: true
 </form>
 
 <section id="contact-thanks" class="d-none">
-  <div class="alert alert-success" role="alert" id="submit-error">
-    <h4 class="alert-heading">thank you</h4>
-    <p class="mb-0">good bye</p>
+  <div class="alert alert-success" role="alert">
+    <h2 class="alert-heading">
+      <i class="bi bi-check-circle-fill"></i>
+      Message Sent!
+    </h2>
+    <p>Your contact form submission has been sent.</p>
+    <p class="mb-0">
+      I will receive your message shortly in my inbox. If you requested a
+      response, I may reach out to you within a few days.
+    </p>
   </div>
 </section>
 
