@@ -27,6 +27,7 @@ social_urls:
 # Build settings
 tier: prod
 recaptcha_site_id: 6LfaaLQZAAAAAFqauKWQA3LRGVvHvnl-JJ99tEJI
+contact_form_id: WzEyMCwxMTEsMTEzLDExNCwxMDAsMTE4LDExOSwxMTJd
 timezone: America/New_York
 remoteURL: "https://www.bengodfrey.net"
 markdown: kramdown
