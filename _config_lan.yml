@@ -1,9 +1,0 @@
-################################################################################
-# _config_lan.yml                                                              #
-#                                                                              #
-# This config file will be used by the Makefile when the Jekyll server is to   #
-# be made available over the local network, in addition to _config_local.yml.  #
-################################################################################
-
-# Make the Jekyll server listen on all interfaces.
-host: 0.0.0.0
