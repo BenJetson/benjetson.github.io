@@ -81,14 +81,29 @@ const Digit = ({ target }) => {
       sx={{
         display: "inline-block",
         // border: (theme) => `2px solid ${theme.palette.grey[800]}`,
-        py: 2,
-        px: 1,
+        py: "5px",
+        px: "10px",
         mr: 1,
-        height: "3em",
-        width: "2em",
-        fontSize: 18,
+        height: "1.5em",
+        width: "calc(1ch + 20px + 4px)",
+        fontSize: 32,
         textAlign: "center",
         fontFamily: "Menlo, Monaco, Consolas, 'Courier New', monospace",
+        position: "relative",
+        border: "2px solid #000",
+
+        "&:after": {
+          content: "''",
+          position: "absolute",
+          bottom: "50%",
+          left: 0,
+
+          zIndex: 0,
+
+          opacity: 0.5,
+          borderBottom: "2px solid #000",
+          width: "100%",
+        },
       }}
       ref={containerRef}
     >
@@ -101,11 +116,10 @@ const Digit = ({ target }) => {
         {...transition}
       >
         <Box
-          sx={
-            {
-              // color: (theme) => theme.palette.blueGrey.contrastText
-            }
-          }
+          sx={{
+            // color: (theme) => theme.palette.blueGrey.contrastText
+            opacity: mutating ? 0.3 : 1,
+          }}
         >
           {current}
         </Box>
@@ -155,7 +169,13 @@ const Counter = ({ namespace = "bogusCount", key = "counter" }) => {
   }, []);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "row", mb: 2 }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        mb: 2,
+      }}
+    >
       {digits.map((digit, idx) => (
         <Digit target={digit} key={`${idx}-${digit}`} />
       ))}
