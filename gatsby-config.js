@@ -34,4 +34,5 @@ module.exports = {
       __key: "pages",
     },
   ],
+  jsxRuntime: "automatic",
 };
