@@ -1,17 +1,7 @@
-import * as React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "./Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
+import React from "react";
+import { AppBar, Container, Toolbar } from "@mui/material";
+import { graphql, useStaticQuery } from "gatsby";
+
 import NavbarDesktop from "./NavbarDesktop";
 import NavbarMobile from "./NavbarMobile";
 
@@ -39,10 +29,8 @@ const Navbar = () => {
     }
   `);
 
-  let appBarProps = { position: "static" };
-
   return (
-    <AppBar {...appBarProps} component="nav">
+    <AppBar position="static" component="nav">
       <Container>
         <Toolbar disableGutters>
           <NavbarDesktop title={title} pages={pages} />

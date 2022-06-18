@@ -1,24 +1,17 @@
 import * as React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+import { Link } from "gatsby";
 
+import {
+  Box,
+  IconButton,
+  Button,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
+
+import { Menu as MenuIcon } from "@mui/icons-material";
 const NavbarMobile = ({ title, pages }) => {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
