@@ -20,61 +20,50 @@ const Digit = ({ target }) => {
     addEndListener: null,
   });
 
-  console.log("rendering");
-
   useEffect(() => {
     if (current !== target) {
-      console.log("target changed, must mutate");
       setMutating(true);
       setState(STATES.NEXT);
-    } else {
-      console.log("target changed, already current");
     }
-  }, [target]);
+  }, [current, target]);
 
   useEffect(() => {
     if (!mutating) {
-      console.log("not mutating");
       return;
     }
 
     switch (state) {
       case STATES.CURRENT:
-        console.log("current running");
         setTransition({
           in: true,
           appear: true,
           onEntered: () => {
-            console.log("current transition done");
             setState(STATES.NEXT);
           },
         });
         break;
       case STATES.PREV:
-        console.log("prev running");
         setCurrent((current + 1) % 10);
         setState(STATES.CURRENT);
         break;
       case STATES.NEXT:
-        console.log("next running");
         if (current === target) {
           // We're at the target value now; we can stop!
-          console.log("at target now; stopping mutation");
           setMutating(false);
         } else {
-          console.log("next will cause transition");
           setTransition({
             in: false,
             appear: true,
             onExited: () => {
-              console.log("next transition done");
               setState(STATES.PREV);
             },
           });
         }
         break;
+
+      // no default
     }
-  }, [mutating, state]);
+  }, [current, target, mutating, state]);
 
   return (
     <Paper
@@ -131,27 +120,31 @@ const Digit = ({ target }) => {
   );
 };
 
+const hitCounter = async (namespace, key) => {
+  const res = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+  if (res.status !== 200) {
+    throw new Error(
+      `Failed to hit the counter API; received status ${res.status}.`
+    );
+  }
+
+  const data = await res.json();
+  if (data.value === undefined) {
+    throw new Error("Missing counter value!");
+  } else if (!Number.isInteger(data.value)) {
+    throw new Error(
+      `Counter value of ${JSON.stringify(data.value)} is not an integer!`
+    );
+  }
+
+  return data.value;
+};
+
 const Counter = ({ namespace = "bogusCount", key = "counter" }) => {
-  const hitCounter = async () => {
-    const res = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
-    if (res.status !== 200) {
-      throw `Failed to hit the counter API; received status ${res.status}.`;
-    }
-
-    const data = await res.json();
-    if (data.value === undefined) {
-      throw "Missing counter value!";
-    } else if (!Number.isInteger(data.value)) {
-      throw `Counter value of ${JSON.stringify(data.value)} is not an integer!`;
-    }
-
-    return data.value;
-  };
-
   const location = useLocation();
   const [digits, setDigits] = useState([]);
   useEffect(() => {
-    hitCounter().then((value) => {
+    hitCounter(namespace, key).then((value) => {
       let remaining = value;
       if (!remaining) {
         setDigits([0]);
@@ -170,7 +163,7 @@ const Counter = ({ namespace = "bogusCount", key = "counter" }) => {
 
       setDigits(newDigits);
     });
-  }, [location]);
+  }, [location, key, namespace]);
 
   return (
     <Box
