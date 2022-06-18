@@ -1,3 +1,4 @@
+import { blueGrey } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 
 /**
@@ -70,7 +71,7 @@ const addColor = (name, main, opts = {}) => {
 };
 
 // Add my custom colors.
-addColor("blueGrey", "#455a64");
+addColor("blueGrey", blueGrey[800]);
 addColor("pink", "#d63384");
 
 // Build the actual final theme, with all customizations, and export.

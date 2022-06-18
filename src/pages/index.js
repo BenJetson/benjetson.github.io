@@ -31,6 +31,7 @@ const AboutSnippet = () => (
     component="section"
     sx={{
       backgroundColor: (theme) => theme.palette.grey[200],
+      boxShadow: (theme) => `0 1px 1px 0px rgba(50,50,50,0.2)`,
       py: 3,
     }}
   >
@@ -61,9 +62,17 @@ const RecentPosts = () => {
         <Typography variant="h2" sx={{ mb: 3 }}>
           Recent Posts
         </Typography>
-        <Stack direction="row" spacing={2}>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={{ xs: 1, sm: 2, md: 4 }}
+        >
           {[1, 2, 3].map((val, idx) => (
-            <Card key={idx}>
+            <Card
+              key={idx}
+              sx={{ flexGrow: 1 }}
+              // raised
+              // variant="outlined"
+            >
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h3">
                   Post # {val}
@@ -98,9 +107,12 @@ const FeaturedProjects = () => {
         <Typography variant="h2" sx={{ mb: 3 }}>
           Featured Projects
         </Typography>
-        <Stack direction="row" spacing={2}>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={{ xs: 1, sm: 2, md: 4 }}
+        >
           {[1, 2, 3].map((val, idx) => (
-            <Card key={idx}>
+            <Card key={idx} sx={{ flexGrow: 1 }} variant="outlined">
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h3">
                   Project {val}

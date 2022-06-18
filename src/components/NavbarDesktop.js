@@ -12,6 +12,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 const NavbarDesktop = ({ title, pages }) => {
   return (
@@ -30,7 +31,8 @@ const NavbarDesktop = ({ title, pages }) => {
         {title}
       </Button>
 
-      <Box
+      <List
+        component="ul"
         sx={{
           flexGrow: 1,
           justifyContent: "flex-end",
@@ -38,7 +40,7 @@ const NavbarDesktop = ({ title, pages }) => {
         }}
       >
         {pages.map((page) => (
-          <Button
+          <ListItemButton
             component={Link}
             to={page.href}
             key={page.href}
@@ -55,10 +57,10 @@ const NavbarDesktop = ({ title, pages }) => {
               textUnderlineOffset: "0.25rem",
             }}
           >
-            {page.label}
-          </Button>
+            <ListItemText>{page.label}</ListItemText>
+          </ListItemButton>
         ))}
-      </Box>
+      </List>
     </>
   );
 };

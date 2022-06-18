@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Box, Slide, Paper, Typography, Collapse } from "@mui/material";
+import { useLocation } from "@reach/router";
 
 const STATES = {
   CURRENT: "current",
@@ -78,7 +79,10 @@ const Digit = ({ target }) => {
 
   return (
     <Paper
+      elevation={2}
       sx={{
+        backgroundColor: (theme) => theme.palette.blueGrey.dark,
+        color: (theme) => theme.palette.blueGrey.contrastText,
         display: "inline-block",
         // border: (theme) => `2px solid ${theme.palette.grey[800]}`,
         py: "5px",
@@ -86,11 +90,11 @@ const Digit = ({ target }) => {
         mr: 1,
         height: "1.5em",
         width: "calc(1ch + 20px + 4px)",
-        fontSize: 32,
+        fontSize: 24,
         textAlign: "center",
         fontFamily: "Menlo, Monaco, Consolas, 'Courier New', monospace",
         position: "relative",
-        border: "2px solid #000",
+        // border: "2px solid #777",
 
         "&:after": {
           content: "''",
@@ -101,7 +105,7 @@ const Digit = ({ target }) => {
           zIndex: 0,
 
           opacity: 0.5,
-          borderBottom: "2px solid #000",
+          borderBottom: "1px dotted #fff",
           width: "100%",
         },
       }}
@@ -145,6 +149,7 @@ const Counter = ({ namespace = "bogusCount", key = "counter" }) => {
     return data.value;
   };
 
+  const location = useLocation();
   const [digits, setDigits] = React.useState([]);
   React.useEffect(() => {
     hitCounter().then((value) => {
@@ -166,18 +171,18 @@ const Counter = ({ namespace = "bogusCount", key = "counter" }) => {
 
       setDigits(newDigits);
     });
-  }, []);
+  }, [location]);
 
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "row",
-        mb: 2,
+        my: 2,
       }}
     >
       {digits.map((digit, idx) => (
-        <Digit target={digit} key={`${idx}-${digit}`} />
+        <Digit target={digit} key={`${idx}`} />
       ))}
     </Box>
   );

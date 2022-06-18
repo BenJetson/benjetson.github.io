@@ -5,6 +5,17 @@ import { GitHub, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
 import { visuallyHidden } from "@mui/utils";
 import Counter from "./Counter";
 
+const MetaBox = ({ title, tagline }) => (
+  <>
+    <Typography variant="h3" component="h2">
+      {title}
+    </Typography>
+    <Typography variant="body1" sx={{ my: 2 }}>
+      {tagline}
+    </Typography>
+  </>
+);
+
 const SocialBox = () => {
   const socials = [
     {
@@ -51,6 +62,33 @@ const SocialBox = () => {
   );
 };
 
+const CountBox = () => (
+  <>
+    <Typography variant="h4" component="h3">
+      Pageviews
+    </Typography>
+    <Counter />
+  </>
+);
+
+const CopyrightNotice = () => (
+  <>
+    <Typography variant="body1">
+      &copy; {new Date().getFullYear()} Ben Godfrey. All rights reserved.
+    </Typography>
+    <Typography
+      variant="body1"
+      component="pre"
+      sx={{
+        fontFamily: "monospace",
+        color: (theme) => theme.palette.pink.main,
+      }}
+    >
+      build xxx-test
+    </Typography>
+  </>
+);
+
 const Footer = () => {
   const {
     site: {
@@ -67,12 +105,11 @@ const Footer = () => {
     }
   `);
 
-  const year = new Date().getFullYear();
-
   return (
     <Box
+      component="footer"
       sx={{
-        backgroundColor: (theme) => theme.palette.blueGrey.dark,
+        backgroundColor: (theme) => theme.palette.blueGrey.main,
         color: (theme) => theme.palette.blueGrey.contrastText,
         minHeight: 300,
         py: 3,
@@ -81,33 +118,16 @@ const Footer = () => {
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
-            <Typography variant="h3" component="h2">
-              {title}
-            </Typography>
-            <Typography variant="body1" sx={{ my: 2 }}>
-              {tagline}
-            </Typography>
+            <MetaBox title={title} tagline={tagline} />
           </Grid>
           <Grid item xs={12} md={3}>
             <SocialBox />
           </Grid>
           <Grid item xs={12} md={3}>
-            <Counter />
+            <CountBox />
           </Grid>
         </Grid>
-        <Typography variant="body1">
-          &copy; {year} Ben Godfrey. All rights reserved.
-        </Typography>
-        <Typography
-          variant="body1"
-          component="pre"
-          sx={{
-            fontFamily: "monospace",
-            color: (theme) => theme.palette.pink.main,
-          }}
-        >
-          build xxx-test
-        </Typography>
+        <CopyrightNotice />
       </Container>
     </Box>
   );

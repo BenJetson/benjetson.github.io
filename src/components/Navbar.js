@@ -42,7 +42,7 @@ const Navbar = () => {
   let appBarProps = { position: "static" };
 
   return (
-    <AppBar {...appBarProps}>
+    <AppBar {...appBarProps} component="nav">
       <Container>
         <Toolbar disableGutters>
           <NavbarDesktop title={title} pages={pages} />

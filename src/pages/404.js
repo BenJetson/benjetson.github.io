@@ -1,54 +1,54 @@
-import * as React from "react"
-import { Link } from "gatsby"
-
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
+import * as React from "react";
+import { Link } from "gatsby";
+import { Box, Card, CardContent, Container, Typography } from "@mui/material";
 
 // markup
 const NotFoundPage = () => {
   return (
-    <main style={pageStyles}>
-      <title>Not found</title>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry{" "}
-        <span role="img" aria-label="Pensive emoji">
-          😔
-        </span>{" "}
-        we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
-  )
-}
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        background: (theme) => `linear-gradient(
+          ${theme.palette.error.main},
+          ${theme.palette.error.light}
+        )`,
+        py: 5,
+        color: (theme) => theme.palette.error.contrastText,
+        textAlign: "center",
+        minHeight: "80vh",
+      }}
+    >
+      <Container>
+        <Typography
+          variant="h1"
+          sx={{ fontSize: "120px", fontFamily: "monospace" }}
+        >
+          404
+        </Typography>
+        <Typography variant="h2" sx={{ mb: 5 }}>
+          Not Found
+        </Typography>
+        <Card sx={{ maxWidth: 800, mx: "auto", py: 3 }} raised>
+          <CardContent>
+            <Typography variant="h4" component="div" sx={{ mb: 2 }}>
+              That resource does not exist within this realm.
+            </Typography>
+            <Typography variant="body1">
+              Try navigating again from the <Link to="/">homepage</Link>.
+            </Typography>
+            <Typography variant="body1">
+              Is a link broken? Please{" "}
+              <a href="https://github.com/BenJetson/benjetson.github.io/issues/new">
+                file a ticket
+              </a>{" "}
+              to let me know.
+            </Typography>
+          </CardContent>
+        </Card>
+      </Container>
+    </Box>
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;
