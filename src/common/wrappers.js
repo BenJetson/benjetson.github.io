@@ -1,9 +1,6 @@
-import React from "react";
-
 import { ThemeProvider } from "@mui/material/styles";
-
-import theme from "./theme";
 import Layout from "../components/Layout";
+import theme from "./theme";
 
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider theme={theme}>{element}</ThemeProvider>

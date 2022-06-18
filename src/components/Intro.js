@@ -1,6 +1,4 @@
-import React from "react";
-import { styled } from "@mui/material/styles";
-import { Avatar, Box, Paper, Typography } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 
 const Intro = () => (
   <Box

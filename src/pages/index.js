@@ -1,18 +1,14 @@
-import React from "react";
-import Intro from "../components/Intro";
-import Layout from "../components/Layout";
-import Container from "../components/Container";
 import {
-  Avatar,
   Box,
   Button,
   Card,
   CardContent,
-  Paper,
   Stack,
   Typography,
 } from "@mui/material";
-import { Link, useStaticQuery, graphql } from "gatsby";
+import { Link } from "gatsby";
+import Container from "../components/Container";
+import Intro from "../components/Intro";
 
 const MoreButton = ({ moreOf, to }) => (
   <Button

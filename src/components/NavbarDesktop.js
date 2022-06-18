@@ -1,7 +1,6 @@
-import React from "react";
+import styled from "@emotion/styled";
 import { Button, Stack } from "@mui/material";
 import { Link } from "gatsby";
-import styled from "@emotion/styled";
 
 const NavListItem = styled.li`
   list-style: none;

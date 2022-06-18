@@ -1,8 +1,6 @@
-import { Box, Container, Grid, IconButton, Typography } from "@mui/material";
-import React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
 import { GitHub, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
-import { visuallyHidden } from "@mui/utils";
+import { Box, Container, Grid, IconButton, Typography } from "@mui/material";
+import { graphql, useStaticQuery } from "gatsby";
 import Counter from "./Counter";
 
 const MetaBox = ({ title, tagline }) => (

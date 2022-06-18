@@ -1,19 +1,18 @@
-import * as React from "react";
-import { Link } from "gatsby";
-
+import { Menu as MenuIcon } from "@mui/icons-material";
 import {
   Box,
-  IconButton,
   Button,
   Drawer,
+  IconButton,
   List,
   ListItem,
   ListItemText,
 } from "@mui/material";
+import { Link } from "gatsby";
+import { useState } from "react";
 
-import { Menu as MenuIcon } from "@mui/icons-material";
 const NavbarMobile = ({ title, pages }) => {
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <>

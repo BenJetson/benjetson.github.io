@@ -1,7 +1,5 @@
-import React from "react";
 import { AppBar, Container, Toolbar } from "@mui/material";
 import { graphql, useStaticQuery } from "gatsby";
-
 import NavbarDesktop from "./NavbarDesktop";
 import NavbarMobile from "./NavbarMobile";
 

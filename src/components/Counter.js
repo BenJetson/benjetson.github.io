@@ -1,7 +1,6 @@
-import React from "react";
-
-import { Box, Slide, Paper, Typography, Collapse } from "@mui/material";
+import { Box, Collapse, Paper } from "@mui/material";
 import { useLocation } from "@reach/router";
+import { useEffect, useRef, useState } from "react";
 
 const STATES = {
   CURRENT: "current",
@@ -10,11 +9,11 @@ const STATES = {
 };
 
 const Digit = ({ target }) => {
-  const containerRef = React.useRef(null);
-  const [current, setCurrent] = React.useState(0);
-  const [mutating, setMutating] = React.useState(false);
-  const [state, setState] = React.useState(STATES.NEXT);
-  const [transition, setTransition] = React.useState({
+  const containerRef = useRef(null);
+  const [current, setCurrent] = useState(0);
+  const [mutating, setMutating] = useState(false);
+  const [state, setState] = useState(STATES.NEXT);
+  const [transition, setTransition] = useState({
     direction: "down",
     in: true,
     appear: true,
@@ -23,7 +22,7 @@ const Digit = ({ target }) => {
 
   console.log("rendering");
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (current !== target) {
       console.log("target changed, must mutate");
       setMutating(true);
@@ -33,7 +32,7 @@ const Digit = ({ target }) => {
     }
   }, [target]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!mutating) {
       console.log("not mutating");
       return;
@@ -150,8 +149,8 @@ const Counter = ({ namespace = "bogusCount", key = "counter" }) => {
   };
 
   const location = useLocation();
-  const [digits, setDigits] = React.useState([]);
-  React.useEffect(() => {
+  const [digits, setDigits] = useState([]);
+  useEffect(() => {
     hitCounter().then((value) => {
       let remaining = value;
       if (!remaining) {

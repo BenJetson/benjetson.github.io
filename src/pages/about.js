@@ -1,6 +1,3 @@
-import React from "react";
-import Layout from "../components/Layout";
-
 const IndexPage = () => (
   <>
     <h1>About</h1>

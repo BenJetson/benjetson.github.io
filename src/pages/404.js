@@ -1,6 +1,5 @@
-import * as React from "react";
-import { Link } from "gatsby";
 import { Box, Card, CardContent, Container, Typography } from "@mui/material";
+import { Link } from "gatsby";
 
 // markup
 const NotFoundPage = () => {
