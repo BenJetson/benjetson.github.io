@@ -1,5 +1,5 @@
 
-GATSBY = npx gatsby
+GATSBY = yarn run gatsby
 
 .PHONY: dev
 dev:
