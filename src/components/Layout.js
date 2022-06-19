@@ -3,11 +3,13 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 const Layout = ({ children }) => (
-  <>
+  <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
     <Navbar />
-    <Box component="main">{children}</Box>
+    <Box component="main" sx={{ flexGrow: 1 }}>
+      {children}
+    </Box>
     <Footer />
-  </>
+  </Box>
 );
 
 export default Layout;
