@@ -1,5 +1,5 @@
-import { Container } from "@mui/material";
+import { Container as MuiContainer } from "@mui/material";
 
-const CustomContainer = (props) => <Container maxWidth="lg" {...props} />;
+const Container = (props) => <MuiContainer maxWidth="lg" {...props} />;
 
-export default CustomContainer;
+export default Container;
