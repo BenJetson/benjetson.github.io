@@ -70,6 +70,7 @@ export const mdxComponents = {
   // inlineCode: null,
   table: SimpleTable,
   thead: TableHead,
+  tbody: TableBody,
   tr: TableRow,
   // th: TableCell,
   // td: TableCell,
