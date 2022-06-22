@@ -1,5 +1,5 @@
 import { Link as MUILink } from "@mui/material";
-import { GatsbyLink } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 
 const SmartLink = ({ href, children }) => {
   const baseURL = new URL(document.baseURI);
