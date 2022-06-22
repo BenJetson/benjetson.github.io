@@ -1,5 +1,7 @@
+import { MDXProvider } from "@mdx-js/react";
 import { ThemeProvider } from "@mui/material/styles";
 import Layout from "../components/Layout";
+import { mdxComponents } from "./mdx";
 import theme from "./theme";
 
 // Originally, the theme was applied in wrapRootElement, but that seems to not
@@ -10,6 +12,8 @@ export const wrapRootElement = ({ element }) => element;
 
 export const wrapPageElement = ({ element, props }) => (
   <ThemeProvider theme={theme}>
-    <Layout {...props}>{element}</Layout>
+    <MDXProvider components={mdxComponents}>
+      <Layout {...props}>{element}</Layout>
+    </MDXProvider>
   </ThemeProvider>
 );

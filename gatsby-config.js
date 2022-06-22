@@ -14,14 +14,13 @@ module.exports = {
         icon: "src/images/icon.png",
       },
     },
-    "gatsby-transformer-remark",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: "./src/images/",
+        path: `./src/images/`,
       },
       __key: "images",
     },
@@ -29,7 +28,7 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "pages",
-        path: "./src/pages/",
+        path: `./src/pages/`,
       },
       __key: "pages",
     },
@@ -37,17 +36,39 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "posts",
-        path: "./src/posts/",
+        path: `./src/posts/`,
       },
       __key: "posts",
     },
+    // {
+    //   resolve: "gatsby-plugin-page-creator",
+    //   options: {
+    //     path: `./src/posts`,
+    //   },
+    // },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "projects",
-        path: "./src/projects/",
+        path: `./src/projects/`,
       },
       __key: "projects",
+    },
+    // {
+    //   resolve: "gatsby-plugin-page-creator",
+    //   options: {
+    //     path: `./src/projects`,
+    //   },
+    // },
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        extensions: [`.mdx`, `.md`],
+        // defaultLayouts: {
+        //   posts: require.resolve("./src/templates/blog-post.js"),
+        //   projects: require.resolve("./src/templates/project-page.js"),
+        // },
+      },
     },
   ],
   jsxRuntime: "automatic",
