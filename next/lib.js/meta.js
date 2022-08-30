@@ -7,6 +7,22 @@ export const personal = {
   avatar: "https://avatars1.githubusercontent.com/u/10427974?s=460&v=4",
 };
 
+class NavItem {
+  constructor({ name, href }) {
+    this.name = name;
+    this.href = href;
+  }
+}
+
+export const navItems = [
+  new NavItem({ name: "Home", href: "/" }),
+  new NavItem({ name: "About", href: "/about" }),
+  new NavItem({ name: "Resumé", href: "/resume" }),
+  new NavItem({ name: "Blog", href: "/blog" }),
+  new NavItem({ name: "Projects", href: "/projects" }),
+  new NavItem({ name: "Contact", href: "/contact" }),
+];
+
 class SocialProvider {
   constructor({ name, urlPrefix, username }) {
     this.name = name;
