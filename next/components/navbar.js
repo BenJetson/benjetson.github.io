@@ -1,4 +1,4 @@
-import { navItems, site } from "../lib.js/meta";
+import { navItems, site } from "../lib/meta";
 import Link from "next/link";
 
 const Navbar = () => (
