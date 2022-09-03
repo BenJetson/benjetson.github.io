@@ -1,4 +1,4 @@
-import { site } from "../lib.js/meta";
+import { site } from "../lib/meta";
 
 const Footer = () => (
   <footer>
