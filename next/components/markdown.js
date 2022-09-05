@@ -96,7 +96,6 @@ const Heading6 = ({ children }) => <h6>{children}</h6>;
 const Markdown = ({ content }) => (
   <ReactMarkdown
     skipHtml
-    children={content}
     remarkPlugins={[remarkGfm]}
     components={{
       // Standard Markdown //
@@ -132,7 +131,9 @@ const Markdown = ({ content }) => (
       // thead: undefined,
       // tr: undefined,
     }}
-  />
+  >
+    {content}
+  </ReactMarkdown>
 );
 
 export default Markdown;
