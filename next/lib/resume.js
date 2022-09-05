@@ -10,6 +10,20 @@ export const resumeData = {
   },
   objective: null,
   education: [
+    // TODO master's degree
+    //
+    // {
+    //   "institution": "Clemson University",
+    //   "location": "Clemson, SC",
+    //   "degree": "Computer Science, M.S.",
+    //   "gpa": null,
+    //   "term": {
+    //     "start": "January 2022",
+    //     "end": null,
+    //     "in_progress": true
+    //   },
+    //   "logo": "https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg"
+    // },
     {
       institution: "Clemson University",
       location: "Clemson, SC",
@@ -141,7 +155,23 @@ export const resumeData = {
       title: "President's List",
       project: "4.0 GPA",
       from: "Clemson University",
-      date: "<br /> Fall 2018 <br /> Spring 2019 <br /> Fall 2019 <br /> Spring 2020 <br /> Fall 2020 <br /> Fall 2021\n",
+
+      // XXX using the line breaks here since none of the other awards have multiple
+      // dates. If others need this, probably should write an abstraction.
+      // FIXME this will not work in React since it has XSS protection. Worked
+      // in Jekyll because of how Liquid templates work.
+      // TODO write an abstraction for this ... lol. Use a list. Maybe detect if
+      // value of date is string or array.
+      date:
+        "<br />" +
+        [
+          "Fall 2018",
+          "Spring 2019",
+          "Fall 2019",
+          "Spring 2020",
+          "Fall 2021",
+        ].join("<br />") +
+        "\n",
       image_url:
         "https://live.staticflickr.com/65535/51210648772_2e277669d4_m.jpg",
       more_url: "https://meritpages.com/bengodfrey",
@@ -165,5 +195,8 @@ export const resumeData = {
       more_url: "https://devpost.com/software/clemson-dining-alexa-skill",
     },
   ],
+
+  // Currently, there are none of these.
+  // Just thinking about future sections.
   publications: [{ title: "XXX", date: "XXX" }],
 };
