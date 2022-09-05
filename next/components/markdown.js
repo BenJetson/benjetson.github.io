@@ -5,7 +5,24 @@ import NextImage from "next/image";
 // TODO this CJS import version does not support dynamic language loading.
 // I suspect this might increase the bundle size of the app, should investigate.
 import Prism from "react-syntax-highlighter/dist/cjs/prism";
-import { materialDark as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
+
+/**
+ * This imports the theme to be used for the Prism highlighter.
+ *
+ * Some of my favorites:
+ *    - coldarkCold - lighter and could go well with a light/blue theme.
+ *    - coldarkDark
+ *    - dracula
+ *    - lucario
+ *    - materialDark
+ *    - materialOceanic
+ *    - nightOwl
+ *    - xonokai
+ *
+ * Strangely, autocomplete does not seem to show all themes. See list on disk:
+ *    ls ./node_modules/react-syntax-highlighter/dist/cjs/styles/prism
+ */
+import { coldarkDark as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 const Code = ({ node, inline, className, children, ...props }) => {
   const match = /language-(\w+)/.exec(className || "");
