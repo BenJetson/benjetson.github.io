@@ -1,3 +1,4 @@
+import Markdown from "../../../../../components/markdown";
 import { getAllPostPaths, getPostMetadata } from "../../../../../lib/posts";
 
 const BlogPost = ({ post }) => (
@@ -5,7 +6,8 @@ const BlogPost = ({ post }) => (
     <h2>{post.frontMatter.title}</h2>
 
     <p>{post.frontMatter.date}</p>
-    <pre>{post.content}</pre>
+
+    <Markdown content={post.content} />
   </>
 );
 

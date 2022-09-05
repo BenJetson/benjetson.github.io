@@ -1,3 +1,4 @@
+import Markdown from "../../components/markdown";
 import { getAllProjectPaths, getProjectMetadata } from "../../lib/projects";
 
 const BlogProject = ({ project }) => (
@@ -5,7 +6,7 @@ const BlogProject = ({ project }) => (
     <h2>{project.frontMatter.title}</h2>
 
     <p>{project.frontMatter.date}</p>
-    <pre>{project.content}</pre>
+    <Markdown content={project.content} />
   </>
 );
 
