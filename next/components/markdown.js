@@ -2,6 +2,30 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import NextImage from "next/image";
 
+// TODO this CJS import version does not support dynamic language loading.
+// I suspect this might increase the bundle size of the app, should investigate.
+import Prism from "react-syntax-highlighter/dist/cjs/prism";
+import { materialDark as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
+
+const Code = ({ node, inline, className, children, ...props }) => {
+  const match = /language-(\w+)/.exec(className || "");
+  return !inline && match ? (
+    <Prism
+      style={codeStyle}
+      language={match[1]}
+      PreTag="div"
+      showLineNumbers
+      {...props}
+    >
+      {String(children).replace(/\n$/, "")}
+    </Prism>
+  ) : (
+    <code className={className} {...props}>
+      {children}
+    </code>
+  );
+};
+
 const useNextImage = false; // FIXME should remove once we learn next/image
 const imageDimensionsPattern = /^([1-9][0-9]*)x([1-9][0-9]*)$/;
 
@@ -103,7 +127,7 @@ const Markdown = ({ content }) => (
       // a: undefined,
       // blockquote: undefined,
       // br: undefined,
-      // code: undefined,
+      code: Code,
       // em: undefined,
       h1: Heading1,
       h2: Heading2,
