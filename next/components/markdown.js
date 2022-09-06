@@ -85,9 +85,9 @@ const imageDimensionsPattern = /^([1-9][0-9]*)x([1-9][0-9]*)$/;
  * @returns
  */
 const Image = ({ properties: { alt, src } }) => {
-  let [altText, ...declarations] = alt.split("|").map((value) => value.trim());
-  altText = altText.length ? altText : undefined;
-
+  const [altText, ...declarations] = alt
+    .split("|")
+    .map((value) => value.trim());
   let caption = null;
   const nextImageProps = { src, alt: altText };
 
