@@ -1,4 +1,4 @@
-import { GIT_HASH, TIER } from "../lib/env";
+import { GIT_HASH } from "../lib/env";
 import { site } from "../lib/meta";
 
 const Footer = () => (

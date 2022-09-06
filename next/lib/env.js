@@ -10,9 +10,7 @@ export const TIER = lookupNextEnv("VERCEL_ENV") ?? "development";
  * The GIT_HASH indicates the SHA hash of the most recent commit in Git, which
  * this build was created upon.
  */
-export const GIT_HASH = !lookupNextEnv("VERCEL_GIT_COMMIT_SHA")
-  ? "unknown"
-  : lookupNextEnv("VERCEL_GIT_COMMIT_SHA");
+export const GIT_HASH = lookupNextEnv("VERCEL_GIT_COMMIT_SHA") ?? "unknown";
 
 /**
  * The RECAPTCHA_SITE_KEY is a public key that is provided to the ReCAPTCHA
