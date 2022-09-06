@@ -5,11 +5,12 @@
 export const TIER = process.env.NEXT_PUBLIC_VERCEL_ENV ?? "development";
 
 /**
- * The GIT_HASH indicates the SHA hash of the most recent commit in Git, which
- * this build was created upon.
+ * The GIT_HASH indicates the first seven characters of the most recent
+ * commit's SHA hash in Git, which this build was created upon.
  */
-export const GIT_HASH =
-  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ?? "unknown";
+export const GIT_HASH = (
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ?? "unknown"
+).substring(0, 7);
 
 /**
  * The RECAPTCHA_SITE_KEY is a public key that is provided to the ReCAPTCHA
