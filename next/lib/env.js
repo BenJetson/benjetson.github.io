@@ -1,37 +1,10 @@
 const lookupNextEnv = (name) => process.env["NEXT_PUBLIC_" + name];
 
-const VERCEL_ENV = lookupNextEnv("VERCEL_ENV") ?? "development";
-const VERCEL_URL = lookupNextEnv("VERCEL_URL");
-
-const TIER_PROD = "prod";
-const TIER_QA = "qa";
-const TIER_PREVIEW = "preview";
-const TIER_DEV = "dev";
-
-const TIER_BY_VERCEL_URL = {
-  "benjetson.vercel.app": TIER_PROD,
-  "qa.benjetson.vercel.app": TIER_QA,
-};
-
 /**
  * The TIER indicates Environment that the app is deployed and running on.
+ * Can be one of `production`, `preview`, or `development`.
  */
-export const TIER = (() => {
-  let out = TIER_DEV;
-
-  switch (VERCEL_ENV) {
-    case "production":
-      out = TIER_BY_VERCEL_URL[VERCEL_URL];
-      if (!out) throw new Error(`no known tier for URL '${VERCEL_URL}'`);
-      break;
-
-    case "preview":
-      out = TIER_PREVIEW;
-      break;
-  }
-
-  return out;
-})();
+export const TIER = lookupNextEnv("VERCEL_ENV") ?? "development";
 
 /**
  * The GIT_HASH indicates the SHA hash of the most recent commit in Git, which

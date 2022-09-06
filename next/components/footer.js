@@ -5,9 +5,7 @@ const Footer = () => (
   <footer>
     <h2>{site.title}</h2>
     <p>{site.tagline}</p>
-    <pre>
-      build {GIT_HASH}-{TIER}
-    </pre>
+    <pre>build {GIT_HASH}</pre>
   </footer>
 );
 
