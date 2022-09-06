@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "env": "vercel env pull"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "eslint": "8.23.0",
-    "eslint-config-next": "12.2.5"
+    "eslint-config-next": "12.2.5",
+    "vercel": "^28.2.2"
   }
 }
