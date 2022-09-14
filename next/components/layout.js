@@ -1,14 +1,18 @@
+import { Flex } from "@chakra-ui/react";
+import ContentContainer from "./content-container";
 import Footer from "./footer";
 import Navbar from "./navbar";
 
 const Layout = ({ children }) => (
-  <div className="container">
-    <Navbar />
-    <hr />
-    {children}
-    <hr />
-    <Footer />
-  </div>
+  <>
+    <Flex direction="column" minW="100%" minH="100%">
+      <Navbar />
+      <Flex grow={1}>
+        <ContentContainer>{children}</ContentContainer>
+      </Flex>
+      <Footer />
+    </Flex>
+  </>
 );
 
 export default Layout;
