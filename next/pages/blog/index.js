@@ -1,20 +1,37 @@
 import { getAllPostMetadata } from "../../lib/posts";
 import Link from "next/link";
+import {
+  Heading,
+  List,
+  ListItem,
+  OrderedList,
+  Text,
+  UnorderedList,
+} from "@chakra-ui/react";
+import { Card, CardContent, CardHeader } from "../../components/card";
 
 const Blog = ({ posts }) => {
   return (
     <>
-      <h2>Blog</h2>
-      <ul>
+      <Heading as="h2">Blog</Heading>
+      <List mt={3}>
         {posts.map((post) => (
-          <li key={post.filePath}>
+          <ListItem key={post.filePath}>
             <Link href={post.href}>
-              <a>{post.frontMatter.title}</a>
+              <a>
+                <Card>
+                  <CardHeader>{post.frontMatter.title}</CardHeader>
+                  <CardContent>
+                    {post.frontMatter.date} <br />
+                    Preview: {post.excerpt}
+                  </CardContent>
+                </Card>
+              </a>
             </Link>
             <br />
-          </li>
+          </ListItem>
         ))}
-      </ul>
+      </List>
     </>
   );
 };
