@@ -8,6 +8,9 @@
 tier: qa
 url: https://qa.bengodfrey.net
 
+# Development contact form.
+contact_form_id: WzEwOSwxMjEsMTIxLDExMSwxMTksMTIyLDEwNiwxMTJd
+
 # Use reCAPTCHA testing key for local development. See also:
 # https://developers.google.com/recaptcha/docs/faq#id-like-to-run-automated-tests-with-recaptcha.-what-should-i-do
-recaptcha_site_id: 6LekpXceAAAAAG1Obo3qshDu7i4a7Tz7gKYElbMh
+recaptcha_site_id: 6Leg5fwhAAAAAEt01he0_xfyIF59TeK3NYR5PrCA
