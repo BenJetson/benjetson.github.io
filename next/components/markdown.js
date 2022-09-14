@@ -23,6 +23,13 @@ import Prism from "react-syntax-highlighter/dist/cjs/prism";
  *    ls ./node_modules/react-syntax-highlighter/dist/cjs/styles/prism
  */
 import { coldarkDark as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import {
+  Heading,
+  ListItem,
+  OrderedList,
+  Text,
+  UnorderedList,
+} from "@chakra-ui/react";
 
 const Code = ({ node, inline, className, children, ...props }) => {
   const match = /language-(\w+)/.exec(className || "");
@@ -124,15 +131,15 @@ const Paragraph = ({ node, children }) => {
     return <Image {...node.children[0]} />;
   }
 
-  return <p>{children}</p>;
+  return <Text>{children}</Text>;
 };
 
-const Heading1 = ({ children }) => <h1>{children}</h1>;
-const Heading2 = ({ children }) => <h2>{children}</h2>;
-const Heading3 = ({ children }) => <h3>{children}</h3>;
-const Heading4 = ({ children }) => <h4>{children}</h4>;
-const Heading5 = ({ children }) => <h5>{children}</h5>;
-const Heading6 = ({ children }) => <h6>{children}</h6>;
+const Heading1 = ({ children }) => <Heading as="h1">{children}</Heading>;
+const Heading2 = ({ children }) => <Heading as="h2">{children}</Heading>;
+const Heading3 = ({ children }) => <Heading as="h3">{children}</Heading>;
+const Heading4 = ({ children }) => <Heading as="h4">{children}</Heading>;
+const Heading5 = ({ children }) => <Heading as="h5">{children}</Heading>;
+const Heading6 = ({ children }) => <Heading as="h6">{children}</Heading>;
 
 const Markdown = ({ content }) => (
   <ReactMarkdown
@@ -144,8 +151,6 @@ const Markdown = ({ content }) => (
       // a: undefined,
       // blockquote: undefined,
       // br: undefined,
-      code: Code,
-      // em: undefined,
       h1: Heading1,
       h2: Heading2,
       h3: Heading3,
@@ -154,12 +159,14 @@ const Markdown = ({ content }) => (
       h6: Heading6,
       // hr: undefined,
       // img: handled as part of Paragraph, see notes.
-      // li: undefined,
-      // ol: undefined,
       p: Paragraph,
       // pre: undefined,
+      code: Code,
+      // em: undefined,
       // strong: undefined,
-      // ul: undefined,
+      ul: UnorderedList,
+      ol: OrderedList,
+      li: ListItem,
 
       // GitHub Markdown //
 
