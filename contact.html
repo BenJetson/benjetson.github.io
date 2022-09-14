@@ -22,25 +22,7 @@ recaptcha: true
   </div>
 </noscript>
 
-<div class="form-result-wrapper">
-  <iframe
-    class="d-none"
-    name="form-result"
-    id="form-result"
-    sandbox
-    scrolling="no"
-  ></iframe>
-</div>
-
-<form
-  novalidate
-  class="d-none needs-validation"
-  action="https://formspree.io/xzbjkyrr"
-  method="POST"
-  target="form-result"
-  onsubmit="onSubmitContactForm();"
-  id="contact-form"
->
+<form novalidate class="d-none needs-validation" id="contact-form">
   <div class="form-group">
     <label class="form-label" for="nameInput">Name</label>
     <input
@@ -62,7 +44,6 @@ recaptcha: true
         type="email"
         required
         class="form-control"
-        oninput="onEmailChange();"
         name="_replyto"
         placeholder="Your email address here"
         id="emailInput"
@@ -157,9 +138,32 @@ recaptcha: true
   </div>
 
   <input type="text" name="_gotcha" class="d-none" />
-  <div class="d-none invalid-feedback" id="fail-validation">
-    Please correct the errors above and submit again.
+
+  <div class="alert alert-warning d-none" role="alert" id="fail-validation">
+    <h2 class="alert-heading">
+      <i class="bi bi-exclamation-triangle-fill"></i>
+      Whoops, that's not right.
+    </h2>
+    <p class="mb-0">
+      Looks like there are some problems with the data you entered. Please
+      correct the errors and try again.
+    </p>
   </div>
+  <div class="alert alert-danger d-none" role="alert" id="submit-error">
+    <h2 class="alert-heading">
+      <i class="bi bi-x-octagon-fill"></i>
+      Uh oh, there's a problem.
+    </h2>
+    <p>
+      Unfortunately, your message could not be sent to the server due to an
+      error.
+    </p>
+    <p class="mb-0">
+      Don't worry, this isn't your fault. Try submitting the form again in a few
+      minutes.
+    </p>
+  </div>
+
   <button type="submit" class="btn btn-primary">Submit</button>
 
   <p class="mt-2">
@@ -169,25 +173,43 @@ recaptcha: true
   </p>
 </form>
 
+<section id="contact-thanks" class="d-none">
+  <div class="alert alert-success" role="alert">
+    <h2 class="alert-heading">
+      <i class="bi bi-check-circle-fill"></i>
+      Message Sent!
+    </h2>
+    <p>Your contact form submission has been sent.</p>
+    <p class="mb-0">
+      I will receive your message shortly in my inbox. If you requested a
+      response, I may reach out to you within a few days.
+    </p>
+  </div>
+</section>
+
 <script>
+  const form = document.getElementById("contact-form");
+
   // escapeRegExp takes a user-specified string and converts it to a RegEx that
   // matches that text. See also:
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Escaping
-  escapeRegExp = (s) => s.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
+  const escapeRegExp = (s) => s.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
 
-  onEmailChange = () => {
-    email = document.getElementById("emailInput");
-    confirm = document.getElementById("confirmEmailInput");
+  const emailInput = document.getElementById("emailInput");
+  const onEmailChange = () => {
+    const confirmEmailInput = document.getElementById("confirmEmailInput");
 
     // Set the RegEx pattern for the confirmation field to match the value
     // of the email field.
     // Nothing matches empty RegEx, so this blocks blanks too.
-    pattern = escapeRegExp(email.value);
-    confirm.setAttribute("pattern", pattern);
+    const pattern = escapeRegExp(emailInput.value);
+    confirmEmailInput.setAttribute("pattern", pattern);
   };
+  emailInput.addEventListener("input", onEmailChange);
 
-  onReCAPTCHAChange = (result) => {
-    annotation = document.getElementById("recaptcha-annotation");
+  // This must be on window object for ReCAPTCHA library to find it. Hence var.
+  var onReCAPTCHAChange = (result) => {
+    const annotation = document.getElementById("recaptcha-annotation");
     if (result !== "") {
       annotation.classList.remove("is-invalid");
       return;
@@ -195,39 +217,135 @@ recaptcha: true
     annotation.classList.add("is-invalid");
   };
 
-  onSubmitContactForm = () => {
-    // Add the was-validated class to show the validity annotations.
-    form = document.getElementById("contact-form");
-    form.classList.add("was-validated");
+  const setSubmitting = (isSubmitting) => {
+    const submitBtn = form.querySelector("button[type=submit]");
+    if (isSubmitting) {
+      document.getElementById("submit-error").classList.add("d-none");
+      submitBtn.setAttribute("disabled", true);
+      form.classList.add("submitting");
+    } else {
+      submitBtn.removeAttribute("disabled");
+      form.classList.remove("submitting");
+    }
+  };
+
+  const updateValidationHelp = (didPassValidation) => {
+    const failHelpText = document.getElementById("fail-validation");
+    if (didPassValidation) {
+      failHelpText.classList.add("d-none");
+    } else {
+      failHelpText.classList.remove("d-none");
+    }
+  };
+
+  const validateRecapcha = () => {
+    const annotation = document.getElementById("recaptcha-annotation");
+    const didPassCAPTCHA = !!grecaptcha.getResponse();
+
+    if (!didPassCAPTCHA) {
+      annotation.classList.add("is-invalid");
+    } else {
+      annotation.classList.remove("is-invalid");
+    }
+
+    return didPassCAPTCHA;
+  };
+
+  const validateForm = () => {
+    let didPassValidation = true;
 
     // Force the email confirmation regex to update.
     onEmailChange();
 
     // Check to make sure the form passes the validity checks.
-    if (form.checkValidity() !== true) {
-      document.getElementById("fail-validation").classList.remove("d-none");
-      return false;
-    }
+    if (form.checkValidity() !== true) didPassValidation = false;
 
     // Check to make sure that the user did not forget to solve the reCAPTCHA.
     // Further validation of reCAPTCHA tokens handled by server.
-    if (!grecaptcha.getResponse()) {
-      annotation = document.getElementById("recaptcha-annotation");
-      annotation.classList.add("is-invalid");
-      document.getElementById("fail-validation").classList.remove("d-none");
+    if (!validateRecapcha()) didPassValidation = false;
 
-      return false;
-    }
+    // Update the banner message above the submit button.
+    updateValidationHelp(didPassValidation);
 
-    // Hide the form and show the result frame.
-    document.getElementById("form-result").classList.remove("d-none");
-    document.getElementById("contact-header").scrollIntoView(true);
-    document.getElementById("contact-form").classList.add("d-none");
-    return true;
+    return didPassValidation;
   };
 
+  const processForm = async () => {
+    if (!validateForm()) {
+      setSubmitting(false);
+      return;
+    }
+
+    const target =
+      "https://formspree.io/f/" +
+      ((input) => {
+        // This function decodes the contact form ID.
+        // The goal of obfuscating this is to prevent idle spambots from finding
+        // the full URL of the form, unless they decide to run JavaScript.
+        // Time and my inbox will tell whether or not this works.
+
+        let decoded = atob(input);
+        let data = JSON.parse(decoded);
+
+        let result = "";
+        for (const charCode of data) result += String.fromCharCode(charCode);
+
+        return result;
+      })("{{site.contact_form_id}}");
+
+    // Retrieve form data and convert to object for serialization.
+    const formData = new FormData(form);
+    const data = {};
+    for (const [key, value] of formData.entries()) data[key] = value;
+
+    try {
+      const response = await fetch(target, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status > 200) {
+        const info = await response.json();
+        console.error(
+          `non-OK form submission status ${response.status}`,
+          info?.error
+        );
+        throw "form submission not accepted";
+      }
+    } catch (error) {
+      document.getElementById("submit-error").classList.remove("d-none");
+      setSubmitting(false);
+      throw error;
+    }
+
+    form.classList.add("d-none");
+    document.getElementById("contact-thanks").classList.remove("d-none");
+    setSubmitting(false);
+  };
+
+  form.addEventListener("submit", (event) => {
+    // Prevent default browser behavior of form.
+    event.preventDefault();
+
+    // Add the was-validated class to show the validity annotations.
+    form.classList.add("was-validated");
+
+    // Mark the submission process as started; prevent duplicate submissions.
+    setSubmitting(true);
+
+    // Start the asynchronous form submission process.
+    processForm();
+
+    // Return false, to supplement event.preventDefault call.
+    return false;
+  });
+
   // On initial page load, show the contact form if JavaScript is available.
-  document.getElementById("contact-form").classList.remove("d-none");
+  form.classList.remove("d-none");
 
   // On initial page load, set the email confirmation validation.
   onEmailChange();

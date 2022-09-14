@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   {% include head.html %}
 
   <body>
@@ -17,7 +17,7 @@
     <!-- prettier-ignore -->
     {% endcomment %}
 
-    <div class="content-area">{{ content }}</div>
+    <main class="{{page.main_class}}">{{ content }}</main>
 
     {% comment %}
     <!-- prettier-ignore -->

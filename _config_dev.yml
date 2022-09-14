@@ -18,7 +18,10 @@ strict_front_matter: true
 
 # Use reCAPTCHA testing key for local development. See also:
 # https://developers.google.com/recaptcha/docs/faq#id-like-to-run-automated-tests-with-recaptcha.-what-should-i-do
-recaptcha_site_id: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+recaptcha_site_id: 6LekpXceAAAAAG1Obo3qshDu7i4a7Tz7gKYElbMh
+
+# Development contact form.
+contact_form_id: WzEwOSwxMjEsMTIxLDExMSwxMTksMTIyLDEwNiwxMTJd
 
 # Plugins used for the development server.
 # WARNING: any plugins enabled in _config.yml should also appear here!

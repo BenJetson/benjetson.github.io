@@ -1,0 +1,25 @@
+message: >
+  Here's a convenient stack of my personal internet links.
+
+links:
+  - title: My Website
+    icon: globe2
+    url: /
+  - title: Twitter
+    icon: twitter
+    social_key: twitter
+  - title: Instagram
+    icon: instagram
+    social_key: instagram
+  - title: GitHub
+    icon: github
+    social_key: github
+  - title: LinkedIn
+    icon: linkedin
+    social_key: linkedin
+  - title: My Resume
+    icon: file-earmark-person
+    url: /resume
+  - title: Contact Me
+    icon: envelope
+    url: /contact
