@@ -18,7 +18,10 @@ strict_front_matter: true
 
 # Use reCAPTCHA testing key for local development. See also:
 # https://developers.google.com/recaptcha/docs/faq#id-like-to-run-automated-tests-with-recaptcha.-what-should-i-do
-recaptcha_site_id: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+recaptcha_site_id: 6Leg5fwhAAAAAEt01he0_xfyIF59TeK3NYR5PrCA
+
+# Development contact form.
+contact_form_id: WzEwOSwxMjEsMTIxLDExMSwxMTksMTIyLDEwNiwxMTJd
 
 # Plugins used for the development server.
 # WARNING: any plugins enabled in _config.yml should also appear here!
@@ -29,6 +32,7 @@ plugins:
   - jekyll-default-layout
   - jekyll-gist
   - jekyll-github-metadata
+  - jekyll-mentions
   - jekyll-optional-front-matter
   - jekyll-paginate
   - jekyll-readme-index

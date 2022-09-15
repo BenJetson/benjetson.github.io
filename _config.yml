@@ -27,6 +27,7 @@ social_urls:
 # Build settings
 tier: prod
 recaptcha_site_id: 6LfaaLQZAAAAAFqauKWQA3LRGVvHvnl-JJ99tEJI
+contact_form_id: WzEyMCwxMTEsMTEzLDExNCwxMDAsMTE4LDExOSwxMTJd
 timezone: America/New_York
 remoteURL: "https://www.bengodfrey.net"
 markdown: kramdown
@@ -41,6 +42,8 @@ permalink: /blog/:year/:month/:day-:title
 # Blog settings
 paginate: 6
 paginate_path: "/blog/page:num/"
+jekyll-mentions:
+  base-url: https://www.github.com/
 
 # Counter settings
 counter:
@@ -56,6 +59,7 @@ plugins:
   - jekyll-default-layout
   - jekyll-gist
   - jekyll-github-metadata
+  - jekyll-mentions
   - jekyll-optional-front-matter
   - jekyll-paginate
   - jekyll-readme-index
