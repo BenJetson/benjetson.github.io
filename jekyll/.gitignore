@@ -7,4 +7,3 @@ _config_netlify.yml
 /.vscode
 node_modules
 *.gen.md
-*.*env*
