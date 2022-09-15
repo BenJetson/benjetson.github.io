@@ -1,7 +1,7 @@
 import { navItems, site } from "../lib/meta";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Box, Button, Container, Heading, HStack } from "@chakra-ui/react";
+import { Box, Button, Heading, HStack } from "@chakra-ui/react";
 import ContentContainer from "./content-container";
 
 const NavLink = ({ href, name }) => {
@@ -36,7 +36,7 @@ const Navbar = () => (
       <HStack>
         <Link href="/">
           <a>
-            <Heading as="h1">Ben's Realm</Heading>
+            <Heading as="h1">{site.title}</Heading>
           </a>
         </Link>
         <Box flexGrow={1}></Box>
