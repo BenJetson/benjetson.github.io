@@ -80,7 +80,8 @@ export const getPostMetadata = (identifiers) => {
   const href = postIdentifiersToHref(identifiers);
   const filePath = postIdentifiersToFilePath(identifiers);
   const fileContents = fs.readFileSync(filePath, "utf8");
-  const matterResult = matter(fileContents);
+  // FIXME need to get better excerpt algorithm?
+  const matterResult = matter(fileContents, { excerpt: true });
   const filteredMatterResult = filterMatterResult(matterResult);
 
   return {

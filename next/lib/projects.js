@@ -73,7 +73,8 @@ export const getProjectMetadata = (slug) => {
   const href = projectSlugToHref(slug);
   const filePath = projectSlugToFilePath(slug);
   const fileContents = fs.readFileSync(filePath, "utf8");
-  const matterResult = matter(fileContents);
+  // FIXME need to get better excerpt algorithm?
+  const matterResult = matter(fileContents, { excerpt: true });
   const filteredMatterResult = filterMatterResult(matterResult);
 
   filteredMatterResult.frontMatter.date =
