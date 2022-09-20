@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <img src={personal.avatar} alt="Ben's Avatar" />
-      <Heading level={2}>Hi! I'm Ben.</Heading>
+      <Heading level={2}>{`Hi! I'm Ben.`}</Heading>
     </>
   );
 }
