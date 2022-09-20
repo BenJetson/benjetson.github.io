@@ -1,7 +1,9 @@
+import { Heading, Paragraph } from "../components/typography";
+
 const About = () => (
   <>
-    <h1>About</h1>
-    <p>Some text here.</p>
+    <Heading level={2}>About</Heading>
+    <Paragraph>Some text here.</Paragraph>
   </>
 );
 

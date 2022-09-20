@@ -1,7 +1,9 @@
+import { Heading, Paragraph } from "../components/typography";
+
 const Contact = () => (
   <>
-    <h1>Contact</h1>
-    <p>Some text here.</p>
+    <Heading level={2}>Contact</Heading>
+    <Paragraph>Some text here.</Paragraph>
   </>
 );
 

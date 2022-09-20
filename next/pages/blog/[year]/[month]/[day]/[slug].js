@@ -1,11 +1,15 @@
+import { Heading, Text } from "@chakra-ui/react";
 import Markdown from "../../../../../components/markdown";
 import { getAllPostPaths, getPostMetadata } from "../../../../../lib/posts";
 
 const BlogPost = ({ post }) => (
   <>
-    <h2>{post.frontMatter.title}</h2>
-
-    <p>{post.frontMatter.date}</p>
+    <Heading as="h2" py={4}>
+      {post.frontMatter.title}
+    </Heading>
+    <Text fontSize="lg" pb={4} mb={4} borderBottom="1px">
+      Posted {post.frontMatter.date} by Ben Godfrey
+    </Text>
 
     <Markdown content={post.content} />
   </>

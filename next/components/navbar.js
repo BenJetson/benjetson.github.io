@@ -36,7 +36,9 @@ const Navbar = () => (
       <HStack>
         <Link href="/">
           <a>
-            <Heading as="h1">{site.title}</Heading>
+            <Heading as="h1" my={0}>
+              {site.title}
+            </Heading>
           </a>
         </Link>
         <Box flexGrow={1}></Box>
