@@ -1,14 +1,12 @@
 import { getAllPostMetadata } from "../../lib/posts";
 import Link from "next/link";
+import { Heading, List, ListItem } from "@chakra-ui/react";
 import {
-  Heading,
-  List,
-  ListItem,
-  OrderedList,
-  Text,
-  UnorderedList,
-} from "@chakra-ui/react";
-import { Card, CardContent, CardHeader } from "../../components/card";
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../components/card";
 
 const Blog = ({ posts }) => {
   return (
@@ -20,10 +18,16 @@ const Blog = ({ posts }) => {
             <Link href={post.href}>
               <a>
                 <Card>
-                  <CardHeader>{post.frontMatter.title}</CardHeader>
+                  <CardHeader>
+                    <CardTitle level={3}>{post.frontMatter.title}</CardTitle>
+                  </CardHeader>
                   <CardContent>
-                    {post.frontMatter.date} <br />
-                    Preview: {post.excerpt}
+                    Posted on {post.frontMatter.date} <br />
+                    Preview:{" "}
+                    {
+                      // FIXME excerpts not working!
+                      post.excerpt || "no excerpt available"
+                    }
                   </CardContent>
                 </Card>
               </a>
