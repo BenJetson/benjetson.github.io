@@ -24,29 +24,50 @@ import Prism from "react-syntax-highlighter/dist/cjs/prism";
  */
 import { coldarkDark as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import {
-  Heading,
+  Box,
+  Code,
+  List,
+  ListIcon,
   ListItem,
   OrderedList,
-  Text,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
   UnorderedList,
 } from "@chakra-ui/react";
+import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
+import { Heading, Paragraph } from "./typography";
+import { contentSpacing } from "../lib/theme";
 
-const Code = ({ node, inline, className, children, ...props }) => {
+const MdCode = ({ node, inline, className, children, ...props }) => {
   const match = /language-(\w+)/.exec(className || "");
-  return !inline && match ? (
-    <Prism
-      style={codeStyle}
-      language={match[1]}
-      PreTag="div"
-      showLineNumbers
-      {...props}
-    >
-      {String(children).replace(/\n$/, "")}
-    </Prism>
-  ) : (
-    <code className={className} {...props}>
-      {children}
-    </code>
+  return (
+    <Box mb={contentSpacing}>
+      {!inline && match ? (
+        <Prism
+          style={codeStyle}
+          language={match[1]}
+          PreTag="div"
+          showLineNumbers
+          {...props}
+        >
+          {String(children).replace(/\n$/, "")}
+        </Prism>
+      ) : (
+        <Code
+          colorScheme={"pink"}
+          px={1}
+          py={0.5}
+          className={className}
+          {...props}
+        >
+          {children}
+        </Code>
+      )}
+    </Box>
   );
 };
 
@@ -91,7 +112,7 @@ const imageDimensionsPattern = /^([1-9][0-9]*)x([1-9][0-9]*)$/;
  * @param {string} param0.properties.src
  * @returns
  */
-const Image = ({ properties: { alt, src } }) => {
+const MdImage = ({ properties: { alt, src } }) => {
   const [altText, ...declarations] = alt
     .split("|")
     .map((value) => value.trim());
@@ -122,24 +143,60 @@ const Image = ({ properties: { alt, src } }) => {
   );
 };
 
-const Paragraph = ({ node, children }) => {
+const MdParagraph = ({ node, children }) => {
   // Markdown is a strange bird. Technically, images should not be nested inside
   // of paragraph tags, so we'll override this behavior.
   //
   // Source: https://amirardalan.com/blog/use-next-image-with-react-markdown
   if (node.children[0].tagName === "img") {
-    return <Image {...node.children[0]} />;
+    return <MdImage {...node.children[0]} />;
   }
 
-  return <Text>{children}</Text>;
+  return <Paragraph>{children}</Paragraph>;
 };
 
-const Heading1 = ({ children }) => <Heading as="h1">{children}</Heading>;
-const Heading2 = ({ children }) => <Heading as="h2">{children}</Heading>;
-const Heading3 = ({ children }) => <Heading as="h3">{children}</Heading>;
-const Heading4 = ({ children }) => <Heading as="h4">{children}</Heading>;
-const Heading5 = ({ children }) => <Heading as="h5">{children}</Heading>;
-const Heading6 = ({ children }) => <Heading as="h6">{children}</Heading>;
+const MdTable = ({ children, ...props }) => {
+  return (
+    <Table
+      variant={"striped"}
+      mb={contentSpacing}
+      colorScheme="gray"
+      {...props}
+    >
+      {children}
+    </Table>
+  );
+};
+
+/**
+ * @typedef {import('@chakra-ui/react').ListProps} ListProps
+ * @type {ListProps}
+ */
+const listProps = { mb: contentSpacing };
+
+const MdOrderedList = ({ children }) => (
+  <OrderedList {...listProps}>{children}</OrderedList>
+);
+
+const MdUnorderedList = ({ className, children }) =>
+  className === "contains-task-list" ? (
+    <List {...listProps}>{children}</List>
+  ) : (
+    <UnorderedList {...listProps}>{children}</UnorderedList>
+  );
+
+const MdTaskListCheck = ({ checked }) => (
+  <ListIcon as={checked ? FaRegCheckCircle : FaRegCircle} />
+);
+
+const MdHeading1 = ({ children }) => <Heading level={1}>{children}</Heading>;
+const MdHeading2 = ({ children }) => <Heading level={2}>{children}</Heading>;
+const MdHeading3 = ({ children }) => <Heading level={3}>{children}</Heading>;
+const MdHeading4 = ({ children }) => <Heading level={4}>{children}</Heading>;
+const MdHeading5 = ({ children }) => <Heading level={5}>{children}</Heading>;
+const MdHeading6 = ({ children }) => <Heading level={6}>{children}</Heading>;
+
+const NoContent = () => null;
 
 const Markdown = ({ content }) => (
   <ReactMarkdown
@@ -151,33 +208,33 @@ const Markdown = ({ content }) => (
       // a: undefined,
       // blockquote: undefined,
       // br: undefined,
-      h1: Heading1,
-      h2: Heading2,
-      h3: Heading3,
-      h4: Heading4,
-      h5: Heading5,
-      h6: Heading6,
+      h1: MdHeading1,
+      h2: MdHeading2,
+      h3: MdHeading3,
+      h4: MdHeading4,
+      h5: MdHeading5,
+      h6: MdHeading6,
       // hr: undefined,
-      // img: handled as part of Paragraph, see notes.
-      p: Paragraph,
+      // img: undefined, // handled as part of Paragraph, see notes.
+      p: MdParagraph,
       // pre: undefined,
-      code: Code,
+      code: MdCode,
       // em: undefined,
       // strong: undefined,
-      ul: UnorderedList,
-      ol: OrderedList,
+      ul: MdUnorderedList,
+      ol: MdOrderedList,
       li: ListItem,
 
       // GitHub Markdown //
 
       // del: undefined,
-      // input: undefined,
-      // table: undefined,
-      // tbody: undefined,
-      // td: undefined,
-      // th: undefined,
-      // thead: undefined,
-      // tr: undefined,
+      input: MdTaskListCheck,
+      table: MdTable,
+      tbody: Tbody,
+      td: Td,
+      th: Th,
+      thead: Thead,
+      tr: Tr,
     }}
   >
     {content}
