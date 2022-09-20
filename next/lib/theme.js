@@ -1,5 +1,7 @@
 import { extendTheme, withDefaultColorScheme } from "@chakra-ui/react";
 
+export const contentSpacing = 3;
+
 const theme = extendTheme(
   {
     colors: { primary: { main: "#01579b" } },
@@ -12,6 +14,10 @@ const theme = extendTheme(
       },
     },
     initialColorMode: "light",
+    components: {
+      Heading: { baseStyle: { my: contentSpacing } },
+      Text: { baseStyle: { mb: contentSpacing } },
+    },
   },
   withDefaultColorScheme({ colorScheme: "blue" })
 );
