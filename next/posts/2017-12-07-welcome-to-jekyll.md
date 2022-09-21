@@ -24,7 +24,7 @@ print_hi('Tom')
 #=> prints 'Hi, Tom' to STDOUT.
 ```
 
-```golang
+```go
 package main
 
 import (

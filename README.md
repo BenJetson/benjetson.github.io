@@ -1,106 +1,28 @@
 # benjetson.github.io
 
-This repository contains the code that powers my personal webpage.
+My personal webpage.
 
-You can see the production version live at
-[www.bengodfrey.net](https://www.bengodfrey.net), which is built from the
-[`master` branch](https://github.com/BenJetson/benjetson.github.io/tree/master).
+## Welcome
 
-## Preview
+This repository is in a bit of a transition state right now because I am
+migrating the framework and hosting for this site.
 
-![Screenshot of Homepage](https://user-images.githubusercontent.com/10427974/83982130-ef15f600-a8f1-11ea-879f-a6ff099b6c2a.png)
+This is a major overhaul, all new code is on the way!
 
-## How It's Made
+| Category  | Old                                      | New                           |
+| --------- | ---------------------------------------- | ----------------------------- |
+| Framework | [Jekyll](https://jekyllrb.com)           | [Next.js](https://nextjs.org) |
+| Hosting   | [GitHub Pages](https://pages.github.com) | [Vercel](https://vercel.com)  |
 
-The site is built upon modern web technologies, built upon software from these
-awesome open source projects:
+## Structure
 
-- [**Jekyll**](https://www.jekyllrb.com) – static site builder
-- [**Liquid**](https://shopify.github.io/liquid) – templating engine
-- [**Bootstrap 4**](https://getbootstrap.com/docs/4.5) – interface framework
-- [**PrefixFree**](https://leaverou.github.io/prefixfree) – client side CSS
-  vendor prefixing
+In the meantime, all old code from the Jekyll site will be in the
+[`jekyll` directory](./jekyll) and the new code for the Next.js site will be in
+the [`next` directory](./next).
 
-The site is powered by these services:
+The idea here is some pieces, like post content markdown files, can be moved
+over. For the pieces that will be eventually deleted, this just lets me view
+them easily in parallel without them conflicting with each other.
 
-- [**GitHub Pages**](https://pages.github.com) – hosting provider
-- [**GitHub Actions**](https://github.com/features/actions) – continuous
-  integration
-- [**Disqus**](https://www.disqus.com) – comment platform provider
-
-## Local Development
-
-Perform the following steps to set up a machine for local development.
-
-1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop).
-
-1. Install Python dependencies.
-
-   ```sh
-   pip3 install -r scripts/requirements.txt
-   ```
-
-   This is required for the pre-commit hooks to run.
-
-1. Install Node
-
-   ```sh
-   brew install node
-   ```
-
-   This is required for Prettier to work.
-
-1. Configure Git hooks.
-
-   ```sh
-   pre-commit install
-   ```
-
-1. Configure VSCode editor
-
-   1. Install Extensions
-      1. `editorconfig.editorconfig`
-      1. `esbenp.prettier-vscode`
-      1. `davidanson.vscode-markdownlint`
-      1. `timonwong.shellcheck`
-   1. Use these settings to enable automatic formatting of project files:
-
-      ```json
-      "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-      },
-      "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-      },
-      "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-      },
-      "python.formatting.provider": "black",
-      "editor.formatOnSave": true
-      ```
-
-## Optional: Local Ruby
-
-Since the local webserver will run inside a Docker container, **it is no longer
-necessary** to install Ruby or vendor RubyGems on your host system.
-
-However, should you wish to do so, you may:
-
-1. Install Ruby via RVM
-
-   ```sh
-   url -sSL https://get.rvm.io | bash -s stable
-   rvm install 2.5.3
-   ```
-
-1. Install Bundler to handle Ruby dependencies
-
-   ```sh
-   gem install bundler
-   ```
-
-1. Install Ruby dependencies.
-
-   ```sh
-   bundle install
-   ```
+Eventually, the `jekyll` folder will be destroyed and the contents of the `next`
+folder will live here at the repo root. Someday. 🙂
