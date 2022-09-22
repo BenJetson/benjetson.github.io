@@ -79,6 +79,9 @@ export const Wave = ({
   flipX = false,
   flipY = false,
   invert = false,
+  // TODO I feel this should allow for some customization, surely one shadow
+  // size doesn't work everywhere?
+  shadow = false,
 }) => {
   if (!variantDefinitions[variant]) {
     throw new Error(`no such wave variant '${variant}'`);
@@ -88,9 +91,13 @@ export const Wave = ({
   // the same direction in the document.
   if (invert) [flipY, flipX] = [!flipY, !flipX];
 
-  const { path, viewBoxHeight, viewBoxWidth, defaultHeight } =
+  let { path, viewBoxHeight, viewBoxWidth, defaultHeight } =
     variantDefinitions[variant];
   [fgColor] = useToken("colors", [fgColor]);
+
+  // Make sure added shadow height does not get cut off by viewBox.
+  // FIXME should probably use a more precise value here.
+  if (shadow) viewBoxHeight += 5;
 
   // Handle flipping a wave using CSS. Nice that scale() is about the image
   // image center already, so no translation/movement is necessary after.
@@ -116,21 +123,68 @@ export const Wave = ({
           transform: transformation,
         }}
       >
-        {(!invert && <path d={path} fill={fgColor} stroke="none"></path>) || (
+        {shadow && (
+          <filter id="shadowFilter">
+            <feDropShadow
+              dx="0"
+              // FIXME these need constants or comments or parameters.
+              dy={flipY ? "-2" : "2"}
+              stdDeviation={3}
+              floodOpacity={0.5}
+              // FIXME Should probably set floodColor to something from theme.
+            />
+          </filter>
+        )}
+
+        {(!invert && (
+          <path
+            d={path}
+            fill={fgColor}
+            stroke="none"
+            filter={shadow && "url(#shadowFilter)"}
+          />
+        )) || (
           <>
             <defs>
               <mask id="exclusion">
-                <rect width="100%" height="100%" fill="white" stroke="none" />
+                <rect
+                  // FIXME either make this a calculated value or use a
+                  // constant, this feels too magical.
+                  // Make sure the rectangle that is cut is outside the viewBox
+                  // so that it stretches to the edge.
+                  // Previously set to width="100%" and height="100%"
+                  // FIXME I suspect the oversize is not necessary
+                  x="-20"
+                  y="-20"
+                  width={viewBoxWidth + 40}
+                  height={viewBoxHeight + 40}
+                  fill="white"
+                  stroke="none"
+                />
                 <path fill="black" d={path} />
               </mask>
             </defs>
 
-            <rect
-              width="100%"
-              height="100%"
-              fill={fgColor}
-              mask="url(#exclusion)"
-            />
+            <g
+              // Need to ensure the shadow filter is applied after masking, so
+              // we place the rectangle in a group.
+              filter={shadow && "url(#shadowFilter)"}
+            >
+              <rect
+                // FIXME either make this a calculated value or use a
+                // constant, this feels too magical.
+                // Make sure the rectangle that is cut is outside the viewBox
+                // so that it stretches to the edge.
+                // Previously set to width="100%" and height="100%"
+                // FIXME I suspect the oversize is not necessary
+                x="-20"
+                y="-20"
+                width={viewBoxWidth + 40}
+                height={viewBoxHeight + 40}
+                fill={fgColor}
+                mask="url(#exclusion)"
+              />
+            </g>
           </>
         )}
       </svg>
