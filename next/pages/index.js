@@ -41,16 +41,17 @@ export default function Home() {
           variant={waveVariants.MIN1}
           fgColor="primary.500"
           bgColor="gray.100"
+          shadow
         />
 
-        <Section bgColor="gray.100" py={2}>
+        <Section bgColor="gray.100" pt={2} pb={8}>
           <Heading level={2} mt={0}>
             About Me
           </Heading>
           <Paragraph>something interesting</Paragraph>
           <Button colorScheme="info">Learn More</Button>
         </Section>
-        <Wave variant={waveVariants.MIN1} fgColor="gray.100" flipX />
+        <Wave variant={waveVariants.SEMI1} fgColor="gray.100" invert shadow />
 
         <Section>
           <Heading level={2}>Recent Blog Posts</Heading>
