@@ -64,10 +64,15 @@ export const Wave = ({
   bgColor,
   flipX = false,
   flipY = false,
+  invert = false,
 }) => {
   if (!variantDefinitions[variant]) {
     throw new Error(`no such wave variant '${variant}'`);
   }
+
+  // When inverting the SVG path, also reverse the scaling so that the result is
+  // the same direction in the document.
+  if (invert) [flipY, flipX] = [!flipY, !flipX];
 
   const { path, viewBoxHeight, viewBoxWidth, defaultHeight } =
     variantDefinitions[variant];
@@ -97,7 +102,23 @@ export const Wave = ({
           transform: transformation,
         }}
       >
-        <path d={path} style={{ stroke: "none", fill: fgColor }}></path>
+        {(!invert && <path d={path} fill={fgColor} stroke="none"></path>) || (
+          <>
+            <defs>
+              <mask id="exclusion">
+                <rect width="100%" height="100%" fill="white" stroke="none" />
+                <path fill="black" d={path} />
+              </mask>
+            </defs>
+
+            <rect
+              width="100%"
+              height="100%"
+              fill={fgColor}
+              mask="url(#exclusion)"
+            />
+          </>
+        )}
       </svg>
     </Box>
   );
