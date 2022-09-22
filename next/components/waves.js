@@ -27,6 +27,8 @@ export const waveVariants = {
   BASIC1: "basic1",
   BASIC2: "basic2",
   MIN1: "min1",
+  SEMI1: "semi1",
+  SIDE1: "side1",
 };
 
 const variantDefinitions = {
@@ -47,6 +49,18 @@ const variantDefinitions = {
     viewBoxWidth: 1920,
     viewBoxHeight: 96,
     defaultHeight: 10,
+  },
+  [waveVariants.SEMI1]: {
+    path: `M 5e-06 -106.999985 L 1920 -106.999985 C 1920 -106.999985 1957.434326 1.555214 1920 6.142853 C 959.516174 123.851852 960.07666 125.882744 5e-06 6.142853 C -37.424351 1.475311 5e-06 -106.999985 5e-06 -106.999985 Z`,
+    viewBoxWidth: 1920,
+    viewBoxHeight: 96,
+    defaultHeight: 8,
+  },
+  [waveVariants.SIDE1]: {
+    path: `M 7e-06 -106.999985 L 1920 -106.999985 C 1920 -106.999985 2007.894653 -20.731239 1920 6.142853 C 1345.662354 181.748566 1080.560425 43.608326 7e-06 6.142853 C -37.691643 4.835999 7e-06 -106.999985 7e-06 -106.999985 Z`,
+    viewBoxWidth: 1920,
+    viewBoxHeight: 96,
+    defaultHeight: 6,
   },
 };
 
