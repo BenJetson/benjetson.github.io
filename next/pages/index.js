@@ -1,4 +1,4 @@
-import { Box, Button, Flex, VStack } from "@chakra-ui/react";
+import { Box, Button, Flex, HStack } from "@chakra-ui/react";
 import Head from "next/head";
 import Image from "next/image";
 import { Heading, Paragraph } from "../components/typography";
@@ -49,7 +49,12 @@ export default function Home() {
             About Me
           </Heading>
           <Paragraph>something interesting</Paragraph>
-          <Button colorScheme="info">Learn More</Button>
+          <HStack>
+            <Button colorScheme="info">Learn More</Button>
+            <Button colorScheme="info" variant="outline">
+              See Resume
+            </Button>
+          </HStack>
         </Section>
         <Wave variant={waveVariants.SEMI1} fgColor="gray.100" invert shadow />
 
