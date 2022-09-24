@@ -33,6 +33,16 @@ export const waveVariants = {
   INK2: "ink2",
 };
 
+/**
+ * @typedef {Object} WaveDefinition
+ * @property {string} path the SVG path of the wave.
+ * @property {number} viewBoxWidth the width of the SVG viewBox.
+ * @property {number} viewBoxHeight the height of the SVG viewBox.
+ * @property {number} [defaultHeight] the default height of the Box that bounds
+ *    the wave shape. Uses Chakra shorthand.
+ */
+
+/** @type {Object.<string, WaveDefinition>} */
 const variantDefinitions = {
   [waveVariants.BASIC1]: {
     path: `M -0 0 L 1920 0 C 1920 0 1956.814209 104.952148 1920 113.142853 C 991.962036 319.621094 757.968079 48.270935 -0 113.142853 C -37.57692 116.358963 -0 0 -0 0 Z`,
