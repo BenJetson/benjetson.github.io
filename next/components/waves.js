@@ -89,6 +89,26 @@ const variantDefinitions = {
 };
 
 /**
+ * matrixTransform creates a matrix transformation string given the 6 variables
+ * that make up the transformation.
+ *
+ * The following operation describes what is happening:
+ *
+ * ⎛ x' ⎞   ⎛ a c e ⎞   ⎛ x ⎞   ⎛ (ax)+(cy)+e ⎞
+ * ⎜    ⎟   ⎜       ⎟   ⎜   ⎟   ⎜             ⎟
+ * ⎜ y' ⎟ = ⎜ b d f ⎟ ⋅ ⎜ y ⎟ = ⎜ (bx)+(dy)+f ⎟
+ * ⎜    ⎟   ⎜       ⎟   ⎜   ⎟   ⎜             ⎟
+ * ⎝ 1  ⎠   ⎝ 0 0 1 ⎠   ⎝ 1 ⎠   ⎝ 1           ⎠
+ *
+ * Note that x' and y' denote new values, while x and y denote old values.
+ *
+ * For more information, see also:
+ * https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform#matrix
+ */
+const matrixTransform = ({ a, b, c, d, e, f }) =>
+  "matrix(" + [a, b, c, d, e, f].join(", ") + ")";
+
+/**
  *
  * @param {Object} param0 the props object.
  * @param {waveVariants} param0.variant the variant of wave to use.
@@ -123,13 +143,37 @@ export const Wave = ({
   // FIXME should probably use a more precise value here.
   if (shadow) viewBoxHeight += 5;
 
-  // Handle flipping a wave using CSS. Nice that scale() is about the image
-  // image center already, so no translation/movement is necessary after.
   let transformation = undefined;
   if (flipX || flipY) {
-    const xFactor = flipX ? -1 : 1;
-    const yFactor = flipY ? -1 : 1;
-    transformation = `scale(${xFactor}, ${yFactor})`;
+    let transformX = !invert
+      ? matrixTransform({
+          a: -1,
+          b: 0,
+          c: 0,
+          d: 1,
+          e: viewBoxHeight,
+          f: 0,
+        })
+      : matrixTransform({ a: -1, b: 0, c: 0, d: 1, e: 0, f: 0 });
+
+    let transformY = !invert
+      ? matrixTransform({
+          a: 1,
+          b: 0,
+          c: 0,
+          d: -1,
+          e: 0,
+          f: viewBoxHeight,
+        })
+      : matrixTransform({ a: 1, b: 0, c: 0, d: -1, e: 0, f: 0 });
+
+    if (flipX && flipY) {
+      transformation = [transformX, transformY].join(" ");
+    } else if (flipX) {
+      transformation = transformX;
+    } else {
+      transformation = transformY;
+    }
   }
 
   return (
@@ -139,7 +183,16 @@ export const Wave = ({
       bgColor={bgColor}
     >
       <svg
-        viewBox={[0, 0, viewBoxWidth, viewBoxHeight].join(" ")}
+        viewBox={[
+          0,
+          // XXX Safari is weird. It seems to shift down a few pixels when
+          // doing an invert, while no other browser does this and I cannot
+          // figure out why. So this is here.
+          // FIXME figure this out and remove it at some point.
+          !invert ? 0 : 5,
+          viewBoxWidth,
+          viewBoxHeight,
+        ].join(" ")}
         preserveAspectRatio="none"
         style={{
           height: "100%",
@@ -164,7 +217,7 @@ export const Wave = ({
             d={path}
             fill={fgColor}
             stroke="none"
-            transform-origin="center center"
+            // transform-origin="center center"
             transform={transformation}
             filter={shadow ? "url(#shadowFilter)" : undefined}
           />
