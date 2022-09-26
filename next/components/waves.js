@@ -1,4 +1,5 @@
 import { Box, useToken } from "@chakra-ui/react";
+import { useId } from "react";
 
 // Found a handy little tool for generating these wave paths:
 //    https://smooth.ie/blogs/news/svg-wavey-transitions-between-sections
@@ -131,6 +132,8 @@ export const Wave = ({
     throw new Error(`no such wave variant '${variant}'`);
   }
 
+  const instanceId = useId();
+
   // When inverting the SVG path, also reverse the scaling so that the result is
   // the same direction in the document.
   if (invert) [flipY, flipX] = [!flipY, !flipX];
@@ -183,16 +186,7 @@ export const Wave = ({
       bgColor={bgColor}
     >
       <svg
-        viewBox={[
-          0,
-          // XXX Safari is weird. It seems to shift down a few pixels when
-          // doing an invert, while no other browser does this and I cannot
-          // figure out why. So this is here.
-          // FIXME figure this out and remove it at some point.
-          !invert ? 0 : 5,
-          viewBoxWidth,
-          viewBoxHeight,
-        ].join(" ")}
+        viewBox={[0, 0, viewBoxWidth, viewBoxHeight].join(" ")}
         preserveAspectRatio="none"
         style={{
           height: "100%",
@@ -201,7 +195,7 @@ export const Wave = ({
       >
         {shadow && (
           <defs>
-            <filter id="shadowFilter">
+            <filter id={`shadowFilter-${instanceId}`}>
               <feDropShadow
                 dx="0"
                 stdDeviation={3}
@@ -217,14 +211,14 @@ export const Wave = ({
             d={path}
             fill={fgColor}
             stroke="none"
-            // transform-origin="center center"
+            transform-origin="center center"
             transform={transformation}
-            filter={shadow ? "url(#shadowFilter)" : undefined}
+            filter={shadow ? `url(#shadowFilter-${instanceId})` : undefined}
           />
         )) || (
           <>
             <defs>
-              <mask id="exclusion">
+              <mask id={`exclusion-${instanceId}`}>
                 <rect width="100%" height="100%" fill="white" stroke="none" />
                 <path fill="black" stroke="none" d={path} />
               </mask>
@@ -233,23 +227,18 @@ export const Wave = ({
             <g
               // Need to ensure the shadow filter is applied after masking, so
               // we place the rectangle in a group.
-              filter={shadow ? "url(#shadowFilter)" : undefined}
+              filter={shadow ? `url(#shadowFilter-${instanceId})` : undefined}
               width="100%"
               height="100%"
             >
-              <g
+              <rect
                 width="100%"
                 height="100%"
+                fill={fgColor}
+                mask={`url(#exclusion-${instanceId})`}
                 transform-origin={`center center`}
                 transform={transformation}
-              >
-                <rect
-                  width="100%"
-                  height="100%"
-                  fill={fgColor}
-                  mask="url(#exclusion)"
-                />
-              </g>
+              />
             </g>
           </>
         )}
