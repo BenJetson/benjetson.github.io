@@ -90,26 +90,6 @@ const variantDefinitions = {
 };
 
 /**
- * matrixTransform creates a matrix transformation string given the 6 variables
- * that make up the transformation.
- *
- * The following operation describes what is happening:
- *
- * ⎛ x' ⎞   ⎛ a c e ⎞   ⎛ x ⎞   ⎛ (ax)+(cy)+e ⎞
- * ⎜    ⎟   ⎜       ⎟   ⎜   ⎟   ⎜             ⎟
- * ⎜ y' ⎟ = ⎜ b d f ⎟ ⋅ ⎜ y ⎟ = ⎜ (bx)+(dy)+f ⎟
- * ⎜    ⎟   ⎜       ⎟   ⎜   ⎟   ⎜             ⎟
- * ⎝ 1  ⎠   ⎝ 0 0 1 ⎠   ⎝ 1 ⎠   ⎝ 1           ⎠
- *
- * Note that x' and y' denote new values, while x and y denote old values.
- *
- * For more information, see also:
- * https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform#matrix
- */
-const matrixTransform = ({ a, b, c, d, e, f }) =>
-  "matrix(" + [a, b, c, d, e, f].join(", ") + ")";
-
-/**
  *
  * @param {Object} param0 the props object.
  * @param {waveVariants} param0.variant the variant of wave to use.
@@ -148,35 +128,9 @@ export const Wave = ({
 
   let transformation = undefined;
   if (flipX || flipY) {
-    let transformX = !invert
-      ? matrixTransform({
-          a: -1,
-          b: 0,
-          c: 0,
-          d: 1,
-          e: viewBoxHeight,
-          f: 0,
-        })
-      : matrixTransform({ a: -1, b: 0, c: 0, d: 1, e: 0, f: 0 });
-
-    let transformY = !invert
-      ? matrixTransform({
-          a: 1,
-          b: 0,
-          c: 0,
-          d: -1,
-          e: 0,
-          f: viewBoxHeight,
-        })
-      : matrixTransform({ a: 1, b: 0, c: 0, d: -1, e: 0, f: 0 });
-
-    if (flipX && flipY) {
-      transformation = [transformX, transformY].join(" ");
-    } else if (flipX) {
-      transformation = transformX;
-    } else {
-      transformation = transformY;
-    }
+    const xFactor = flipX ? -1 : 1;
+    const yFactor = flipY ? -1 : 1;
+    transformation = `scale(${xFactor}, ${yFactor})`;
   }
 
   return (
