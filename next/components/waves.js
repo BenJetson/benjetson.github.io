@@ -144,20 +144,19 @@ export const Wave = ({
         style={{
           height: "100%",
           width: "100%",
-          transform: transformation,
         }}
       >
         {shadow && (
-          <filter id="shadowFilter">
-            <feDropShadow
-              dx="0"
-              // FIXME these need constants or comments or parameters.
-              dy={flipY ? "-2" : "2"}
-              stdDeviation={3}
-              floodOpacity={0.5}
-              // FIXME Should probably set floodColor to something from theme.
-            />
-          </filter>
+          <defs>
+            <filter id="shadowFilter">
+              <feDropShadow
+                dx="0"
+                stdDeviation={3}
+                floodOpacity={0.5}
+                // FIXME Should probably set floodColor to something from theme.
+              />
+            </filter>
+          </defs>
         )}
 
         {(!invert && (
@@ -165,49 +164,39 @@ export const Wave = ({
             d={path}
             fill={fgColor}
             stroke="none"
-            filter={shadow && "url(#shadowFilter)"}
+            transform-origin="center center"
+            transform={transformation}
+            filter={shadow ? "url(#shadowFilter)" : undefined}
           />
         )) || (
           <>
             <defs>
               <mask id="exclusion">
-                <rect
-                  // FIXME either make this a calculated value or use a
-                  // constant, this feels too magical.
-                  // Make sure the rectangle that is cut is outside the viewBox
-                  // so that it stretches to the edge.
-                  // Previously set to width="100%" and height="100%"
-                  // FIXME I suspect the oversize is not necessary
-                  x="-20"
-                  y="-20"
-                  width={viewBoxWidth + 40}
-                  height={viewBoxHeight + 40}
-                  fill="white"
-                  stroke="none"
-                />
-                <path fill="black" d={path} />
+                <rect width="100%" height="100%" fill="white" stroke="none" />
+                <path fill="black" stroke="none" d={path} />
               </mask>
             </defs>
 
             <g
               // Need to ensure the shadow filter is applied after masking, so
               // we place the rectangle in a group.
-              filter={shadow && "url(#shadowFilter)"}
+              filter={shadow ? "url(#shadowFilter)" : undefined}
+              width="100%"
+              height="100%"
             >
-              <rect
-                // FIXME either make this a calculated value or use a
-                // constant, this feels too magical.
-                // Make sure the rectangle that is cut is outside the viewBox
-                // so that it stretches to the edge.
-                // Previously set to width="100%" and height="100%"
-                // FIXME I suspect the oversize is not necessary
-                x="-20"
-                y="-20"
-                width={viewBoxWidth + 40}
-                height={viewBoxHeight + 40}
-                fill={fgColor}
-                mask="url(#exclusion)"
-              />
+              <g
+                width="100%"
+                height="100%"
+                transform-origin={`center center`}
+                transform={transformation}
+              >
+                <rect
+                  width="100%"
+                  height="100%"
+                  fill={fgColor}
+                  mask="url(#exclusion)"
+                />
+              </g>
             </g>
           </>
         )}
