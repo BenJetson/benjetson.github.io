@@ -21,3 +21,7 @@ fields:
   config:
     maxSize: 64
   label: Hero Image
+- name: categories
+  type: tag_list
+  default: []
+  label: Categories
