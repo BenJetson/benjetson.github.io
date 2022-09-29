@@ -23,6 +23,10 @@ fields:
 - type: datetime
   name: date
   label: date
+  config:
+    date_format: YYYY/MM
+    export_format: YYYY-MM
+    required: true
 - type: file
   name: photo
   label: photo
