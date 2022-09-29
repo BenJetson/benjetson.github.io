@@ -10,7 +10,7 @@ sections:
   create: documents
   match: "**/*"
   templates:
-  - blog-post
+  - project-page
 - type: directory
   path: next/posts
   label: Blog Posts
