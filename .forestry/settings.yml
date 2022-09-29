@@ -9,11 +9,15 @@ sections:
   label: Project Pages
   create: documents
   match: "**/*"
+  templates:
+  - blog-post
 - type: directory
   path: next/posts
   label: Blog Posts
   create: documents
   match: "**/*"
+  templates:
+  - blog-post
 upload_dir: next/public/uploads
 public_path: "/uploads"
 front_matter_path: ''
