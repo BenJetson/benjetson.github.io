@@ -1,0 +1,31 @@
+---
+label: Project Page
+hide_body: true
+fields:
+- type: text
+  name: title
+  label: title
+- type: text
+  name: username
+  label: username
+- type: text
+  name: repo
+  label: repo
+- type: textarea
+  name: description
+  label: description
+- type: boolean
+  name: issues
+  label: issues
+- type: boolean
+  name: wiki
+  label: wiki
+- type: datetime
+  name: date
+  label: date
+- type: file
+  name: photo
+  label: photo
+- type: text
+  name: photo-alt
+  label: photo-alt
