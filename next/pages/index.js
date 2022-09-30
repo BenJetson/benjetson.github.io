@@ -6,9 +6,6 @@ import { personal } from "../lib/meta";
 import ContentContainer from "../components/content-container";
 import { Wave, WaveBottom, waveVariants } from "../components/waves";
 
-// FIXME remove this later.
-const styles = {};
-
 /**
  * @typedef {import("@chakra-ui/react").BoxProps} BoxProps
  * @param {BoxProps} props the props object.
