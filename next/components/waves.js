@@ -112,6 +112,7 @@ export const Wave = ({
     throw new Error(`no such wave variant '${variant}'`);
   }
 
+  // TODO the SVG bug with IDs would be a good blog post.
   const instanceId = useId();
 
   // When inverting the SVG path, also reverse the scaling so that the result is
