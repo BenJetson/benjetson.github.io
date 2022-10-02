@@ -31,7 +31,7 @@ const NavLink = ({ href, name }) => {
 };
 
 const Navbar = () => (
-  <Box bgColor="blue.500" color="white" py={3} px={6}>
+  <Box bgColor="primary.600" color="white" py={3} px={6}>
     <ContentContainer>
       <HStack>
         <Link href="/">

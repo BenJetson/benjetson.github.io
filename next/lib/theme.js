@@ -4,7 +4,38 @@ export const contentSpacing = 3;
 
 const theme = extendTheme(
   {
-    colors: { primary: { main: "#01579b" } },
+    colors: {
+      primary: {
+        // base color is #01579b
+        // https://smart-swatch.netlify.app/#01579b
+
+        50: "#ddefff",
+        100: "#aed0ff",
+        200: "#7eb6ff",
+        300: "#4e9efe",
+        400: "#228afd",
+        500: "#0d79e3",
+        600: "#0164b1",
+        700: "#003f80",
+        800: "#00214f",
+        900: "#00091f",
+      },
+      info: {
+        // base color is #17a2b8
+        // https://smart-swatch.netlify.app/#17a2b8
+
+        50: "#daf6ff",
+        100: "#b3e6fa",
+        200: "#89d9f2",
+        300: "#5ccfec",
+        400: "#33c7e6",
+        500: "#1ab4cc",
+        600: "#0782a0",
+        700: "#005572",
+        800: "#002f47",
+        900: "#000f1c",
+      },
+    },
     sizes: {
       container: {
         sm: "640px",
