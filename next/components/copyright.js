@@ -12,8 +12,8 @@ const CopyrightStatement = () => {
 
   return (
     <Text>
-      <Segment>{`© ${year} Ben Godfrey.`}</Segment>{" "}
-      <Segment>{`All rights reserved.`}</Segment>
+      <Segment>&copy; {year} Ben Godfrey.</Segment>{" "}
+      <Segment>All rights reserved.</Segment>
     </Text>
   );
 };
