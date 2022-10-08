@@ -1,3 +1,12 @@
+import {
+  FaDraftingCompass,
+  FaEnvelope,
+  FaFileAlt,
+  FaHome,
+  FaPenNib,
+  FaUserCircle,
+} from "react-icons/fa";
+
 export const site = {
   title: "Ben's Realm",
   tagline: "The internet home for all of my personal projects and thoughts.",
@@ -8,19 +17,20 @@ export const personal = {
 };
 
 class NavItem {
-  constructor({ name, href }) {
+  constructor({ name, href, icon }) {
     this.name = name;
     this.href = href;
+    this.icon = icon;
   }
 }
 
 export const navItems = [
-  new NavItem({ name: "Home", href: "/" }),
-  new NavItem({ name: "About", href: "/about" }),
-  new NavItem({ name: "Resumé", href: "/resume" }),
-  new NavItem({ name: "Blog", href: "/blog" }),
-  new NavItem({ name: "Projects", href: "/projects" }),
-  new NavItem({ name: "Contact", href: "/contact" }),
+  new NavItem({ name: "Home", href: "/", icon: FaHome }),
+  new NavItem({ name: "About", href: "/about", icon: FaUserCircle }),
+  new NavItem({ name: "Resumé", href: "/resume", icon: FaFileAlt }),
+  new NavItem({ name: "Blog", href: "/blog", icon: FaPenNib }),
+  new NavItem({ name: "Projects", href: "/projects", icon: FaDraftingCompass }),
+  new NavItem({ name: "Contact", href: "/contact", icon: FaEnvelope }),
 ];
 
 class SocialProvider {
