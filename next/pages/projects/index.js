@@ -16,21 +16,19 @@ const Projects = ({ projects }) => {
         {projects.map((project) => (
           <ListItem key={project.filePath}>
             <Link href={project.href}>
-              <a>
-                <Card>
-                  <CardHeader>
-                    <CardTitle level={3}>{project.frontMatter.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    Posted on {project.frontMatter.date} <br />
-                    Preview:{" "}
-                    {
-                      // FIXME excerpts not working!
-                      project.excerpt || "no excerpt available"
-                    }
-                  </CardContent>
-                </Card>
-              </a>
+              <Card>
+                <CardHeader>
+                  <CardTitle level={3}>{project.frontMatter.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  Posted on {project.frontMatter.date} <br />
+                  Preview:{" "}
+                  {
+                    // FIXME excerpts not working!
+                    project.excerpt || "no excerpt available"
+                  }
+                </CardContent>
+              </Card>
             </Link>
             <br />
           </ListItem>
