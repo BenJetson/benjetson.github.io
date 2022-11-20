@@ -90,7 +90,7 @@ const NavDrawer = () => {
               ))}
             </List>
           </DrawerBody>
-          <DrawerFooter borderTopWidth={1}>
+          <DrawerFooter borderTopWidth={1} justifyContent="flex-start">
             <CopyrightStatement />
           </DrawerFooter>
         </DrawerContent>
