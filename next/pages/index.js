@@ -53,7 +53,14 @@ export default function Home() {
             </Button>
           </HStack>
         </Section>
-        <Wave variant={waveVariants.SEMI1} fgColor="gray.100" invert shadow />
+        <Wave
+          variant={waveVariants.MIN1}
+          fgColor="gray.100"
+          height={6}
+          flipX
+          invert
+          shadow
+        />
 
         <Section>
           <Heading level={2}>Recent Blog Posts</Heading>
