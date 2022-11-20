@@ -33,7 +33,7 @@ const NavLink = ({ href, name }) => {
   return (
     <Link href={href}>
       <Button
-        as="a"
+        as="span"
         colorScheme="whiteAlpha"
         color="white"
         variant="ghost"
@@ -80,12 +80,10 @@ const NavDrawer = () => {
             <List>
               {navItems.map((item) => (
                 <Link href={item.href} key={item.href}>
-                  <a>
-                    <ListItem onClick={onClose} py={2} px={1}>
-                      <ListIcon as={item.icon} />
-                      {item.name}
-                    </ListItem>
-                  </a>
+                  <ListItem onClick={onClose} py={2} px={1}>
+                    <ListIcon as={item.icon} />
+                    {item.name}
+                  </ListItem>
                 </Link>
               ))}
             </List>
@@ -106,11 +104,9 @@ const Navbar = () => (
     <ContentContainer>
       <HStack>
         <Link href="/">
-          <a>
-            <Text fontSize="2xl" my={0}>
-              {site.title}
-            </Text>
-          </a>
+          <Text fontSize="2xl" my={0}>
+            {site.title}
+          </Text>
         </Link>
         <Box flexGrow={1}></Box>
         <Show below={mobileNavBreakpoint}>

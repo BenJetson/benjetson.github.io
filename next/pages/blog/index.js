@@ -16,21 +16,19 @@ const Blog = ({ posts }) => {
         {posts.map((post) => (
           <ListItem key={post.filePath}>
             <Link href={post.href}>
-              <a>
-                <Card>
-                  <CardHeader>
-                    <CardTitle level={3}>{post.frontMatter.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    Posted on {post.frontMatter.date} <br />
-                    Preview:{" "}
-                    {
-                      // FIXME excerpts not working!
-                      post.excerpt || "no excerpt available"
-                    }
-                  </CardContent>
-                </Card>
-              </a>
+              <Card>
+                <CardHeader>
+                  <CardTitle level={3}>{post.frontMatter.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  Posted on {post.frontMatter.date} <br />
+                  Preview:{" "}
+                  {
+                    // FIXME excerpts not working!
+                    post.excerpt || "no excerpt available"
+                  }
+                </CardContent>
+              </Card>
             </Link>
             <br />
           </ListItem>
