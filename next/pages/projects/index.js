@@ -115,7 +115,8 @@ const Projects = ({ otherProjects, featuredProjects }) => {
       <ContentContainer>
         <Heading as="h2">Projects</Heading>
         <Text>
-          I've been creating programs, bots, apps, and other things for a long
+{/* FIXME quote symbol below. */}
+          {`I've been creating programs, bots, apps, and other things for a long`}
           time. This is a collection of some of my most notable works. If you
           like my work, perhaps I might be able to{" "}
           <NextLink
