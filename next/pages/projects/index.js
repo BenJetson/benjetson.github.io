@@ -7,18 +7,20 @@ import {
   Heading,
   IconButton,
   Image,
+  Link,
   LinkBox,
   LinkOverlay,
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
-import Link from "next/link";
+import NextLink from "next/link";
 import {
   FaArrowRight,
   FaExternalLinkSquareAlt,
   FaGithub,
 } from "react-icons/fa";
 import { CardTitle } from "../../components/card";
+import ContentContainer from "../../components/content-container";
 import { formatAsMonthDate } from "../../lib/date";
 import { getAllProjectMetadata } from "../../lib/projects";
 
@@ -56,7 +58,7 @@ const ProjectCard = ({ project }) => (
       </CardBody>
       <CardFooter pt={0}>
         <ButtonGroup>
-          <Link
+          <NextLink
             href={project.href}
             passHref
             // FIXME find a way to do this without double anchor or legacy mode.
@@ -67,7 +69,7 @@ const ProjectCard = ({ project }) => (
                 Read
               </Button>
             </LinkOverlay>
-          </Link>
+          </NextLink>
           {project.frontMatter.repo && project.frontMatter.username && (
             <IconButton
               as="a"
@@ -93,15 +95,46 @@ const ProjectCard = ({ project }) => (
   </LinkBox>
 );
 
-const Projects = ({ projects }) => {
+const ProjectCollection = ({ projects, columns = [1, 2, null, 3] }) => (
+  <SimpleGrid columns={columns} spacing={6}>
+    {projects.map((project) => (
+      <ProjectCard project={project} key={project.filePath} />
+    ))}
+  </SimpleGrid>
+);
+
+const Projects = ({ otherProjects, featuredProjects }) => {
   return (
     <>
-      <Heading as="h2">Projects</Heading>
-      <SimpleGrid columns={[1, 2, null, 3]} spacing={6}>
-        {projects.map((project) => (
-          <ProjectCard project={project} key={project.filePath} />
-        ))}
-      </SimpleGrid>
+      <ContentContainer>
+        <Heading as="h2">Projects</Heading>
+        <Text>
+          I've been creating programs, bots, apps, and other things for a long
+          time. This is a collection of some of my most notable works. If you
+          like my work, perhaps I might be able to{" "}
+          <NextLink
+            passHref
+            href="/contact"
+            // FIXME find a way to do this without double anchor or legacy mode.
+            legacyBehavior
+          >
+            <Link>build something for you, too</Link>
+          </NextLink>
+          .
+        </Text>
+      </ContentContainer>
+      <ContentContainer>
+        <Heading as="h3" size="lg">
+          Featured Projects
+        </Heading>
+        <ProjectCollection projects={featuredProjects} columns={[1, 2]} />
+      </ContentContainer>
+      <ContentContainer>
+        <Heading as="h3" size="lg">
+          Other Projects
+        </Heading>
+        <ProjectCollection projects={otherProjects} />
+      </ContentContainer>
     </>
   );
 };
@@ -109,5 +142,9 @@ const Projects = ({ projects }) => {
 export default Projects;
 
 export const getStaticProps = async () => ({
-  props: { projects: getAllProjectMetadata() },
+  props: {
+    otherProjects: getAllProjectMetadata(false),
+    featuredProjects: getAllProjectMetadata(true),
+    containerWrap: false,
+  },
 });
