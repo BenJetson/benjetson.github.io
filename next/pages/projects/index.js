@@ -5,6 +5,7 @@ import {
   CardBody,
   CardFooter,
   Heading,
+  HStack,
   IconButton,
   Image,
   Link,
@@ -45,7 +46,17 @@ const ProjectCard = ({ project }) => (
           alt={project.frontMatter["photo-alt"]}
         />
 
-        <CardTitle level={3}>{project.frontMatter.title}</CardTitle>
+        {/* <HStack> */}
+        <CardTitle level={3}>
+          {project.frontMatter.title}
+          {/* TODO consider this - crown for featured */}
+          {/*
+            {project.frontMatter.featured && (
+              <FaCrown style={{ display: "inline-block", marginLeft: 10 }} />
+            )}
+            */}
+        </CardTitle>
+        {/* </HStack> */}
         <Text textStyle="subtitle">
           {formatAsMonthDate(project.frontMatter.date)}
         </Text>
