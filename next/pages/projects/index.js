@@ -1,30 +1,32 @@
-import { getAllProjectMetadata } from "../../lib/projects";
-import Link from "next/link";
 import {
   Button,
   ButtonGroup,
   Card,
   CardBody,
   CardFooter,
-  CardHeader,
-  Divider,
   Heading,
-  Hide,
+  IconButton,
   Image,
-  List,
-  ListItem,
-  Show,
+  LinkBox,
+  LinkOverlay,
   SimpleGrid,
-  Stack,
   Text,
 } from "@chakra-ui/react";
+import Link from "next/link";
+import {
+  FaArrowRight,
+  FaExternalLinkSquareAlt,
+  FaGithub,
+} from "react-icons/fa";
 import { CardTitle } from "../../components/card";
 import { formatAsMonthDate } from "../../lib/date";
+import { getAllProjectMetadata } from "../../lib/projects";
 
 const ProjectCard = ({ project }) => (
   // FIXME this shold use LinkOverlay
   // https://chakra-ui.com/docs/components/link-overlay
-  <Link href={project.href}>
+
+  <LinkBox>
     <Card>
       <CardBody>
         <Image
@@ -52,15 +54,43 @@ const ProjectCard = ({ project }) => (
           }
         </Text>
       </CardBody>
-      {/* <CardFooter>
-                  <ButtonGroup>
-                    <Button>Read</Button>
-                    <Button variant="ghost">Repository</Button>
-                    <Button variant="ghost">Webpage</Button>
-                  </ButtonGroup>
-                </CardFooter> */}
+      <CardFooter pt={0}>
+        <ButtonGroup>
+          <Link
+            href={project.href}
+            passHref
+            // FIXME find a way to do this without double anchor or legacy mode.
+            legacyBehavior
+          >
+            <LinkOverlay>
+              <Button variant="outline" as="span" rightIcon={<FaArrowRight />}>
+                Read
+              </Button>
+            </LinkOverlay>
+          </Link>
+          {project.frontMatter.repo && project.frontMatter.username && (
+            <IconButton
+              as="a"
+              href={new URL(
+                `/${project.frontMatter.username}/${project.frontMatter.repo}`,
+                `https://github.com`
+              ).toString()}
+              variant="ghost"
+              icon={<FaGithub />}
+            />
+          )}
+          {project.frontMatter.webpage && (
+            <IconButton
+              as="a"
+              href={project.frontMatter.webpage}
+              variant="ghost"
+              icon={<FaExternalLinkSquareAlt />}
+            />
+          )}
+        </ButtonGroup>
+      </CardFooter>
     </Card>
-  </Link>
+  </LinkBox>
 );
 
 const Projects = ({ projects }) => {
