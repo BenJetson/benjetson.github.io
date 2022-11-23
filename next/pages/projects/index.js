@@ -49,12 +49,7 @@ const ProjectCard = ({ project }) => (
         <Text textStyle="subtitle">
           {formatAsMonthDate(project.frontMatter.date)}
         </Text>
-        <Text>
-          {
-            // FIXME excerpts not working!
-            project.excerpt || "No excerpt is available for this project."
-          }
-        </Text>
+        <Text noOfLines={3}>{project.frontMatter.description}</Text>
       </CardBody>
       <CardFooter pt={0}>
         <ButtonGroup>
