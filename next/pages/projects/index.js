@@ -29,8 +29,8 @@ const ProjectCard = ({ project }) => (
   // FIXME this shold use LinkOverlay
   // https://chakra-ui.com/docs/components/link-overlay
 
-  <LinkBox>
-    <Card>
+  <LinkBox display="flex" alignItems="stretch">
+    <Card w="100%">
       <CardBody>
         <Image
           borderWidth={1}
@@ -38,9 +38,7 @@ const ProjectCard = ({ project }) => (
           mb={6}
           borderRadius="lg"
           objectFit="cover"
-          maxW="100%"
-          minW="100%"
-          minH="100%"
+          w="100%"
           maxH="180px"
           src={project.frontMatter.photo}
           alt={project.frontMatter["photo-alt"]}
