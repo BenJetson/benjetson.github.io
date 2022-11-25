@@ -34,7 +34,7 @@ export const ProjectCard = ({ project }) => (
           borderRadius="lg"
           objectFit="cover"
           w="100%"
-          maxH="180px"
+          h="185px"
           src={project.frontMatter.photo}
           alt={project.frontMatter["photo-alt"]}
         />
