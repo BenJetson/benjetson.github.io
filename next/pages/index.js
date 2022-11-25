@@ -72,7 +72,10 @@ export default function Home({ featuredProjects }) {
         </Section>
         <Section>
           <Heading level={2}>Featured Projects</Heading>
-          <ProjectCollection projects={featuredProjects} columns={[1, 2]} />
+          <ProjectCollection
+            projects={featuredProjects}
+            columns={[1, 2, null, null, 4]}
+          />
           <ButtonGroup mt={5}>
             <Link legacyBehavior href="/projects" passHref>
               <Button as="a" colorScheme="info">
