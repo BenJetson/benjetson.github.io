@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   ButtonGroup,
   Card,
@@ -30,7 +31,7 @@ const ProjectCard = ({ project }) => (
   // https://chakra-ui.com/docs/components/link-overlay
 
   <LinkBox display="flex" alignItems="stretch">
-    <Card w="100%">
+    <Card w="100%" backgroundColor="white">
       <CardBody>
         <Image
           borderWidth={1}
@@ -107,16 +108,34 @@ const ProjectCollection = ({ projects, columns = [1, 2, null, 3] }) => (
   </SimpleGrid>
 );
 
+const ProjectSection = ({
+  label,
+  projects,
+  columns = undefined,
+  backgroundColor = undefined,
+}) => (
+  <Box as="section" backgroundColor={backgroundColor} pt={4} pb={10}>
+    <ContentContainer>
+      <Heading as="h3" size="lg">
+        {label}
+      </Heading>
+      <ProjectCollection projects={projects} columns={columns} />
+    </ContentContainer>
+  </Box>
+);
+
 const Projects = ({ otherProjects, featuredProjects }) => {
   return (
     <>
-      <ContentContainer>
+      <ContentContainer pb={5}>
         <Heading as="h2">Projects</Heading>
         <Text>
-{/* FIXME quote symbol below. */}
-          {`I've been creating programs, bots, apps, and other things for a long`}
-          time. This is a collection of some of my most notable works. If you
-          like my work, perhaps I might be able to{" "}
+          {`I've`} been creating programs, bots, apps, and other things for a
+          long time.
+        </Text>
+        <Text>
+          This is a collection of some of my most notable works. If you like my
+          work, perhaps I might be able to{" "}
           <NextLink
             passHref
             href="/contact"
@@ -128,18 +147,13 @@ const Projects = ({ otherProjects, featuredProjects }) => {
           .
         </Text>
       </ContentContainer>
-      <ContentContainer>
-        <Heading as="h3" size="lg">
-          Featured Projects
-        </Heading>
-        <ProjectCollection projects={featuredProjects} columns={[1, 2]} />
-      </ContentContainer>
-      <ContentContainer>
-        <Heading as="h3" size="lg">
-          Other Projects
-        </Heading>
-        <ProjectCollection projects={otherProjects} />
-      </ContentContainer>
+      <ProjectSection
+        label="Featured Projects"
+        projects={featuredProjects}
+        backgroundColor="blue.50"
+        columns={[1, 2]}
+      />
+      <ProjectSection label="Other Projects" projects={otherProjects} />
     </>
   );
 };
