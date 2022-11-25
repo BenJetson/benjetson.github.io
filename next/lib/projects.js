@@ -95,10 +95,7 @@ export const getProjectMetadata = (slug) => {
  *
  * @returns {[]Object} the metadata for all known projects.
  */
-export const getAllProjectMetadata = (
-  featuredFilter = null,
-  limit = undefined
-) => {
+export const getAllProjectMetadata = (featuredFilter = null) => {
   const fileNames = fs.readdirSync(projectsDirectory);
   // const data = fileNames.map(getProjectMetadata);
   const data = fileNames
@@ -114,8 +111,7 @@ export const getAllProjectMetadata = (
       (project) =>
         featuredFilter === null ||
         (project.frontMatter.featured ?? false) === featuredFilter
-    )
-    .slice(0, limit);
+    );
 
   return data;
 };
