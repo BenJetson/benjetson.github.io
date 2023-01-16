@@ -90,11 +90,22 @@ const variantDefinitions = {
 };
 
 /**
+ * @typedef { import('@chakra-ui/react').LayoutProps['height'] } HeightToken
+ * @typedef { import('@chakra-ui/react').BackgroundProps['bgColor'] } ColorToken
+ */
+
+/**
+ * Wave is a decorative element that renders a wave using vector graphics.
  *
  * @param {Object} param0 the props object.
  * @param {waveVariants} param0.variant the variant of wave to use.
- * @param {number} param0.height height
- * @returns
+ * @param {HeightToken} param0.height the height of the wave box.
+ * @param {ColorToken} param0.bgColor the background color.
+ * @param {ColorToken} param0.fgColor the foreground color.
+ * @param {bool} param0.flipX whether to flip the wave vector on the X axis.
+ * @param {bool} param0.flipY whether to flip the wave vector on the Y axis.
+ * @param {bool} param0.invert whether to invert both axes.
+ * @param {bool} param0.shadow whether or not to give the wave a shadow.
  */
 export const Wave = ({
   variant,
