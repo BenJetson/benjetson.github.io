@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   ButtonGroup,
   Card,
@@ -14,6 +15,7 @@ import {
 import NextLink from "next/link";
 import {
   FaArrowRight,
+  FaCrown,
   FaExternalLinkSquareAlt,
   FaGithub,
 } from "react-icons/fa";
@@ -39,24 +41,14 @@ export const ProjectCard = ({ project }) => (
           alt={project.frontMatter["photo-alt"]}
         />
 
-        {/* <HStack> */}
-        <CardTitle level={3}>
-          {project.frontMatter.title}
-          {/* TODO consider this - crown for featured */}
-          {/*
-            {project.frontMatter.featured && (
-              <FaCrown style={{ display: "inline-block", marginLeft: 10 }} />
-            )}
-            */}
-        </CardTitle>
-        {/* </HStack> */}
+        <CardTitle level={3}>{project.frontMatter.title}</CardTitle>
         <Text textStyle="subtitle">
           {formatAsMonthDate(project.frontMatter.date)}
         </Text>
         <Text noOfLines={3}>{project.frontMatter.description}</Text>
       </CardBody>
       <CardFooter pt={0}>
-        <ButtonGroup>
+        <ButtonGroup flexGrow={1}>
           <NextLink
             href={project.href}
             passHref
@@ -89,6 +81,18 @@ export const ProjectCard = ({ project }) => (
             />
           )}
         </ButtonGroup>
+        {project.frontMatter.featured && (
+          <Box
+            display="inline-flex"
+            height={10}
+            width={10}
+            alignItems="center"
+            justifyContent="center"
+            color="yellow.500"
+          >
+            <FaCrown />
+          </Box>
+        )}
       </CardFooter>
     </Card>
   </LinkBox>
