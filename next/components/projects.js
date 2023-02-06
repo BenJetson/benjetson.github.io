@@ -21,11 +21,9 @@ import {
 } from "react-icons/fa";
 import { CardTitle } from "./card";
 import { formatAsMonthDate } from "../lib/date";
+import { InlineText } from "./typography";
 
 export const ProjectCard = ({ project }) => (
-  // FIXME this shold use LinkOverlay
-  // https://chakra-ui.com/docs/components/link-overlay
-
   <LinkBox display="flex" alignItems="stretch">
     <Card w="100%" backgroundColor="white">
       <CardBody>
@@ -43,12 +41,24 @@ export const ProjectCard = ({ project }) => (
 
         <CardTitle level={3}>{project.frontMatter.title}</CardTitle>
         <Text textStyle="subtitle">
-          {formatAsMonthDate(project.frontMatter.date)}
+          <InlineText>{formatAsMonthDate(project.frontMatter.date)}</InlineText>
+          {project.frontMatter.featured && (
+            <InlineText>
+              <InlineText mx={2}>&bull;</InlineText>
+              <InlineText color="yellow.600">
+                <InlineText display="inline-block" mr={2}>
+                  <FaCrown />
+                </InlineText>
+                Featured
+              </InlineText>
+            </InlineText>
+          )}
         </Text>
         <Text noOfLines={3}>{project.frontMatter.description}</Text>
       </CardBody>
+
       <CardFooter pt={0}>
-        <ButtonGroup flexGrow={1}>
+        <ButtonGroup>
           <NextLink
             href={project.href}
             passHref
@@ -81,18 +91,6 @@ export const ProjectCard = ({ project }) => (
             />
           )}
         </ButtonGroup>
-        {project.frontMatter.featured && (
-          <Box
-            display="inline-flex"
-            height={10}
-            width={10}
-            alignItems="center"
-            justifyContent="center"
-            color="yellow.500"
-          >
-            <FaCrown />
-          </Box>
-        )}
       </CardFooter>
     </Card>
   </LinkBox>
