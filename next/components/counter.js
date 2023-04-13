@@ -101,6 +101,7 @@ const Digit = ({ value = 0 }) => {
     <Code
       position="relative"
       display="flex"
+      height={"2.25em"}
       flexDirection="column"
       backgroundColor="gray.500"
       color="white"
