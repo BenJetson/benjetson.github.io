@@ -77,11 +77,9 @@ export default function Home({ featuredProjects }) {
             columns={[1, 2, null, null, 4]}
           />
           <ButtonGroup mt={5}>
-            <Link legacyBehavior href="/projects" passHref>
-              <Button as="a" colorScheme="info">
-                More Projects
-              </Button>
-            </Link>
+            <Button as={Link} href="/projects" colorScheme="info">
+              More Projects
+            </Button>
           </ButtonGroup>
         </Section>
       </Flex>
