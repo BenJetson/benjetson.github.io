@@ -107,17 +107,18 @@ const Digit = ({ value = 0 }) => {
       fontSize="xl"
       borderRadius="lg"
       p={2}
+      // This ::before element creates the center line on the flip clock digits.
       _before={{
         content: '""',
-        position: "absolute",
-        bottom: "50%",
+        position: "absolute", // this is why the digit element must be relative.
+        width: "100%",
         left: 0,
+        bottom: "50%",
         zIndex: 0,
         opacity: 0.2,
         borderBottomColor: "gray.100",
         borderBottomStyle: "solid",
         borderBottomWidth: 2,
-        width: "100%",
       }}
     >
       <AnimatePresence
