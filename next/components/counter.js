@@ -99,6 +99,7 @@ const Digit = ({ value = 0 }) => {
 
   return (
     <Code
+      position="relative"
       display="flex"
       flexDirection="column"
       backgroundColor="gray.500"
@@ -106,6 +107,18 @@ const Digit = ({ value = 0 }) => {
       fontSize="xl"
       borderRadius="lg"
       p={2}
+      _before={{
+        content: '""',
+        position: "absolute",
+        bottom: "50%",
+        left: 0,
+        zIndex: 0,
+        opacity: 0.2,
+        borderBottomColor: "gray.100",
+        borderBottomStyle: "solid",
+        borderBottomWidth: 2,
+        width: "100%",
+      }}
     >
       <AnimatePresence
         initial={false}
