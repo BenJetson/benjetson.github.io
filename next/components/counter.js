@@ -165,7 +165,7 @@ const Counter = () => {
 
   return (
     <>
-      <Box display="flex" gap={2} aria-hidden="true" my={4}>
+      <Box display="flex" gap={1} aria-hidden="true" my={4}>
         {digits.map((d, idx) => (
           <Digit value={d} key={idx} />
         ))}
