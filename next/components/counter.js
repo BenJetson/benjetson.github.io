@@ -129,7 +129,7 @@ const Digit = ({ value = 0 }) => {
         <motion.span
           key={currentValue}
           initial={{ y: -1 * distance, opacity: 0, position: "relative" }}
-          animate={{ y: 0, opacity: 1 }}
+          animate={{ y: 0, opacity: value == currentValue ? 1 : 0.5 }}
           exit={{ y: distance, opacity: 0, position: "absolute" }}
           transition={{
             ease: "easeOut",
