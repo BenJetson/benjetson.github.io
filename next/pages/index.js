@@ -1,10 +1,13 @@
-import { Box, Button, Flex, HStack } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Flex, HStack } from "@chakra-ui/react";
 import Head from "next/head";
 import Image from "next/image";
 import { Heading, Paragraph } from "../components/typography";
 import { personal } from "../lib/meta";
 import ContentContainer from "../components/content-container";
 import { Wave, WaveBottom, waveVariants } from "../components/waves";
+import { ProjectCollection } from "../components/projects";
+import { getAllProjectMetadata } from "../lib/projects";
+import Link from "next/link";
 
 /**
  * @typedef {import("@chakra-ui/react").BoxProps} BoxProps
@@ -16,7 +19,7 @@ const Section = ({ children, ...props }) => (
   </Box>
 );
 
-export default function Home() {
+export default function Home({ featuredProjects }) {
   return (
     <>
       <Flex direction="column" pb={5}>
@@ -69,12 +72,26 @@ export default function Home() {
         </Section>
         <Section>
           <Heading level={2}>Featured Projects</Heading>
-          <Paragraph>something interesting</Paragraph>
-          <Button colorScheme="info">More Posts</Button>
+          <ProjectCollection
+            projects={featuredProjects}
+            columns={[1, 2, null, null, 4]}
+          />
+          <ButtonGroup mt={5}>
+            <Link legacyBehavior href="/projects" passHref>
+              <Button as="a" colorScheme="info">
+                More Projects
+              </Button>
+            </Link>
+          </ButtonGroup>
         </Section>
       </Flex>
     </>
   );
 }
 
-export const getStaticProps = () => ({ props: { containerWrap: false } });
+export const getStaticProps = () => ({
+  props: {
+    containerWrap: false,
+    featuredProjects: getAllProjectMetadata(true),
+  },
+});

@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { filterMatterResult } from "./markdown";
+import { compareDates } from "./date";
 
 const projectsDirectory = path.join(process.cwd(), "projects");
 
@@ -94,12 +95,23 @@ export const getProjectMetadata = (slug) => {
  *
  * @returns {[]Object} the metadata for all known projects.
  */
-export const getAllProjectMetadata = () => {
+export const getAllProjectMetadata = (featuredFilter = null) => {
   const fileNames = fs.readdirSync(projectsDirectory);
   // const data = fileNames.map(getProjectMetadata);
-  const data = fileNames.map((fileName) => {
-    const slug = parseProjectSlug(fileName);
-    return getProjectMetadata(slug);
-  });
+  const data = fileNames
+    .map((fileName) => {
+      const slug = parseProjectSlug(fileName);
+      return getProjectMetadata(slug);
+    })
+    .sort((aProject, bProject) =>
+      compareDates(aProject.frontMatter.date, bProject.frontMatter.date)
+    )
+    .reverse()
+    .filter(
+      (project) =>
+        featuredFilter === null ||
+        (project.frontMatter.featured ?? false) === featuredFilter
+    );
+
   return data;
 };

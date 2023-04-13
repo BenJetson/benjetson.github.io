@@ -41,16 +41,28 @@ export const Heading = ({ level, children, ...props }) => {
   );
 };
 
+/** @typedef {import("@chakra-ui/react").TextProps} TextProps */
+
 /**
  * Paragraph is a wrapper around Chakra's Text component that is suited for
  * paragraph text on the site.
- *
- * @typedef {import("@chakra-ui/react").TextProps} TextProps
  *
  * @param {TextProps} param0 the props object.
  */
 export const Paragraph = ({ children, ...props }) => (
   <Text mb={contentSpacing} {...props}>
+    {children}
+  </Text>
+);
+
+/**
+ * InlineText is a wrapper around Chakra's Text component that is a drop-in
+ * replacement for <span> elements.
+ *
+ * @param {TextProps} param0 the props object.
+ */
+export const InlineText = ({ children, ...props }) => (
+  <Text as="span" mb={0} {...props}>
     {children}
   </Text>
 );
