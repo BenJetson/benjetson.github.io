@@ -79,6 +79,7 @@ export const ProjectCard = ({ project }) => (
                 `https://github.com`
               ).toString()}
               variant="ghost"
+              aria-label={`GitHub Repository for ${project.frontMatter.title}`}
               icon={<FaGithub />}
             />
           )}
@@ -87,6 +88,7 @@ export const ProjectCard = ({ project }) => (
               as="a"
               href={project.frontMatter.webpage}
               variant="ghost"
+              aria-label={`Webpage for ${project.frontMatter.title}`}
               icon={<FaExternalLinkSquareAlt />}
             />
           )}
