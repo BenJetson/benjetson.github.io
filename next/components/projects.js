@@ -27,19 +27,13 @@ import { InlineText } from "./typography";
 export const ProjectCard = ({ project }) => (
   <LinkBox display="flex" alignItems="stretch">
     <Card w="100%" backgroundColor="white" variant="outline">
-      <CardBody>
-        <Image
-          borderWidth={1}
-          borderStyle="solid"
-          mb={6}
-          borderRadius="lg"
-          objectFit="cover"
-          w="100%"
-          h="185px"
-          src={project.frontMatter.photo}
-          alt={project.frontMatter["photo-alt"]}
-        />
-
+      <CardBody
+        // NOTE: this is a flex container so that we can mke the image appear
+        // first, while being third in the tab order. That way, the heading
+        // comes first in the DOM.
+        display="flex"
+        flexDirection="column"
+      >
         <CardTitle level={3}>{project.frontMatter.title}</CardTitle>
         <Text textStyle="subtitle">
           <InlineText>{formatAsMonthDate(project.frontMatter.date)}</InlineText>
@@ -54,6 +48,20 @@ export const ProjectCard = ({ project }) => (
             </InlineText>
           )}
         </Text>
+
+        <Image
+          borderWidth={1}
+          borderStyle="solid"
+          mb={6}
+          borderRadius="lg"
+          objectFit="cover"
+          w="100%"
+          h="185px"
+          src={project.frontMatter.photo}
+          alt={project.frontMatter["photo-alt"]}
+          order={-1}
+        />
+
         <Text noOfLines={3}>{project.frontMatter.description}</Text>
       </CardBody>
 
