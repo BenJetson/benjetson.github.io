@@ -10,22 +10,22 @@
     "env": "vercel env pull"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.4.9",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
+    "@chakra-ui/react": "^2.5.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "framer-motion": "^8.5.0",
     "gray-matter": "^4.0.3",
-    "next": "13.1.4",
+    "next": "13.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.7.1",
-    "react-markdown": "^8.0.5",
+    "react-icons": "^4.8.0",
+    "react-markdown": "^8.0.7",
     "react-syntax-highlighter": "^15.5.0",
     "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
-    "eslint": "8.32.0",
-    "eslint-config-next": "13.1.4",
-    "vercel": "^28.13.0"
+    "eslint": "8.38.0",
+    "eslint-config-next": "13.3.0",
+    "vercel": "^28.18.5"
   }
 }
