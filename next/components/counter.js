@@ -3,6 +3,7 @@
 import { Box, Code, VisuallyHidden } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 /**
  * countDigits will determine the number of digits in a number.
@@ -79,18 +80,53 @@ const hitCounter = async (namespace, key) => {
   return data.value;
 };
 
-const Digit = ({ value }) => (
-  <Code
-    display="block"
-    backgroundColor="gray.500"
-    color="white"
-    fontSize="xl"
-    borderRadius="lg"
-    p={2}
-  >
-    {value ?? "-"}
-  </Code>
-);
+const Digit = ({ value = 0 }) => {
+  const distance = 10;
+
+  const [currentValue, setCurrentValue] = useState(0);
+  const [readyForFlip, setReadyForFlip] = useState(true);
+
+  useEffect(() => {
+    if (value == currentValue) return;
+    if (!readyForFlip) return;
+
+    let newValue = currentValue + 1;
+    if (newValue > 9) newValue = 0;
+
+    setCurrentValue(newValue);
+    setReadyForFlip(false);
+  }, [value, currentValue, readyForFlip]);
+
+  return (
+    <Code
+      display="flex"
+      flexDirection="column"
+      backgroundColor="gray.500"
+      color="white"
+      fontSize="xl"
+      borderRadius="lg"
+      p={2}
+    >
+      <AnimatePresence
+        initial={false}
+        onExitComplete={() => setReadyForFlip(true)}
+      >
+        <motion.span
+          key={currentValue}
+          initial={{ y: -1 * distance, opacity: 0, position: "relative" }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: distance, opacity: 0, position: "absolute" }}
+          transition={{
+            ease: "easeOut",
+            duration: 0.05,
+          }}
+        >
+          {currentValue}
+        </motion.span>
+      </AnimatePresence>
+    </Code>
+  );
+};
 
 const Counter = () => {
   // FIXME set up real namespace and key values using environment variables.
