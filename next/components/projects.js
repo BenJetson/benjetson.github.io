@@ -11,6 +11,7 @@ import {
   LinkOverlay,
   SimpleGrid,
   Text,
+  VisuallyHidden,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import {
@@ -25,7 +26,7 @@ import { InlineText } from "./typography";
 
 export const ProjectCard = ({ project }) => (
   <LinkBox display="flex" alignItems="stretch">
-    <Card w="100%" backgroundColor="white">
+    <Card w="100%" backgroundColor="white" variant="outline">
       <CardBody>
         <Image
           borderWidth={1}
@@ -44,12 +45,11 @@ export const ProjectCard = ({ project }) => (
           <InlineText>{formatAsMonthDate(project.frontMatter.date)}</InlineText>
           {project.frontMatter.featured && (
             <InlineText>
-              <InlineText mx={2}>&bull;</InlineText>
-              <InlineText color="yellow.600">
+              <InlineText color="yellow.600" ml={2}>
                 <InlineText display="inline-block" mr={2}>
                   <FaCrown />
                 </InlineText>
-                Featured
+                <VisuallyHidden>Featured</VisuallyHidden>
               </InlineText>
             </InlineText>
           )}
