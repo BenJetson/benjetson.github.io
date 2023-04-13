@@ -1,10 +1,10 @@
-import { Box, Heading, Link, Text } from "@chakra-ui/react";
-import NextLink from "next/link";
+import { Box, Heading, Link as ChakraLink, Text } from "@chakra-ui/react";
 import ContentContainer from "../../components/content-container";
 import { ProjectCollection } from "../../components/projects";
 import { Wave, waveVariants } from "../../components/waves";
 import { socials } from "../../lib/meta";
 import { getAllProjectMetadata } from "../../lib/projects";
+import { Link as ChakraNextLink } from "@chakra-ui/next-js";
 
 /**
  * @typedef { import('@chakra-ui/react').BackgroundProps['bgColor'] } ColorToken
@@ -48,14 +48,9 @@ const Projects = ({ otherProjects, featuredProjects }) => {
           This is a collection of some of my most notable works. If you like my
           work, perhaps I might be able to{" "}
           {/* FIXME links are not underlined or different color?! */}
-          <NextLink
-            passHref
-            href="/contact"
-            // FIXME find a way to do this without double anchor or legacy mode.
-            legacyBehavior
-          >
-            <Link>build something for you, too</Link>
-          </NextLink>
+          <ChakraNextLink href="/contact">
+            build something for you, too
+          </ChakraNextLink>
           .
         </Text>
       </ContentContainer>
@@ -85,7 +80,7 @@ const Projects = ({ otherProjects, featuredProjects }) => {
         <Text>
           This site only showcases select projects from my portfolio. You can
           find even more projects on my{" "}
-          <Link href={socials.github.url}>GitHub profile</Link>.
+          <ChakraLink href={socials.github.url}>GitHub profile</ChakraLink>.
         </Text>
       </PageSection>
     </>

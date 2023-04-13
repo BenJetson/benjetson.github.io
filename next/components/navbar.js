@@ -31,19 +31,18 @@ const NavLink = ({ href, name }) => {
   const isActive = router.asPath === href;
 
   return (
-    <Link href={href}>
-      <Button
-        as="span"
-        colorScheme="whiteAlpha"
-        color="white"
-        variant="ghost"
-        textDecoration={isActive ? "underline" : "none"}
-        textDecorationStyle="dotted"
-        textUnderlineOffset={5}
-      >
-        {name}
-      </Button>
-    </Link>
+    <Button
+      href={href}
+      as={Link}
+      colorScheme="whiteAlpha"
+      color="white"
+      variant="ghost"
+      textDecoration={isActive ? "underline" : "none"}
+      textDecorationStyle="dotted"
+      textUnderlineOffset={5}
+    >
+      {name}
+    </Button>
   );
 };
 

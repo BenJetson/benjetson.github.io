@@ -67,18 +67,12 @@ export const ProjectCard = ({ project }) => (
 
       <CardFooter pt={0}>
         <ButtonGroup>
-          <NextLink
-            href={project.href}
-            passHref
-            // FIXME find a way to do this without double anchor or legacy mode.
-            legacyBehavior
-          >
-            <LinkOverlay>
-              <Button variant="outline" as="span" rightIcon={<FaArrowRight />}>
-                Read
-              </Button>
-            </LinkOverlay>
-          </NextLink>
+          <LinkOverlay as={NextLink} href={project.href}>
+            <Button variant="outline" as="span" rightIcon={<FaArrowRight />}>
+              Read
+            </Button>
+          </LinkOverlay>
+
           {project.frontMatter.repo && project.frontMatter.username && (
             <IconButton
               as="a"
