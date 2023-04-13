@@ -120,7 +120,7 @@ const Counter = () => {
         ))}
       </Box>
       <VisuallyHidden>
-        <Box>This website has had {value} visitors.</Box>
+        <Box>This website has had {value} page views.</Box>
       </VisuallyHidden>
     </>
   );
