@@ -3,6 +3,7 @@ import { GIT_HASH } from "../lib/env";
 import { site } from "../lib/meta";
 import ContentContainer from "./content-container";
 import CopyrightStatement from "./copyright";
+import Counter from "./counter";
 import { Wave, waveVariants } from "./waves";
 
 const Footer = () => (
@@ -13,6 +14,7 @@ const Footer = () => (
         <Heading as="h2">{site.title}</Heading>
         <Text>{site.tagline}</Text>
         <CopyrightStatement />
+        <Counter />
         <pre>build {GIT_HASH}</pre>
       </ContentContainer>
     </Box>
