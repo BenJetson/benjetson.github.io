@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { filterMatterResult } from "./markdown";
 import { client } from "../tina/__generated__/client";
+import { slugifyTitle } from "./slug";
 
 /**
  * @typedef {Object} PostIdentifiers
@@ -13,15 +14,6 @@ import { client } from "../tina/__generated__/client";
  * @property {string} slug the unique slug for the post.
  * @property {string} fileName the file name of the post.
  */
-
-const slugifyTitle = (title) =>
-  (title ? title : "untitled")
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9 ]/g, "")
-    .split(" ")
-    .filter((value) => value.length > 0)
-    .join("-");
 
 const parseDate = (dateString) => {
   const date = dateString
