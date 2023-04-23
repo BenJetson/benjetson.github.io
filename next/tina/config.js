@@ -3,7 +3,6 @@
 import { defineConfig } from "tinacms";
 
 // Your hosting provider likely exposes this as an environment variable
-// @ts-expect-error
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
 
 export default defineConfig({
@@ -67,6 +66,26 @@ export default defineConfig({
           //   console.log("document is", document);
           //   return `/blog/${document._sys.filename}`;
           // },
+          filename: {
+            readonly: true,
+            slugify: (values) => {
+              const date = values.date
+                ? new Date(values.date)
+                : new Date("1970-01-02");
+              const title = values.title ? values.title : "untitled";
+              return [
+                date.toLocaleDateString("en-US", { year: "numeric" }),
+                date.toLocaleDateString("en-US", { month: "2-digit" }),
+                date.toLocaleDateString("en-US", { day: "2-digit" }),
+                ...title
+                  .trim()
+                  .toLowerCase()
+                  .replace(/[^a-z0-9 ]/g, "")
+                  .split(" ")
+                  .filter((value) => value.length > 0),
+              ].join("-");
+            },
+          },
         },
       },
       {
@@ -149,6 +168,19 @@ export default defineConfig({
           //   console.log("project document is", document);
           //   return `/projects/${document._sys.filename}`;
           // },
+          filename: {
+            readonly: true,
+            slugify: (values) => {
+              const title = values.title ? values.title : "untitled";
+              return title
+                .trim()
+                .toLowerCase()
+                .replace(/[^a-z0-9 ]/g, "")
+                .split(" ")
+                .filter((value) => value.length > 0)
+                .join("-");
+            },
+          },
         },
       },
     ],
