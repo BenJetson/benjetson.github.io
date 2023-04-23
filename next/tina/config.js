@@ -1,0 +1,156 @@
+// @ts-check
+
+import { defineConfig } from "tinacms";
+
+// Your hosting provider likely exposes this as an environment variable
+// @ts-expect-error
+const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
+
+export default defineConfig({
+  branch,
+  clientId: "57b81872-ab5d-413d-be9b-a46a8896ec86", // Get this from tina.io
+  token: "dec77fca25827c96d75afcb15ebaefd139a40bc7", // Get this from tina.io
+
+  build: {
+    outputFolder: "admin",
+    publicFolder: "public",
+  },
+  media: {
+    tina: {
+      mediaRoot: "",
+      publicFolder: "public",
+    },
+  },
+  schema: {
+    collections: [
+      {
+        name: "post",
+        label: "Blog Posts",
+        path: "posts",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "datetime",
+            name: "date",
+            label: "Date",
+            required: true,
+          },
+          {
+            type: "image",
+            name: "image",
+            label: "Hero Image",
+          },
+          {
+            type: "string",
+            name: "categories",
+            label: "Categories",
+            list: true,
+            ui: {
+              component: "tags",
+            },
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body",
+            isBody: true,
+          },
+        ],
+        ui: {
+          // router: ({ document }) => {
+          //   console.log("document is", document);
+          //   return `/blog/${document._sys.filename}`;
+          // },
+        },
+      },
+      {
+        name: "project",
+        label: "Project Pages",
+        path: "projects",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "datetime",
+            name: "date",
+            label: "Date",
+            required: true,
+            ui: { dateFormat: "YYYY/MM" },
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+            ui: { component: "textarea" },
+          },
+          {
+            type: "image",
+            name: "photo",
+            label: "Hero Image",
+          },
+          {
+            type: "string",
+            name: "photo_alt",
+            nameOverride: "photo-alt",
+            label: "Hero Image Alternative Text",
+          },
+          {
+            type: "string",
+            name: "categories",
+            label: "Categories",
+            list: true,
+            ui: { component: "tags" },
+          },
+          {
+            type: "string",
+            name: "username",
+            label: "GitHub Username",
+            description:
+              "The username of the GitHub account for the repository.",
+          },
+          {
+            type: "string",
+            name: "repo",
+            label: "GitHub Repository Name",
+            description: "The name of the GitHub repository.",
+          },
+          {
+            type: "boolean",
+            name: "issues",
+            label: "Show GitHub Issues",
+            description: "Controls whether link to GitHub issues is displayed.",
+          },
+          {
+            type: "boolean",
+            name: "wiki",
+            label: "Show GitHub Wiki",
+            description: "Controls whether link to GitHub wiki is displayed.",
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body",
+            isBody: true,
+          },
+        ],
+        ui: {
+          // router: ({ document }) => {
+          //   console.log("project document is", document);
+          //   return `/projects/${document._sys.filename}`;
+          // },
+        },
+      },
+    ],
+  },
+});
