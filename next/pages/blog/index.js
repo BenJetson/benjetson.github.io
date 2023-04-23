@@ -14,7 +14,7 @@ const Blog = ({ posts }) => {
       <Heading as="h2">Blog</Heading>
       <List mt={3}>
         {posts.map((post) => (
-          <ListItem key={post.identifiers.fileName}>
+          <ListItem key={post._sys.filename}>
             <Link href={post.href}>
               <Card>
                 <CardHeader>
