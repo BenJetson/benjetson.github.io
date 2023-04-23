@@ -1,6 +1,7 @@
 // @ts-check
 
 import { defineConfig } from "tinacms";
+import { postNodeToFilename } from "../lib/posts";
 
 // Your hosting provider likely exposes this as an environment variable
 // @ts-expect-error
@@ -40,6 +41,28 @@ export default defineConfig({
             name: "date",
             label: "Date",
             required: true,
+            ui: {
+              dateFormat: "YYYY-MM-DD",
+              timeFormat: "HH:mm:ss",
+              format: (value) => {
+                const date = value ? new Date(value) : new Date();
+
+                const year = date.toLocaleDateString("en-US", {
+                  year: "numeric",
+                });
+                const month = date.toLocaleDateString("en-US", {
+                  month: "2-digit",
+                });
+                const day = date.toLocaleDateString("en-US", {
+                  day: "2-digit",
+                });
+                const time = date.toLocaleTimeString("en-US", {
+                  hourCycle: "h23",
+                });
+
+                return [year, month, day].join("-") + " " + time;
+              },
+            },
           },
           {
             type: "image",
@@ -69,23 +92,7 @@ export default defineConfig({
           // },
           filename: {
             readonly: true,
-            slugify: (values) => {
-              const date = values.date
-                ? new Date(values.date)
-                : new Date("1970-01-02");
-              const title = values.title ? values.title : "untitled";
-              return [
-                date.toLocaleDateString("en-US", { year: "numeric" }),
-                date.toLocaleDateString("en-US", { month: "2-digit" }),
-                date.toLocaleDateString("en-US", { day: "2-digit" }),
-                ...title
-                  .trim()
-                  .toLowerCase()
-                  .replace(/[^a-z0-9 ]/g, "")
-                  .split(" ")
-                  .filter((value) => value.length > 0),
-              ].join("-");
-            },
+            slugify: postNodeToFilename,
           },
         },
       },

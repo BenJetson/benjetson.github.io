@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { filterMatterResult } from "./markdown";
+import { client } from "../tina/__generated__/client";
 
 /**
  * @typedef {Object} PostIdentifiers
@@ -10,30 +11,36 @@ import { filterMatterResult } from "./markdown";
  * @property {string} month the month the post was published.
  * @property {string} day the day the post was published.
  * @property {string} slug the unique slug for the post.
+ * @property {string} fileName the file name of the post.
  */
 
-const postsDirectory = path.join(process.cwd(), "posts");
+const slugifyTitle = (title) =>
+  (title ? title : "untitled")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g, "")
+    .split(" ")
+    .filter((value) => value.length > 0)
+    .join("-");
 
-const postNameFormat =
-  /^([0-9]{4})-([0-9]{2})-([0-9]{2})-([a-z0-9]+(-[a-z0-9]+)*).md$/;
-
-/**
- * parsePostIdentifiers uses regular expressions to parse the pieces of a
- * post's filename into its identifiers object.
- *
- * @param {String} name the filename of the post (no leading path).
- *
- * @returns {PostIdentifiers} the identifiers object for this post.
- */
-const parsePostIdentifiers = (name) => {
-  const match = postNameFormat.exec(name);
-  if (!match) {
-    throw new Error(`blog post name does not match format: '${name}'`);
-  }
-
-  const [, year, month, day, slug] = match;
-  return { year, month, day, slug };
+const parseDate = (dateString) => {
+  const date = dateString
+    ? new Date(dateString)
+    : new Date("1970-01-01 00:00:00");
+  const year = date.toLocaleDateString("en-US", { year: "numeric" });
+  const month = date.toLocaleDateString("en-US", { month: "2-digit" });
+  const day = date.toLocaleDateString("en-US", { day: "2-digit" });
+  return { year, month, day };
 };
+
+export const postNodeToFilename = (values) => {
+  const { year, month, day } = parseDate(values.date);
+  const slug = slugifyTitle(values.title);
+  return [year, month, day, slug].join("-");
+};
+
+// const postFilenameFormat =
+//   /^([0-9]{4})-([0-9]{2})-([0-9]{2})-([a-z0-9]+(-[a-z0-9]+)*).md$/;
 
 /**
  * postIdentifiersToFilePath recreates the filename and path for a given post
@@ -43,8 +50,8 @@ const parsePostIdentifiers = (name) => {
  *
  * @returns {string} the path to the post's markdown file.
  */
-const postIdentifiersToFilePath = ({ year, month, day, slug }) =>
-  path.join(postsDirectory, `${year}-${month}-${day}-${slug}.md`);
+const postIdentifiersToFileName = ({ year, month, day, slug }) =>
+  `${year}-${month}-${day}-${slug}.md`;
 
 /**
  * postIdentifiersToHref creates a hyperlink reference that could be used to
@@ -60,13 +67,16 @@ const postIdentifiersToHref = ({ year, month, day, slug }) =>
 /**
  * getAllPostPaths finds all posts and creates a list of their identifiers.
  *
- * @returns {[]PostIdentifiers} an array of all known post identifiers.
+ * @returns {Promise.<[]PostIdentifiers>} an array of all known post
+ *   identifiers.
  */
-export const getAllPostPaths = () => {
-  const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames.map((fileName) => ({
-    params: parsePostIdentifiers(fileName),
-  }));
+export const getAllPostPaths = async () => {
+  const res = await client.queries.postConnection();
+  return res.data.postConnection.edges.map((edge) => {
+    const slug = slugifyTitle(edge.node.title);
+    const { year, month, day } = parseDate(edge.node.date);
+    return { params: { slug, year, month, day } };
+  });
 };
 
 /**
@@ -74,36 +84,28 @@ export const getAllPostPaths = () => {
  *
  * @param {PostIdentifiers} identifiers the identifiers object for this post.
  *
- * @returns {Object} the metadata for this post.
+ * @returns {Promise.<Object>} the metadata for this post.
  */
-export const getPostMetadata = (identifiers) => {
+export const getPostMetadata = async (identifiers) => {
+  const fileName = postIdentifiersToFileName(identifiers);
   const href = postIdentifiersToHref(identifiers);
-  const filePath = postIdentifiersToFilePath(identifiers);
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  // FIXME need to get better excerpt algorithm?
-  const matterResult = matter(fileContents, { excerpt: true });
-  const filteredMatterResult = filterMatterResult(matterResult);
-
-  return {
-    identifiers,
-    filePath,
-    href,
-
-    ...filteredMatterResult,
-  };
+  const res = await client.queries.post({ relativePath: fileName });
+  return { identifiers, href, ...res.data.post };
 };
 
 /**
  * getAllPostMetadata retrieves the post metadata for all posts.
  *
- * @returns {[]Object} the metadata for all known posts.
+ * @returns {Promise.<[]Object>} the metadata for all known posts.
  */
-export const getAllPostMetadata = () => {
-  const fileNames = fs.readdirSync(postsDirectory);
-  // const data = fileNames.map(getPostMetadata);
-  const data = fileNames.map((fileName) => {
-    const identifiers = parsePostIdentifiers(fileName);
-    return getPostMetadata(identifiers);
+export const getAllPostMetadata = async () => {
+  const res = await client.queries.postConnection();
+  return res.data.postConnection.edges.map((edge) => {
+    const slug = slugifyTitle(edge.node.title);
+    const { year, month, day } = parseDate(edge.node.date);
+    const identifiers = { slug, year, month, day };
+    const href = postIdentifiersToHref(identifiers);
+
+    return { identifiers, href, ...edge.node };
   });
-  return data;
 };

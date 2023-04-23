@@ -1,7 +1,9 @@
 ---
 title: Welcome to Next.js!
-date: "2022-07-17"
-categories: next update
+date: "2022-07-17 13:32:51"
+categories:
+  - next
+  - update
 ---
 
 This page commemorates the date that the effort to rebuild this site in

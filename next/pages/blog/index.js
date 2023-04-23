@@ -14,14 +14,14 @@ const Blog = ({ posts }) => {
       <Heading as="h2">Blog</Heading>
       <List mt={3}>
         {posts.map((post) => (
-          <ListItem key={post.filePath}>
+          <ListItem key={post.identifiers.fileName}>
             <Link href={post.href}>
               <Card>
                 <CardHeader>
-                  <CardTitle level={3}>{post.frontMatter.title}</CardTitle>
+                  <CardTitle level={3}>{post.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  Posted on {post.frontMatter.date} <br />
+                  Posted on {post.date} <br />
                   Preview:{" "}
                   {
                     // FIXME excerpts not working!
@@ -41,5 +41,5 @@ const Blog = ({ posts }) => {
 export default Blog;
 
 export const getStaticProps = async () => ({
-  props: { posts: getAllPostMetadata() },
+  props: { posts: await getAllPostMetadata() },
 });

@@ -1,7 +1,9 @@
 ---
 title: Welcome to Jekyll!
 date: "2017-12-07 19:43:40"
-categories: jekyll update
+categories:
+  - jekyll
+  - update
 ---
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and
