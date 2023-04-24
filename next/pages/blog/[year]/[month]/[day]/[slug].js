@@ -1,5 +1,4 @@
 import { Heading, Text } from "@chakra-ui/react";
-import Markdown from "../../../../../components/markdown";
 import { getAllPostPaths, getPostMetadata } from "../../../../../lib/posts";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
@@ -13,7 +12,6 @@ const BlogPost = ({ post }) => (
     </Text>
 
     <TinaMarkdown content={post.body} />
-    {/* <Markdown content={post.body} /> */}
   </>
 );
 
