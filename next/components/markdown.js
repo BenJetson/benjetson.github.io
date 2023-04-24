@@ -142,17 +142,7 @@ const MdImage = ({ properties: { alt, src } }) => {
   );
 };
 
-const MdParagraph = ({ node, children }) => {
-  // Markdown is a strange bird. Technically, images should not be nested inside
-  // of paragraph tags, so we'll override this behavior.
-  //
-  // Source: https://amirardalan.com/blog/use-next-image-with-react-markdown
-  if (node.children[0].tagName === "img") {
-    return <MdImage {...node.children[0]} />;
-  }
-
-  return <Paragraph>{children}</Paragraph>;
-};
+const MdParagraph = ({ children }) => <Paragraph>{children}</Paragraph>;
 
 const MdTable = ({ children, ...props }) => {
   return (
@@ -212,7 +202,7 @@ const Markdown = ({ content }) => (
       h5: MdHeading5,
       h6: MdHeading6,
       // hr: undefined,
-      // img: undefined, // handled as part of Paragraph, see notes.
+      img: MdImage,
       p: MdParagraph,
       // pre: undefined,
       code: MdCode,
@@ -233,9 +223,8 @@ const Markdown = ({ content }) => (
       // thead: Thead,
       // tr: Tr,
     }}
-  >
-    {content}
-  </TinaMarkdown>
+    content={content}
+  />
 );
 
 export default Markdown;
