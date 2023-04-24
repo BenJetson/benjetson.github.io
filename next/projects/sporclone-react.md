@@ -11,7 +11,7 @@ repo: sporclone-react
 issues: true
 wiki: true
 
-# featured: false
+featured: false
 # rank: 0
 
 photo: https://live.staticflickr.com/65535/51267123211_11e16c3917.jpg

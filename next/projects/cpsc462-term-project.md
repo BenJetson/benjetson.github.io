@@ -12,7 +12,7 @@ repo: CPSC462-term-project
 issues: true
 wiki: false
 
-# featured: false
+featured: false
 # rank: 0
 
 photo: https://live.staticflickr.com/65535/51268141745_5698d4aab1.jpg

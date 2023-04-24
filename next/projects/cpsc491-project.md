@@ -15,7 +15,7 @@ repo: CPSC491-project
 issues: false
 wiki: false
 
-# featured: false
+featured: false
 # rank: 0
 
 photo: https://live.staticflickr.com/65535/51267310318_a491c6bd6d.jpg

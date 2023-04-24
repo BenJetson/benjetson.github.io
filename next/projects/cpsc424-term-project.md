@@ -11,7 +11,7 @@ repo: CPSC424-project
 issues: true
 wiki: false
 
-# featured: false
+featured: false
 # rank: 0
 
 photo: https://live.staticflickr.com/65535/51267281618_8cd94f386a.jpg

@@ -10,4 +10,5 @@ wiki: false
 date: 2017-03-11
 photo: https://live.staticflickr.com/65535/49692039881_794979144e_w.jpg
 photo-alt: Team 3796A Starstruck Robot
+featured: false
 ---
