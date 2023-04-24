@@ -91,13 +91,15 @@ export const getPostMetadata = async (identifiers) => {
  * @returns {Promise.<[]Object>} the metadata for all known posts.
  */
 export const getAllPostMetadata = async () => {
-  const res = await client.queries.postConnection();
-  return res.data.postConnection.edges.map((edge) => {
-    const slug = slugifyTitle(edge.node.title);
-    const { year, month, day } = parseDate(edge.node.date);
-    const identifiers = { slug, year, month, day };
-    const href = postIdentifiersToHref(identifiers);
+  const res = await client.queries.postConnection({ sort: "date" });
+  return res.data.postConnection.edges
+    .map((edge) => {
+      const slug = slugifyTitle(edge.node.title);
+      const { year, month, day } = parseDate(edge.node.date);
+      const identifiers = { slug, year, month, day };
+      const href = postIdentifiersToHref(identifiers);
 
-    return { identifiers, href, ...edge.node };
-  });
+      return { identifiers, href, ...edge.node };
+    })
+    .reverse();
 };
