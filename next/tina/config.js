@@ -199,10 +199,9 @@ export default defineConfig({
           },
         ],
         ui: {
-          // router: ({ document }) => {
-          //   console.log("project document is", document);
-          //   return `/projects/${document._sys.filename}`;
-          // },
+          router: ({ document }) => {
+            return `/projects/${document._sys.filename}`;
+          },
           filename: {
             readonly: true,
             slugify: projectNodeToFilename,

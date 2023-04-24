@@ -7,6 +7,14 @@ const nextConfig = {
     // TODO add flickr
     // domains: ["dummyimage.com"],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/admin",
+        destination: "/admin/index.html",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

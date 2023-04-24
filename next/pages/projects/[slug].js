@@ -1,15 +1,26 @@
-import { TinaMarkdown } from "tinacms/dist/rich-text";
+import Markdown from "../../components/markdown";
 import { getAllProjectPaths, getProjectMetadata } from "../../lib/projects";
+import { useTina } from "tinacms/dist/react";
 
-const BlogProject = ({ project }) => (
-  <>
-    <h2>{project.title}</h2>
+const BlogProject = ({ slug, href, ...props }) => {
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  });
 
-    <p>{project.date}</p>
+  const project = data.project;
 
-    <TinaMarkdown content={project.body} />
-  </>
-);
+  return (
+    <>
+      <h2>{project.title}</h2>
+
+      <p>{project.date}</p>
+
+      <Markdown content={project.body} />
+    </>
+  );
+};
 
 export default BlogProject;
 
@@ -19,5 +30,5 @@ export const getStaticPaths = async () => ({
 });
 
 export const getStaticProps = async ({ params: { slug } }) => ({
-  props: { project: await getProjectMetadata(slug) },
+  props: await getProjectMetadata(slug),
 });

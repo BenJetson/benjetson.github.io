@@ -68,7 +68,13 @@ export const getProjectMetadata = async (slug) => {
   const fileName = projectSlugToFileName(slug);
   const href = projectSlugToHref(slug);
   const res = await client.queries.project({ relativePath: fileName });
-  return { slug, href, ...res.data.project };
+  return {
+    slug,
+    href,
+    query: res.query,
+    variables: res.variables,
+    data: res.data,
+  };
 };
 
 /**
