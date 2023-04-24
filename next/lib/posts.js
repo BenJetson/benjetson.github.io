@@ -31,6 +31,31 @@ export const postNodeToFilename = (values) => {
   return [year, month, day, slug].join("-");
 };
 
+const postNameFormat =
+  /^([0-9]{4})-([0-9]{2})-([0-9]{2})-([a-z0-9]+(-[a-z0-9]+)*).md$/;
+
+const postSlugFromNode = (node) => {
+  const filename = node._sys.basename;
+  const match = postNameFormat.exec(filename);
+  if (!match) {
+    throw new Error(`blog post name does not match format: '${filename}'`);
+  }
+  const [, year, month, day, slug] = match;
+  const {
+    year: postYear,
+    month: postMonth,
+    day: postDay,
+  } = parseDate(node.date);
+
+  if (postYear !== year || postMonth !== month || postDay !== day) {
+    throw new Error(
+      `blog post filename does not match front matter date: '${filename}'`
+    );
+  }
+
+  return slug;
+};
+
 // const postFilenameFormat =
 //   /^([0-9]{4})-([0-9]{2})-([0-9]{2})-([a-z0-9]+(-[a-z0-9]+)*).md$/;
 
@@ -65,7 +90,7 @@ const postIdentifiersToHref = ({ year, month, day, slug }) =>
 export const getAllPostPaths = async () => {
   const res = await client.queries.postConnection();
   return res.data.postConnection.edges.map((edge) => {
-    const slug = slugifyTitle(edge.node.title);
+    const slug = postSlugFromNode(edge.node);
     const { year, month, day } = parseDate(edge.node.date);
     return { params: { slug, year, month, day } };
   });
@@ -94,7 +119,7 @@ export const getAllPostMetadata = async () => {
   const res = await client.queries.postConnection({ sort: "date" });
   return res.data.postConnection.edges
     .map((edge) => {
-      const slug = slugifyTitle(edge.node.title);
+      const slug = postSlugFromNode(edge.node);
       const { year, month, day } = parseDate(edge.node.date);
       const identifiers = { slug, year, month, day };
       const href = postIdentifiersToHref(identifiers);

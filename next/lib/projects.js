@@ -6,7 +6,21 @@ import { compareDates } from "./date";
 import { slugifyTitle } from "./slug";
 import { client } from "../tina/__generated__/client";
 
+// It might be nice to include month and year in these filenames some day.
+const projectNameFormat = /^([a-z0-9]+(-[a-z0-9]+)*).md$/;
+
 export const projectNodeToFilename = (values) => slugifyTitle(values.title);
+
+const projectSlugFromNode = (node) => {
+  const filename = node._sys.basename;
+  const match = projectNameFormat.exec(filename);
+  if (!match) {
+    throw new Error(`project name does not match format: '${filename}'`);
+  }
+
+  const [, slug] = match;
+  return slug;
+};
 
 /**
  * projectSlugToFilePath recreates the filename and path for a given  project
@@ -38,7 +52,7 @@ const projectSlugToHref = (slug) => `/projects/${slug}`;
 export const getAllProjectPaths = async () => {
   const res = await client.queries.projectConnection();
   return res.data.projectConnection.edges.map((edge) => ({
-    params: { slug: slugifyTitle(edge.node.title) },
+    params: { slug: projectSlugFromNode(edge.node) },
   }));
 };
 
@@ -71,7 +85,7 @@ export const getAllProjectMetadata = async (featuredFilter = null) => {
 
   const res = await client.queries.projectConnection({ sort, filter });
   let out = res.data.projectConnection.edges.map((edge) => {
-    const slug = slugifyTitle(edge.node.title);
+    const slug = projectSlugFromNode(edge.node);
     const href = projectSlugToHref(slug);
     return { slug, href, ...edge.node };
   });

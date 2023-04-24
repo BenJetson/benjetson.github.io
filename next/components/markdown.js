@@ -1,5 +1,4 @@
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 import NextImage from "next/image";
 
 // TODO this CJS import version does not support dynamic language loading.
@@ -199,9 +198,7 @@ const MdHeading6 = ({ children }) => <Heading level={6}>{children}</Heading>;
 const NoContent = () => null;
 
 const Markdown = ({ content }) => (
-  <ReactMarkdown
-    skipHtml
-    remarkPlugins={[remarkGfm]}
+  <TinaMarkdown
     components={{
       // Standard Markdown //
 
@@ -228,17 +225,17 @@ const Markdown = ({ content }) => (
       // GitHub Markdown //
 
       // del: undefined,
-      input: MdTaskListCheck,
-      table: MdTable,
-      tbody: Tbody,
-      td: Td,
-      th: Th,
-      thead: Thead,
-      tr: Tr,
+      // input: MdTaskListCheck,
+      // table: MdTable,
+      // tbody: Tbody,
+      // td: Td,
+      // th: Th,
+      // thead: Thead,
+      // tr: Tr,
     }}
   >
     {content}
-  </ReactMarkdown>
+  </TinaMarkdown>
 );
 
 export default Markdown;
