@@ -2,6 +2,7 @@
 
 import { defineConfig } from "tinacms";
 import { postNodeToFilename } from "../lib/posts";
+import { projectNodeToFilename } from "../lib/projects";
 
 // Your hosting provider likely exposes this as an environment variable
 // @ts-expect-error
@@ -109,11 +110,37 @@ export default defineConfig({
             required: true,
           },
           {
+            type: "boolean",
+            name: "featured",
+            label: "Featured",
+            description: "Controls whether this project is featured.",
+          },
+          {
+            type: "number",
+            name: "rank",
+            label: "Featured Rank",
+            description: "Controls display order or featured projects.",
+          },
+          {
             type: "datetime",
             name: "date",
             label: "Date",
             required: true,
-            ui: { dateFormat: "YYYY/MM" },
+            ui: {
+              dateFormat: "YYYY/MM",
+              format: (value) => {
+                const date = value ? new Date(value) : new Date();
+
+                const year = date.toLocaleDateString("en-US", {
+                  year: "numeric",
+                });
+                const month = date.toLocaleDateString("en-US", {
+                  month: "2-digit",
+                });
+
+                return [year, month].join("-");
+              },
+            },
           },
           {
             type: "string",
@@ -178,16 +205,7 @@ export default defineConfig({
           // },
           filename: {
             readonly: true,
-            slugify: (values) => {
-              const title = values.title ? values.title : "untitled";
-              return title
-                .trim()
-                .toLowerCase()
-                .replace(/[^a-z0-9 ]/g, "")
-                .split(" ")
-                .filter((value) => value.length > 0)
-                .join("-");
-            },
+            slugify: projectNodeToFilename,
           },
         },
       },

@@ -91,8 +91,8 @@ export default Projects;
 
 export const getStaticProps = async () => ({
   props: {
-    otherProjects: getAllProjectMetadata(false),
-    featuredProjects: getAllProjectMetadata(true),
+    otherProjects: await getAllProjectMetadata(false),
+    featuredProjects: await getAllProjectMetadata(true),
     containerWrap: false,
   },
 });

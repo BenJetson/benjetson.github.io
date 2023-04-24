@@ -3,29 +3,10 @@ import path from "path";
 import matter from "gray-matter";
 import { filterMatterResult } from "./markdown";
 import { compareDates } from "./date";
+import { slugifyTitle } from "./slug";
+import { client } from "../tina/__generated__/client";
 
-const projectsDirectory = path.join(process.cwd(), "projects");
-
-// It might be nice to include month and year in these filenames soem day.
-const projectNameFormat = /^([a-z0-9]+(-[a-z0-9]+)*).md$/;
-
-/**
- * parseProjectSlug uses regular expressions to parse the slug out of a
- * project's filename.
- *
- * @param {String} name the filename of the project (no leading path).
- *
- * @returns {string} the unique slug for this project.
- */
-const parseProjectSlug = (name) => {
-  const match = projectNameFormat.exec(name);
-  if (!match) {
-    throw new Error(`project name does not match format: '${name}'`);
-  }
-
-  const [, slug] = match;
-  return slug;
-};
+export const projectNodeToFilename = (values) => slugifyTitle(values.title);
 
 /**
  * projectSlugToFilePath recreates the filename and path for a given  project
@@ -35,8 +16,7 @@ const parseProjectSlug = (name) => {
  *
  * @returns {string} the path to the project's markdown file.
  */
-const projectSlugToFilePath = (slug) =>
-  path.join(projectsDirectory, `${slug}.md`);
+const projectSlugToFileName = (slug) => `${slug}.md`;
 
 /**
  * projectSlugToHref creates a hyperlink reference that could be used to
@@ -55,10 +35,10 @@ const projectSlugToHref = (slug) => `/projects/${slug}`;
  *
  * @returns {[]string} an array of all known project slugs.
  */
-export const getAllProjectPaths = () => {
-  const fileNames = fs.readdirSync(projectsDirectory);
-  return fileNames.map((fileName) => ({
-    params: { slug: parseProjectSlug(fileName) },
+export const getAllProjectPaths = async () => {
+  const res = await client.queries.projectConnection();
+  return res.data.projectConnection.edges.map((edge) => ({
+    params: { slug: slugifyTitle(edge.node.title) },
   }));
 };
 
@@ -70,24 +50,11 @@ export const getAllProjectPaths = () => {
  *
  * @returns {Object} the metadata for this project.
  */
-export const getProjectMetadata = (slug) => {
+export const getProjectMetadata = async (slug) => {
+  const fileName = projectSlugToFileName(slug);
   const href = projectSlugToHref(slug);
-  const filePath = projectSlugToFilePath(slug);
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  // FIXME need to get better excerpt algorithm?
-  const matterResult = matter(fileContents, { excerpt: true });
-  const filteredMatterResult = filterMatterResult(matterResult);
-
-  filteredMatterResult.frontMatter.date =
-    filteredMatterResult.frontMatter.date.toString();
-
-  return {
-    slug,
-    filePath,
-    href,
-
-    ...filteredMatterResult,
-  };
+  const res = await client.queries.project({ relativePath: fileName });
+  return { slug, href, ...res.data.project };
 };
 
 /**
@@ -95,23 +62,21 @@ export const getProjectMetadata = (slug) => {
  *
  * @returns {[]Object} the metadata for all known projects.
  */
-export const getAllProjectMetadata = (featuredFilter = null) => {
-  const fileNames = fs.readdirSync(projectsDirectory);
-  // const data = fileNames.map(getProjectMetadata);
-  const data = fileNames
-    .map((fileName) => {
-      const slug = parseProjectSlug(fileName);
-      return getProjectMetadata(slug);
-    })
-    .sort((aProject, bProject) =>
-      compareDates(aProject.frontMatter.date, bProject.frontMatter.date)
-    )
-    .reverse()
-    .filter(
-      (project) =>
-        featuredFilter === null ||
-        (project.frontMatter.featured ?? false) === featuredFilter
-    );
+export const getAllProjectMetadata = async (featuredFilter = null) => {
+  let sort = "date";
+  const filter = {};
 
-  return data;
+  if (featuredFilter !== null) filter.featured = { eq: featuredFilter };
+  if (featuredFilter === true) sort = "rank";
+
+  const res = await client.queries.projectConnection({ sort, filter });
+  let out = res.data.projectConnection.edges.map((edge) => {
+    const slug = slugifyTitle(edge.node.title);
+    const href = projectSlugToHref(slug);
+    return { slug, href, ...edge.node };
+  });
+
+  if (featuredFilter !== true) out = out.reverse();
+
+  return out;
 };

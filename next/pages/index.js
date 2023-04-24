@@ -87,9 +87,9 @@ export default function Home({ featuredProjects }) {
   );
 }
 
-export const getStaticProps = () => ({
+export const getStaticProps = async () => ({
   props: {
     containerWrap: false,
-    featuredProjects: getAllProjectMetadata(true),
+    featuredProjects: await getAllProjectMetadata(true),
   },
 });

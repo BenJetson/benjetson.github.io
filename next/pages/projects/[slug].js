@@ -1,22 +1,23 @@
-import Markdown from "../../components/markdown";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { getAllProjectPaths, getProjectMetadata } from "../../lib/projects";
 
 const BlogProject = ({ project }) => (
   <>
-    <h2>{project.frontMatter.title}</h2>
+    <h2>{project.title}</h2>
 
-    <p>{project.frontMatter.date}</p>
-    <Markdown content={project.content} />
+    <p>{project.date}</p>
+
+    <TinaMarkdown content={project.body} />
   </>
 );
 
 export default BlogProject;
 
 export const getStaticPaths = async () => ({
-  paths: getAllProjectPaths(),
+  paths: await getAllProjectPaths(),
   fallback: false,
 });
 
 export const getStaticProps = async ({ params: { slug } }) => ({
-  props: { project: getProjectMetadata(slug) },
+  props: { project: await getProjectMetadata(slug) },
 });

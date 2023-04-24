@@ -34,10 +34,10 @@ export const ProjectCard = ({ project }) => (
         display="flex"
         flexDirection="column"
       >
-        <CardTitle level={3}>{project.frontMatter.title}</CardTitle>
+        <CardTitle level={3}>{project.title}</CardTitle>
         <Text textStyle="subtitle">
-          <InlineText>{formatAsMonthDate(project.frontMatter.date)}</InlineText>
-          {project.frontMatter.featured && (
+          <InlineText>{formatAsMonthDate(project.date)}</InlineText>
+          {project.featured && (
             <InlineText>
               <InlineText color="yellow.600" ml={2}>
                 <InlineText display="inline-block" mr={2}>
@@ -57,12 +57,12 @@ export const ProjectCard = ({ project }) => (
           objectFit="cover"
           w="100%"
           h="185px"
-          src={project.frontMatter.photo}
-          alt={project.frontMatter["photo-alt"]}
+          src={project.photo}
+          alt={project["photo-alt"]}
           order={-1}
         />
 
-        <Text noOfLines={3}>{project.frontMatter.description}</Text>
+        <Text noOfLines={3}>{project.description}</Text>
       </CardBody>
 
       <CardFooter pt={0}>
@@ -73,24 +73,24 @@ export const ProjectCard = ({ project }) => (
             </Button>
           </LinkOverlay>
 
-          {project.frontMatter.repo && project.frontMatter.username && (
+          {project.repo && project.username && (
             <IconButton
               as="a"
               href={new URL(
-                `/${project.frontMatter.username}/${project.frontMatter.repo}`,
+                `/${project.username}/${project.repo}`,
                 `https://github.com`
               ).toString()}
               variant="ghost"
-              aria-label={`GitHub Repository for ${project.frontMatter.title}`}
+              aria-label={`GitHub Repository for ${project.title}`}
               icon={<FaGithub />}
             />
           )}
-          {project.frontMatter.webpage && (
+          {project.webpage && (
             <IconButton
               as="a"
-              href={project.frontMatter.webpage}
+              href={project.webpage}
               variant="ghost"
-              aria-label={`Webpage for ${project.frontMatter.title}`}
+              aria-label={`Webpage for ${project.title}`}
               icon={<FaExternalLinkSquareAlt />}
             />
           )}
@@ -103,7 +103,7 @@ export const ProjectCard = ({ project }) => (
 export const ProjectCollection = ({ projects, columns = [1, 2, null, 3] }) => (
   <SimpleGrid columns={columns} spacing={6}>
     {projects.map((project) => (
-      <ProjectCard project={project} key={project.filePath} />
+      <ProjectCard project={project} key={project._sys.filename} />
     ))}
   </SimpleGrid>
 );
