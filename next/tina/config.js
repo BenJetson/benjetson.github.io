@@ -1,7 +1,7 @@
 // @ts-check
 
 import { defineConfig } from "tinacms";
-import { postNodeToFilename } from "../lib/posts";
+import { postFilenameToHref, postNodeToFilename } from "../lib/posts";
 import { projectNodeToFilename } from "../lib/projects";
 
 // Your hosting provider likely exposes this as an environment variable
@@ -87,10 +87,9 @@ export default defineConfig({
           },
         ],
         ui: {
-          // router: ({ document }) => {
-          //   console.log("document is", document);
-          //   return `/blog/${document._sys.filename}`;
-          // },
+          router: ({ document }) => {
+            return postFilenameToHref(document._sys.basename);
+          },
           filename: {
             readonly: true,
             slugify: postNodeToFilename,

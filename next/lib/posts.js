@@ -34,6 +34,15 @@ export const postNodeToFilename = (values) => {
 const postNameFormat =
   /^([0-9]{4})-([0-9]{2})-([0-9]{2})-([a-z0-9]+(-[a-z0-9]+)*).md$/;
 
+export const postFilenameToHref = (filename) => {
+  const match = postNameFormat.exec(filename);
+  if (!match) {
+    throw new Error(`blog post name does not match format: '${filename}'`);
+  }
+  const [, year, month, day, slug] = match;
+  return postIdentifiersToHref({ year, month, day, slug });
+};
+
 const postSlugFromNode = (node) => {
   const filename = node._sys.basename;
   const match = postNameFormat.exec(filename);
@@ -107,7 +116,13 @@ export const getPostMetadata = async (identifiers) => {
   const fileName = postIdentifiersToFileName(identifiers);
   const href = postIdentifiersToHref(identifiers);
   const res = await client.queries.post({ relativePath: fileName });
-  return { identifiers, href, ...res.data.post };
+  return {
+    identifiers,
+    href,
+    query: res.query,
+    variables: res.variables,
+    data: res.data,
+  };
 };
 
 /**
